@@ -1,6 +1,6 @@
 # Software Project 2
 
-Programmers
+<h1>Programmers</h1>
 <ul>
 <li>Michaël Van Meerbeek</li>
 <li>Pattyn Willem-Jan</li>
