@@ -5,7 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("We are the best");
 		System.out.println("JSON.jar is now in the main branch!");
-		System.out.println("We are now in the dev branch");
+		System.out.println("We are now in the dev branch and not in the main");
 	}
 
 }
