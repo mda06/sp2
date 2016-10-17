@@ -24,8 +24,12 @@ public class LoginView extends JFrame{
 		int ySize = ((int) tk.getScreenSize().getHeight());
 		this.setSize(xSize,ySize);
 		
-		//Testy is goood
 		
+		JPanel p = new JPanel();
+		p.setLayout(null);
+		JButton button = new JButton("Button");
+		p.add(button);
+		add(p);
 		
 	/*	btnConnect = new JButton("Connect");
 		lblIsConnected = new JLabel("Not connected");
