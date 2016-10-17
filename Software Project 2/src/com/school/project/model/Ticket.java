@@ -76,6 +76,8 @@ public class Ticket {
 		this.archived = archived;
 	}
 	
-	
+	public String toString(){
+		return String.format("Id: %s\n Name: %s\n Description: %s\n Price: %s\n Validity Period: %s\n Has", id, name, description, price, validityPeriod);
+	}
 	
 }
