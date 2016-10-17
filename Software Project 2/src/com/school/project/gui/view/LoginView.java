@@ -1,28 +1,36 @@
 package com.school.project.gui.view;
 
 import java.awt.BorderLayout;
+import java.awt.*;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.*;
 
 public class LoginView extends JFrame{
 	private static final long serialVersionUID = 1L;
 
-	private JButton btnConnect;
+	private JButton btnConnect, test;
 	private JLabel lblIsConnected;
+	private JTextField username, password;
 	
 	public LoginView() {
-		setTitle("LoginView");
+		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(350, 200);
-		setLocationRelativeTo(null);
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		int xSize = ((int) tk.getScreenSize().getWidth());
+		int ySize = ((int) tk.getScreenSize().getHeight());
+		this.setSize(xSize,ySize);
 		
-		btnConnect = new JButton("Connect");
+		//Testy is goood
+		
+		
+	/*	btnConnect = new JButton("Connect");
 		lblIsConnected = new JLabel("Not connected");
-		
 		add(btnConnect, BorderLayout.NORTH);
-		add(lblIsConnected, BorderLayout.SOUTH);
+		add(lblIsConnected, BorderLayout.SOUTH);*/
 	}
 	
 	public JButton getBtnConnect() {
@@ -32,4 +40,5 @@ public class LoginView extends JFrame{
 	public JLabel getLblIsConnected() {
 		return lblIsConnected;
 	}
+	
 }
