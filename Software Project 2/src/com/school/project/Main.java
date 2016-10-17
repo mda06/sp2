@@ -1,11 +1,16 @@
 package com.school.project;
 
+import com.school.project.gui.controller.LoginController;
+import com.school.project.gui.model.LoginModel;
+import com.school.project.gui.view.LoginView;
+
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("We are the best");
-		System.out.println("JSON.jar is now in the main branch!");
-		System.out.println("We are now in the dev branch and not in the main");
+		LoginView view = new LoginView();
+		view.setVisible(true);
+		LoginModel model = new LoginModel(view);
+		LoginController controller = new LoginController(view, model);
 	}
 
 }
