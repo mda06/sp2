@@ -1,6 +1,5 @@
 package com.school.project.gui.view;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class BaseView extends JPanel {
@@ -10,6 +9,5 @@ public class BaseView extends JPanel {
 	
 	public BaseView(String key) {
 		CARD_KEY = key;
-		add(new JLabel(key));
 	}
 }
