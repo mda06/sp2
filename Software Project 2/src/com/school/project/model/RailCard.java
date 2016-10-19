@@ -86,8 +86,27 @@ public class RailCard {
 		this.archived = archived;
 	}
 	
+	public boolean equals(Object obj){
+		if(this == obj){
+			return true;
+		}
+		if(obj == null){
+			return false;
+		}
+		if(getClass() != obj.getClass()){
+			return false;
+		}
+		RailCard other = (RailCard)obj;
+		if(this.id != other.id || this.name != other.name || this.description != other.description || this.pricePerMonth != other.pricePerMonth
+			|| this.pricePer3Month != other.pricePer3Month || this.pricePerYear != other.pricePerYear || this.hasFixedRoute != other.hasFixedRoute
+			|| this.archived != other.archived){
+			return false;
+		}
+		return true;
+	}
 	
 	public String toString() {
-		return "RailCard";
+		return " ";
 	}
+
 }

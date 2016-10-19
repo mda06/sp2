@@ -76,6 +76,26 @@ public class Ticket {
 		this.archived = archived;
 	}
 	
+	public boolean equals(Object obj){
+		if(this == obj){
+			return true;
+		}
+		if(obj == null){
+			return false;
+		}
+		if(getClass() != obj.getClass()){
+			return false;
+		}
+		Ticket other = (Ticket)obj;
+		if(this.id != other.id || this.name != other.name || this.description != other.description
+				|| this.price != other.price || this.validityPeriod != other.validityPeriod
+				|| this.hasFixedRoute != other.hasFixedRoute || this.archived != other.archived){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public String toString(){
 		return String.format("Id: %s\n Name: %s\n Description: %s\n Price: %s\n Validity Period: %s\n Has", id, name, description, price, validityPeriod);
 	}
