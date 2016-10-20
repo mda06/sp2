@@ -5,7 +5,7 @@ import com.school.project.gui.MainFactory;
 public class Main {
 
 	public static void main(String[] args) {
-		new MainFactory().showBaseFrame();
+		new MainFactory().showLoginFrame();
 	}
 	
 }

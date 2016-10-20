@@ -20,18 +20,11 @@ public class LoginView extends JFrame{
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		
-		JPanel p = new JPanel();
-		p.setLayout(null);
-		JButton button = new JButton("Button");
-		p.add(button);
-		add(p);
-		
-	/*	btnConnect = new JButton("Connect");
+
+		btnConnect = new JButton("Connect");
 		lblIsConnected = new JLabel("Not connected");
 		add(btnConnect, BorderLayout.NORTH);
-		add(lblIsConnected, BorderLayout.SOUTH);*/
+		add(lblIsConnected, BorderLayout.SOUTH);
 	}
 	
 	public JButton getBtnConnect() {
