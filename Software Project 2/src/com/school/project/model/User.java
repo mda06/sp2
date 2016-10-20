@@ -12,16 +12,16 @@ public class User {
 	}
 	
 	private int id;
-	private Gender gener;
+	private Gender gender;
 	private UserType type;
 	private UserCredential credentials;
 	private String firstName, lastName;
 	private java.sql.Date dateOfBirth;
 	private boolean archived;
 	
-	public User(int id, Gender gener, UserType type, String firstName, String lastName, Date dateOfBirth, boolean archived) {
+	public User(int id, Gender gender, UserType type, String firstName, String lastName, Date dateOfBirth, boolean archived) {
 		this.id = id;
-		this.gener = gener;
+		this.gender = gender;
 		this.type = type;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -38,8 +38,8 @@ public class User {
 		return id;
 	}
 
-	public Gender getGener() {
-		return gener;
+	public Gender getGender() {
+		return gender;
 	}
 
 	public UserType getType() {
@@ -70,8 +70,8 @@ public class User {
 		this.id = id;
 	}
 
-	public void setGener(Gender gener) {
-		this.gener = gener;
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	public void setType(UserType type) {
@@ -106,7 +106,7 @@ public class User {
 		result = prime * result + ((credentials == null) ? 0 : credentials.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((gener == null) ? 0 : gener.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
@@ -129,7 +129,7 @@ public class User {
 		if (firstName == null) {
 			if (other.firstName != null) return false;
 		} else if (!firstName.equals(other.firstName)) return false;
-		if (gener != other.gener) return false;
+		if (gender != other.gender) return false;
 		if (id != other.id) return false;
 		if (lastName == null) {
 			if (other.lastName != null) return false;
@@ -140,7 +140,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", gener=" + gener + ", type=" + type + ", credentials=" + credentials + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
+		return "User [id=" + id + ", gender=" + gender + ", type=" + type + ", credentials=" + credentials + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
 				+ dateOfBirth + ", archived=" + archived + "]";
 	}
 	
