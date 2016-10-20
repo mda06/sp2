@@ -16,6 +16,7 @@ public class Address {
 		this.country = country;
 		this.archived = archived;
 	}
+	
 	public int getId() {
 		return id;
 	}
@@ -63,9 +64,16 @@ public class Address {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (archived ? 1231 : 1237);
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + id;
+		result = prime * result + postalCode;
+		result = prime * result + ((streetline1 == null) ? 0 : streetline1.hashCode());
+		result = prime * result + ((streetline2 == null) ? 0 : streetline2.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,17 +83,40 @@ public class Address {
 		if (getClass() != obj.getClass())
 			return false;
 		Address other = (Address) obj;
+		if (archived != other.archived)
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
 		if (id != other.id)
+			return false;
+		if (postalCode != other.postalCode)
+			return false;
+		if (streetline1 == null) {
+			if (other.streetline1 != null)
+				return false;
+		} else if (!streetline1.equals(other.streetline1))
+			return false;
+		if (streetline2 == null) {
+			if (other.streetline2 != null)
+				return false;
+		} else if (!streetline2.equals(other.streetline2))
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", postalCode=" + postalCode + ", city=" + city + ", streetline1=" + streetline1
 				+ ", streetline2=" + streetline2 + ", country=" + country + ", archived=" + archived + "]";
+	
 	}
-	
-	
 	
 }
