@@ -20,11 +20,13 @@ public class TestAddress {
 	
 	@Test
 	public void testConstructor() {			
+		assertEquals(id, a1.getId());
 		assertEquals(streetline1, a1.getStreetline1());
 		assertEquals(streetline2, a1.getStreetline2());
 		assertEquals(city, a1.getCity());
 		assertEquals(postalCode, a1.getPostalCode());
 		assertEquals(country, a1.getCountry());
+		assertEquals(archived, a1.isArchived());
 	}
 	
 	@Test
