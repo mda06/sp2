@@ -20,9 +20,7 @@ public class LoginView extends JFrame{
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		int xSize = ((int) tk.getScreenSize().getWidth());
-		int ySize = ((int) tk.getScreenSize().getHeight());
-		this.setSize(xSize,ySize);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		
 		JPanel p = new JPanel();
