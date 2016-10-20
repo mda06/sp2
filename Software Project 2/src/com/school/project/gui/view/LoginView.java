@@ -19,7 +19,6 @@ public class LoginView extends JFrame{
 	public LoginView() {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Toolkit tk = Toolkit.getDefaultToolkit();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		
