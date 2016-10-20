@@ -5,6 +5,17 @@ public class Address {
 	private String country;
 	private boolean archived;
 	
+	public Address(int id, int postalCode, int city, int streetline1, int streetline2, String country,
+			boolean archived) {
+		super();
+		this.id = id;
+		this.postalCode = postalCode;
+		this.city = city;
+		this.streetline1 = streetline1;
+		this.streetline2 = streetline2;
+		this.country = country;
+		this.archived = archived;
+	}
 	public int getId() {
 		return id;
 	}
