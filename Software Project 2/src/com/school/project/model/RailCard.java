@@ -106,7 +106,7 @@ public class RailCard {
 	}
 	
 	public String toString() {
-		return " ";
+		return "toString methode";
 	}
 
 }
