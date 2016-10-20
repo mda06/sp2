@@ -1,11 +1,11 @@
 package com.school.project.model;
 
 public class Address {
-	private int id, postalCode, city, streetline1, streetline2;
-	private String country;
+	private int id, postalCode;
+	private String country, city, streetline1, streetline2;
 	private boolean archived;
 	
-	public Address(int id, int postalCode, int city, int streetline1, int streetline2, String country,
+	public Address(int id, String streetline1, String streetline2, String city, int postalCode, String country,
 			boolean archived) {
 		super();
 		this.id = id;
@@ -28,22 +28,22 @@ public class Address {
 	public void setPostalCode(int postalCode) {
 		this.postalCode = postalCode;
 	}
-	public int getCity() {
+	public String getCity() {
 		return city;
 	}
-	public void setCity(int city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
-	public int getStreetline1() {
+	public String getStreetline1() {
 		return streetline1;
 	}
-	public void setStreetline1(int streetline1) {
+	public void setStreetline1(String streetline1) {
 		this.streetline1 = streetline1;
 	}
-	public int getStreetline2() {
+	public String getStreetline2() {
 		return streetline2;
 	}
-	public void setStreetline2(int streetline2) {
+	public void setStreetline2(String streetline2) {
 		this.streetline2 = streetline2;
 	}
 	public String getCountry() {
