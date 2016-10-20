@@ -15,6 +15,7 @@ public class Address {
 		this.streetline2 = streetline2;
 		this.country = country;
 		this.archived = archived;
+		System.out.println("test");
 	}
 	public int getId() {
 		return id;
