@@ -76,6 +76,22 @@ public class Ticket {
 		this.archived = archived;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (archived ? 1231 : 1237);
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + (hasFixedRoute ? 1231 : 1237);
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + validityPeriod;
+		return result;
+	}
+	
 	public boolean equals(Object obj){
 		if(this == obj){
 			return true;
@@ -95,7 +111,7 @@ public class Ticket {
 		
 		return true;
 	}
-	
+
 	public String toString(){
 		return String.format("Id: %s\n Name: %s\n Description: %s\n Price: %s\n Validity Period: %s\n Has", id, name, description, price, validityPeriod);
 	}
