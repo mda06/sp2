@@ -1,13 +1,13 @@
 package com.school.project.model;
 
 public class Ticket {
-	private int id;
-	private String name;
-	private String description;
-	private double price;
-	private int validityPeriod;
-	private boolean hasFixedRoute;
-	private boolean archived;
+	protected int id;
+	protected String name;
+	protected String description;
+	protected double price;
+	protected int validityPeriod;
+	protected boolean hasFixedRoute;
+	protected boolean archived;
 	
 	public Ticket(int id, String name, String description, double price, int validityPeriod, boolean hasFixedRoute,
 			boolean archived) {
@@ -113,7 +113,7 @@ public class Ticket {
 	}
 
 	public String toString(){
-		return String.format("Id: %s\n Name: %s\n Description: %s\n Price: %s\n Validity Period: %s\n Has", id, name, description, price, validityPeriod);
+		return String.format("Id: %s\nName: %s\nDescription: %s\nPrice: %s\nValidity Period: %s\nHas fixed route: %s\nArchived: %s\n", id, name, description, price, validityPeriod, (hasFixedRoute ? "True" : "False"),(archived ? "True" : "False"));
 	}
 	
 }
