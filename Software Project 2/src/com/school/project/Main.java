@@ -24,6 +24,7 @@ public class Main {
 		LostItemModel lm = new LostItemModel(lv);
 		new LostItemController(lm, lv);
 		model.addCard(lv);
+		
 	}
 	
 	public static void addCard(BaseModel m, String title, Color c) {
