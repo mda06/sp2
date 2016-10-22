@@ -18,12 +18,12 @@ public class LoginController implements ActionListener {
 	}
 	
 	private void initEvents() {
-		view.getBtnConnect().addActionListener(this);
+		view.getBtnLogin().addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == view.getBtnConnect()) {
+		if(e.getSource() == view.getBtnLogin()) {
 			model.handleBtnConnect();
 		}
 	}

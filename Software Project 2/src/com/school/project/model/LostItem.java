@@ -62,12 +62,17 @@ public class LostItem {
 	public void setArchived(boolean archived) {
 		this.archived = archived;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (archived ? 1231 : 1237);
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + (pickedUp ? 1231 : 1237);
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -80,7 +85,26 @@ public class LostItem {
 		if (getClass() != obj.getClass())
 			return false;
 		LostItem other = (LostItem) obj;
+		if (archived != other.archived)
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
 		if (id != other.id)
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (pickedUp != other.pickedUp)
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
 			return false;
 		return true;
 	}
