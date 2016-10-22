@@ -1,13 +1,15 @@
 package com.school.project.model;
 
+import java.util.Objects;
+
 public class Ticket {
-	private int id;
-	private String name;
-	private String description;
-	private double price;
-	private int validityPeriod;
-	private boolean hasFixedRoute;
-	private boolean archived;
+	protected int id;
+	protected String name;
+	protected String description;
+	protected double price;
+	protected int validityPeriod;
+	protected boolean hasFixedRoute;
+	protected boolean archived;
 	
 	public Ticket(int id, String name, String description, double price, int validityPeriod, boolean hasFixedRoute,
 			boolean archived) {
@@ -96,8 +98,21 @@ public class Ticket {
 		return true;
 	}
 	
+	public int hashCode(){
+		int result = 1;
+		int prime = 31;
+		result = prime * result + id;
+		result = prime * result + Objects.hashCode(name);
+		result = prime * result + Objects.hashCode(description);
+		result = prime * result + (int) price;
+		result = prime * result + validityPeriod;
+		result = prime * result + (hasFixedRoute ? 0 : 1);
+		result = prime * result + (archived ? 0 : 1);		
+		return result;
+	}
+	
 	public String toString(){
-		return String.format("Id: %s\n Name: %s\n Description: %s\n Price: %s\n Validity Period: %s\n Has", id, name, description, price, validityPeriod);
+		return String.format("Id: %s\nName: %s\nDescription: %s\nPrice: %s\nValidity Period: %s\nHasFixedRoute: %s\nArchived: %s", id, name, description, price, validityPeriod,(hasFixedRoute ? "True" : "False"), (archived ? "True" : "False"));
 	}
 	
 }
