@@ -109,7 +109,7 @@ public class RailCard {
 	
 	public int hashCode(){
 		int result = 1;
-		int prime = 31;
+		final int prime = 31;
 		result = prime * result + id;
 		result = prime * result + Objects.hashCode(name);
 		result = prime * result + Objects.hashCode(description);
