@@ -24,24 +24,6 @@ public class TicketSale {
 		this.user = user;
 	}
 	
-	public boolean equals(Object obj){
-		if(this == obj){
-			return true;
-		}
-		if(obj == null){
-			return false;
-		}
-		if(getClass() != obj.getClass()){
-			return false;
-		}
-		TicketSale other = (TicketSale)obj;
-		if(this.id != other.id || this.validFrom != other.validFrom || this.validTo != other.validTo || this.soldOn != other.soldOn
-			|| this.from != other.from || this.to != other.to || this.archived != other.archived || this.ticket != other.ticket || this.user != other.user){
-			return false;
-		}
-		return true;
-	}
-	
 	public int getId() {
 		return id;
 	}
@@ -114,6 +96,24 @@ public class TicketSale {
 		this.user = user;
 	}
 
+	public boolean equals(Object obj){
+		if(this == obj){
+			return true;
+		}
+		if(obj == null){
+			return false;
+		}
+		if(getClass() != obj.getClass()){
+			return false;
+		}
+		TicketSale other = (TicketSale)obj;
+		if(this.id != other.id || this.validFrom != other.validFrom || this.validTo != other.validTo || this.soldOn != other.soldOn
+			|| this.from != other.from || this.to != other.to || this.archived != other.archived || !ticket.equals(other.ticket) || !user.equals(other.user)){
+			return false;
+		}
+		return true;
+	}
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
