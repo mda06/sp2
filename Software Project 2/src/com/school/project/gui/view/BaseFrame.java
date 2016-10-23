@@ -21,7 +21,7 @@ public class BaseFrame extends JFrame{
 	}
 	
 	private void initLayout() {
-		pnlBtns = new JPanel(new GridLayout(10, 1, 5, 5));
+		pnlBtns = new JPanel(new GridLayout(10, 1));
 		pnlCard = new JPanel(new CardLayout());
 		split = new JSplitPane();
 		split.setRightComponent(pnlCard);
