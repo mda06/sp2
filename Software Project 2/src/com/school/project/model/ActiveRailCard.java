@@ -11,7 +11,6 @@ public class ActiveRailCard {
 	private User user;
 	
 	public ActiveRailCard(int id, Date validFrom, Date validTo, String from, String to, User user) {
-		super();
 		this.id = id;
 		this.validFrom = validFrom;
 		this.validTo = validTo;
