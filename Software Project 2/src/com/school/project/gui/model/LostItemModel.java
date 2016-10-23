@@ -1,12 +1,17 @@
 package com.school.project.gui.model;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import com.school.project.gui.view.LostItemView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.LostItem;
 
-public class LostItemModel {
+public class LostItemModel implements Observer {
 	private LostItemView view;
 	private LostItemTableModel tableModel;
-	
+
 	public LostItemModel(LostItemView view) {
 		tableModel = new LostItemTableModel();
 		this.view = view;
@@ -18,4 +23,12 @@ public class LostItemModel {
 		tableModel.addLostItem(new LostItem(0, "test", "?", "Ostende", false, false));
 		tableModel.addLostItem(new LostItem(0, "othign", "okay", "Charleroi", false, false));
 	}
+
+	@Override
+	public void update(Observable observable, Object obj) {
+		if(observable instanceof LanguageObservable){
+			LanguageHandler handler = ((LanguageObservable)observable).getLanguageHandler();
+			view.getBtnSearch().setText(handler.getString("search"));
+		}
+	}	
 }

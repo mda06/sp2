@@ -45,7 +45,7 @@ public class LostItemView extends BaseView {
 		return txtSearch;
 	}
 
-	public JButton getSearch() {
+	public JButton getBtnSearch() {
 		return btnSearch;
 	}
 
