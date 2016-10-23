@@ -1,13 +1,13 @@
 package com.school.project.model;
 
 public class Ticket {
-	protected int id;
-	protected String name;
-	protected String description;
-	protected double price;
-	protected int validityPeriod;
-	protected boolean hasFixedRoute;
-	protected boolean archived;
+	private int id;
+	private String name;
+	private String description;
+	private double price;
+	private int validityPeriod;
+	private boolean hasFixedRoute;
+	private boolean archived;
 	
 	public Ticket(int id, String name, String description, double price, int validityPeriod, boolean hasFixedRoute,
 			boolean archived) {
