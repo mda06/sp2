@@ -2,7 +2,7 @@ package com.school.project.model;
 
 import java.sql.Date; 
 
-public class ActiveRailCards {
+public class ActiveRailCard {
 	private int id;
 	private Date validFrom;
 	private Date validTo;
@@ -10,7 +10,7 @@ public class ActiveRailCards {
 	private String to;
 	private User user;
 	
-	public ActiveRailCards(int id, Date validFrom, Date validTo, String from, String to, User user) {
+	public ActiveRailCard(int id, Date validFrom, Date validTo, String from, String to, User user) {
 		super();
 		this.id = id;
 		this.validFrom = validFrom;
@@ -78,7 +78,7 @@ public class ActiveRailCards {
 		if(getClass() != obj.getClass()){
 			return false;
 		}
-		ActiveRailCards other = (ActiveRailCards)obj;
+		ActiveRailCard other = (ActiveRailCard)obj;
 		if(this.id != other.id || this.validFrom != other.validFrom || this.validTo != other.validTo
 				|| this.from != other.from || this.to != other.to || !user.equals(other.user));
 		return true;
