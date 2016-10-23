@@ -2,14 +2,18 @@ package com.school.project.gui.model;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 
 import com.school.project.gui.events.AddCardListener;
 import com.school.project.gui.view.BaseFrame;
 import com.school.project.gui.view.BaseView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 
-public class BaseModel {
+public class BaseModel implements Observer{
 	private BaseFrame view;
 	private ArrayList<String> lstCardKeys;
 	private AddCardListener addCardListener;
@@ -43,6 +47,14 @@ public class BaseModel {
 	
 	public void setAddCardListener(AddCardListener list) {
 		addCardListener = list;
+	}
+
+	@Override
+	public void update(Observable observable, Object obj) {
+		if(observable instanceof LanguageObservable){
+			LanguageHandler handler = ((LanguageObservable)observable).getLanguageHandler();
+			view.getMenuOptions().setText(handler.getString("options"));
+		}		
 	}
 	
 }
