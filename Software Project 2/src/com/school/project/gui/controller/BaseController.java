@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import com.school.project.gui.controller.listener.LanguageListener;
 import com.school.project.gui.events.AddCardListener;
 import com.school.project.gui.model.BaseModel;
 import com.school.project.gui.view.BaseFrame;
-import com.school.project.language.LanguageHandler.Language;
 import com.school.project.language.LanguageObservable;
 
 public class BaseController implements ActionListener, AddCardListener {
@@ -25,24 +25,10 @@ public class BaseController implements ActionListener, AddCardListener {
 	}
 
 	private void initLanguageEvents(){
-		frame.getMiEn().addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				languageObservable.getLanguageHandler().setLanguage(Language.EN);
-			}
-			
-		});
-		frame.getMiFr().addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				languageObservable.getLanguageHandler().setLanguage(Language.FR);
-			}
-			
-		});
-		frame.getMiNl().addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				languageObservable.getLanguageHandler().setLanguage(Language.NL);
-			}
-			
-		});
+		LanguageListener ll = new LanguageListener(frame, languageObservable);
+		frame.getMiEn().addActionListener(ll);
+		frame.getMiFr().addActionListener(ll);
+		frame.getMiNl().addActionListener(ll);
 	}
 	
 	@Override
