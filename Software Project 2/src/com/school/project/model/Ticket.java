@@ -113,7 +113,7 @@ public class Ticket {
 	}
 
 	public String toString(){
-		return String.format("Id: %s\n Name: %s\n Description: %s\n Price: %s\n Validity Period: %s\n Has", id, name, description, price, validityPeriod);
+		return String.format("Id: %s\nName: %s\nDescription: %s\nPrice: %s\nValidity Period: %s\nHas fixed route: %s\nArchived: %s\n", id, name, description, price, validityPeriod, (hasFixedRoute ? "True" : "False"),(archived ? "True" : "False"));
 	}
 	
 }

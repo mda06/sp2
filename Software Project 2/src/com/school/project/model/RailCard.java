@@ -1,5 +1,7 @@
 package com.school.project.model;
 
+import java.util.Objects;
+
 public class RailCard {
 	private int id;
 	private String name;
@@ -105,8 +107,22 @@ public class RailCard {
 		return true;
 	}
 	
+	public int hashCode(){
+		int result = 1;
+		final int prime = 31;
+		result = prime * result + id;
+		result = prime * result + Objects.hashCode(name);
+		result = prime * result + Objects.hashCode(description);
+		result = prime * result + (int)pricePerMonth;
+		result = prime * result + (int)pricePer3Month;
+		result = prime * result + (int)pricePerYear;
+		result = prime * result + (hasFixedRoute ? 0 : 1);
+		result = prime * result + (archived ? 0 : 1);
+		return result;
+	}
+	
 	public String toString() {
-		return "toString methode";
+		return String.format("Id: %s\nName %s\nDescription: %s\nPrice per month: %s\nPrice per 3 month: %s\nPrice per year: %s\nHas fixed route: %s\nArchived: %s\n", id, name, description, pricePerMonth, pricePer3Month, pricePerYear, (hasFixedRoute ? "True" : "False"), (archived ? "True" : "False"));
 	}
 
 }
