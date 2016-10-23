@@ -10,7 +10,7 @@ import com.school.project.nmbs.model.StationCache;
 
 //JSON APi
 //https://github.com/stleary/JSON-java
-public class Main {
+public class TestMainNMBS {
 	public static void main(String[] args) throws Exception {
 		StationDAO.loadCache();
 		List<Station> st = StationCache.getInstance().getStations();

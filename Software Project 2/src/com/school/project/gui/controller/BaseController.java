@@ -15,7 +15,6 @@ public class BaseController implements ActionListener, AddCardListener {
 	private BaseModel model;
 	private BaseFrame frame;
 	private LanguageObservable languageObservable;
-
 	
 	public BaseController(BaseModel model, BaseFrame frame,	LanguageObservable languageObservable) {
 		this.model = model;
