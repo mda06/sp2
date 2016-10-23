@@ -14,7 +14,6 @@ public class LostItemView extends BaseView {
 
 	public LostItemView() {
 		super("lostItemView");
-		
 		initLayout();
 	}
 	
