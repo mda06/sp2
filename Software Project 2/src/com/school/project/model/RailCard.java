@@ -3,14 +3,14 @@ package com.school.project.model;
 import java.util.Objects;
 
 public class RailCard {
-	protected int id;
-	protected String name;
-	protected String description;
-	protected double pricePerMonth;
-	protected double pricePer3Month;
-	protected double pricePerYear;
-	protected boolean hasFixedRoute;
-	protected boolean archived;
+	private int id;
+	private String name;
+	private String description;
+	private double pricePerMonth;
+	private double pricePer3Month;
+	private double pricePerYear;
+	private boolean hasFixedRoute;
+	private boolean archived;
 	
 	public RailCard(int id, String name, String description, double pricePerMonth, double pricePer3Month,
 			double pricePerYear, boolean hasFixedRoute, boolean archived) {
