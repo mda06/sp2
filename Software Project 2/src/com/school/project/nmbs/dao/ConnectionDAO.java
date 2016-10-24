@@ -29,7 +29,7 @@ public class ConnectionDAO {
 				throw new Exception("Server of NMBS is down");
 			}
 			
-			JSONArray arrCon = jBase.getJSONArray("connection");
+			JSONArray arrCon =   jBase.getJSONArray("connection");
 			arrCon.forEach(new Consumer<Object>() {
 				@Override
 				public void accept(Object t) {
