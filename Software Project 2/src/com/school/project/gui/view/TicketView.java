@@ -1,40 +1,44 @@
 package com.school.project.gui.view;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
-public class TicketView extends JFrame {
+public class TicketView extends BaseView {
 	private static final long serialVersionUID = 1L;
-	
-	private JButton btnStandaardBiljet, btnBiljetKind, btnBiljetGroteGezinnen;
+
+	List<JButton> buttonList = new ArrayList<>();
 
 	public TicketView() {
 		super("ticketView");
-		
+
 		initLayout();
 	}
 
 	private void initLayout() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		btnStandaardBiljet = new JButton("Standaard Biljet");
-		btnBiljetKind = new JButton("Biljet Kind");
-		btnBiljetGroteGezinnen = new JButton("Biljet Grote Gezinnen");
+		buttonList.add(new JButton("Standaard Biljet"));
+//		buttonList.add(new JButton("Biljet Kind"));
+//		buttonList.add(new JButton("Biljet Grote Gezinnen"));
+//		buttonList.add(new JButton("Test"));
+//		buttonList.add(new JButton("Test"));
+//		buttonList.add(new JButton("Test"));
+//		buttonList.add(new JButton("Test"));
+//		buttonList.add(new JButton("Test"));
+//		buttonList.add(new JButton("Test"));
+		//buttonList.add(new JButton("Test"));
+		//buttonList.add(new JButton("Test"));
+		//buttonList.add(new JButton("Test"));
 
-		GridLayout gr = new GridLayout(0,2,5,5);
+		GridLayout gr = new GridLayout(0, 4, 5, 5);
 		setLayout(gr);
-		add(btnStandaardBiljet);
-		add(btnBiljetKind);
-		add(btnBiljetGroteGezinnen);
-		
-
-		setVisible(true);
+		add(buttonList);
 	}
-	public static void main(String[] args) {
-		new TicketView();
+
+	private void add(List<JButton> buttonList2) {
+		for (JButton button : buttonList)
+			add(button);
 	}
 
 }
