@@ -1,6 +1,7 @@
 package com.school.project.gui.model;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -26,6 +27,7 @@ public class BaseModel implements Observer{
 
 	public void addCard(BaseView bv) {
 		JButton btn = new JButton(bv.CARD_KEY);
+		btn.setActionCommand(bv.CARD_KEY);
 		lstCardKeys.add(bv.CARD_KEY);
 		view.getPanelBtns().add(btn);
 		view.getPanelCard().add(bv, bv.CARD_KEY);
@@ -54,6 +56,13 @@ public class BaseModel implements Observer{
 		if(observable instanceof LanguageObservable){
 			LanguageHandler handler = ((LanguageObservable)observable).getLanguageHandler();
 			view.getMenuOptions().setText(handler.getString("options"));
+			for(Component c : view.getPanelBtns().getComponents()) {
+				if(c instanceof JButton) {
+					JButton btn = (JButton)c;
+					String acc = btn.getActionCommand();
+					btn.setText(handler.getString(acc));
+				}
+			}
 		}		
 	}
 	

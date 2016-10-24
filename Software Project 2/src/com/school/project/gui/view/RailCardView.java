@@ -6,14 +6,13 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-public class TicketView extends BaseView {
+public class RailCardView extends BaseView {
 	private static final long serialVersionUID = 1L;
-
 	List<JButton> buttonList = new ArrayList<>();
-
-	public TicketView() {
-		super("TicketView");
-
+	
+	public RailCardView() {
+		super("RailCard");
+		
 		initLayout();
 	}
 
@@ -27,12 +26,14 @@ public class TicketView extends BaseView {
 		buttonList.add(new JButton("Test"));
 		buttonList.add(new JButton("Test"));
 		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
 
 		GridLayout gr = new GridLayout(0, 4, 5, 5);
 		setLayout(gr);
 		add(buttonList);
 	}
-
 	private void add(List<JButton> buttonList2) {
 		for (JButton button : buttonList)
 			add(button);
