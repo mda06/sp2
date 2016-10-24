@@ -85,6 +85,8 @@ public class User {
 
 	public void setCredentials(UserCredential credentials) {
 		this.credentials = credentials;
+		if(credentials != null)
+			this.credentials.setUserId(id);
 	}
 
 	public void setFirstName(String firstName) {

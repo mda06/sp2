@@ -1,5 +1,7 @@
 package com.school.project.gui;
 
+import javax.swing.JOptionPane;
+
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.LoginController;
 import com.school.project.gui.controller.LostItemController;
@@ -22,7 +24,6 @@ import com.school.project.language.LanguageObservable;
 import com.school.project.model.User;
 
 public class MainFactory implements ConnectionListener{
-	@SuppressWarnings("unused")
 	private User connectedUser;
 	private LoginView loginView;
 	private LanguageObservable languageObservable;
@@ -77,10 +78,13 @@ public class MainFactory implements ConnectionListener{
 	
 	@Override
 	public void connect(User user) {
+		connectedUser = user;
 		if (loginView != null){
 			loginView.dispose();
 		}
 		showBaseFrame();
-		
+		languageObservable.languageChanged();
+		if(connectedUser != null)
+			JOptionPane.showMessageDialog(null, connectedUser.getFirstName() + " is connected.");
 	}
 }

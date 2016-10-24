@@ -1,10 +1,14 @@
 package com.school.project.gui.model;
 
+import java.io.UnsupportedEncodingException;
+
+import com.school.project.dao.UserDAO;
 import com.school.project.gui.ConnectionListener;
 import com.school.project.gui.view.LoginView;
+import com.school.project.model.User;
+import com.school.project.util.HashUtil;
 
 public class LoginModel {
-	@SuppressWarnings("unused")
 	private LoginView view;
 	private ConnectionListener connectListener;
 	
@@ -15,16 +19,16 @@ public class LoginModel {
 	
 	public void handleBtnConnect() {
 		if(connectListener != null){
-			/*try {
+			try {
 				String username = view.getTxtUsername().getText();
-				String password = HashUtil.getSHA512SecurePassword(view.getTxtPassword().getPassword().toString());
-				User u = UserDAO.getInstance().get(username, password);
-				connectListener.connect(u);
+				System.out.println(String.valueOf(view.getTxtPassword().getPassword()));
+				String password = HashUtil.getSHA512SecurePassword(String.valueOf(view.getTxtPassword().getPassword()));
+				User user = UserDAO.getInstance().get(username, password);
+				//if(user != null && user.getType() != UserType.CUSTOMER)
+				connectListener.connect(user);
 			} catch (UnsupportedEncodingException ex) {
 				ex.printStackTrace();
-			}*/
-			
-			connectListener.connect(null);
+			}
 		}
 	}
 }

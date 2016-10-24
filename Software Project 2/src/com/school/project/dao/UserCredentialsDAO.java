@@ -30,7 +30,9 @@ public class UserCredentialsDAO implements BaseDAO<UserCredential> {
 		String username = res.getString("username");
 		String password = res.getString("passwordHash");
 		boolean archived = res.getBoolean("archived");
-		return new UserCredential(id, username, password, archived);
+		UserCredential uc = new UserCredential(id, username, password, archived);
+		uc.setUserId(res.getInt("userId"));
+		return uc;
 	}
 	
 	public UserCredential getCredentialsOfUser(User u) {
@@ -67,11 +69,12 @@ public class UserCredentialsDAO implements BaseDAO<UserCredential> {
 		
 		try {
 			String[] returnId = {"BATCHID"};
-			st = connection.prepareStatement("INSERT INTO userCredentials(id, username, passwordHash, archived)"
-					+ "VALUES (null, ?,?,?)", returnId);
+			st = connection.prepareStatement("INSERT INTO userCredentials(id, username, passwordHash, archived, userId)"
+					+ "VALUES (null, ?,?,?,?)", returnId);
 			st.setString(1, obj.getUsername());
 			st.setString(2, obj.getPassword());
 			st.setBoolean(3, obj.isArchived());
+			st.setInt(4, obj.getUserId());
 			st.executeUpdate();
 			
 			ResultSet genKeys = null;
@@ -183,11 +186,12 @@ public class UserCredentialsDAO implements BaseDAO<UserCredential> {
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE userCredentials SET username = ?, passwordHash = ?, archived = ? WHERE id = ?;");
+			stat = connection.prepareStatement("UPDATE userCredentials SET username = ?, passwordHash = ?, archived = ?, userId = ? WHERE id = ?;");
 			stat.setString(1, obj.getUsername());
 			stat.setString(2, obj.getPassword());
 			stat.setBoolean(3,  obj.isArchived());
-			stat.setInt(4, obj.getId());
+			stat.setInt(4, obj.getUserId());
+			stat.setInt(5, obj.getId());
 			stat.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();

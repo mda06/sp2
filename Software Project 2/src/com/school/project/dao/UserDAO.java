@@ -114,8 +114,8 @@ public class UserDAO implements BaseDAO<User>{
 	public User get(String username, String password) {
 		UserCredential cred = UserCredentialsDAO.getInstance().get(username, password);
 		if(cred == null) return null;
-		//User u = getUser(cred.g)
-		return null;
+		User u = get(cred.getUserId());
+		return u;
 	}
 	
 	@Override

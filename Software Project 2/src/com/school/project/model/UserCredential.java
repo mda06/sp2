@@ -1,7 +1,7 @@
 package com.school.project.model;
 
 public class UserCredential {
-	private int id;
+	private int id, userId;
 	private String username, password;
 	private boolean archived;
 	
@@ -43,6 +43,14 @@ public class UserCredential {
 
 	public void setArchived(boolean archived) {
 		this.archived = archived;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	@Override
