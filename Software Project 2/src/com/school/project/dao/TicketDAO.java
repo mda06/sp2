@@ -37,16 +37,47 @@ public class TicketDAO implements BaseDAO<Ticket> {
 
 	@Override
 	public void add(Ticket obj) {
-		/*if(obj == null){ return; }
+		if(obj == null){ return; }
 		
 		Connection connection = DatabaseHandler.getInstance().getConnection();
 		PreparedStatement stat = null;
 		
 		try{
 			String[] returnId = {"BATCHID"};
-			stat = connection.prepareStatement("INSERT INTO tickets (.....) VALUES (....);", returnId);
+			stat = connection.prepareStatement("INSERT INTO tickets (id, name, description, prive, validityPeriod, hasFixedRoute, archived) VALUES (null,?,?,?,?,?,?);", returnId);
+			stat.setString(1, obj.getName());
+			stat.setString(2, obj.getDescription());
+			stat.setDouble(3, obj.getPrice());
+			stat.setInt(4, obj.getValidityPeriod());
+			stat.setBoolean(5, obj.isHasFixedRoute());
+			stat.setBoolean(6, obj.isArchived());
+			stat.executeUpdate();
 			
-		}*/
+			ResultSet genKeys = null;
+			try{
+				genKeys = stat.getGeneratedKeys();
+				if(genKeys.next()){
+					obj.setId(genKeys.getInt(1));
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+			finally{
+				if(genKeys != null){genKeys.close();}
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){ stat.close(); }
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -109,8 +140,30 @@ public class TicketDAO implements BaseDAO<Ticket> {
 
 	@Override
 	public void update(Ticket obj) {
-		// TODO Auto-generated method stub
+		if(obj == null || obj.getId() == -1) return;
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
 		
+		try{
+			stat = connection.prepareStatement("UPDATE tickets SET name = ?, description = ?, price = ?, validityPeriod = ?, hasFixedRoute = ?, archived = ? WHERE id = ?;");
+			stat.setString(1, obj.getName());
+			stat.setString(2, obj.getDescription());
+			stat.setDouble(3, obj.getPrice());
+			stat.setInt(4, obj.getValidityPeriod());
+			stat.setBoolean(5, obj.isHasFixedRoute());
+			stat.setBoolean(6, obj.isArchived());
+			stat.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){ stat.close(); }
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
