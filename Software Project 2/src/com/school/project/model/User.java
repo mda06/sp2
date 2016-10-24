@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class User {
 	public enum Gender {
-		MALE, FEMELE;
+		MALE, FEMALE;
 	}
 	
 	public enum UserType {
