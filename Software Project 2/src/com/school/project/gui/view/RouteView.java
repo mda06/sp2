@@ -10,8 +10,8 @@ import javax.swing.SpringLayout;
 
 public class RouteView extends BaseView {
 	private static final long serialVersionUID = 1L;
-	private JTextField txtDeparture, txtArrival;
-	private JLabel lbDeparture, lbArrival, lbNumber;
+	private JTextField txtDeparture, txtArrival, txtUur;
+	private JLabel lbDeparture, lbArrival, lbNumber, lbUur;
 	private JRadioButton rbSingle, rbReturn, rbDeparture, rbArrival;
 	private JComboBox<Integer> cbNumber;
 	private JButton btnShowTickets, btnBack;
@@ -25,9 +25,11 @@ public class RouteView extends BaseView {
 	private void initLayout() {
 		txtDeparture = new JTextField(20);
 		txtArrival = new JTextField(20);
-		lbDeparture = new JLabel("Departure");
-		lbArrival = new JLabel("Arrival");
+		txtUur = new JTextField(5);
+		lbDeparture = new JLabel("Departure:");
+		lbArrival = new JLabel("Arrival:");
 		lbNumber = new JLabel("Number");
+		lbUur = new JLabel("Uur:");
 		rbSingle = new JRadioButton("Single");
 		rbReturn = new JRadioButton("Return");
 		rbDeparture = new JRadioButton("Departure");
@@ -40,18 +42,40 @@ public class RouteView extends BaseView {
 		setLayout(sp);
 		add(txtDeparture);
 		add(txtArrival);
+		add(txtUur);
 		add(lbDeparture);
 		add(lbArrival);
 		add(lbNumber);
+		add(lbUur);
 		add(rbSingle);
+		add(rbReturn);
 		add(rbDeparture);
 		add(rbArrival);
 		add(cbNumber);
 		add(btnShowTickets);
 		add(btnBack);
 		
-		sp.putConstraint(SpringLayout.WEST, txtDeparture, 20, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, txtDeparture, 100, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, txtDeparture, 60, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, txtArrival, 100, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, txtArrival, 100, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, lbArrival, 30, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, lbArrival, 105, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, lbDeparture, 30, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.NORTH, lbDeparture, 65, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, rbSingle, 20, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, rbSingle, 140, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, rbReturn, 150, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, rbReturn, 140, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, lbUur, 150, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, lbUur, 185, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, txtUur, 180, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, txtUur, 180, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, rbDeparture, 270, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, rbDeparture, 175, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, rbArrival, 270, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, rbArrival, 195, SpringLayout.WEST, this);
+		
 	}
 
 	public JTextField getTxtDeparture() {

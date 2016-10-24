@@ -27,6 +27,15 @@ public class TicketView extends BaseView {
 		buttonList.add(new JButton("Test"));
 		buttonList.add(new JButton("Test"));
 		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Standaard Biljet"));
+		buttonList.add(new JButton("Biljet Kind"));
+		buttonList.add(new JButton("Biljet Grote Gezinnen"));
+		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
+		buttonList.add(new JButton("Test"));
 
 		GridLayout gr = new GridLayout(0, 4, 5, 5);
 		setLayout(gr);
