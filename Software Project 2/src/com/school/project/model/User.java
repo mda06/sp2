@@ -16,9 +16,11 @@ public class User {
 	private UserType type;
 	private UserCredential credentials;
 	private String firstName, lastName;
+	private Address address;
 	private java.sql.Date dateOfBirth;
 	private boolean archived;
 	
+
 	public User(int id, Gender gender, UserType type, String firstName, String lastName, Date dateOfBirth, boolean archived) {
 		this.id = id;
 		this.gender = gender;
@@ -57,6 +59,10 @@ public class User {
 	public String getLastName() {
 		return lastName;
 	}
+	
+	public Address getAddress() {
+		return address;
+	}
 
 	public java.sql.Date getDateOfBirth() {
 		return dateOfBirth;
@@ -90,6 +96,10 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
 	public void setDateOfBirth(java.sql.Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
@@ -109,6 +119,7 @@ public class User {
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
@@ -131,6 +142,9 @@ public class User {
 		} else if (!firstName.equals(other.firstName)) return false;
 		if (gender != other.gender) return false;
 		if (id != other.id) return false;
+		if(address == null){
+			if(other.address != null)return false;
+		}else if(!address.equals(other.address)) return false;
 		if (lastName == null) {
 			if (other.lastName != null) return false;
 		} else if (!lastName.equals(other.lastName)) return false;
@@ -141,7 +155,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", gender=" + gender + ", type=" + type + ", credentials=" + credentials + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
-				+ dateOfBirth + ", archived=" + archived + "]";
+				+ dateOfBirth + ", archived=" + archived + address.toString() + "]";
 	}
 	
 }
