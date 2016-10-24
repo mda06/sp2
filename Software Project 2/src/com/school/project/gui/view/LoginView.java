@@ -80,4 +80,22 @@ public class LoginView extends JFrame{
 		this.txtPassword = password;
 	}
 
+	public JLabel getlUsername() {
+		return lUsername;
+	}
+
+	public void setlUsername(JLabel lUsername) {
+		this.lUsername = lUsername;
+	}
+
+	public JLabel getlPassword() {
+		return lPassword;
+	}
+
+	public void setlPassword(JLabel lPassword) {
+		this.lPassword = lPassword;
+	}
+	
+	
+
 }
