@@ -5,10 +5,6 @@ public class Address {
 	private String country, city, streetline1, streetline2;
 	private boolean archived;
 	
-	public Address() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	public Address(int id, String streetline1, String streetline2, String city, int postalCode, String country,
 			boolean archived) {
 		super();

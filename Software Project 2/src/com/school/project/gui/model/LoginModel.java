@@ -15,6 +15,15 @@ public class LoginModel {
 	
 	public void handleBtnConnect() {
 		if(connectListener != null){
+			/*try {
+				String username = view.getTxtUsername().getText();
+				String password = HashUtil.getSHA512SecurePassword(view.getTxtPassword().getPassword().toString());
+				User u = UserDAO.getInstance().get(username, password);
+				connectListener.connect(u);
+			} catch (UnsupportedEncodingException ex) {
+				ex.printStackTrace();
+			}*/
+			
 			connectListener.connect(null);
 		}
 	}
