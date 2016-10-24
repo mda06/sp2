@@ -3,19 +3,20 @@ package com.school.project.gui.model;
 import java.util.Observable;
 import java.util.Observer;
 
-import com.school.project.gui.view.TicketView;
+import com.school.project.gui.view.RailCardView;
 
-public class TicketModel implements Observer {
+public class RailCardModel implements Observer {
 	@SuppressWarnings("unused")
-	private TicketView view;
+	private RailCardView view;
 
-	public TicketModel(TicketView view) {
+	public RailCardModel(RailCardView view) {
 		this.view = view;
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		// TODO Auto-generated method stub
+
 	}
 
 }

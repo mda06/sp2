@@ -21,12 +21,25 @@ public class LanguageHandler {
 		words.put(Language.NL, new HashMap<String, String>());
 		words.put(Language.FR, new HashMap<String, String>());
 		words.put(Language.EN, new HashMap<String, String>());
-		put(Language.NL, "search", "zoeken");
-		put(Language.FR, "search", "chercher");
-		put(Language.EN, "search", "search");
-		put(Language.NL, "options", "opties");
-		put(Language.FR, "options", "options");
-		put(Language.EN, "options", "options");
+		put(Language.NL, "search", "Zoeken");
+		put(Language.FR, "search", "Chercher");
+		put(Language.EN, "search", "Search");
+		
+		put(Language.NL, "options", "Opties");
+		put(Language.FR, "options", "Options");
+		put(Language.EN, "options", "Options");
+		
+		put(Language.NL, "lostItemView", "Verloren Voorwerpen");
+		put(Language.FR, "lostItemView", "Objet Perdu");
+		put(Language.EN, "lostItemView", "Lost Objects");
+		
+		put(Language.NL, "RailCard", "Abonement");
+		put(Language.FR, "RailCard", "Abonnement");
+		put(Language.EN, "RailCard", "Railcard");
+		
+		put(Language.NL, "TicketView", "Tickets");
+		put(Language.FR, "TicketView", "Ticket");
+		put(Language.EN, "TicketView", "Tickets");
 
 	}
 	

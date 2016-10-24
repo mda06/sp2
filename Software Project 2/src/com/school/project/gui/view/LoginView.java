@@ -27,7 +27,7 @@ public class LoginView extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 
-		txtUsername = new JTextField( 10);
+		txtUsername = new JTextField(10);
 		txtPassword = new JPasswordField(10);
 		btnLogin = new JButton("Login");
 		lUsername = new JLabel("Username: ");
