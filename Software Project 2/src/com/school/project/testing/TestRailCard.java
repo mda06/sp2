@@ -8,7 +8,7 @@ import com.school.project.model.RailCard;
 
 public class TestRailCard {
 
-	int check = 0; //1 = true, 0 = false
+	int check = 1; //1 = true, 0 = false
 	@Test
 	public void testConstructor() {
 		int id = 1;
