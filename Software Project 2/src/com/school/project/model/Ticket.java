@@ -103,12 +103,37 @@ public class Ticket {
 			return false;
 		}
 		Ticket other = (Ticket)obj;
-		if(this.id != other.id || this.name != other.name || this.description != other.description
-				|| this.price != other.price || this.validityPeriod != other.validityPeriod
-				|| this.hasFixedRoute != other.hasFixedRoute || this.archived != other.archived){
+		if(this.id != other.id){
 			return false;
 		}
-		
+		if(this.name == null){
+			if(other.name != null){
+				return false;
+			}
+			else if(!name.equals(other.name)){
+				return false;
+			}
+		}
+		if(this.description == null){
+			if(other.description != null){
+				return false;
+			}
+			else if(!description.equals(other.description)){
+				return false;
+			}
+		}
+		if(this.price != other.price){
+			return false;
+		}
+		if(this.validityPeriod != other.validityPeriod){
+			return false;
+		}
+		if(this.hasFixedRoute != other.hasFixedRoute){
+			return false;
+		}
+		if(this.archived != other.archived){
+			return false;
+		}
 		return true;
 	}
 
