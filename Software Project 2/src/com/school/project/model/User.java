@@ -19,7 +19,6 @@ public class User {
 	private Address address;
 	private java.sql.Date dateOfBirth;
 	private boolean archived;
-	
 
 	public User(int id, Gender gender, UserType type, String firstName, String lastName, Date dateOfBirth, boolean archived) {
 		this.id = id;
@@ -157,5 +156,4 @@ public class User {
 		return "User [id=" + id + ", gender=" + gender + ", type=" + type + ", credentials=" + credentials + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
 				+ dateOfBirth + ", archived=" + archived + address.toString() + "]";
 	}
-	
 }
