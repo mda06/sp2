@@ -99,9 +99,38 @@ public class RailCard {
 			return false;
 		}
 		RailCard other = (RailCard)obj;
-		if(this.id != other.id || this.name != other.name || this.description != other.description || this.pricePerMonth != other.pricePerMonth
-			|| this.pricePer3Month != other.pricePer3Month || this.pricePerYear != other.pricePerYear || this.hasFixedRoute != other.hasFixedRoute
-			|| this.archived != other.archived){
+		if(this.id != other.id){
+			return false;
+		}
+		if(this.name == null){
+			if(other.name != null){
+				return false;
+			}
+			else if(!name.equals(other.name)){
+				return false;
+			}
+		}
+		if(this.description == null){
+			if(other.description != null){
+				return false;
+			}
+			else if(!description.equals(other.description)){
+				return false;
+			}
+		}
+		if(this.pricePerMonth != other.pricePerMonth){
+			return false;
+		}
+		if(this.pricePer3Month != other.pricePer3Month){
+			return false;
+		}
+		if(this.pricePerYear != other.pricePerYear){
+			return false;
+		}
+		if(this.hasFixedRoute != other.hasFixedRoute){
+			return false;
+		}
+		if(this.archived != other.archived){
 			return false;
 		}
 		return true;
