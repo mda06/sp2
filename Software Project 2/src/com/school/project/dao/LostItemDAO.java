@@ -153,7 +153,6 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
 	@Override
@@ -163,7 +162,7 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE lostItems VALUES archived = '1' WHERE id = ");
+			stat = connection.prepareStatement("UPDATE lostItems SET archived = 1 WHERE id = ");
 			stat.setInt(1, obj.getId());
 			stat.executeUpdate();
 		}catch(SQLException e){
@@ -175,16 +174,5 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 				e.printStackTrace();
 			}
 		}
-		
-		
 	}
-
-
-
-
-
-	
-
-	
-
 }
