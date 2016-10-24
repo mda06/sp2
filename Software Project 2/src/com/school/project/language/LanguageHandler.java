@@ -39,7 +39,7 @@ public class LanguageHandler {
 		
 		put(Language.NL, "TicketView", "Tickets");
 		put(Language.FR, "TicketView", "Ticket");
-		put(Language.EN, "TicketView", "Tickets ");
+		put(Language.EN, "TicketView", "Tickets");
 
 	}
 	
