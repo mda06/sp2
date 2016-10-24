@@ -69,7 +69,7 @@ public class TestUser{
 		User u1 = new User(id, gender, type, firstName, lastName, dateOfBirth, archived);
 		
 		if(check == 1){
-			User u2 = new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", dateOfBirth, archived);
+			User u2 = new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200), false);
 			assertEquals(true, u1.equals(u2));
 		}
 		else if(check == 0){
