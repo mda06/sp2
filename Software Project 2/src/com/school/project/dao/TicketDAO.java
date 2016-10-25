@@ -89,7 +89,7 @@ public class TicketDAO implements BaseDAO<Ticket> {
 		
 		try{
 			stat = connection.createStatement();
-			res = stat.executeQuery("SELECT * FROM tickets WHERE archived = 0 AND hasFixedRoute = 0;");
+			res = stat.executeQuery("SELECT * FROM tickets WHERE archived = 0;");
 			
 			while(res.next()){
 				lst.add(getByResultSet(res));
