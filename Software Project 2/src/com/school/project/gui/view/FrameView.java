@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-public class BaseFrame extends JFrame{
+public class FrameView extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JPanel pnlBtns, pnlCard;
 	private JSplitPane split;
@@ -18,8 +18,8 @@ public class BaseFrame extends JFrame{
 	private JMenu menuOptions;
 	private JMenuItem miEn, miNl, miFr;
 	
-	public BaseFrame() {
-		setTitle("Baseframe");
+	public FrameView() {
+		setTitle("FrameView");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		initLayout();

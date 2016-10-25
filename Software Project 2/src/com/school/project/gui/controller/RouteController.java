@@ -1,17 +1,19 @@
 package com.school.project.gui.controller;
 
-import com.school.project.gui.model.RouteModel;
+import java.util.Observable;
+
 import com.school.project.gui.view.RouteView;
 
-public class RouteController {
-	@SuppressWarnings("unused")
-	private RouteModel model;
-	@SuppressWarnings("unused")
-	private RouteView view;
+public class RouteController extends BaseController<RouteView> {
 
-	public RouteController(RouteModel model, RouteView view) {
-		this.model = model;
-		this.view = view;
+	public RouteController() {
+		super(new RouteView());
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

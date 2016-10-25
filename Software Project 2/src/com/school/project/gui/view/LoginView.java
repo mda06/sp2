@@ -107,6 +107,4 @@ public class LoginView extends JFrame{
 		this.lPassword = lPassword;
 	}
 	
-	
-
 }

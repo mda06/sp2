@@ -30,16 +30,29 @@ public class LanguageHandler {
 		put(Language.EN, "options", "Options");
 		
 		put(Language.NL, "lostItemView", "Verloren Voorwerpen");
-		put(Language.FR, "lostItemView", "Objet Perdu");
+		put(Language.FR, "lostItemView", "Objets Perdus");
 		put(Language.EN, "lostItemView", "Lost Objects");
 		
-		put(Language.NL, "RailCard", "Abonement");
-		put(Language.FR, "RailCard", "Abonnement");
-		put(Language.EN, "RailCard", "Railcard");
-		
+		put(Language.NL, "RailCard", "Abonements");
+		put(Language.FR, "RailCard", "Abonnements");
+		put(Language.EN, "RailCard", "Railcards");
+
 		put(Language.NL, "TicketView", "Tickets");
 		put(Language.FR, "TicketView", "Ticket");
 		put(Language.EN, "TicketView", "Tickets");
+		
+
+		put(Language.NL, "login", "Log in");
+		put(Language.FR, "login", "S'identifier");
+		put(Language.EN, "login", "Login");
+
+		put(Language.NL, "password", "Wachtwoord");
+		put(Language.FR, "password", "Mot de passe");
+		put(Language.EN, "password", "Password");
+
+		put(Language.NL, "username", "Gebruikersnaam");
+		put(Language.FR, "username", "Nom d'utilisateur");
+		put(Language.EN, "username", "Username");
 
 	}
 	

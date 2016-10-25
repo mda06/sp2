@@ -3,84 +3,57 @@ package com.school.project.gui;
 import javax.swing.JOptionPane;
 
 import com.school.project.gui.controller.BaseController;
+import com.school.project.gui.controller.FrameController;
 import com.school.project.gui.controller.LoginController;
 import com.school.project.gui.controller.LostItemController;
 import com.school.project.gui.controller.RailCardController;
 import com.school.project.gui.controller.RouteController;
 import com.school.project.gui.controller.TicketController;
-import com.school.project.gui.model.BaseModel;
-import com.school.project.gui.model.LoginModel;
-import com.school.project.gui.model.LostItemModel;
-import com.school.project.gui.model.RailCardModel;
-import com.school.project.gui.model.RouteModel;
-import com.school.project.gui.model.TicketModel;
-import com.school.project.gui.view.BaseFrame;
-import com.school.project.gui.view.LoginView;
-import com.school.project.gui.view.LostItemView;
-import com.school.project.gui.view.RailCardView;
-import com.school.project.gui.view.RouteView;
-import com.school.project.gui.view.TicketView;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.User;
 
 public class MainFactory implements ConnectionListener{
 	private User connectedUser;
-	private LoginView loginView;
+	private LoginController login;
 	private LanguageObservable languageObservable;
 	
 	public MainFactory() {
 		//Init caches
 		connectedUser = null;
-		loginView = null;
 		languageObservable = new LanguageObservable();
 	}
 	
 	public void showLoginFrame() {
-		loginView = new LoginView();
-		new LoginController(loginView, new LoginModel(loginView, this));
-		loginView.setVisible(true);
+		login = new LoginController(this);
+		languageObservable.addObserver(login);
+		login.getLoginView().setVisible(true);
+		languageObservable.languageChanged();
 	}
 	
 	public void showBaseFrame() {
-		BaseFrame frame = new BaseFrame();
-		BaseModel model = new BaseModel(frame);
-		languageObservable.addObserver(model);
-		new BaseController(model, frame, languageObservable);
-		initBaseModels(model);
-		frame.setVisible(true);
+		FrameController frame = new FrameController(languageObservable);
+		languageObservable.addObserver(frame);
+		initBaseModels(frame);
+		frame.getFrameView().setVisible(true);
 	}
 	
-	private void initBaseModels(BaseModel model) {
-		LostItemView lv = new LostItemView();
-		LostItemModel lm = new LostItemModel(lv);
-		languageObservable.addObserver(lm);
-		new LostItemController(lm, lv);
-		model.addCard(lv);
-		
-		TicketView tv = new TicketView();
-		TicketModel tm = new TicketModel(tv);
-		languageObservable.addObserver(tm);
-		new TicketController(tm, tv);
-		model.addCard(tv);
-		
-		RailCardView rcv = new RailCardView();
-		RailCardModel rcm = new RailCardModel(rcv);
-		languageObservable.addObserver(rcm);
-		new RailCardController(rcm, rcv);
-		model.addCard(rcv);
-		
-		RouteView rv = new RouteView();
-		RouteModel rm = new RouteModel(rv);
-		languageObservable.addObserver(rm);
-		new RouteController(rm, rv);
-		model.addCard(rv);
+	private void initBaseModels(FrameController base) {
+		addCard(base, new LostItemController());
+		addCard(base, new TicketController());
+		addCard(base, new RailCardController());
+		addCard(base, new RouteController());
+	}
+	
+	private void addCard(FrameController base, BaseController<?> bc) {
+		languageObservable.addObserver(bc);
+		base.addCard(bc);
 	}
 	
 	@Override
 	public void connect(User user) {
 		connectedUser = user;
-		if (loginView != null){
-			loginView.dispose();
+		if (login.getLoginView() != null){
+			login.getLoginView().dispose();
 		}
 		showBaseFrame();
 		languageObservable.languageChanged();

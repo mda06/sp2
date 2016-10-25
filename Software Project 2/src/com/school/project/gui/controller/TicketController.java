@@ -1,16 +1,18 @@
 package com.school.project.gui.controller;
 
-import com.school.project.gui.model.TicketModel;
+import java.util.Observable;
+
 import com.school.project.gui.view.TicketView;
 
-public class TicketController {
-	@SuppressWarnings("unused")
-	private TicketModel model;
-	@SuppressWarnings("unused")
-	private TicketView view;
+public class TicketController extends BaseController<TicketView> {
 
-	public TicketController(TicketModel model, TicketView view) {
-		this.model = model;
-		this.view = view;
+	public TicketController() {
+		super(new TicketView());
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
