@@ -112,7 +112,7 @@ public class TicketDAO implements BaseDAO<Ticket> {
 
 	@Override
 	public Ticket get(int id) {
-		Ticket item = null;
+		Ticket ticket = null;
 		Connection connection = DatabaseHandler.getInstance().getConnection();
 		Statement stat = null;
 		ResultSet res = null;
@@ -121,7 +121,7 @@ public class TicketDAO implements BaseDAO<Ticket> {
 			stat = connection.createStatement();
 			res = stat.executeQuery("SELECT * FROM tickets WHERE id = " + id + ";");
 			if(res.next()){
-				item = getByResultSet(res);
+				ticket = getByResultSet(res);
 			}
 		}
 		catch(SQLException e){
@@ -135,7 +135,7 @@ public class TicketDAO implements BaseDAO<Ticket> {
 				e.printStackTrace();
 			}
 		}
-		return item;
+		return ticket;
 	}
 
 	@Override
