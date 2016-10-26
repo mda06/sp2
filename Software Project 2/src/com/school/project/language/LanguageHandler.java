@@ -41,7 +41,10 @@ public class LanguageHandler {
 		put(Language.FR, "TicketView", "Ticket");
 		put(Language.EN, "TicketView", "Tickets");
 		
-
+		put(Language.NL, "Route", "Route");
+		put(Language.FR, "Route", "Route");
+		put(Language.EN, "Route", "Route");
+		
 		put(Language.NL, "login", "Log in");
 		put(Language.FR, "login", "S'identifier");
 		put(Language.EN, "login", "Login");
