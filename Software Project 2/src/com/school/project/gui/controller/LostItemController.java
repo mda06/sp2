@@ -1,5 +1,7 @@
 package com.school.project.gui.controller;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Observable;
 
 import com.school.project.dao.LostItemDAO;
@@ -17,6 +19,7 @@ public class LostItemController extends BaseController<LostItemView> {
 		tableModel = new LostItemTableModel();
 		view.getTable().setModel(tableModel);
 		initLostItemsToTable();
+		initSearchBoxEvents();
 	}
 	
 	//TODO: put it in another thread
@@ -32,5 +35,19 @@ public class LostItemController extends BaseController<LostItemView> {
 			LanguageHandler handler = ((LanguageObservable)observable).getLanguageHandler();
 			view.getBtnSearch().setText(handler.getString("search"));
 		}
+	}
+	
+	private void initSearchBoxEvents(){
+		view.getTxtSearch().addFocusListener(new FocusListener() {
+		    public void focusGained(FocusEvent e) {
+		    	view.getTxtSearch().setText("");
+		    }
+
+		    public void focusLost(FocusEvent e) {
+		    	if (view.getTxtSearch().getText().isEmpty()){
+		    		view.getTxtSearch().setText("Search");
+		    	}
+		    }
+		});
 	}
 }
