@@ -1,7 +1,5 @@
 package com.school.project.dao;
 
-import com.school.project.model.RailCard;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.school.project.model.RailCard;
 
 public class RailCardDAO implements BaseDAO<RailCard>{
 	
@@ -48,7 +48,7 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 		
 		try{
 			String[] returnId = {"BATCHID"};
-			stat = connection.prepareStatement("INSERT INTO railCards (id, name, description, pricePerMonth, pricePer3Month, pricePerYear, hasFixedRoute, archived;");
+			stat = connection.prepareStatement("INSERT INTO railCards (id, name, description, pricePerMonth, pricePer3Month, pricePerYear, hasFixedRoute, archived;", returnId);
 			stat.setString(1, obj.getName());
 			stat.setString(2, obj.getDescription());
 			stat.setDouble(3, obj.getPricePerMonth());

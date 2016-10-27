@@ -2,9 +2,6 @@ package com.school.project.testing;
 
 import static org.junit.Assert.assertEquals;
 
-import java.lang.reflect.Constructor;
-import java.util.List;
-
 import org.junit.Test;
 
 import com.school.project.model.RailCard;

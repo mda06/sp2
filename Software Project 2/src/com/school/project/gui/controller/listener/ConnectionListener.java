@@ -1,4 +1,4 @@
-package com.school.project.gui;
+package com.school.project.gui.controller.listener;
 
 import com.school.project.model.User;
 

@@ -33,6 +33,7 @@ public class RouteView extends BaseView {
 		// Huidig uur
 		DateFormat houreFormat = new SimpleDateFormat("HH:mm");
 		Date hour = new Date();
+		//aanmaken objecten
 		txtDeparture = new JTextField(20);
 		txtArrival = new JTextField(20);
 		txtUur = new JTextField(houreFormat.format(hour));
@@ -42,13 +43,10 @@ public class RouteView extends BaseView {
 		lbNumber = new JLabel("Number");
 		lbUur = new JLabel("Uur:");
 		lbDate = new JLabel("Date: ");
-
 		rbSingle = new JRadioButton("Single");
 		rbReturn = new JRadioButton("Return");
-
 		rbDeparture = new JRadioButton("Departure");
 		rbArrival = new JRadioButton("Arrival");
-
 		cbNumber = new JComboBox<Integer>();
 		btnShowTickets = new JButton("Show Tickets");
 		btnBack = new JButton("Back");

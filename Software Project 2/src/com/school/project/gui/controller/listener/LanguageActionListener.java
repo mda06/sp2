@@ -7,11 +7,11 @@ import com.school.project.gui.view.FrameView;
 import com.school.project.language.LanguageHandler.Language;
 import com.school.project.language.LanguageObservable;
 
-public class LanguageListener implements ActionListener {
+public class LanguageActionListener implements ActionListener {
 	private FrameView frame;
 	private LanguageObservable languageObservable;
 	
-	public LanguageListener(FrameView frame, LanguageObservable obs) {
+	public LanguageActionListener(FrameView frame, LanguageObservable obs) {
 		this.frame = frame;
 		languageObservable = obs;
 	}
