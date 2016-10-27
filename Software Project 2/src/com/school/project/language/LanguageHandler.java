@@ -24,6 +24,22 @@ public class LanguageHandler {
 		put(Language.NL, "search", "Zoeken");
 		put(Language.FR, "search", "Chercher");
 		put(Language.EN, "search", "Search");
+
+		put(Language.NL, "add", "Toevoegen");
+		put(Language.FR, "add", "Ajouter");
+		put(Language.EN, "add", "Add");
+
+		put(Language.NL, "type", "Type");
+		put(Language.FR, "type", "Type");
+		put(Language.EN, "type", "Type");
+
+		put(Language.NL, "description", "Descriptie");
+		put(Language.FR, "description", "Description");
+		put(Language.EN, "description", "Description");
+		
+		put(Language.NL, "location", "Locatie");
+		put(Language.FR, "location", "Emplacement");
+		put(Language.EN, "location", "Location");
 		
 		put(Language.NL, "options", "Opties");
 		put(Language.FR, "options", "Options");
