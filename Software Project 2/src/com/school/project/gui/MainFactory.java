@@ -9,6 +9,7 @@ import com.school.project.gui.controller.LostItemController;
 import com.school.project.gui.controller.RailCardController;
 import com.school.project.gui.controller.RouteController;
 import com.school.project.gui.controller.TicketController;
+import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.User;
@@ -43,6 +44,7 @@ public class MainFactory implements ConnectionListener{
 		addCard(base, new TicketController());
 		addCard(base, new RailCardController());
 		addCard(base, new RouteController());
+		addCard(base, new UserController());
 	}
 	
 	private void addCard(FrameController base, BaseController<?> bc) {

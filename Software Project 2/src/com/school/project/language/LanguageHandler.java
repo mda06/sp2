@@ -56,6 +56,10 @@ public class LanguageHandler {
 		put(Language.NL, "username", "Gebruikersnaam");
 		put(Language.FR, "username", "Nom d'utilisateur");
 		put(Language.EN, "username", "Username");
+		
+		put(Language.NL, "New user", "Nieuwe gebruiker");
+		put(Language.FR, "New user", "Nouvel utilisateur");
+		put(Language.EN, "New user", "New user");
 
 	}
 	
