@@ -10,12 +10,12 @@ import java.util.Observer;
 
 import javax.swing.JButton;
 
-import com.school.project.gui.controller.listener.LanguageListener;
+import com.school.project.gui.controller.listener.LanguageActionListener;
 import com.school.project.gui.view.FrameView;
 import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 
-public class FrameController implements ActionListener, Observer {
+public class FrameController implements Observer {
 	private FrameView frame;
 	private LanguageObservable languageObservable;
 	private ArrayList<String> lstCardKeys;
@@ -28,34 +28,34 @@ public class FrameController implements ActionListener, Observer {
 	}
 
 	private void initLanguageEvents(){
-		LanguageListener ll = new LanguageListener(frame, languageObservable);
+		LanguageActionListener ll = new LanguageActionListener(frame, languageObservable);
 		frame.getMiEn().addActionListener(ll);
 		frame.getMiFr().addActionListener(ll);
 		frame.getMiNl().addActionListener(ll);
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand() != null) {
-			String key = e.getActionCommand();
-			//Check if the key is present before else we can get an exception
-			for(String str : lstCardKeys){
-				if(str.equals(key)) {
-					((CardLayout)frame.getPanelCard().getLayout()).show(frame.getPanelCard(), key);
-					break;
-				}
-			}
-		}
-	}
-	
 	public void addCard(BaseController<?> controller) {
 		final String KEY = controller.getBaseView().CARD_KEY; 
 		JButton btn = new JButton(KEY);
-		btn.addActionListener(this);
 		btn.setActionCommand(KEY);
 		lstCardKeys.add(KEY);
 		frame.getPanelBtns().add(btn);
 		frame.getPanelCard().add(controller.getBaseView(), KEY);
+
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand() != null) {
+					String key = e.getActionCommand();
+					//Check if the key is present before else we can get an exception
+					for(String str : lstCardKeys){
+						if(str.equals(key)) {
+							((CardLayout)frame.getPanelCard().getLayout()).show(frame.getPanelCard(), key);
+							break;
+						}
+					}
+				}
+			}
+		});
 	}
 	
 	@Override
