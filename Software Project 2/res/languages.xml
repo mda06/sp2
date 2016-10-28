@@ -40,11 +40,6 @@
 		<value lang="fr"> Options </value>
 		<value lang="en"> options </value>
 	</string>
-	<string name = "options">
-		<value lang="nl"> Opties </value>
-		<value lang="fr"> Options </value>
-		<value lang="en"> options </value>
-	</string>
 	<string name = "lostItemView">
 		<value lang="nl"> Verloren Voorwerpen </value>
 		<value lang="fr"> Objets Perdus </value>
@@ -65,7 +60,7 @@
 		<value lang="fr"> Route </value>
 		<value lang="en"> Route </value>
 	</string>
-	<string name = "Login">
+	<string name = "login">
 		<value lang="nl"> Log in </value>
 		<value lang="fr"> S'identifier </value>
 		<value lang="en"> Login </value>
