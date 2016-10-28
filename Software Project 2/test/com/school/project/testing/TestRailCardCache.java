@@ -25,7 +25,7 @@ public class TestRailCardCache {
 	@Test
 	public void testAddTicket(){		
 		RailCard rc1 = new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false);
-		RailCardCache.getInstance().addTicket(rc1);
+		RailCardCache.getInstance().addRailCard(rc1);
 		
 		if(check == 1){
 			assertEquals(rc1, RailCardCache.getInstance().getCache().get(0));

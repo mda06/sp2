@@ -179,7 +179,7 @@ public class UserDAO implements BaseDAO<User>{
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE users SET archived = 1 WHERE id = ");
+			stat = connection.prepareStatement("UPDATE users SET archived = 1 WHERE id = ?");
 			stat.setInt(1, obj.getId());
 			stat.executeUpdate();
 		}catch(SQLException e){

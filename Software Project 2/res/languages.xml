@@ -13,7 +13,7 @@
 	<string name = "search">
 		<value lang="en"> Search </value>
 		<value lang="fr"> Chercher </value>
-		<value lang="nl"> Search</value>
+		<value lang="nl"> Zoeken</value>
 	</string>
 	<string name = "add">
 		<value lang="nl"> Toevoegen </value>

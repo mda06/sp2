@@ -211,7 +211,7 @@ public class UserCredentialsDAO implements BaseDAO<UserCredential> {
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE userCredentials SET archived = 1 WHERE id = ");
+			stat = connection.prepareStatement("UPDATE userCredentials SET archived = 1 WHERE id = ?");
 			stat.setInt(1, obj.getId());
 			stat.executeUpdate();
 		}catch(SQLException e){

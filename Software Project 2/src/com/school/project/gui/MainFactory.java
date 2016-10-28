@@ -2,6 +2,7 @@ package com.school.project.gui;
 
 import javax.swing.JOptionPane;
 
+import com.school.project.dao.RailCardDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.FrameController;
 import com.school.project.gui.controller.LoginController;
@@ -12,6 +13,9 @@ import com.school.project.gui.controller.TicketController;
 import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
 import com.school.project.language.LanguageObservable;
+import com.school.project.model.RailCard;
+import com.school.project.model.RailCardCache;
+import com.school.project.model.TicketCache;
 import com.school.project.model.User;
 
 public class MainFactory implements ConnectionListener{
@@ -20,7 +24,14 @@ public class MainFactory implements ConnectionListener{
 	private LanguageObservable languageObservable;
 	
 	public MainFactory() {
-		//Init caches
+		//TODO: Put it in another thread
+		TicketCache.getInstance().loadCache();
+		RailCardCache.getInstance().loadCache();
+		
+		RailCard c = RailCardDAO.getInstance().get(4);
+		c.setArchived(false);
+		RailCardDAO.getInstance().update(c);
+		
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
 	}

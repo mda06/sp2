@@ -163,7 +163,7 @@ public class AddressDAO implements BaseDAO<Address> {
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE addresses SET archived = 1 WHERE id = ");
+			stat = connection.prepareStatement("UPDATE addresses SET archived = 1 WHERE id = ?");
 			stat.setInt(1, obj.getId());
 			stat.executeUpdate();
 		}catch(SQLException e){

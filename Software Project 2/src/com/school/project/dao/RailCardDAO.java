@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.school.project.model.RailCard;
+import com.school.project.model.RailCardCache;
 
 public class RailCardDAO implements BaseDAO<RailCard>{
 	
@@ -31,7 +32,7 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 		String name = res.getString("name");
 		String description = res.getString("description");
 		double pricePerMonth = res.getDouble("pricePerMonth");
-		double pricePer3Month = res.getDouble("pricePer3Month");
+		double pricePer3Month = res.getDouble("pricePer3Months");
 		double pricePerYear = res.getDouble("pricePerYear"); 
 		boolean hasFixedRoute = res.getBoolean("hasFixedRoute");
 		boolean archived = res.getBoolean("archived");
@@ -48,7 +49,8 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 		
 		try{
 			String[] returnId = {"BATCHID"};
-			stat = connection.prepareStatement("INSERT INTO railCards (id, name, description, pricePerMonth, pricePer3Month, pricePerYear, hasFixedRoute, archived;", returnId);
+			stat = connection.prepareStatement("INSERT INTO railcards (id, name, description, pricePerMonth, pricePer3Months, pricePerYear, hasFixedRoute, archived) "
+					+ "VALUES (null, ?,?,?,?,?,?,?);", returnId);
 			stat.setString(1, obj.getName());
 			stat.setString(2, obj.getDescription());
 			stat.setDouble(3, obj.getPricePerMonth());
@@ -95,7 +97,7 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 		
 		try{
 			stat = connection.createStatement();
-			res = stat.executeQuery("SELECT * FROM railCards WHERE archived = 0;");
+			res = stat.executeQuery("SELECT * FROM railcards WHERE archived = 0;");
 		
 			while(res.next()){
 				lst.add(getByResultSet(res));
@@ -124,7 +126,7 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 		
 		try{
 			stat = connection.createStatement();
-			res = stat.executeQuery("SELECT * FROM railCards WHERE id = " + id + ";");
+			res = stat.executeQuery("SELECT * FROM railcards WHERE id = " + id + ";");
 			if(res.next()){
 				card = getByResultSet(res);
 			}
@@ -143,11 +145,23 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 	@Override
 	public void update(RailCard obj) {
 		if(obj == null || obj.getId() == -1) return;
+		
+		RailCard other = get(obj.getId());
+		if(other.getPricePerMonth() != obj.getPricePerMonth() 
+				|| other.getPricePer3Month() != obj.getPricePer3Month() 
+				|| other.getPricePerYear() != obj.getPricePerYear()) {
+			delete(other);
+			RailCardCache.getInstance().remove(other.getId());
+			add(obj);
+			RailCardCache.getInstance().addRailCard(obj);
+			return;
+		}
+		
 		Connection connection = DatabaseHandler.getInstance().getConnection();
 		PreparedStatement stat = null;		
 		
 		try{
-			stat = connection.prepareStatement("UPDATE railCards SET name = ?, description = ?, pricePerMonth = ?, pricePer3Month = ?, pricePerYear = ?, hasFixedRoute = ?, archived = ? WHERE id = ?;");
+			stat = connection.prepareStatement("UPDATE railcards SET name = ?, description = ?, pricePerMonth = ?, pricePer3Months = ?, pricePerYear = ?, hasFixedRoute = ?, archived = ? WHERE id = ?;");
 			stat.setString(1, obj.getName());
 			stat.setString(2, obj.getDescription());
 			stat.setDouble(3, obj.getPricePerMonth());
@@ -155,6 +169,7 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 			stat.setDouble(5, obj.getPricePerYear());
 			stat.setBoolean(6, obj.isHasFixedRoute());
 			stat.setBoolean(7, obj.isArchived());
+			stat.setInt(8, obj.getId());
 			stat.executeUpdate();
 		}
 		catch(SQLException e){ e.printStackTrace(); }
@@ -172,7 +187,7 @@ public class RailCardDAO implements BaseDAO<RailCard>{
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE railCards SET archived = 1 WHERE id = ");
+			stat = connection.prepareStatement("UPDATE railcards SET archived = 1 WHERE id = ?");
 			stat.setInt(1, obj.getId());
 			stat.executeUpdate();
 		}
