@@ -5,11 +5,17 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import com.school.project.gui.view.custom.AutoComboBox;
+import com.school.project.nmbs.model.StationCache;
 
 public class LostItemAddFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JTextField txtType,txtDescription, txtLocation;
+	private JTextField txtType;
+	private JTextArea txtDescription;
+	private AutoComboBox txtLocation;
 	private JLabel lblType, lblDescription, lblLocation;
 	private JButton btnSave, btnCancel;
 	
@@ -27,8 +33,8 @@ public class LostItemAddFrame extends JFrame {
 		lblDescription = new JLabel("Description: ", JLabel.TRAILING);
 		lblLocation = new JLabel("Location: ", JLabel.TRAILING);
 		txtType = new JTextField(20);
-		txtDescription = new JTextField(20);
-		txtLocation = new JTextField(20);
+		txtDescription = new JTextArea(2, 20);
+		txtLocation = new AutoComboBox(StationCache.getInstance().getStationsNames());
 		btnSave = new JButton("Save");
 		btnCancel = new JButton("Cancel");
 		
@@ -48,11 +54,11 @@ public class LostItemAddFrame extends JFrame {
 		return txtType;
 	}
 
-	public JTextField getTxtDescription() {
+	public JTextArea getTxtDescription() {
 		return txtDescription;
 	}
 
-	public JTextField getTxtLocation() {
+	public AutoComboBox getTxtLocation() {
 		return txtLocation;
 	}
 
@@ -74,5 +80,11 @@ public class LostItemAddFrame extends JFrame {
 
 	public JButton getBtnCancel() {
 		return btnCancel;
+	}
+
+	public void resetFields() {
+		txtType.setText("");
+		txtDescription.setText("");
+		txtLocation.setText("");
 	}
 }

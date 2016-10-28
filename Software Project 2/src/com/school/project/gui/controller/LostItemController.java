@@ -17,6 +17,7 @@ import com.school.project.model.LostItem;
 
 public class LostItemController extends BaseController<LostItemView> {
 	private LostItemTableModel tableModel;
+	private LostItemAddFrame addFrame;
 	
 	public LostItemController() {
 		super(new LostItemView());
@@ -28,28 +29,29 @@ public class LostItemController extends BaseController<LostItemView> {
 	}
 	
 	private void initAddLostItem() {
+		addFrame = new LostItemAddFrame();
 		view.getBtnAdd().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LostItemAddFrame frame = new LostItemAddFrame();
-				frame.setVisible(true);
-				frame.getBtnCancel().addActionListener(new ActionListener() {
+				addFrame.setVisible(true);
+				addFrame.getBtnCancel().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						frame.dispose();
+						addFrame.dispose();
 					}
 				});
-				frame.getBtnSave().addActionListener(new ActionListener() {
+				addFrame.getBtnSave().addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String type = frame.getTxtType().getText();
-						String desc = frame.getTxtDescription().getText();
-						String loc = frame.getTxtLocation().getText();
+						String type = addFrame.getTxtType().getText();
+						String desc = addFrame.getTxtDescription().getText();
+						String loc = addFrame.getTxtLocation().getText();
 						
 						if(!type.isEmpty() && !desc.isEmpty() && !loc.isEmpty()) {
 							LostItem item = new LostItem(1, type, desc, loc, false, false);
 							LostItemDAO.getInstance().add(item);
 							tableModel.addLostItem(item);
-							frame.dispose();
+							addFrame.resetFields();
+							addFrame.dispose();
 						} else {
-							JOptionPane.showMessageDialog(frame, "Error: please fill in all the fields");
+							JOptionPane.showMessageDialog(addFrame, "Error: please fill in all the fields");
 						}
 					}
 				});

@@ -17,6 +17,7 @@ import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
+import com.school.project.nmbs.dao.StationDAO;
 
 public class MainFactory implements ConnectionListener{
 	private User connectedUser;
@@ -25,6 +26,7 @@ public class MainFactory implements ConnectionListener{
 	
 	public MainFactory() {
 		//TODO: Put it in another thread
+		StationDAO.loadCache();
 		TicketCache.getInstance().loadCache();
 		RailCardCache.getInstance().loadCache();
 		
