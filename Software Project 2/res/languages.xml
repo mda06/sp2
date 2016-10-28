@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE resources [
+	<!ELEMENT resources (string*)>
+	<!ATTLIST string name ID #REQUIRED>
+	<!ELEMENT string (value, value, value)>
+	<!ELEMENT value (#PCDATA)>
+	<!ATTLIST value lang (en|fr|nl) #REQUIRED>
+]>
+
+
+
+<resources>
+	<string name = "search">
+		<value lang="en"> Search </value>
+		<value lang="fr"> Chercher </value>
+		<value lang="nl"> Search</value>
+	</string>
+	<string name = "add">
+		<value lang="nl"> Toevoegen </value>
+		<value lang="fr"> Ajouter </value>
+		<value lang="en"> Add </value>
+	</string>
+	<string name = "type">
+		<value lang="nl"> Type </value>
+		<value lang="fr"> Type </value>
+		<value lang="en"> Type </value>
+	</string>
+	<string name = "description">
+		<value lang="nl"> Descriptie </value>
+		<value lang="fr"> Description </value>
+		<value lang="en"> Description </value>
+	</string>
+	<string name = "location">
+		<value lang="nl"> Locatie </value>
+		<value lang="fr"> Emplacement </value>
+		<value lang="en"> Location </value>
+	</string>
+	<string name = "options">
+		<value lang="nl"> Opties </value>
+		<value lang="fr"> Options </value>
+		<value lang="en"> options </value>
+	</string>
+	<string name = "options">
+		<value lang="nl"> Opties </value>
+		<value lang="fr"> Options </value>
+		<value lang="en"> options </value>
+	</string>
+	<string name = "lostItemView">
+		<value lang="nl"> Verloren Voorwerpen </value>
+		<value lang="fr"> Objets Perdus </value>
+		<value lang="en"> Lost Objects </value>
+	</string>
+	<string name = "RailCard">
+		<value lang="nl"> Abonnement </value>
+		<value lang="fr"> Abonnements </value>
+		<value lang="en"> Railcards </value>
+	</string>
+	<string name = "TicketView">
+		<value lang="nl"> Tickets </value>
+		<value lang="fr"> Ticket </value>
+		<value lang="en"> Tickets </value>
+	</string>
+	<string name = "Route">
+		<value lang="nl"> Route </value>
+		<value lang="fr"> Route </value>
+		<value lang="en"> Route </value>
+	</string>
+	<string name = "Login">
+		<value lang="nl"> Log in </value>
+		<value lang="fr"> S'identifier </value>
+		<value lang="en"> Login </value>
+	</string>
+	<string name = "password">
+		<value lang="nl"> Wachtwoord </value>
+		<value lang="fr"> Mot de passe </value>
+		<value lang="en"> Password </value>
+	</string>
+	<string name = "username">
+		<value lang="nl"> Gebruikersnaam </value>
+		<value lang="fr"> Nom d'utilisateur </value>
+		<value lang="en"> Username </value>
+	</string>
+	<string name = "New user">
+		<value lang="nl"> Nieuwe gebruiker </value>
+		<value lang="fr"> Nouvel utilisateur </value>
+		<value lang="en"> New User </value>
+	</string>
+	
+</resources>
