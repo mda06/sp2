@@ -55,6 +55,8 @@ public class RailCardCache {
 			RailCardCache.getInstance().remove(other.getId());
 			RailCardCache.getInstance().addTicket(t);
 		}
+		
+		
 	}
 	
 	
