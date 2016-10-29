@@ -1,10 +1,14 @@
 package com.school.project.gui.controller;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 
 import com.school.project.dao.LostItemDAO;
@@ -18,14 +22,18 @@ import com.school.project.model.LostItem;
 public class LostItemController extends BaseController<LostItemView> {
 	private LostItemTableModel tableModel;
 	private LostItemAddFrame addFrame;
+	ListSelectionModel listSelectionModel;
 	
 	public LostItemController() {
 		super(new LostItemView());
 		tableModel = new LostItemTableModel();
 		view.getTable().setModel(tableModel);
+		
+        
 		view.getTxtSearch().setFocusable(true);
 		initLostItemsToTable();
 		initAddLostItem();
+		initRemoveLostItem();
 	}
 	
 	private void initAddLostItem() {
@@ -51,6 +59,7 @@ public class LostItemController extends BaseController<LostItemView> {
 							addFrame.resetFields();
 							addFrame.dispose();
 						} else {
+							//TODO: translated text (buttons?)
 							JOptionPane.showMessageDialog(addFrame, "Error: please fill in all the fields");
 						}
 					}
@@ -64,6 +73,26 @@ public class LostItemController extends BaseController<LostItemView> {
 		for(LostItem item : LostItemDAO.getInstance().getAll()) {
 			tableModel.addLostItem(item);
 		}
+	}
+	
+	public void initRemoveLostItem(){
+		listSelectionModel = view.getTable().getSelectionModel();
+		listSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //No multiple selections allowed
+		
+		view.getTable().addMouseListener(new MouseAdapter(){ 
+			public void mouseClicked(MouseEvent e) { 
+				if(e.getClickCount() == 2){
+					//TODO: Get translated option text
+					int confirmed = JOptionPane.showConfirmDialog(view.getTable(), "Remove this item?");
+					if(confirmed == JOptionPane.OK_OPTION){
+						LostItem selectedItem = tableModel.getLostItemAt(view.getTable().getSelectedRow());
+						selectedItem.setPickedUp(true);
+						LostItemDAO.getInstance().update(selectedItem);
+						tableModel.removeRow(view.getTable().getSelectedRow());
+					}
+				}
+			}
+		});
 	}
 
 	@Override
