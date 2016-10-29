@@ -10,10 +10,30 @@
 
 
 <resources>
+	<string name = "errorAddLostItem">
+		<value lang="en"> Error: please fill in all the fields </value>
+		<value lang="fr"> Erreur: Remplisez les champs </value>
+		<value lang="nl"> Fout: Vul de invoervelden</value>
+	</string>
+	<string name = "removeLostItem">
+		<value lang="en"> Remove  </value>
+		<value lang="fr"> Supprimer </value>
+		<value lang="nl"> Verwijder </value>
+	</string>
 	<string name = "search">
 		<value lang="en"> Search </value>
 		<value lang="fr"> Chercher </value>
 		<value lang="nl"> Zoeken</value>
+	</string>
+	<string name = "save">
+		<value lang="nl"> Bijwaren </value>
+		<value lang="fr"> Enregistrer </value>
+		<value lang="en"> Save </value>
+	</string>
+	<string name = "cancel">
+		<value lang="nl"> Annuleren </value>
+		<value lang="fr"> Annuler </value>
+		<value lang="en"> Cancel </value>
 	</string>
 	<string name = "add">
 		<value lang="nl"> Toevoegen </value>

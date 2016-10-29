@@ -22,7 +22,7 @@ import com.school.project.model.LostItem;
 public class LostItemController extends BaseController<LostItemView> {
 	private LostItemTableModel tableModel;
 	private LostItemAddFrame addFrame;
-	ListSelectionModel listSelectionModel;
+	private String strErrorAdd, strRemove;
 	
 	public LostItemController() {
 		super(new LostItemView());
@@ -37,6 +37,7 @@ public class LostItemController extends BaseController<LostItemView> {
 	}
 	
 	private void initAddLostItem() {
+		strErrorAdd = "Error: please fill in all the fields";
 		addFrame = new LostItemAddFrame();
 		view.getBtnAdd().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -59,8 +60,7 @@ public class LostItemController extends BaseController<LostItemView> {
 							addFrame.resetFields();
 							addFrame.dispose();
 						} else {
-							//TODO: translated text (buttons?)
-							JOptionPane.showMessageDialog(addFrame, "Error: please fill in all the fields");
+							JOptionPane.showMessageDialog(addFrame, strErrorAdd);
 						}
 					}
 				});
@@ -76,16 +76,16 @@ public class LostItemController extends BaseController<LostItemView> {
 	}
 	
 	public void initRemoveLostItem(){
-		listSelectionModel = view.getTable().getSelectionModel();
+		strRemove = "Remove ";
+		ListSelectionModel listSelectionModel = view.getTable().getSelectionModel();
 		listSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //No multiple selections allowed
 		
 		view.getTable().addMouseListener(new MouseAdapter(){ 
 			public void mouseClicked(MouseEvent e) { 
 				if(e.getClickCount() == 2){
-					//TODO: Get translated option text
-					int confirmed = JOptionPane.showConfirmDialog(view.getTable(), "Remove this item?");
+					LostItem selectedItem = tableModel.getLostItemAt(view.getTable().getSelectedRow());
+					int confirmed = JOptionPane.showConfirmDialog(view.getTable(), strRemove + selectedItem.getType() + "?");
 					if(confirmed == JOptionPane.OK_OPTION){
-						LostItem selectedItem = tableModel.getLostItemAt(view.getTable().getSelectedRow());
 						selectedItem.setPickedUp(true);
 						LostItemDAO.getInstance().update(selectedItem);
 						tableModel.removeRow(view.getTable().getSelectedRow());
@@ -110,6 +110,15 @@ public class LostItemController extends BaseController<LostItemView> {
 			view.getPnlAdd().repaint();
 			((TitledBorder)view.getPnlSearch().getBorder()).setTitle(handler.getString("search"));
 			view.getPnlSearch().repaint();
+
+			addFrame.getBtnCancel().setText(handler.getString("cancel"));
+			addFrame.getBtnSave().setText(handler.getString("save"));
+			addFrame.getLblType().setText(handler.getString("type"));
+			addFrame.getLblDescription().setText(handler.getString("description"));
+			addFrame.getLblLocation().setText(handler.getString("location"));
+			
+			strErrorAdd = handler.getString("errorAddLostItem");
+			strRemove = handler.getString("removeLostItem");
 		}
 	}
 }
