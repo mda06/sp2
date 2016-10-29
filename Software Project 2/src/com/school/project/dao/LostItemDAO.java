@@ -136,7 +136,7 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE lostitems SET type = ?, description = ?, location = ?, pickedUp = ?, archived = ? WHERE id = ?;");
+			stat = connection.prepareStatement("UPDATE lostItems SET type = ?, description = ?, location = ?, pickedUp = ?, archived = ? WHERE id = ?;");
 			stat.setString(1, obj.getType());
 			stat.setString(2, obj.getDescription());
 			stat.setString(3, obj.getLocation());
