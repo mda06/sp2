@@ -61,19 +61,13 @@ public class TestAddress {
 	@Test
 	public void testEquals(){		
 		Address a1 = TestAddress.getFirstAddress();
-		Address a2 = TestAddress.getFirstAddress();
 		
-		if(check == 1)
+		if(check == 1){
+			Address a2 = TestAddress.getFirstAddress();
 			assertEquals(true, a1.equals(a2));
-		else if(check == 0){
-			a2.setId(TestAddress.getSecondAddress().getId());
-			a2.setStreetline1(TestAddress.getSecondAddress().getStreetline1());
-			a2.setStreetline2(TestAddress.getSecondAddress().getStreetline2());
-			a2.setCity(TestAddress.getSecondAddress().getCity());
-			a2.setPostalCode(TestAddress.getSecondAddress().getPostalCode());
-			a2.setCountry(TestAddress.getSecondAddress().getCountry());
-			a2.setArchived(TestAddress.getSecondAddress().isArchived());
-			
+		}
+		else if(check == 0){	
+			Address a2 = TestAddress.getSecondAddress();
 			assertEquals(true, a1.equals(a2));
 		}
 	}
@@ -81,20 +75,13 @@ public class TestAddress {
 	@Test
 	public void testHashCode(){		
 		Address a1 = TestAddress.getFirstAddress();
-		Address a2 = TestAddress.getFirstAddress();
 		
 		if(check == 1){
+			Address a2 = TestAddress.getFirstAddress();
 			assertEquals(a1.hashCode(), a2.hashCode());
 		}
 		else if(check == 0){
-			a2.setId(TestAddress.getSecondAddress().getId());
-			a2.setStreetline1(TestAddress.getSecondAddress().getStreetline1());
-			a2.setStreetline2(TestAddress.getSecondAddress().getStreetline2());
-			a2.setCity(TestAddress.getSecondAddress().getCity());
-			a2.setPostalCode(TestAddress.getSecondAddress().getPostalCode());
-			a2.setCountry(TestAddress.getSecondAddress().getCountry());
-			a2.setArchived(TestAddress.getSecondAddress().isArchived());
-			
+			Address a2 = TestAddress.getSecondAddress();
 			assertEquals(a1.hashCode(), a2.hashCode());
 		}
 	}
