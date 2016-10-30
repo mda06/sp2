@@ -10,7 +10,6 @@ import com.school.project.model.Address;
 import com.school.project.model.User;
 import com.school.project.model.User.Gender;
 import com.school.project.model.User.UserType;
-import com.school.project.model.UserCredential;
 
 public class TestUser{
 

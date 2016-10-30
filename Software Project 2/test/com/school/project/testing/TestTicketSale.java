@@ -9,8 +9,6 @@ import org.junit.Test;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketSale;
 import com.school.project.model.User;
-import com.school.project.model.User.Gender;
-import com.school.project.model.User.UserType;
 
 public class TestTicketSale {
 
