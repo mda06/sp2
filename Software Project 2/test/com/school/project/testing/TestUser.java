@@ -100,7 +100,7 @@ public class TestUser{
 			assertEquals(null, u1.getCredentials());
 		}
 		else if(check == 0){
-			u1.setCredentials(new UserCredential(1, "wjpattyn", "blabla", false));
+			u1.setCredentials(TestUserCredentials.getFirstUserCredentials());
 			assertEquals(null, u1.getCredentials());
 		}
 	}
