@@ -8,7 +8,7 @@ import com.school.project.model.RailCard;
 
 public class TestRailCard {
 
-	int check = 0; //1 = true, 0 = false
+	int check = 1; //1 = true, 0 = false
 	
 	public static RailCard getFirstRailCard(){
 		return new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false);
