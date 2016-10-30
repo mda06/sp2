@@ -9,8 +9,6 @@ import org.junit.Test;
 import com.school.project.model.ActiveRailCard;
 import com.school.project.model.RailCard;
 import com.school.project.model.User;
-import com.school.project.model.User.Gender;
-import com.school.project.model.User.UserType;
 
 public class TestActiveRailCard {
 
