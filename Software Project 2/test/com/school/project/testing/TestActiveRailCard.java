@@ -16,6 +16,14 @@ public class TestActiveRailCard {
 
 	int check = 1; //1 = true, 0 = false;
 	
+	public static ActiveRailCard getFirstActiveRailCard(){
+		return new ActiveRailCard(1, new Date(1477260000000L), new Date(1477260000000L), "TERNAT", "DILBEEK", TestUser.getFirstUser(), TestRailCard.getFirstRailCard());
+	}
+	
+	public static ActiveRailCard getSecondActiveRailCard(){
+		return new ActiveRailCard(2, new Date(1477260000000L), new Date(1477260000000L), "GROOT-BIJGAARDEN", "JETTE", TestUser.getSecondUser(), TestRailCard.getSecondRailCard());
+	}
+	
 	@Test
 	public void testConstructor() {
 		int id = 1;
@@ -24,10 +32,10 @@ public class TestActiveRailCard {
 		String from = "TERNAT";
 		String to = "DILBEEK";
 		
-		User u1 = new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200L), false);
-		RailCard rc1 = new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false);
+		User u1 = TestUser.getFirstUser();
+		RailCard rc1 = TestRailCard.getFirstRailCard();
 		
-		ActiveRailCard arc1 = new ActiveRailCard(id, validFrom, validTo, from, to, u1, rc1);
+		ActiveRailCard arc1 = TestActiveRailCard.getFirstActiveRailCard();
 		
 		if(check == 1){
 			assertEquals(id, arc1.getId());
@@ -39,10 +47,10 @@ public class TestActiveRailCard {
 			assertEquals(rc1, arc1.getRailCard());			
 		}
 		else if(check == 0){
-			User u2 = new User(1, Gender.MALE, UserType.ADMIN, "Marc", "De Hertogh", new Date(-228528000), true);
-			RailCard rc2 = new RailCard(1, "JOURNEY RAILCARD", "commuters, unlimited travel on your route, emplyer's contribution", 26.00, 73.00, 260.00, true, false);
+			User u2 = TestUser.getSecondUser();
+			RailCard rc2 = TestRailCard.getSecondRailCard();
 			
-			arc1.setId(1);
+			arc1.setId(2);
 			arc1.setValidFrom(new Date(1477260000000L));
 			arc1.setValidTo(new Date(1477260000000L));
 			arc1.setFrom("GROOT-BIJGAARDEN");
@@ -62,46 +70,28 @@ public class TestActiveRailCard {
 	
 	@Test
 	public void testEquals(){
-		int id = 1;
-		Date validFrom = new Date(1477260000000L);
-		Date validTo = new Date(1477260000000L);
-		String from = "TERNAT";
-		String to = "DILBEEK";
-		
-		User u1 = new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200L), false);
-		RailCard rc1 = new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false);
-		
-		ActiveRailCard arc1 = new ActiveRailCard(id, validFrom, validTo, from, to, u1, rc1);
+		ActiveRailCard arc1 = TestActiveRailCard.getFirstActiveRailCard();
 		
 		if(check == 1){
-			ActiveRailCard arc2 = new ActiveRailCard(1, new Date(1477260000000L), new Date(1477260000000L), "TERNAT", "DILBEEK", new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200L), false), new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false));
+			ActiveRailCard arc2 = TestActiveRailCard.getFirstActiveRailCard();
 			assertEquals(true, arc1.equals(arc2));
 		}
 		else if(check == 0){
-			ActiveRailCard arc2 = new ActiveRailCard(2, new Date(1477260000000L), new Date(1477260000000L), "GROOT-BIJGAARDEN", "JETTE", new User(1, Gender.MALE, UserType.ADMIN, "Marc", "De Hertogh", new Date(-228528000), true), new RailCard(1, "JOURNEY RAILCARD", "commuters, unlimited travel on your route, emplyer's contribution", 26.00, 73.00, 260.00, true, false));
+			ActiveRailCard arc2 = TestActiveRailCard.getSecondActiveRailCard();
 			assertEquals(true, arc1.equals(arc2));
 		}
 	}
 	
 	@Test
 	public void testHashCode(){
-		int id = 1;
-		Date validFrom = new Date(1477260000000L);
-		Date validTo = new Date(1477260000000L);
-		String from = "TERNAT";
-		String to = "DILBEEK";
-		
-		User u1 = new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200L), false);
-		RailCard rc1 = new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false);
-		
-		ActiveRailCard arc1 = new ActiveRailCard(id, validFrom, validTo, from, to, u1, rc1);
+		ActiveRailCard arc1 = TestActiveRailCard.getFirstActiveRailCard();
 		
 		if(check == 1){
-			ActiveRailCard arc2 = new ActiveRailCard(1, new Date(1477260000000L), new Date(1477260000000L), "TERNAT", "DILBEEK", new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200L), false), new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false));
+			ActiveRailCard arc2 = TestActiveRailCard.getFirstActiveRailCard();
 			assertEquals(arc1.hashCode(), arc2.hashCode());
 		}
 		else if(check == 0){
-			ActiveRailCard arc2 = new ActiveRailCard(2, new Date(1477260000000L), new Date(1477260000000L), "GROOT-BIJGAARDEN", "JETTE", new User(1, Gender.MALE, UserType.ADMIN, "Marc", "De Hertogh", new Date(-228528000), true), new RailCard(1, "JOURNEY RAILCARD", "commuters, unlimited travel on your route, emplyer's contribution", 26.00, 73.00, 260.00, true, false));
+			ActiveRailCard arc2 = TestActiveRailCard.getSecondActiveRailCard();
 			assertEquals(arc1.hashCode(), arc2.hashCode());
 		}
 	}
