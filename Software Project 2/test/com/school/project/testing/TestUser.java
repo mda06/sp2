@@ -21,7 +21,7 @@ public class TestUser{
 	}
 	
 	public static User getSecondUser(){
-		return new User(1, Gender.MALE, UserType.ADMIN, "Marc", "De Hertogh", new Date(-228528000), true);
+		return new User(2, Gender.MALE, UserType.ADMIN, "Marc", "De Hertogh", new Date(-228528000), true);
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class TestUser{
 		java.sql.Date dateOfBirth = new Date(863395200);
 		boolean archived = false;
 		
-		User u1 = new User(id, gender, type, firstName, lastName, dateOfBirth, archived);
+		User u1 = TestUser.getFirstUser();
 		
 		if(check == 1){
 			assertEquals(id, u1.getId());
@@ -46,7 +46,7 @@ public class TestUser{
 			assertEquals(archived, u1.isArchived());
 		}
 		else if(check == 0){
-			u1.setId(1);
+			u1.setId(2);
 			u1.setGender(Gender.MALE);
 			u1.setType(UserType.ADMIN);
 			u1.setFirstName("Marc");

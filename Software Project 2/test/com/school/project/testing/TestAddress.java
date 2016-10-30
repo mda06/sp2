@@ -15,7 +15,7 @@ public class TestAddress {
 	}
 	
 	public static Address getSecondAddress(){
-		return new Address(1, "Nijverheidskaai 170", "Bus 5", "Anderlecht", 1070, "Belgium", false);
+		return new Address(2, "Nijverheidskaai 170", "Bus 5", "Anderlecht", 1070, "Belgium", false);
 	}
 	
 	@Test
@@ -40,7 +40,7 @@ public class TestAddress {
 			assertEquals(archived, a1.isArchived());
 		}
 		else if(check == 0){
-			a1.setId(1);
+			a1.setId(2);
 			a1.setStreetline1("Nijverheidskaai 170");
 			a1.setStreetline2("Bus 5");
 			a1.setCity("Anderlecht");
