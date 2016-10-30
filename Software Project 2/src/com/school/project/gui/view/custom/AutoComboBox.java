@@ -10,7 +10,14 @@ import javax.swing.JTextField;
 public class AutoComboBox extends JComboBox<String> {
 	private static final long serialVersionUID = 1L;
 
+	public AutoComboBox(){
+	
+	}
 	public AutoComboBox(String[] items) {
+		setItems(items);
+	}
+	
+	public void setItems(String [] items){
 		setModel(new DefaultComboBoxModel<String>(items));
 		setSelectedIndex(-1);
 		setEditable(true);

@@ -15,25 +15,37 @@ import com.school.project.util.NetUtil;
 
 public class ConnectionDAO {
 	private static final String CONNECTIONS_URL = "https://api.irail.be/connections/?to=";
-	
-	//TODO: Make a new function with optional
-	//(OPTIONAL:) &date={dmy}&time=2359&timeSel=arrive or depart
+
+	public static List<Connection> getConnections(String from, String to) throws Exception {
+		String finalUrl = CONNECTIONS_URL + to + "&from=" + from + "&format=json";
+		String curlUrl = NetUtil.curlURL(finalUrl);
+		return getConnections(curlUrl);
+	}
+
 	public static List<Connection> getConnections(Station from, Station to) throws Exception {
+		return getConnections(from.getFormattedID(), to.getFormattedID());
+	}
+
+	public static List<Connection> getConnections(String from, String to, String date, String time, String timeSel)
+			throws Exception {
+		String finalUrl = CONNECTIONS_URL + to + "&from=" + from + "&format=json" + "&date=" + date + "&time=" + time + "&timeSel=" + timeSel ;
+		String curlUrl = NetUtil.curlURL(finalUrl);
+		return getConnections(curlUrl);
+	}
+
+	private static List<Connection> getConnections(String url) throws Exception {
 		List<Connection> connections = new ArrayList<Connection>();
 		try {
-			String finalUrl = CONNECTIONS_URL + to.getFormattedID() + "&from=" + from.getFormattedID() + "&format=json";
-			String curlUrl = NetUtil.curlURL(finalUrl);
-
-			JSONObject jBase = new JSONObject(curlUrl);
-			if(jBase.has("error")) {
+			JSONObject jBase = new JSONObject(url);
+			if (jBase.has("error")) {
 				throw new Exception("Server of NMBS is down");
 			}
-			
-			JSONArray arrCon =   jBase.getJSONArray("connection");
+
+			JSONArray arrCon = jBase.getJSONArray("connection");
 			arrCon.forEach(new Consumer<Object>() {
 				@Override
 				public void accept(Object t) {
-					JSONObject obj = (JSONObject)t;
+					JSONObject obj = (JSONObject) t;
 					Connection c = getConnection(obj);
 					connections.add(c);
 				}
@@ -44,7 +56,7 @@ public class ConnectionDAO {
 		}
 		return connections;
 	}
-	
+
 	private static Connection getConnection(JSONObject obj) {
 		int id = obj.getInt("id");
 		int duration = obj.getInt("duration");

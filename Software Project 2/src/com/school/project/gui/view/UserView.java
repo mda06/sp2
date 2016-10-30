@@ -62,14 +62,14 @@ public class UserView extends BaseView {
 		pnlCredentials.add(txtCity);
 		pnlAccount.add(lbUsername);
 		pnlAccount.add(txtUsername);
-		
+		pnlAccount.add(lbPassword);
+		pnlAccount.add(lbPasswordControl);
+		pnlAccount.add(pfPassword);
+		pnlAccount.add(pfPasswordControl);
 		/*
 	 
 	 	
-		add(lbPassword);
-		add(lbPasswordControl);
-		add(pfPassword);
-		add(pfPasswordControl);
+		
 		
 		add(btnComplete);
 		*/
@@ -100,13 +100,13 @@ public class UserView extends BaseView {
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbPassword, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, lbPassword, 30, SpringLayout.NORTH, txtUsername);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtPassword, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtPassword, 20, SpringLayout.NORTH, lbPassword);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pfPassword, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, pfPassword, 20, SpringLayout.NORTH, lbPassword);
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbPasswordControl, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lbPasswordControl, 30, SpringLayout.NORTH, txtPassword);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtPassword, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtPassword, 20, SpringLayout.NORTH, lbPassword);
+		sp.putConstraint(SpringLayout.NORTH, lbPasswordControl, 30, SpringLayout.NORTH, pfPassword);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pfPasswordControl, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, pfPasswordControl, 20, SpringLayout.NORTH, lbPasswordControl);
 		
 		pnlCredentials.setBorder(BorderFactory.createTitledBorder("Credentials"));
 		pnlAccount.setBorder(BorderFactory.createTitledBorder("Account"));
