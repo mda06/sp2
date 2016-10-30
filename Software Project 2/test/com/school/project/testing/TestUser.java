@@ -16,6 +16,14 @@ public class TestUser{
 
 	int check = 1; //1 = true, 0 = false
 	
+	public static User getFirstUser(){
+		return new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200), false);
+	}
+	
+	public static User getSecondUser(){
+		return new User(1, Gender.MALE, UserType.ADMIN, "Marc", "De Hertogh", new Date(-228528000), true);
+	}
+	
 	@Test
 	public void testConstructor() {
 		int id = 1;
@@ -58,59 +66,35 @@ public class TestUser{
 	
 	@Test
 	public void testEquals(){
-		int id = 1;
-		Gender gender = Gender.MALE;
-		UserType type = UserType.CUSTOMER;
-		String firstName = "Willem-Jan";
-		String lastName = "Pattyn";
-		java.sql.Date dateOfBirth = new Date(863395200);
-		boolean archived = false;
-		
-		User u1 = new User(id, gender, type, firstName, lastName, dateOfBirth, archived);
+		User u1 = TestUser.getFirstUser();
 		
 		if(check == 1){
-			User u2 = new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", new Date(863395200), false);
+			User u2 = TestUser.getFirstUser();
 			assertEquals(true, u1.equals(u2));
 		}
 		else if(check == 0){
-			User u2 = new User(1, Gender.MALE, UserType.ADMIN, "Marc", "De Hertogh", new Date(-228528000), true);
+			User u2 = TestUser.getSecondUser();
 			assertEquals(true, u1.equals(u2));
 		}
 	}
 	
 	@Test
-	public void testHashCode(){
-		int id = 1;
-		Gender gender = Gender.MALE;
-		UserType type = UserType.CUSTOMER;
-		String firstName = "Willem-Jan";
-		String lastName = "Pattyn";
-		java.sql.Date dateOfBirth = new Date(863395200);
-		boolean archived = false;
-		
-		User u1 = new User(id, gender, type, firstName, lastName, dateOfBirth, archived);
+	public void testHashCode(){		
+		User u1 = TestUser.getFirstUser();
 		
 		if(check == 1){
-			User u2 = new User(1, Gender.MALE, UserType.CUSTOMER, "Willem-Jan", "Pattyn", dateOfBirth, archived);
+			User u2 = TestUser.getFirstUser();
 			assertEquals(u1.hashCode(), u2.hashCode());
 		}
 		else if(check == 0){
-			User u2 = new User(1, Gender.MALE, UserType.CUSTOMER, "Marc", "De Hertogh", dateOfBirth = new Date(-228528000), true);
+			User u2 = TestUser.getSecondUser();
 			assertEquals(u1.hashCode(), u2.hashCode());
 		}
 	}
 	
 	@Test
 	public void testCredentials(){
-		int id = 1;
-		Gender gender = Gender.MALE;
-		UserType type = UserType.CUSTOMER;
-		String firstName = "Willem-Jan";
-		String lastName = "Pattyn";
-		java.sql.Date dateOfBirth = new Date(863395200);
-		boolean archived = false;
-		
-		User u1 = new User(id, gender, type, firstName, lastName, dateOfBirth, archived);
+		User u1 = TestUser.getFirstUser();
 		
 		if(check == 1){
 			assertEquals(null, u1.getCredentials());
@@ -123,25 +107,16 @@ public class TestUser{
 	
 	@Test
 	public void testAddress(){
-		int id = 1;
-		Gender gender = Gender.MALE;
-		UserType type = UserType.CUSTOMER;
-		String firstName = "Willem-Jan";
-		String lastName = "Pattyn";
-		java.sql.Date dateOfBirth = new Date(863395200);
-		boolean archived = false;
-		
-		User u1 = new User(id, gender, type, firstName, lastName, dateOfBirth, archived);
-		
-		Address a1 = new Address(1, "Zonnekouter 18", " ", "Dilbeek", 1700, "Belgium", false);
+		User u1 = TestUser.getFirstUser();
+		Address a1 = TestAddress.getFirstAddress();
 		u1.setAddress(a1);
 		
 		if(check == 1){
-			Address a2 = new Address(1, "Zonnekouter 18", " ", "Dilbeek", 1700, "Belgium", false);
+			Address a2 = TestAddress.getFirstAddress();
 			assertEquals(u1.getAddress(), a2);
 		}
 		else if(check == 0){
-			Address a2 = new Address(1, "Leopoldlaan 165", " ", "Zaventem", 1930, "Belgium", false);
+			Address a2 = TestAddress.getSecondAddress();
 			assertEquals(u1.getAddress(), a2);
 		}
 	}
