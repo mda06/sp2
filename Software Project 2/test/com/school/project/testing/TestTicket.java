@@ -10,6 +10,14 @@ public class TestTicket {
 
 	int check = 1; //1 = true, 0 = false
 	
+	public static Ticket getFirstTicket(){
+		return new Ticket(1, "STANDARD TICKET", "All days, no limitation", 4.50, 1, true, false);
+	}
+	
+	public static Ticket getSecondTicket(){
+		return new Ticket(2, "SENIOR TICKET", "For people aged 65 and over", 3.50, 1, true, false);
+	}
+	
 	@Test
 	public void testConstructor(){
 		int id = 1;
@@ -20,7 +28,7 @@ public class TestTicket {
 		boolean hasFixedRoute = true;
 		boolean archived = false;
 		
-		Ticket t1 = new Ticket(1, name, description, price, validityPeriod, hasFixedRoute, archived);
+		Ticket t1 = TestTicket.getFirstTicket();
 		
 		if(check == 1){
 			assertEquals(id, t1.getId());
@@ -52,44 +60,28 @@ public class TestTicket {
 	
 	@Test
 	public void testEquals(){
-		int id = 1;
-		String name = "STANDARD TICKET";
-		String description = "All days, no limitation";
-		double price = 4.50;
-		int validityPeriod = 1;
-		boolean hasFixedRoute = true;
-		boolean archived = false;
-		
-		Ticket t1 = new Ticket(id, name, description, price, validityPeriod, hasFixedRoute, archived);
+		Ticket t1 = TestTicket.getFirstTicket();
 
 		if(check == 1){
-			Ticket t2 = new Ticket(1, "STANDARD TICKET", "All days, no limitation", 4.50, 1, true, false);
+			Ticket t2 = TestTicket.getFirstTicket();
 			assertEquals(true, t1.equals(t2));
 		}
 		else if(check == 0){
-			Ticket t2 = new Ticket(1, "SENIOR TICKET", "For people aged 65 and over", 3.50, 1, true, false);
+			Ticket t2 = TestTicket.getSecondTicket();
 			assertEquals(true, t1.equals(t2));
 		}
 	}
 	
 	@Test
 	public void testHashCode(){
-		int id = 1;
-		String name = "STANDARD TICKET";
-		String description = "All days, no limitation";
-		double price = 4.50;
-		int validityPeriod = 1;
-		boolean hasFixedRoute = true;
-		boolean archived = false;
-		
-		Ticket t1 = new Ticket(id, name, description, price, validityPeriod, hasFixedRoute, archived);
+		Ticket t1 = TestTicket.getFirstTicket();
 		
 		if(check == 1){
-			Ticket t2 = new Ticket(1, "STANDARD TICKET", "All days, no limitation", 4.50, 1, true, false);
+			Ticket t2 = TestTicket.getFirstTicket();
 			assertEquals(t1.hashCode(), t2.hashCode());
 		}
 		else if(check == 0){
-			Ticket t2 = new Ticket(1, "SENIOR TICKET", "For people aged 65 and over", 3.50, 1, true, false);
+			Ticket t2 = TestTicket.getSecondTicket();
 			assertEquals(t1.hashCode(), t2.hashCode());
 		}
 	}
