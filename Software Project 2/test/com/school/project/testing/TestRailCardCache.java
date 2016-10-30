@@ -24,14 +24,14 @@ public class TestRailCardCache {
 	
 	@Test
 	public void testAddTicket(){		
-		RailCard rc1 = new RailCard(1, "SCHOOL RAILCARD", "students under 26, discounted rate, unlimited travel on a fixed route", 16.10, 45.00, 161.00, true, false);
+		RailCard rc1 = TestRailCard.getFirstRailCard();
 		RailCardCache.getInstance().addRailCard(rc1);
 		
 		if(check == 1){
 			assertEquals(rc1, RailCardCache.getInstance().getCache().get(0));
 		}
 		else if(check == 0){
-			RailCard rc2 = new RailCard(1, "JOURNEY RAILCARD", "commuters, unlimited travel on your route, emplyer's contribution", 26.00, 73.00, 260.00, true, false);
+			RailCard rc2 = TestRailCard.getSecondRailCard();
 			assertEquals(rc2, RailCardCache.getInstance().getCache().get(0));
 		}
 	}
