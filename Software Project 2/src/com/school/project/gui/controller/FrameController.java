@@ -61,7 +61,7 @@ public class FrameController implements Observer {
 					}
 					update(languageObservable, btn);
 					btn.setBackground(new Color(50,111,209));
-				}
+					}
 			}
 		});
 	}
