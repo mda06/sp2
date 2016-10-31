@@ -95,7 +95,7 @@
 		<value lang="fr"> Nom d'utilisateur </value>
 		<value lang="en"> Username </value>
 	</string>
-	<string name = "New user">
+	<string name = "NewUser">
 		<value lang="nl"> Nieuwe gebruiker </value>
 		<value lang="fr"> Nouvel utilisateur </value>
 		<value lang="en"> New User </value>
