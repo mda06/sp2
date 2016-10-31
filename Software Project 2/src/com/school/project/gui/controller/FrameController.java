@@ -20,7 +20,6 @@ public class FrameController implements Observer {
 	private FrameView frame;
 	private LanguageObservable languageObservable;
 	private ArrayList<String> lstCardKeys;
-	
 	private Color oldButtonColor;
 	
 	public FrameController(LanguageObservable languageObservable) {
@@ -61,7 +60,7 @@ public class FrameController implements Observer {
 						}
 					}
 					update(languageObservable, btn);
-					btn.setBackground(Color.BLUE);
+					btn.setBackground(new Color(50,111,209));
 				}
 			}
 		});
