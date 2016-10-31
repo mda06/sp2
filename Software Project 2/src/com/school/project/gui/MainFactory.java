@@ -3,12 +3,10 @@ package com.school.project.gui;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.school.project.dao.DatabaseHandler;
-import com.school.project.dao.RailCardDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.FrameController;
 import com.school.project.gui.controller.LoginController;
@@ -19,7 +17,6 @@ import com.school.project.gui.controller.TicketController;
 import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
 import com.school.project.language.LanguageObservable;
-import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
@@ -31,8 +28,6 @@ public class MainFactory implements ConnectionListener {
 	private LanguageObservable languageObservable;
 
 	public MainFactory() {
-		// TODO: Put it in another thread
-
 		try {
 			// Set cross-platform Java L&F (also called "Metal")
 			UIManager.setLookAndFeel(("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"));
@@ -49,10 +44,6 @@ public class MainFactory implements ConnectionListener {
 		StationDAO.loadCache();
 		TicketCache.getInstance().loadCache();
 		RailCardCache.getInstance().loadCache();
-
-		RailCard c = RailCardDAO.getInstance().get(4);
-		c.setArchived(false);
-		RailCardDAO.getInstance().update(c);
 
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
@@ -72,10 +63,10 @@ public class MainFactory implements ConnectionListener {
 		frame.getFrameView().setVisible(true);
 		frame.getFrameView().addWindowListener(new WindowListener(){
 			public void windowOpened(WindowEvent e) {}
-			public void windowClosing(WindowEvent e) {}
-			public void windowClosed(WindowEvent e) {
+			public void windowClosing(WindowEvent e) {
 				DatabaseHandler.getInstance().closeConnection();
 			}
+			public void windowClosed(WindowEvent e) {}
 			public void windowIconified(WindowEvent e) {}
 			public void windowDeiconified(WindowEvent e) {}
 			public void windowActivated(WindowEvent e) {}
@@ -104,7 +95,5 @@ public class MainFactory implements ConnectionListener {
 		}
 		showBaseFrame();
 		languageObservable.languageChanged();
-		if (connectedUser != null)
-			JOptionPane.showMessageDialog(null, connectedUser.getFirstName() + " is connected.");
 	}
 }
