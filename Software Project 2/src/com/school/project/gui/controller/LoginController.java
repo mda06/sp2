@@ -17,13 +17,20 @@ public class LoginController implements Observer {
 		view = new LoginView();
 		this.connectListener = list;
 
+		setBaseCredentials();
 		initEvents();
+	}
+	
+	private void setBaseCredentials() {
+		view.getTxtUsername().setText("Illya");
+		view.getTxtPassword().setText("illy");
 	}
 
 	private void initEvents() {
 		ConnectionActionListener cl = new ConnectionActionListener(view, connectListener);
 		view.getBtnLogin().addActionListener(cl);
 		view.getTxtPassword().addActionListener(cl);
+		view.getTxtUsername().addActionListener(cl);
 	}
 
 	@Override

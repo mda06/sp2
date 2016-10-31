@@ -1,6 +1,10 @@
 package com.school.project.gui.controller;
 
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -32,6 +36,7 @@ public class LostItemController extends BaseController<LostItemView> {
         
 		view.getTxtSearch().setFocusable(true);
 		initLostItemsToTable();
+		initSearchBoxEvents();
 		initAddLostItem();
 		initRemoveLostItem();
 	}
@@ -66,6 +71,7 @@ public class LostItemController extends BaseController<LostItemView> {
 				});
 			}
 		});
+
 	}
 	
 	//TODO: put it in another thread
@@ -120,5 +126,19 @@ public class LostItemController extends BaseController<LostItemView> {
 			strErrorAdd = handler.getString("errorAddLostItem");
 			strRemove = handler.getString("removeLostItem");
 		}
+	}
+	
+	private void initSearchBoxEvents(){
+		view.getTxtSearch().addFocusListener(new FocusListener() {
+		    public void focusGained(FocusEvent e) {
+		    	view.getTxtSearch().setText("");
+		    }
+
+		    public void focusLost(FocusEvent e) {
+		    	if (view.getTxtSearch().getText().isEmpty()){
+		    		view.getTxtSearch().setText("Search");
+		    	}
+		    }
+		});
 	}
 }

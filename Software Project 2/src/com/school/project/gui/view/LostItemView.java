@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class LostItemView extends BaseView {
+public class LostItemView extends BaseView{
 	private static final long serialVersionUID = 1L;
 	private JTextField txtSearch;
 	private JPanel pnlSearch, pnlAdd;
@@ -21,7 +21,9 @@ public class LostItemView extends BaseView {
 	}
 	
 	private void initLayout() {
-		txtSearch = new JTextField("Search");
+		
+		
+		txtSearch = new JTextField("Search");		    
 		btnSearch = new JButton("Search");
 		SpringLayout sp = new SpringLayout();
 		pnlSearch = new JPanel(sp);
@@ -42,7 +44,11 @@ public class LostItemView extends BaseView {
 		
 		table = new JTable();	
 		JScrollPane scroll = new JScrollPane(table);
+		
+		
+
 		sp = new SpringLayout();
+
 		setLayout(sp);
 		add(pnlSearch);
 		add(pnlAdd);
@@ -84,5 +90,6 @@ public class LostItemView extends BaseView {
 	public JTable getTable() {
 		return table;
 	}
+
 
 }
