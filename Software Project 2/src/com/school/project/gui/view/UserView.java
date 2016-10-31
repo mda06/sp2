@@ -1,6 +1,7 @@
 package com.school.project.gui.view;
 
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -9,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-import javax.swing.border.TitledBorder;
 
 public class UserView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -71,13 +71,6 @@ public class UserView extends BaseView {
 		pnlCredentials.add(lbPasswordControl);
 		pnlCredentials.add(pfPassword);
 		pnlCredentials.add(pfPasswordControl);
-		/*
-	 
-	 	
-		
-		
-		add(btnComplete);
-		*/
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
@@ -120,15 +113,15 @@ public class UserView extends BaseView {
 		
 		sp = new SpringLayout();
 		setLayout(sp);	
+		pnlAccount.setPreferredSize(new Dimension(300,300));
+		pnlCredentials.setPreferredSize(new Dimension(300,200));
 		add(pnlAccount);
 		add(pnlCredentials);
-		sp.putConstraint(SpringLayout.WEST, pnlAccount, 500, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlAccount, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlAccount, 15, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, pnlAccount, -500, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 350, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, pnlCredentials, 500, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlCredentials, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 30, SpringLayout.SOUTH, pnlAccount);
-		sp.putConstraint(SpringLayout.EAST, pnlCredentials, -500, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlCredentials, 600, SpringLayout.NORTH, this);
 			
 	}
