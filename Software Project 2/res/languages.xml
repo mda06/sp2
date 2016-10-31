@@ -95,10 +95,55 @@
 		<value lang="fr"> Nom d'utilisateur </value>
 		<value lang="en"> Username </value>
 	</string>
-	<string name = "New user">
+	<string name = "NewUser">
 		<value lang="nl"> Nieuwe gebruiker </value>
 		<value lang="fr"> Nouvel utilisateur </value>
 		<value lang="en"> New User </value>
+	</string>
+	<string name = "firstName">
+		<value lang="nl"> Voornaam</value>
+		<value lang="fr"> Prénom</value>
+		<value lang="en"> First name</value>
+	</string>
+	<string name = "lastName">
+		<value lang="nl"> Achternaam</value>
+		<value lang="fr"> Nom de Famile</value>
+		<value lang="en"> Last name</value>
+	</string>
+	<string name = "passwordControl">
+		<value lang="nl"> Paswoord controle</value>
+		<value lang="fr"> La vérification du mot de passe</value>
+		<value lang="en"> Password control</value>
+	</string>
+	<string name = "streetNumber">
+		<value lang="nl">Straat en huisnummer</value>
+		<value lang="fr">Adresse</value>
+		<value lang="en">Street and number</value>
+	</string>
+	<string name = "streetLine2">
+		<value lang="nl">2de adres</value>
+		<value lang="fr">2e place</value>
+		<value lang="en">2nd place</value>
+	</string>
+	<string name = "zipcode">
+		<value lang="nl">Postcode</value>
+		<value lang="fr">Code postal</value>
+		<value lang="en">Zip code</value>
+	</string>
+	<string name = "city">
+		<value lang="nl">Stad</value>
+		<value lang="fr">Ville</value>
+		<value lang="en">City</value>
+	</string>
+	<string name = "account">
+		<value lang="nl">Account</value>
+		<value lang="fr">Compt</value>
+		<value lang="en">Account</value>
+	</string>
+	<string name = "credentials">
+		<value lang="nl">Credentials</value>
+		<value lang="fr">Credentials</value>
+		<value lang="en">Credentials</value>
 	</string>
 	
 </resources>
