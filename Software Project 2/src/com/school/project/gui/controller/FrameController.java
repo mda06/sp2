@@ -1,6 +1,7 @@
 package com.school.project.gui.controller;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +21,11 @@ public class FrameController implements Observer {
 	private LanguageObservable languageObservable;
 	private ArrayList<String> lstCardKeys;
 	
+	private Color oldButtonColor;
+	
 	public FrameController(LanguageObservable languageObservable) {
 		frame = new FrameView();
+		this.oldButtonColor = null;
 		this.languageObservable = languageObservable;
 		lstCardKeys = new ArrayList<String>();
 		initLanguageEvents();
@@ -37,6 +41,9 @@ public class FrameController implements Observer {
 	public void addCard(BaseController<?> controller) {
 		final String KEY = controller.getBaseView().CARD_KEY; 
 		JButton btn = new JButton(KEY);
+		if(oldButtonColor == null){
+			oldButtonColor = btn.getBackground();
+		}
 		btn.setActionCommand(KEY);
 		lstCardKeys.add(KEY);
 		frame.getPanelBtns().add(btn);
@@ -53,6 +60,8 @@ public class FrameController implements Observer {
 							break;
 						}
 					}
+					update(languageObservable, btn);
+					btn.setBackground(Color.BLUE);
 				}
 			}
 		});
@@ -68,6 +77,8 @@ public class FrameController implements Observer {
 					JButton btn = (JButton)c;
 					String acc = btn.getActionCommand();
 					btn.setText(handler.getString(acc));
+					
+					btn.setBackground(this.oldButtonColor);
 				}
 			}
 		}		
