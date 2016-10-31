@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.school.project.model.Ticket;
+import com.school.project.model.TicketCache;
 
 public class TicketDAO implements BaseDAO<Ticket> {
 
@@ -44,7 +45,7 @@ public class TicketDAO implements BaseDAO<Ticket> {
 		
 		try{
 			String[] returnId = {"BATCHID"};
-			stat = connection.prepareStatement("INSERT INTO tickets (id, name, description, prive, validityPeriod, hasFixedRoute, archived) VALUES (null,?,?,?,?,?,?);", returnId);
+			stat = connection.prepareStatement("INSERT INTO tickets (id, name, description, price, validityPeriod, hasFixedRoute, archived) VALUES (null,?,?,?,?,?,?);", returnId);
 			stat.setString(1, obj.getName());
 			stat.setString(2, obj.getDescription());
 			stat.setDouble(3, obj.getPrice());
@@ -141,6 +142,16 @@ public class TicketDAO implements BaseDAO<Ticket> {
 	@Override
 	public void update(Ticket obj) {
 		if(obj == null || obj.getId() == -1) return;
+		
+		Ticket other = get(obj.getId());
+		if(other.getPrice() != obj.getPrice()) {
+			delete(other);
+			TicketCache.getInstance().remove(other.getId());
+			add(obj);
+			TicketCache.getInstance().addTicket(obj);
+			return;
+		}
+		
 		Connection connection = DatabaseHandler.getInstance().getConnection();
 		PreparedStatement stat = null;
 		
@@ -152,6 +163,7 @@ public class TicketDAO implements BaseDAO<Ticket> {
 			stat.setInt(4, obj.getValidityPeriod());
 			stat.setBoolean(5, obj.isHasFixedRoute());
 			stat.setBoolean(6, obj.isArchived());
+			stat.setInt(7, obj.getId());
 			stat.executeUpdate();
 		}
 		catch(SQLException e){
@@ -173,7 +185,7 @@ public class TicketDAO implements BaseDAO<Ticket> {
 		PreparedStatement stat = null;
 		
 		try{
-			stat = connection.prepareStatement("UPDATE tickets SET archived = 1 WHERE id = ");
+			stat = connection.prepareStatement("UPDATE tickets SET archived = 1 WHERE id = ?");
 			stat.setInt(1, obj.getId());
 			stat.executeUpdate();
 		}

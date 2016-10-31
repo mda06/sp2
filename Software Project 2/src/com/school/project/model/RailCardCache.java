@@ -3,12 +3,14 @@ package com.school.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.school.project.dao.RailCardDAO;
+
 public class RailCardCache {
-	private List<RailCard> tickets;
+	private List<RailCard> railcards;
 	private static RailCardCache instance;
 	
 	private RailCardCache() {
-		tickets = new ArrayList<RailCard>();
+		railcards = new ArrayList<RailCard>();
 	}
 	
 	public static RailCardCache getInstance() {
@@ -17,12 +19,28 @@ public class RailCardCache {
 		return instance;
 	}
 	
-	public void addTicket(RailCard t){
+	public void addRailCard(RailCard t){
 		if(t != null)
-			tickets.add(t);
+			railcards.add(t);
 	}
 	
 	public List<RailCard> getCache() {
-		return tickets;
+		return railcards;
 	}
+	
+	public void remove(int id){
+		for(int i = 0; i < railcards.size(); i++){
+			if(id == railcards.get(i).getId()){
+				railcards.remove(i);
+				break;
+			}
+		}
+	}
+	
+	public void loadCache(){
+		for(RailCard t : RailCardDAO.getInstance().getAll()){
+			addRailCard(t);
+		}
+	}
+	
 }

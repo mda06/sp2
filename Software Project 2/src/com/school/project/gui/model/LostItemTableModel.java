@@ -9,8 +9,8 @@ import com.school.project.model.LostItem;
 public class LostItemTableModel extends DefaultTableModel {
 	private static final long serialVersionUID = 1L;	
 
-	public static final int COLUMN_TYPE = 0, COLUMN_DESCRIPTION = 1, COLUMN_LOCATION = 2;
-	public static String[] COLUMN_NAMES = {"Type", "Description", "Location"};
+	public final int COLUMN_TYPE = 0, COLUMN_DESCRIPTION = 1, COLUMN_LOCATION = 2;
+	public String[] COLUMN_NAMES = {"Type", "Description", "Location"};
 
 	public LostItemTableModel() {}
 	

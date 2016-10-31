@@ -10,6 +10,15 @@ public class TestUserCredentials {
 
 	int check = 1; //1 = true, 0 = false
 	
+	public static UserCredential getFirstUserCredentials(){
+		return new UserCredential(1, "pattynw", "oraoraora", false);
+	}
+	
+	public static UserCredential getSecondUserCredentials(){
+		return new UserCredential(2, "mda06", "blabla", false);
+		
+	}
+	
 	@Test
 	public void testConstructor() {
 		int id = 1;
@@ -17,7 +26,7 @@ public class TestUserCredentials {
 		String password = "oraoraora";
 		boolean archived = false;
 		
-		UserCredential uc1 = new UserCredential(id, username, password, archived);
+		UserCredential uc1 = TestUserCredentials.getFirstUserCredentials();
 		
 		if(check == 1){
 			assertEquals(id, uc1.getId());
@@ -26,7 +35,7 @@ public class TestUserCredentials {
 			assertEquals(archived, uc1.isArchived());			
 		}
 		else if(check == 0){
-			uc1.setId(1);
+			uc1.setId(2);
 			uc1.setUsername("pattynw");
 			uc1.setPassword("mudamudamuda");
 			uc1.setArchived(false);
@@ -40,38 +49,28 @@ public class TestUserCredentials {
 	
 	@Test
 	public void testEquals(){
-		int id = 1;
-		String username = "pattynw";
-		String password = "oraoraora";
-		boolean archived = false;
-		
-		UserCredential uc1 = new UserCredential(id, username, password, archived);
+		UserCredential uc1 = TestUserCredentials.getFirstUserCredentials();
 		
 		if(check == 1){
-			UserCredential uc2 = new UserCredential(1, "pattynw", "oraoraora", false);	
+			UserCredential uc2 = TestUserCredentials.getFirstUserCredentials();
 			assertEquals(true, uc1.equals(uc2));
 		}
 		else if(check == 0){
-			UserCredential uc2 = new UserCredential(1, "mda06", "blabla", false);
+			UserCredential uc2 = TestUserCredentials.getSecondUserCredentials();
 			assertEquals(true, uc1.equals(uc2));
 		}
 	}
 	
 	@Test
-	public void testHashCode(){
-		int id = 1;
-		String username = "pattynw";
-		String password = "oraoraora";
-		boolean archived = false;
-		
-		UserCredential uc1 = new UserCredential(id, username, password, archived);
+	public void testHashCode(){		
+		UserCredential uc1 = TestUserCredentials.getFirstUserCredentials();
 		
 		if(check == 1){
-			UserCredential uc2 = new UserCredential(1, "pattynw", "oraoraora", false);
+			UserCredential uc2 = TestUserCredentials.getFirstUserCredentials();
 			assertEquals(uc1.hashCode(), uc2.hashCode());
 		}
 		else if(check == 0){
-			UserCredential uc2 = new UserCredential(1, "mda06", "blabla", false);	
+			UserCredential uc2 = TestUserCredentials.getSecondUserCredentials();
 			assertEquals(uc1.hashCode(), uc2.hashCode());
 		}
 	}

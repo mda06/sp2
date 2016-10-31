@@ -24,6 +24,13 @@ public class StationCache {
 		return stations;
 	}
 	
+	public String[] getStationsNames() {
+		String[] arr = new String[stations.size()];
+		for(int i = 0; i < stations.size(); i++)
+			arr[i] = stations.get(i).getName();
+		return arr;
+	}
+	
 	public Station getStationWithID(String id) {
 		for(Station st : stations) {
 			if(st.getId().equals(id))

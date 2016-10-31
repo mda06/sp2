@@ -23,14 +23,14 @@ public class TestTicketCache {
 	
 	@Test
 	public void testAddTicket(){
-		Ticket t1 = new Ticket(1, "STANDARD TICKET", "All days, no limitation", 4.50, 1, true, false);
+		Ticket t1 = TestTicket.getFirstTicket();
 		TicketCache.getInstance().addTicket(t1);
 		
 		if(check == 1){
 			assertEquals(t1, TicketCache.getInstance().getCache().get(0));
 		}
 		else if(check == 0){
-			Ticket t2 = new Ticket(1, "SENIOR TICKET", "For people aged 65 and over", 3.50, 1, true, false);
+			Ticket t2 = TestTicket.getSecondTicket();
 			assertEquals(t2, TicketCache.getInstance().getCache().get(0));
 		}
 	}

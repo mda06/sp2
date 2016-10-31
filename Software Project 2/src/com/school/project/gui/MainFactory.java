@@ -2,6 +2,7 @@ package com.school.project.gui;
 
 import javax.swing.JOptionPane;
 
+import com.school.project.dao.RailCardDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.FrameController;
 import com.school.project.gui.controller.LoginController;
@@ -9,9 +10,14 @@ import com.school.project.gui.controller.LostItemController;
 import com.school.project.gui.controller.RailCardController;
 import com.school.project.gui.controller.RouteController;
 import com.school.project.gui.controller.TicketController;
+import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
 import com.school.project.language.LanguageObservable;
+import com.school.project.model.RailCard;
+import com.school.project.model.RailCardCache;
+import com.school.project.model.TicketCache;
 import com.school.project.model.User;
+import com.school.project.nmbs.dao.StationDAO;
 
 public class MainFactory implements ConnectionListener{
 	private User connectedUser;
@@ -19,7 +25,15 @@ public class MainFactory implements ConnectionListener{
 	private LanguageObservable languageObservable;
 	
 	public MainFactory() {
-		//Init caches
+		//TODO: Put it in another thread
+		StationDAO.loadCache();
+		TicketCache.getInstance().loadCache();
+		RailCardCache.getInstance().loadCache();
+		
+		RailCard c = RailCardDAO.getInstance().get(4);
+		c.setArchived(false);
+		RailCardDAO.getInstance().update(c);
+		
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
 	}
@@ -43,6 +57,7 @@ public class MainFactory implements ConnectionListener{
 		addCard(base, new TicketController());
 		addCard(base, new RailCardController());
 		addCard(base, new RouteController());
+		addCard(base, new UserController());
 	}
 	
 	private void addCard(FrameController base, BaseController<?> bc) {

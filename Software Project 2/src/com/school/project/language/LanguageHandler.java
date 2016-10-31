@@ -1,73 +1,95 @@
 package com.school.project.language;
 
+import java.io.File;
 import java.util.HashMap;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 public class LanguageHandler {
 	public enum Language {
 		NL, FR, EN;
 	}
-	
+
 	private Language currentLanguage;
 	private LanguageObservable observable;
 	private HashMap<Language, HashMap<String, String>> words;
-	
+
 	public LanguageHandler() {
 		currentLanguage = Language.EN;
 		words = new HashMap<Language, HashMap<String, String>>();
 		initWords();
 	}
-	
+
 	private void initWords() {
 		words.put(Language.NL, new HashMap<String, String>());
 		words.put(Language.FR, new HashMap<String, String>());
 		words.put(Language.EN, new HashMap<String, String>());
-		put(Language.NL, "search", "Zoeken");
-		put(Language.FR, "search", "Chercher");
-		put(Language.EN, "search", "Search");
-		
-		put(Language.NL, "options", "Opties");
-		put(Language.FR, "options", "Options");
-		put(Language.EN, "options", "Options");
-		
-		put(Language.NL, "lostItemView", "Verloren Voorwerpen");
-		put(Language.FR, "lostItemView", "Objets Perdus");
-		put(Language.EN, "lostItemView", "Lost Objects");
-		
-		put(Language.NL, "RailCard", "Abonements");
-		put(Language.FR, "RailCard", "Abonnements");
-		put(Language.EN, "RailCard", "Railcards");
+		// source:
+		// https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+		try {
+			File fXmlFile = new File("./res/languages.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
 
-		put(Language.NL, "TicketView", "Tickets");
-		put(Language.FR, "TicketView", "Ticket");
-		put(Language.EN, "TicketView", "Tickets");
-		
-		put(Language.NL, "Route", "Route");
-		put(Language.FR, "Route", "Route");
-		put(Language.EN, "Route", "Route");
-		
-		put(Language.NL, "login", "Log in");
-		put(Language.FR, "login", "S'identifier");
-		put(Language.EN, "login", "Login");
+			// DTD validation source:
+			// http://stackoverflow.com/questions/8699620/how-to-validate-xml-with-dtd-using-java
+			domFactory.setValidating(true);
+			DocumentBuilder builder = domFactory.newDocumentBuilder();
 
-		put(Language.NL, "password", "Wachtwoord");
-		put(Language.FR, "password", "Mot de passe");
-		put(Language.EN, "password", "Password");
+			builder.setErrorHandler(new ErrorHandler() {
+				@Override
+				public void error(SAXParseException exception) throws SAXException {
+					exception.printStackTrace();
+				}
 
-		put(Language.NL, "username", "Gebruikersnaam");
-		put(Language.FR, "username", "Nom d'utilisateur");
-		put(Language.EN, "username", "Username");
+				@Override
+				public void fatalError(SAXParseException exception) throws SAXException {
+					exception.printStackTrace();
+				}
 
+				@Override
+				public void warning(SAXParseException exception) throws SAXException {
+					exception.printStackTrace();
+				}
+			});
+
+			Document doc = dBuilder.parse(fXmlFile);
+			doc.getDocumentElement().normalize();
+
+			NodeList stringNodes = doc.getElementsByTagName("string");
+
+			for (int i = 0; i < stringNodes.getLength(); i++) {
+				Element stringEl = (Element) stringNodes.item(i);
+				String key = stringEl.getAttribute("name");
+				NodeList valueNodes = stringEl.getElementsByTagName("value");
+				for (int j = 0; j < valueNodes.getLength(); j++) {
+					Element valueEl = (Element) valueNodes.item(j);
+					Language lang = Language.valueOf(valueEl.getAttribute("lang").toUpperCase());
+					if (!valueEl.getTextContent().isEmpty()) // DTD checkt niet
+																// alles
+						words.get(lang).put(key, valueEl.getTextContent());
+					else words.get(lang).put(key, "!" + key);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void setLanguage(Language l) {
 		currentLanguage = l;
 		observable.languageChanged();
 	}
-	
-	private void put(Language lan, String key, String value) {
-		words.get(lan).put(key, value);
-	}
-	
+
 	public String getString(String key) {
 		return words.get(currentLanguage).get(key);
 	}

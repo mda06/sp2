@@ -10,6 +10,14 @@ public class TestLostItem {
 	
 	int check = 1; //1 = true, 0 = false
 	
+	public static LostItem getFirstLostItem(){
+		return new LostItem(1, "phone", "iPhone 6 with yellow case", "Bruxelles-Midi", false, false);
+	}
+	
+	public static LostItem getSecondLostItem(){
+		return new LostItem(2, "phone", "Samsung Galaxy 7 with blue case", "Jette", true, true);
+	}
+	
 	@Test
 	public void testConstructor(){
 		int id = 1;
@@ -19,7 +27,7 @@ public class TestLostItem {
 		boolean pickedUp = false;
 		boolean archived = false;
 		
-		LostItem li1 = new LostItem(id, type, description, location, pickedUp, archived);
+		LostItem li1 = TestLostItem.getFirstLostItem();
 		
 		if(check == 1){
 			assertEquals(id, li1.getId());
@@ -30,7 +38,7 @@ public class TestLostItem {
 			assertEquals(archived, li1.isArchived());
 		}
 		else if(check == 0){
-			li1.setId(1);
+			li1.setId(2);
 			li1.setType("phone");
 			li1.setDescription("Samsung Galaxy 7 with blue case");
 			li1.setLocation("Jette");
@@ -48,53 +56,29 @@ public class TestLostItem {
 	
 	@Test
 	public void testEquals(){	
-		int id = 1;
-		String type = "phone";
-		String description = "iPhone 6 with yellow case";
-		String location = "Bruxelles-Midi";
-		boolean pickedUp = false;
-		boolean archived = false;
-		
-		LostItem li1 = new LostItem(id, type, description, location, pickedUp, archived);
-		LostItem li2 = new LostItem(1, "phone", "iPhone 6 with yellow case", "Bruxelles-Midi", false, false);
+		LostItem li1 = TestLostItem.getFirstLostItem();
 		
 		if(check == 1){
+			LostItem li2 = TestLostItem.getFirstLostItem();
 			assertEquals(true, li1.equals(li2));
 		}
 		else if(check == 0){
-			li1.setId(1);
-			li1.setType("accessoires");
-			li1.setDescription("Battery charger");
-			li1.setLocation("Vilvoorde");
-			li1.setPickedUp(true);
-			li1.setArchived(true);
-			
+			LostItem li2 = TestLostItem.getSecondLostItem();			
 			assertEquals(true, li1.equals(li2));
 		}
 	}
 	
 	@Test
 	public void testHashCode(){
-		int id = 1;
-		String type = "phone";
-		String description = "iPhone 6 with yellow case";
-		String location = "Bruxelles-Midi";
-		boolean pickedUp = false;
-		boolean archived = false;
-		
-		LostItem li1 = new LostItem(id, type, description, location, pickedUp, archived);
-		LostItem li2 = new LostItem(1, "phone", "iPhone 6 with yellow case", "Bruxelles-Midi", false, false);
+		LostItem li1 = TestLostItem.getFirstLostItem();
 		
 		if(check == 1){
+			LostItem li2 = TestLostItem.getFirstLostItem();
 			assertEquals(li1.hashCode(), li2.hashCode());
 		}
 		else if(check == 0){
-			li1.setId(1);
-			li1.setType("phone");
-			li1.setDescription("iPhone 6 with yellow case");
-			li1.setLocation("Vilvoorde");
-			li1.setPickedUp(true);
-			li1.setArchived(true);
+			LostItem li2 = TestLostItem.getSecondLostItem();
+			assertEquals(li1.hashCode(), li2.hashCode());
 		}
 	}
 
