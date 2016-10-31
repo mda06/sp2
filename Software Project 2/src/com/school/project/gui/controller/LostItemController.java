@@ -9,11 +9,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import com.school.project.dao.LostItemDAO;
 import com.school.project.gui.model.LostItemTableModel;
@@ -29,10 +35,11 @@ public class LostItemController extends BaseController<LostItemView> {
 	private String strErrorAdd, strRemove;
 	
 	public LostItemController() {
+		
 		super(new LostItemView());
 		tableModel = new LostItemTableModel();
 		view.getTable().setModel(tableModel);
-		
+		view.getTable().setAutoCreateRowSorter(true);
         
 		view.getTxtSearch().setFocusable(true);
 		initLostItemsToTable();
@@ -89,7 +96,7 @@ public class LostItemController extends BaseController<LostItemView> {
 		view.getTable().addMouseListener(new MouseAdapter(){ 
 			public void mouseClicked(MouseEvent e) { 
 				if(e.getClickCount() == 2){
-					LostItem selectedItem = tableModel.getLostItemAt(view.getTable().getSelectedRow());
+					LostItem selectedItem = tableModel.getLostItemAt(view.getTable().convertRowIndexToModel(view.getTable().getSelectedRow()));
 					int confirmed = JOptionPane.showConfirmDialog(view.getTable(), strRemove + selectedItem.getType() + "?");
 					if(confirmed == JOptionPane.OK_OPTION){
 						selectedItem.setPickedUp(true);
