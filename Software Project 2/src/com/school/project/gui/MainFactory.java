@@ -1,7 +1,11 @@
 package com.school.project.gui;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JOptionPane;
 
+import com.school.project.dao.DatabaseHandler;
 import com.school.project.dao.RailCardDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.FrameController;
@@ -50,6 +54,17 @@ public class MainFactory implements ConnectionListener{
 		languageObservable.addObserver(frame);
 		initBaseModels(frame);
 		frame.getFrameView().setVisible(true);
+		frame.getFrameView().addWindowListener(new WindowListener(){
+			public void windowOpened(WindowEvent e) {}
+			public void windowClosing(WindowEvent e) {}
+			public void windowClosed(WindowEvent e) {
+				DatabaseHandler.getInstance().closeConnection();
+			}
+			public void windowIconified(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
+		});
 	}
 	
 	private void initBaseModels(FrameController base) {
