@@ -1,18 +1,58 @@
 package com.school.project.gui.controller;
 
+import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import javax.swing.JButton;
+
+import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.TicketView;
+import com.school.project.model.Ticket;
+import com.school.project.model.TicketCache;
+import com.school.project.model.User;
 
-public class TicketController extends BaseController<TicketView> {
+public class TicketController extends BaseController<TicketView> implements PaymentBackListener {
 
-	public TicketController() {
+	private TicketSaleController ticketSale;
+	
+	public TicketController(User user) {
 		super(new TicketView());
+		ticketSale = new TicketSaleController(view.getPnlPayment(), this, user);
+		
+		initButtons();
+	}
+	
+	private void initButtons() {
+		for(Ticket t : TicketCache.getInstance().getCache()) {
+			JButton btn = new JButton(t.getName());
+			view.getPnlBtns().add(btn);
+			btn.setActionCommand(String.valueOf(t.getId()));
+			btn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Ticket t = TicketCache.getInstance().getTicket(Integer.parseInt(e.getActionCommand()));
+					showCard(view.KEY_PAY);
+					ticketSale.showTicket(t);
+				}
+			});
+			
+		}
 	}
 
+	private void showCard(String key) {
+		CardLayout card = (CardLayout)view.getLayout();
+		card.show(view, key);
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void backToPreviousView() {
+		showCard(view.KEY_BTNS);
 	}
 }

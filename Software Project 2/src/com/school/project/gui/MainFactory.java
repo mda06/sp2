@@ -3,10 +3,7 @@ package com.school.project.gui;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-import javax.swing.JOptionPane;
-
 import com.school.project.dao.DatabaseHandler;
-import com.school.project.dao.RailCardDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.FrameController;
 import com.school.project.gui.controller.LoginController;
@@ -17,7 +14,6 @@ import com.school.project.gui.controller.TicketController;
 import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
 import com.school.project.language.LanguageObservable;
-import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
@@ -29,14 +25,9 @@ public class MainFactory implements ConnectionListener{
 	private LanguageObservable languageObservable;
 	
 	public MainFactory() {
-		//TODO: Put it in another thread
 		StationDAO.loadCache();
 		TicketCache.getInstance().loadCache();
 		RailCardCache.getInstance().loadCache();
-		
-		RailCard c = RailCardDAO.getInstance().get(4);
-		c.setArchived(false);
-		RailCardDAO.getInstance().update(c);
 		
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
@@ -56,10 +47,10 @@ public class MainFactory implements ConnectionListener{
 		frame.getFrameView().setVisible(true);
 		frame.getFrameView().addWindowListener(new WindowListener(){
 			public void windowOpened(WindowEvent e) {}
-			public void windowClosing(WindowEvent e) {}
-			public void windowClosed(WindowEvent e) {
+			public void windowClosing(WindowEvent e) {
 				DatabaseHandler.getInstance().closeConnection();
 			}
+			public void windowClosed(WindowEvent e) {}
 			public void windowIconified(WindowEvent e) {}
 			public void windowDeiconified(WindowEvent e) {}
 			public void windowActivated(WindowEvent e) {}
@@ -69,7 +60,7 @@ public class MainFactory implements ConnectionListener{
 	
 	private void initBaseModels(FrameController base) {
 		addCard(base, new LostItemController());
-		addCard(base, new TicketController());
+		addCard(base, new TicketController(connectedUser));
 		addCard(base, new RailCardController());
 		addCard(base, new RouteController());
 		addCard(base, new UserController());
@@ -88,7 +79,5 @@ public class MainFactory implements ConnectionListener{
 		}
 		showBaseFrame();
 		languageObservable.languageChanged();
-		if(connectedUser != null)
-			JOptionPane.showMessageDialog(null, connectedUser.getFirstName() + " is connected.");
 	}
 }
