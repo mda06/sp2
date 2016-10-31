@@ -30,6 +30,7 @@ public class LoginController implements Observer {
 		ConnectionActionListener cl = new ConnectionActionListener(view, connectListener);
 		view.getBtnLogin().addActionListener(cl);
 		view.getTxtPassword().addActionListener(cl);
+		view.getTxtUsername().addActionListener(cl);
 	}
 
 	@Override

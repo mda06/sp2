@@ -38,7 +38,7 @@ public class ConnectionDAO {
 		try {
 			JSONObject jBase = new JSONObject(url);
 			if (jBase.has("error")) {
-				throw new Exception("Server of NMBS is down");
+				throw new Exception(jBase.getString("message"));
 			}
 
 			JSONArray arrCon = jBase.getJSONArray("connection");
