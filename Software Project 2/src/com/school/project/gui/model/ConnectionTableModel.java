@@ -44,7 +44,7 @@ public class ConnectionTableModel extends DefaultTableModel {
 
 		switch (columnIndex) {
 		case COLUMN_FROM_TO:
-			returnValue = getConnectionAt(rowIndex).getArrival().getToStation().getName() + " - " + getConnectionAt(rowIndex).getDeparture().getToStation().getName();;
+			returnValue = getConnectionAt(rowIndex).getDeparture().getToStation().getName() + " - " + getConnectionAt(rowIndex).getArrival().getToStation().getName();;
 			break;
 		case COLUMN_DEPARTURE_TIME:
 			returnValue = DateUtil.timeStampToDate(getConnectionAt(rowIndex).getDeparture().getDepartureInfo().getTimeStamp());
