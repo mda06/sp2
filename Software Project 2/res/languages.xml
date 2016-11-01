@@ -111,9 +111,9 @@
 		<value lang="en"> Last name</value>
 	</string>
 	<string name = "passwordControl">
-		<value lang="nl"> Paswoord controle</value>
+		<value lang="nl"> Herhaal paswoord</value>
 		<value lang="fr"> La vérification du mot de passe</value>
-		<value lang="en"> Password control</value>
+		<value lang="en"> Repeat password</value>
 	</string>
 	<string name = "streetNumber">
 		<value lang="nl">Straat en huisnummer</value>
