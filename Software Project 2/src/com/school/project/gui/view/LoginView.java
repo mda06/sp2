@@ -48,21 +48,21 @@ public class LoginView extends JFrame{
 		lUsername.setFont(new Font("Arial", Font.PLAIN, 30));
 		lPassword.setFont(new Font("Arial", Font.PLAIN, 30));
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 30));
-		btnLogin.setPreferredSize(new Dimension(410, 40));
+		btnLogin.setPreferredSize(new Dimension(450, 40));
 		
 		txtUsername.setFont(new Font("Arial", Font.PLAIN, 30));
 		txtPassword.setFont(new Font("Arial", Font.PLAIN, 30));
 	
 		sp.putConstraint(SpringLayout.VERTICAL_CENTER, btnLogin, 40, SpringLayout.VERTICAL_CENTER, pnl);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, btnLogin, 30, SpringLayout.HORIZONTAL_CENTER, pnl);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, btnLogin, 14, SpringLayout.HORIZONTAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.VERTICAL_CENTER, txtUsername, -60, SpringLayout.VERTICAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtUsername, 110, SpringLayout.HORIZONTAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.VERTICAL_CENTER, txtPassword, -10, SpringLayout.VERTICAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtPassword, 110, SpringLayout.HORIZONTAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.VERTICAL_CENTER, lUsername, -60, SpringLayout.VERTICAL_CENTER, pnl);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lUsername, -100, SpringLayout.HORIZONTAL_CENTER, pnl);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lUsername, -140, SpringLayout.HORIZONTAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.VERTICAL_CENTER, lPassword, -10, SpringLayout.VERTICAL_CENTER, pnl);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lPassword, -100, SpringLayout.HORIZONTAL_CENTER, pnl);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lPassword, -140, SpringLayout.HORIZONTAL_CENTER, pnl);
 
 		this.setVisible(true);
 	}

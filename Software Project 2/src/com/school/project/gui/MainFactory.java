@@ -45,6 +45,8 @@ public class MainFactory implements ConnectionListener {
 		} catch (IllegalAccessException e) {
 			// handle exception
 		}
+		
+		
 
 		StationDAO.loadCache();
 		TicketCache.getInstance().loadCache();
