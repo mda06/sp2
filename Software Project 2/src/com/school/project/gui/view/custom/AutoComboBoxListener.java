@@ -52,10 +52,7 @@ public class AutoComboBoxListener extends KeyAdapter {
 		}
 		
 		cbListener.setSelectedIndex(-1);
-		if(v.size() == 1)
-			text = v.get(0);
-		else
-			cbListener.showPopup();
+		cbListener.showPopup();
 		((JTextField) cbListener.getEditor().getEditorComponent()).setText(text);
 	}
 

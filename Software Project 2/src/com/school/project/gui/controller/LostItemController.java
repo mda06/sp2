@@ -1,12 +1,10 @@
 package com.school.project.gui.controller;
 
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
@@ -29,10 +27,11 @@ public class LostItemController extends BaseController<LostItemView> {
 	private String strErrorAdd, strRemove;
 	
 	public LostItemController() {
+		
 		super(new LostItemView());
 		tableModel = new LostItemTableModel();
 		view.getTable().setModel(tableModel);
-		
+		view.getTable().setAutoCreateRowSorter(true);
         
 		view.getTxtSearch().setFocusable(true);
 		initLostItemsToTable();
@@ -89,7 +88,7 @@ public class LostItemController extends BaseController<LostItemView> {
 		view.getTable().addMouseListener(new MouseAdapter(){ 
 			public void mouseClicked(MouseEvent e) { 
 				if(e.getClickCount() == 2){
-					LostItem selectedItem = tableModel.getLostItemAt(view.getTable().getSelectedRow());
+					LostItem selectedItem = tableModel.getLostItemAt(view.getTable().convertRowIndexToModel(view.getTable().getSelectedRow()));
 					int confirmed = JOptionPane.showConfirmDialog(view.getTable(), strRemove + selectedItem.getType() + "?");
 					if(confirmed == JOptionPane.OK_OPTION){
 						selectedItem.setPickedUp(true);
