@@ -15,6 +15,8 @@ import com.school.project.model.User;
 import com.school.project.model.TicketCache;
 
 public class TicketSaleDAO implements BaseDAO<TicketSale> {
+	
+	//Er zitten nog errors in, maar compiled wel.
 
 	private static TicketSaleDAO instance;
 
