@@ -29,24 +29,21 @@ public class MainFactory implements ConnectionListener {
 
 	public MainFactory() {
 		try {
-			// Set cross-platform Java L&F (also called "Metal")
 			UIManager.setLookAndFeel(("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"));
 		} catch (UnsupportedLookAndFeelException e) {
-			// handle exception
+			//e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// handle exception
+			//e.printStackTrace();
 		} catch (InstantiationException e) {
-			// handle exception
+			//e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// handle exception
+			//e.printStackTrace();
 		}
-		
-		
 
 		StationDAO.loadCache();
 		TicketCache.getInstance().loadCache();
 		RailCardCache.getInstance().loadCache();
-
+		
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
 	}

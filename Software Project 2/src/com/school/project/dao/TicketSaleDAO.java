@@ -16,8 +16,6 @@ import com.school.project.model.TicketCache;
 
 public class TicketSaleDAO implements BaseDAO<TicketSale> {
 	
-	//Er zitten nog errors in, maar compiled wel.
-
 	private static TicketSaleDAO instance;
 
 	private TicketSaleDAO() {
@@ -39,12 +37,11 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		Date validFrom = res.getDate("validFrom");
 		Date validTo = res.getDate("validTo");
 		Date soldOn = res.getDate("soldOn");
-		String from = res.getString("from");
-		String to = res.getString("to");
+		String from = res.getString("departureStation");
+		String to = res.getString("arrivalStation");
 		boolean archived = res.getBoolean("archived");
-		Ticket ticket = TicketCache.getInstance().getTicket(res.getInt("ticketid"));
-		;
-		User user = UserDAO.getInstance().get(res.getInt("userid"));
+		Ticket ticket = TicketCache.getInstance().getTicket(res.getInt("ticketId"));
+		User user = UserDAO.getInstance().get(res.getInt("soldByUser"));
 		return new TicketSale(id, validFrom, validTo, soldOn, from, to, archived, ticket, user);
 	}
 
@@ -60,16 +57,16 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		try {
 			String[] returnId = { "BATCHID" };
 			stat = connection.prepareStatement(
-					"INSERT INTO ticketSales (id, validFrom, validTo, soldOn, from, to, archived, ticket, user) VALUES (null,?,?,?,?,?,?,?,?);",
+					"INSERT INTO ticketSales (id, ticketId, soldByUser, validFrom, validTo, soldOn, departureStation, arrivalStation, archived) VALUES (null,?,?,?,?,?,?,?,?);",
 					returnId);
-			stat.setDate(1, obj.getValidFrom());
-			stat.setDate(2, obj.getValidTo());
-			stat.setDate(3, obj.getSoldOn());
-			stat.setString(4, obj.getFrom());
-			stat.setString(5, obj.getTo());
-			stat.setBoolean(6, obj.isArchived());
-			stat.setInt(7, obj.getTicket().getId());
-			stat.setInt(8, obj.getUser().getId());
+			stat.setInt(1, obj.getTicket().getId());
+			stat.setInt(2, obj.getUser().getId());
+			stat.setDate(3, obj.getValidFrom());
+			stat.setDate(4, obj.getValidTo());
+			stat.setDate(5, obj.getSoldOn());
+			stat.setString(6, obj.getFrom());
+			stat.setString(7, obj.getTo());
+			stat.setBoolean(8, obj.isArchived());
 			stat.executeUpdate();
 
 			ResultSet genKeys = null;
@@ -166,15 +163,16 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 
 		try {
 			stat = connection.prepareStatement(
-					"UPDATE tickets SET validFrom = ?, validTo = ?, soldOn = ?, from = ?, to = ?, archived = ?, ticket = ?, user = ? WHERE id = ?;");
-			stat.setDate(1, obj.getValidFrom());
-			stat.setDate(2, obj.getValidTo());
-			stat.setDate(3, obj.getSoldOn());
-			stat.setString(4, obj.getFrom());
-			stat.setString(5, obj.getTo());
-			stat.setBoolean(6, obj.isArchived());
-			stat.setInt(7, obj.getTicket().getId());
-			stat.setInt(8, obj.getUser().getId());
+					"UPDATE ticketSales SET ticketId = ?, soldByUser = ?, validFrom = ?, validTo = ?, soldOn = ?, departureStation = ?, arrivalStation = ?, archived = ? WHERE id = ?;");
+			stat.setInt(1, obj.getTicket().getId());
+			stat.setInt(2, obj.getUser().getId());
+			stat.setDate(3, obj.getValidFrom());
+			stat.setDate(4, obj.getValidTo());
+			stat.setDate(5, obj.getSoldOn());
+			stat.setString(6, obj.getFrom());
+			stat.setString(7, obj.getTo());
+			stat.setBoolean(8, obj.isArchived());
+			stat.setInt(9, obj.getId());
 			stat.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
