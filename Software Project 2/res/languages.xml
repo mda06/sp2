@@ -150,4 +150,69 @@
 		<value lang="nl">Account aanmaken</value>
 		<value lang="fr">Créer un compte</value>
 	</string>
+	<string name="arrival">
+		<value lang="en">Arrival</value>
+		<value lang="nl">Aankomst</value>
+		<value lang="fr">Arrivée</value>
+	</string>
+	<string name="departure">
+		<value lang="en">Departure</value>
+		<value lang="nl">Vertrek</value>
+		<value lang="fr">Départ</value>
+	</string>
+	<string name="date">
+		<value lang="en">Date</value>
+		<value lang="nl">Datum</value>
+		<value lang="fr">Date</value>
+	</string>
+	<string name="number">
+		<value lang="en">Number</value>
+		<value lang="nl">Nummer</value>
+		<value lang="fr">Nombre</value>
+	</string>
+	<string name="uur">
+		<value lang="en">Hour</value>
+		<value lang="nl">Uur</value>
+		<value lang="fr">Heure</value>
+	</string>
+	<string name="single">
+		<value lang="en">Single</value>
+		<value lang="nl">Enkel</value>
+		<value lang="fr">Unique</value>
+	</string>
+	<string name="return">
+		<value lang="en">Return</value>
+		<value lang="nl">Heen en terug</value>
+		<value lang="fr">Retour</value>
+	</string>
+	<string name="showConnections">
+		<value lang="en">Show connections</value>
+		<value lang="nl">Toon connecties</value>
+		<value lang="fr">Montrer les connexions</value>
+	</string>
+	<string name="arrivalTime">
+		<value lang="en">Arrival time</value>
+		<value lang="nl">Aankomst tijd</value>
+		<value lang="fr">Heure d'arrivée</value>
+	</string>
+	<string name="departureTime">
+		<value lang="en">Departure time</value>
+		<value lang="nl">Vertrek tijd</value>
+		<value lang="fr">Heure de départ</value>
+	</string>
+	<string name="duration">
+		<value lang="en">Duration</value>
+		<value lang="nl">Duur</value>
+		<value lang="fr">Durée</value>
+	</string>
+	<string name="numberOfVias">
+		<value lang="en">Number of vias</value>
+		<value lang="nl">Aantal overstappen</value>
+		<value lang="fr">Nombre de vias</value>
+	</string>
+	<string name="fromTo">
+		<value lang="en">From - To</value>
+		<value lang="nl">Van - Naar</value>
+		<value lang="fr">De - à</value>
+	</string>
 	</resources>

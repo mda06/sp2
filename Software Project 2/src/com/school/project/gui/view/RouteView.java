@@ -23,7 +23,7 @@ public class RouteView extends BaseView {
 	private JLabel lbDeparture, lbArrival, lbNumber, lbUur, lbDate;
 	private JRadioButton rbSingle, rbReturn, rbDeparture, rbArrival;
 	private JComboBox<Integer> cbNumber;
-	private JButton btnShowTickets, btnShowConnections;
+	private JButton btnShowConnections;
 	private JFormattedTextField txtUur, txtDate;
 	private JTable tblConnection;
 
@@ -59,7 +59,6 @@ public class RouteView extends BaseView {
 		rbDeparture = new JRadioButton("Departure");
 		rbArrival = new JRadioButton("Arrival");
 		cbNumber = new JComboBox<Integer>();
-		btnShowTickets = new JButton("Show Tickets");
 		tblConnection = new JTable();
 		JScrollPane scroll = new JScrollPane(tblConnection);
 		btnShowConnections = new JButton("Show Connections");
@@ -94,7 +93,6 @@ public class RouteView extends BaseView {
 		add(rbDeparture);
 		add(rbArrival);
 		add(cbNumber);
-		add(btnShowTickets);
 		add(lbDate);
 		add(txtDate);
 		add(scroll);
@@ -128,12 +126,9 @@ public class RouteView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, lbNumber, 245, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, cbNumber, 100, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, cbNumber, 240, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, btnShowTickets, 250, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, btnShowTickets, 240, SpringLayout.NORTH, this);	
-		sp.putConstraint(SpringLayout.SOUTH, btnShowConnections, 0, SpringLayout.SOUTH, btnShowTickets);
-		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 0, SpringLayout.NORTH, btnShowTickets);
-		sp.putConstraint(SpringLayout.WEST, btnShowConnections, 30, SpringLayout.EAST, btnShowTickets);
-		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, btnShowTickets);
+		sp.putConstraint(SpringLayout.WEST, btnShowConnections, 250, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 240, SpringLayout.NORTH, this);	
+		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, btnShowConnections);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -30, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.EAST, scroll, -30, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.WEST, scroll, 30, SpringLayout.WEST, this);
@@ -142,6 +137,7 @@ public class RouteView extends BaseView {
 	public void setTxtDeparture(AutoComboBox txtDeparture) {
 		this.txtDeparture = txtDeparture;
 	}
+	
 
 	public JTable getTblConnection() {
 		return tblConnection;
@@ -257,14 +253,6 @@ public class RouteView extends BaseView {
 
 	public void setCbNumber(JComboBox<Integer> cbNumber) {
 		this.cbNumber = cbNumber;
-	}
-
-	public JButton getBtnShowTickets() {
-		return btnShowTickets;
-	}
-
-	public void setBtnShowTickets(JButton btnShowTickets) {
-		this.btnShowTickets = btnShowTickets;
 	}
 	
 	public JButton getBtnShowConnections(){
