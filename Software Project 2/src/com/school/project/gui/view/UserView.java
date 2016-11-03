@@ -5,6 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -18,8 +19,9 @@ public class UserView extends BaseView {
 	private JPasswordField pfPassword, pfPasswordControl;
 	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity, txtStreetLine2;
 	private JButton btnComplete, btnBack;
-	private JPanel pnlAccount, pnlCredentials;
+	private JPanel pnlAccount, pnlCredentials, pnlOptions;
 	private Component txtPassword;
+	private JCheckBox cBUseCredentials;
 
 	public UserView() {
 		super("NewUser");
@@ -48,10 +50,17 @@ public class UserView extends BaseView {
 		btnComplete = new JButton("Complete");
 		btnBack = new JButton("Back");
 		
+		//new stuff
+		cBUseCredentials = new JCheckBox("useCredentials");
+		
+		
 
 		SpringLayout sp = new SpringLayout();
 		pnlAccount = new JPanel(sp);
 		pnlCredentials = new JPanel(sp);
+		
+		//new
+		pnlOptions = new JPanel(sp);
 		
 		pnlAccount.add(lbFirstName);
 		pnlAccount.add(txtFirstName);
@@ -71,6 +80,11 @@ public class UserView extends BaseView {
 		pnlCredentials.add(lbPasswordControl);
 		pnlCredentials.add(pfPassword);
 		pnlCredentials.add(pfPasswordControl);
+		
+		//new buttons
+		//pnlCredentials.add(btnBack); //Do we need a back button?
+		pnlOptions.add(cBUseCredentials);
+		pnlOptions.add(btnComplete);
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
@@ -107,16 +121,22 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pfPasswordControl, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
 		sp.putConstraint(SpringLayout.NORTH, pfPasswordControl, 20, SpringLayout.NORTH, lbPasswordControl);
 		
+		//new stuff
+		sp.putConstraint(SpringLayout.NORTH, btnComplete, 20, SpringLayout.HORIZONTAL_CENTER, pnlOptions);
+		sp.putConstraint(SpringLayout.NORTH, cBUseCredentials, 20, SpringLayout.NORTH, pnlOptions);
 		pnlAccount.setBorder(BorderFactory.createTitledBorder("Account"));
 		pnlCredentials.setBorder(BorderFactory.createTitledBorder("Credentials"));
+		pnlOptions.setBorder(BorderFactory.createTitledBorder("Options"));
 
 		
 		sp = new SpringLayout();
 		setLayout(sp);	
 		pnlAccount.setPreferredSize(new Dimension(300,300));
 		pnlCredentials.setPreferredSize(new Dimension(300,200));
+		pnlOptions.setPreferredSize(new Dimension(300,300));
 		add(pnlAccount);
 		add(pnlCredentials);
+		add(pnlOptions);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlAccount, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlAccount, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 350, SpringLayout.NORTH, this);
@@ -314,6 +334,22 @@ public class UserView extends BaseView {
 
 	public void setTxtStreetLine2(JTextField txtStreetLine2) {
 		this.txtStreetLine2 = txtStreetLine2;
+	}
+
+	public JCheckBox getCBUseCredentials() {
+		return cBUseCredentials;
+	}
+
+	public void setCBUseCredentials(JCheckBox cBUseCredentials) {
+		this.cBUseCredentials = cBUseCredentials;
+	}
+
+	public JPanel getPnlOptions() {
+		return pnlOptions;
+	}
+
+	public void setPnlOptions(JPanel pnlOptions) {
+		this.pnlOptions = pnlOptions;
 	}
 	
 

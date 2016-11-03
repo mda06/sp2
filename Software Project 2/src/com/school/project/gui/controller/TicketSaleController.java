@@ -1,5 +1,7 @@
 package com.school.project.gui.controller;
 
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -14,6 +16,7 @@ import com.school.project.model.Ticket;
 import com.school.project.model.TicketSale;
 import com.school.project.model.User;
 import com.school.project.nmbs.model.StationCache;
+import com.school.project.dao.TicketSaleDAO;
 
 public class TicketSaleController {
 	private PaymentPanel pnl;
@@ -55,8 +58,8 @@ public class TicketSaleController {
 					JOptionPane.showMessageDialog(pnl, "Please enter from and to stations");
 				} else {
 					TicketSale sale = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user);
-					//TicketSaleDAO.add(sale);
-					//list.backToPreviousView();
+					TicketSaleDAO.getInstance().add(sale);
+					list.backToPreviousView();
 				}
 			}
 		});

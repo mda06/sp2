@@ -26,7 +26,7 @@
 		<value lang="nl"> Zoeken</value>
 	</string>
 	<string name = "save">
-		<value lang="nl"> Bijwaren </value>
+		<value lang="nl"> Opslaan </value>
 		<value lang="fr"> Enregistrer </value>
 		<value lang="en"> Save </value>
 	</string>
@@ -58,7 +58,7 @@
 	<string name = "options">
 		<value lang="nl"> Opties </value>
 		<value lang="fr"> Options </value>
-		<value lang="en"> options </value>
+		<value lang="en"> Options </value>
 	</string>
 	<string name = "lostItemView">
 		<value lang="nl"> Verloren Voorwerpen </value>
@@ -111,9 +111,9 @@
 		<value lang="en"> Last name</value>
 	</string>
 	<string name = "passwordControl">
-		<value lang="nl"> Paswoord controle</value>
+		<value lang="nl"> Herhaal paswoord</value>
 		<value lang="fr"> La vérification du mot de passe</value>
-		<value lang="en"> Password control</value>
+		<value lang="en"> Repeat password</value>
 	</string>
 	<string name = "streetNumber">
 		<value lang="nl">Straat en huisnummer</value>
@@ -145,5 +145,9 @@
 		<value lang="fr">Credentials</value>
 		<value lang="en">Credentials</value>
 	</string>
-	
-</resources>
+	<string name="makeAccount">
+		<value lang="en">Create an account</value>
+		<value lang="nl">Account aanmaken</value>
+		<value lang="fr">Créer un compte</value>
+	</string>
+	</resources>
