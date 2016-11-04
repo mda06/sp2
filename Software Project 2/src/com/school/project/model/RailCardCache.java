@@ -18,7 +18,12 @@ public class RailCardCache {
 			instance = new RailCardCache();
 		return instance;
 	}
-	
+	public RailCard getRailCard(int id){
+		for(int i = 0; i < railcards.size(); i++){
+			if(id == railcards.get(i).getId()) {return railcards.get(i);}
+		}
+		return null;
+	}
 	public void addRailCard(RailCard t){
 		if(t != null)
 			railcards.add(t);

@@ -1,15 +1,15 @@
 package com.school.project.gui.view;
 
+import java.awt.CardLayout;
 import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class RailCardView extends BaseView {
 	private static final long serialVersionUID = 1L;
-	List<JButton> buttonList = new ArrayList<>();
-	
+	public final String KEY_BTNS = "buttons", KEY_PAY = "payment";
+	private JPanel pnlBtns;
+	private PaymentPanel pnlPay;
 	public RailCardView() {
 		super("RailCard");
 		
@@ -17,26 +17,18 @@ public class RailCardView extends BaseView {
 	}
 
 	private void initLayout() {
-		buttonList.add(new JButton("Standaard Biljet"));
-		buttonList.add(new JButton("Biljet Kind"));
-		buttonList.add(new JButton("Biljet Grote Gezinnen"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-		buttonList.add(new JButton("Test"));
-
-		GridLayout gr = new GridLayout(0, 4, 5, 5);
-		setLayout(gr);
-		add(buttonList);
+		setLayout(new CardLayout());
+		add(pnlBtns = new JPanel(new GridLayout(0, 4, 5, 5)), KEY_BTNS);
+		add(pnlPay = new PaymentPanel(), KEY_PAY);
+		
 	}
-	private void add(List<JButton> buttonList2) {
-		for (JButton button : buttonList)
-			add(button);
+
+	public JPanel getPnlBtns() {
+		return pnlBtns;
+	}
+
+	public PaymentPanel getPnlPay() {
+		return pnlPay;
 	}
 
 }
