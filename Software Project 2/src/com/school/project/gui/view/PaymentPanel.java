@@ -60,7 +60,7 @@ public class PaymentPanel extends JPanel {
 		pnlLeft.add(txtDesc, c);
 		
 		JPanel pnlDepartures = new JPanel(new GridLayout(2, 2));
-		pnlDepartures.setBorder(BorderFactory.createTitledBorder("Departures"));
+		pnlDepartures.setBorder(BorderFactory.createTitledBorder(""));
 		pnlDepartures.add(lblFromStation = new JLabel("From station: "));
 		pnlDepartures.add(txtFromStation = new AutoComboBox());
 		pnlDepartures.add(lblToStation = new JLabel("To station: "));
