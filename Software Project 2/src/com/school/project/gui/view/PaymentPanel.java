@@ -2,6 +2,7 @@ package com.school.project.gui.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -101,15 +102,16 @@ public class PaymentPanel extends JPanel {
 		pnlRight.add(lblValidTo = new JLabel("Valid by: "));
 		pnlRight.add(txtValidTo = new JTextField());
 		txtValidTo.setEditable(false);
+		
 		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 30, SpringLayout.NORTH, pnlRight);
 		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -30, SpringLayout.EAST, pnlRight);
-		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 0, SpringLayout.NORTH, txtSoldBy);
+		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 5, SpringLayout.NORTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, lblSoldBy, -10, SpringLayout.WEST, txtSoldBy);
 		sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 230, SpringLayout.NORTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, txtValidFrom, 0, SpringLayout.EAST, txtSoldBy);
 		sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 0, SpringLayout.NORTH, txtValidFrom);
 		sp.putConstraint(SpringLayout.EAST, lblValidFrom, -10, SpringLayout.WEST, txtValidFrom);
-		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 20, SpringLayout.NORTH, txtValidFrom);
+		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 50, SpringLayout.NORTH, txtValidFrom);
 		sp.putConstraint(SpringLayout.EAST, txtValidTo, 0, SpringLayout.EAST, txtValidFrom);
 		sp.putConstraint(SpringLayout.NORTH, lblValidTo, 0, SpringLayout.NORTH, txtValidTo);
 		sp.putConstraint(SpringLayout.EAST, lblValidTo, -10, SpringLayout.WEST, txtValidTo);
@@ -119,6 +121,36 @@ public class PaymentPanel extends JPanel {
 		JPanel pnlBack = new JPanel();
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
+		
+//		private JButton btnBack, btnPay;
+//		private JTextField txtName, txtSoldBy, txtValidFrom, txtValidTo, txtPrice;
+//		private JTextArea txtDesc;
+//		private AutoComboBox txtFromStation, txtToStation;
+//		private JLabel lblName, lblDesc, lblSoldBy, lblValidFrom, lblValidTo, lblPrice, lblFromStation, lblToStation;
+		
+		Font klein = new Font("Arial", Font.PLAIN, 24);
+		Font groot = new Font("Arial", Font.PLAIN, 30);
+		
+		btnBack.setPreferredSize(new Dimension(200, 70));
+		txtName.setFont(groot);
+		txtSoldBy.setFont(klein);
+		lblSoldBy.setFont(klein);
+		txtValidFrom.setFont(klein);
+		txtValidTo.setFont(klein);
+		txtPrice.setFont(groot);
+		btnBack.setFont(groot);
+		lblValidFrom.setFont(klein);
+		lblValidTo.setFont(klein);
+		lblFromStation.setFont(klein);
+		lblToStation.setFont(klein);
+		lblDesc.setFont(klein);
+		lblPrice.setFont(klein);
+		lblName.setFont(klein);
+		btnPay.setFont(klein);
+		txtDesc.setFont(new Font("Arial", Font.PLAIN,18));
+		
+		
+		
 	}
 	
 	public JLabel getLblName() {
