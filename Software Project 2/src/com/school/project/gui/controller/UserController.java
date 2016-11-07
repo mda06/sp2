@@ -11,8 +11,9 @@ import com.school.project.gui.view.UserView;
 import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.User;
+import com.school.project.dao.UserDAO;
 
-public class UserController extends BaseController<UserView> {
+public class UserController extends BaseController<UserView>{
 	
 	private Boolean useCred = false;
 	
@@ -38,6 +39,8 @@ public class UserController extends BaseController<UserView> {
 				
 				if(accountInfoOk == "OK" && !useCred){
 					//User newUser = new User( )
+//					User newUser = new User(-1, view.getTxtFirstName(), view.getTxtLastName(), accountInfoOk, accountInfoOk, null, useCred);
+//					UserDAO.getInstance().add(newUser);
 				}
 				
 				if(useCred){

@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -15,13 +16,15 @@ import javax.swing.SpringLayout;
 public class UserView extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFirstName, lbLastName, lbUsername, lbPassword, lbPasswordControl, lbStreetNumber, lbZipcode,
-			lbCity, lbStreetLine2;
+			lbCity, lbStreetLine2, lblGender;
 	private JPasswordField pfPassword, pfPasswordControl;
 	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity, txtStreetLine2;
 	private JButton btnComplete, btnBack;
 	private JPanel pnlAccount, pnlCredentials, pnlOptions;
 	private Component txtPassword;
-	private JCheckBox cBUseCredentials;
+	private JCheckBox cBUseCredentials, cBGenderM, cBGenderW;
+	private ButtonGroup group = new ButtonGroup();
+	    
 
 	public UserView() {
 		super("NewUser");
@@ -52,7 +55,8 @@ public class UserView extends BaseView {
 		
 		//new stuff
 		cBUseCredentials = new JCheckBox("useCredentials");
-		
+		cBGenderM = new JCheckBox("M");
+		cBGenderW = new JCheckBox("W");
 		
 
 		SpringLayout sp = new SpringLayout();
@@ -74,6 +78,8 @@ public class UserView extends BaseView {
 		pnlAccount.add(txtZipcode);
 		pnlAccount.add(txtCity);
 		pnlAccount.add(txtStreetLine2);
+		pnlAccount.add(cBGenderM);
+		pnlAccount.add(cBGenderW);
 		pnlCredentials.add(lbUsername);
 		pnlCredentials.add(txtUsername);
 		pnlCredentials.add(lbPassword);
@@ -81,8 +87,9 @@ public class UserView extends BaseView {
 		pnlCredentials.add(pfPassword);
 		pnlCredentials.add(pfPasswordControl);
 		
+		
 		//new buttons
-		//pnlCredentials.add(btnBack); //Do we need a back button?
+		//pnlCredentials.add(btnBack); //Do we need a back button? => no, i guess (Illya)
 		pnlOptions.add(cBUseCredentials);
 		pnlOptions.add(btnComplete);
 		
