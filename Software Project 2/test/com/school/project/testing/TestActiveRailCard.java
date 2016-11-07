@@ -12,14 +12,14 @@ import com.school.project.model.User;
 
 public class TestActiveRailCard {
 
-	int check = 1; //1 = true, 0 = false;
+	int check = 0; //1 = true, 0 = false;
 	
 	public static ActiveRailCard getFirstActiveRailCard(){
-		return new ActiveRailCard(1, new Date(1477260000000L), new Date(1477260000000L), "TERNAT", "DILBEEK", TestUser.getFirstUser(), TestRailCard.getFirstRailCard());
+		return new ActiveRailCard(1, new Date(1477260000000L), new Date(1477260000000L), "TERNAT", "DILBEEK", TestUser.getFirstUser(), TestUser.getSecondUser(), TestRailCard.getFirstRailCard(), false);
 	}
 	
 	public static ActiveRailCard getSecondActiveRailCard(){
-		return new ActiveRailCard(2, new Date(1477260000000L), new Date(1477260000000L), "GROOT-BIJGAARDEN", "JETTE", TestUser.getSecondUser(), TestRailCard.getSecondRailCard());
+		return new ActiveRailCard(2, new Date(1477260000000L), new Date(1477260000000L), "GROOT-BIJGAARDEN", "JETTE", TestUser.getSecondUser(), TestUser.getFirstUser(), TestRailCard.getSecondRailCard(), false);
 	}
 	
 	@Test
@@ -29,8 +29,10 @@ public class TestActiveRailCard {
 		Date validTo = new Date(1477260000000L);
 		String from = "TERNAT";
 		String to = "DILBEEK";
+		boolean archived = false;
 		
 		User u1 = TestUser.getFirstUser();
+		User u2 = TestUser.getSecondUser();
 		RailCard rc1 = TestRailCard.getFirstRailCard();
 		
 		ActiveRailCard arc1 = TestActiveRailCard.getFirstActiveRailCard();
@@ -42,10 +44,11 @@ public class TestActiveRailCard {
 			assertEquals(from, arc1.getFrom());
 			assertEquals(to, arc1.getTo());
 			assertEquals(u1, arc1.getUser());
-			assertEquals(rc1, arc1.getRailCard());			
+			assertEquals(u2, arc1.getInNameOf());
+			assertEquals(rc1, arc1.getRailCard());
+			assertEquals(archived, arc1.isArchived());
 		}
 		else if(check == 0){
-			User u2 = TestUser.getSecondUser();
 			RailCard rc2 = TestRailCard.getSecondRailCard();
 			
 			arc1.setId(2);
@@ -54,7 +57,9 @@ public class TestActiveRailCard {
 			arc1.setFrom("GROOT-BIJGAARDEN");
 			arc1.setTo("JETTE");
 			arc1.setUser(u2);
+			arc1.setInNameOf(u1);
 			arc1.setRailCard(rc2);
+			arc1.setArchived(false);
 			
 			assertEquals(id, arc1.getId());
 			assertEquals(validFrom, arc1.getValidFrom());
@@ -62,7 +67,9 @@ public class TestActiveRailCard {
 			assertEquals(from, arc1.getFrom());
 			assertEquals(to, arc1.getTo());
 			assertEquals(u1, arc1.getUser());
-			assertEquals(rc1, arc1.getRailCard());		
+			assertEquals(u2, arc1.getInNameOf());
+			assertEquals(rc1, arc1.getRailCard());
+			assertEquals(archived, arc1.isArchived());	
 		}
 	}
 	
