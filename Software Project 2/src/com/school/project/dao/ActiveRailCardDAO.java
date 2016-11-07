@@ -128,7 +128,7 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 		ActiveRailCard arc = null;
 		try{
 			stat = connection.createStatement();
-			res = stat.executeQuery("SELECT * FROM activeRailcards WHERE id = ;" + id + ";");
+			res = stat.executeQuery("SELECT * FROM activeRailcards WHERE id = " + id + ";");
 			
 			if(res.next()){
 				arc = getByResultSet(res);
@@ -154,7 +154,7 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 		PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("UPDATE activeRailcards SET"
+			stmt = connection.prepareStatement("UPDATE activeRailcards SET "
 					+ "railcardId = ?, inNameOf = ?, soldByUser = ?, validFrom = ?, validTo = ?, departureStation = ?, arrivalStation = ?, archived = ? WHERE id = ?;");
 			stmt.setInt(1,obj.getRailCard().getId());
 			stmt.setInt(2, obj.getInNameOf().getId());
@@ -185,7 +185,7 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 		PreparedStatement stmt = null;
 		
 		try{
-			stmt = connection.prepareStatement("UPDATE activeRailcards SET"
+			stmt = connection.prepareStatement("UPDATE activeRailcards SET "
 					+ "archived = 1 WHERE id = ?;");
 			stmt.setInt(1, obj.getId());
 			stmt.executeUpdate();
