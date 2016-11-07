@@ -118,6 +118,50 @@ public class UserDAO implements BaseDAO<User>{
 		return u;
 	}
 	
+	public List<User> getUsersLike(String firstName, String lastName) {
+		if(firstName == null || lastName == null) return new ArrayList<User>();
+		firstName = firstName.toLowerCase();
+		lastName = lastName.toLowerCase();
+		
+		List<User> lst = new ArrayList<User>();
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement ps = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT * FROM users";
+			if(!firstName.isEmpty() && !lastName.isEmpty()) {
+				ps = connection.prepareStatement(sql + " WHERE firstName LIKE ? AND lastName LIKE ?;");
+				ps.setString(1, "%" + firstName + "%");
+				ps.setString(2, "%" + lastName + "%");
+			} else if(firstName.isEmpty() && !lastName.isEmpty()) {
+				ps = connection.prepareStatement(sql + " WHERE lastName LIKE ?;");
+				ps.setString(1, "%" + lastName + "%");
+			} else if(!firstName.isEmpty() && lastName.isEmpty()){
+				ps = connection.prepareStatement(sql + " WHERE firstName LIKE ?;");
+				ps.setString(1, "%" + firstName + "%");
+			} else {
+				ps = connection.prepareStatement(sql);
+			}
+			
+			res = ps.executeQuery();
+			
+			while(res.next()){
+				lst.add(getByResultSet(res));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(ps != null) ps.close();
+				if(res != null) res.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return lst;
+	}
+	
 	@Override
 	public User get(int id) {
 		User user = null;

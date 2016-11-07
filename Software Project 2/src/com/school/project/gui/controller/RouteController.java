@@ -9,6 +9,8 @@ import javax.swing.table.TableColumnModel;
 import com.school.project.gui.controller.runnable.RouteConnectionRunnable;
 import com.school.project.gui.model.ConnectionTableModel;
 import com.school.project.gui.view.RouteView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.nmbs.model.StationCache;
 
 public class RouteController extends BaseController<RouteView> {
@@ -53,7 +55,28 @@ public class RouteController extends BaseController<RouteView> {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
+			view.getLbArrival().setText(lh.getString("arrival"));
+			view.getLbDeparture().setText(lh.getString("departure"));
+			view.getLbDate().setText(lh.getString("date"));
+			view.getLbNumber().setText(lh.getString("number"));
+			view.getLbUur().setText(lh.getString("uur"));
+			view.getRbSingle().setText(lh.getString("single"));
+			view.getRbReturn().setText(lh.getString("return"));
+			view.getRbDeparture().setText(lh.getString("departure"));
+			view.getRbArrival().setText(lh.getString("arrival"));
+			view.getBtnShowConnections().setText(lh.getString("showConnections"));
+			
+			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_ARRIVAL_TIME).setHeaderValue(lh.getString("arrivalTime"));
+			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_DEPARTURE_TIME).setHeaderValue(lh.getString("departureTime"));
+			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_DURATION).setHeaderValue(lh.getString("duration"));
+			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_NUMBER_OF_VIAS).setHeaderValue(lh.getString("numberOfVias"));
+			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_FROM_TO).setHeaderValue(lh.getString("fromTo"));
+			view.getTblConnection().getTableHeader().repaint();
+			
+			
+		}
 		
 	}
 

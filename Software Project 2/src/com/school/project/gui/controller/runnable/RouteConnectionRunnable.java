@@ -23,9 +23,9 @@ public class RouteConnectionRunnable implements Runnable {
 		String arrival = view.getTxtArrival().getText();
 		String date = view.getTxtDate().getText();
 		String hour = view.getTxtUur().getText();
-		String departureSelect = "departure";
+		String departureSelect = "depart";
 		if(view.getRbArrival().isSelected()){
-			departureSelect = "arrival";
+			departureSelect = "arrive";
 		}
 		if(departure.isEmpty() || arrival.isEmpty()|| date.equals("  /  /    ")||hour.equals("  :  ")){
 			JOptionPane.showMessageDialog(view, "Please fill in the blanks!");

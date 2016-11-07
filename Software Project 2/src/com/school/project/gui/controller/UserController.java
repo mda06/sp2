@@ -20,7 +20,7 @@ public class UserController extends BaseController<UserView> {
 		super(new UserView());
 		view.getpnlCredentials().setVisible(useCred);
 		initOptions();
-	}
+	} 
 	
 	public void initOptions(){
 		view.getCBUseCredentials().addActionListener(new ActionListener() {
