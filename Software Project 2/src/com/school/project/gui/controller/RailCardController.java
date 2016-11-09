@@ -7,40 +7,48 @@ import java.util.Observable;
 
 import javax.swing.JButton;
 
+import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.RailCardView;
 import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
+import com.school.project.model.User;
 
-public class RailCardController extends BaseController<RailCardView> {
+public class RailCardController extends BaseController<RailCardView> implements PaymentBackListener {
 	
-	public RailCardController() {
+	private ActiveRailCardController railcardController;
+	
+	public RailCardController(User connectedUser) {
 		super(new RailCardView());
+		
+		railcardController = new ActiveRailCardController(view.getPnlPay(), this, connectedUser);
 		initButtons();
 	}
 
 	private void initButtons() {
 		for(RailCard rc : RailCardCache.getInstance().getCache()){
 			JButton btn = new JButton(rc.getName());
-			view.getPnlBtns().add(btn);
 			btn.setActionCommand(String.valueOf(rc.getId()));
-			/*btn.addActionListener(new ActionListener(){
+			view.getPnlBtns().add(btn);
+			btn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
 					RailCard rc = RailCardCache.getInstance().getRailCard(Integer.parseInt(e.getActionCommand()));
 					showCard(view.KEY_PAY);
+					railcardController.showRailCard(rc);
 				}
-				
-			});*/
+			});
 		}
-		
 	}
 	private void showCard(String key) {
 		CardLayout card = (CardLayout)view.getLayout();
 		card.show(view, key);
 	}
+	
+	@Override
+	public void backToPreviousView() {
+		showCard(view.KEY_BTNS);
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
 	}
-
 }
