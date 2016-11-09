@@ -19,20 +19,22 @@ import javax.swing.SpringLayout;
 import com.school.project.gui.view.custom.AutoComboBox;
 
 public class PaymentPanelRailcard extends JPanel{
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	private JButton btnBack, btnPay, btnSelectUser;
-	private JTextField txtName, txtSoldBy, txtValidFrom, txtValidTo, txtPrice, txtInNameOf;
+	private JTextField txtName, txtSoldBy, txtValidFrom, txtValidTo, txtInNameOf;
 	private JTextArea txtDesc;
 	private AutoComboBox txtFromStation, txtToStation;
-	private JLabel lblName, lblDesc, lblSoldBy, lblValidFrom, lblValidTo, lblPrice, lblFromStation, lblToStation; 
+	private JLabel lblName, lblDesc, lblSoldBy, lblValidFrom, lblValidTo, lblPricePerMonth, lblPricePer3Month, lblPricePerYear, lblFromStation, lblToStation; 
 	private JRadioButton rdPricePerMonth, rdPricePer3Month, rdPricePerYear;
 	
-	public PaymentPanelRailcard(){
+	public PaymentPanelRailcard() {
 		initLayout();
+		
 	}
-	private void initLayout(){
-setLayout(new BorderLayout());
+	
+	private void initLayout() {
+		setLayout(new BorderLayout());
 		
 		JPanel pnlLeft = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -77,6 +79,8 @@ setLayout(new BorderLayout());
 		c.gridheight = 2;
 		pnlLeft.add(pnlDepartures, c);
 		
+		
+		// Toevoegen van radiobuttons en text
 		ButtonGroup timePeriod = new ButtonGroup();
 		c.weightx = 1;
 		c.gridx = 0;
@@ -100,19 +104,30 @@ setLayout(new BorderLayout());
 		c.gridwidth = 1;
 		pnlLeft.add(rdPricePerYear, c);
 		
-		
-		lblPrice = new JLabel("Price: ");
+		// Labels toevoegen
+		lblPricePerMonth = new JLabel("Test");
 		c.weightx = .5;
-		c.gridx = 0;
+		c.gridx = 1;
 		c.gridy = 4;
 		c.gridheight = 1;
 		c.gridwidth = 1;
-		pnlLeft.add(lblPrice, c);
-		txtPrice = new JTextField(20);
-		txtPrice.setEditable(false);
+		pnlLeft.add(lblPricePerMonth, c);
+		lblPricePer3Month = new JLabel("Test");
+		c.weightx = .5;
 		c.gridx = 1;
-		c.weightx = 1;
-		pnlLeft.add(txtPrice, c);
+		c.gridy = 5;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlLeft.add(lblPricePer3Month, c);
+		lblPricePerYear = new JLabel("Test");
+		c.weightx = .5;
+		c.gridx = 1;
+		c.gridy = 6;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlLeft.add(lblPricePerYear, c);
+		
+		// Toevoegen pay button
 		c.gridx = 0;
 		c.gridy = 7;
 		btnPay = new JButton("Pay");
@@ -151,7 +166,6 @@ setLayout(new BorderLayout());
 		JPanel pnlBack = new JPanel();
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
-		
 	}
 	public JButton getBtnBack() {
 		return btnBack;
@@ -195,12 +209,7 @@ setLayout(new BorderLayout());
 	public void setTxtValidTo(JTextField txtValidTo) {
 		this.txtValidTo = txtValidTo;
 	}
-	public JTextField getTxtPrice() {
-		return txtPrice;
-	}
-	public void setTxtPrice(JTextField txtPrice) {
-		this.txtPrice = txtPrice;
-	}
+
 	public JTextField getTxtInNameOf() {
 		return txtInNameOf;
 	}
@@ -255,12 +264,25 @@ setLayout(new BorderLayout());
 	public void setLblValidTo(JLabel lblValidTo) {
 		this.lblValidTo = lblValidTo;
 	}
-	public JLabel getLblPrice() {
-		return lblPrice;
+	public JLabel getLblPricePerYear() {
+		return lblPricePerYear;
 	}
-	public void setLblPrice(JLabel lblPrice) {
-		this.lblPrice = lblPrice;
+	public void setLblPricePerYear(JLabel lblPricePerYear) {
+		this.lblPricePerYear = lblPricePerYear;
 	}
+	public JLabel getLblPricePerMonth() {
+		return lblPricePerMonth;
+	}
+	public void setLblPricePerMonth(JLabel lblPricePerMonth) {
+		this.lblPricePerMonth = lblPricePerMonth;
+	}
+	public JLabel getLblPricePer3Month() {
+		return lblPricePer3Month;
+	}
+	public void setLblPricePer3Month(JLabel lblPricePer3Month) {
+		this.lblPricePer3Month = lblPricePer3Month;
+	}
+	
 	public JLabel getLblFromStation() {
 		return lblFromStation;
 	}
