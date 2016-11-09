@@ -1,19 +1,26 @@
 package com.school.project.gui.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.custom.AutoComboBox;
 
 public class PaymentPanelRailcard extends JPanel{
+	private static final long serialVersionUID = 1L;
+	
 	private JButton btnBack, btnPay, btnSelectUser;
 	private JTextField txtName, txtSoldBy, txtValidFrom, txtValidTo, txtPrice, txtInNameOf;
 	private JTextArea txtDesc;
@@ -25,7 +32,7 @@ public class PaymentPanelRailcard extends JPanel{
 		initLayout();
 	}
 	private void initLayout(){
-		setLayout(new BorderLayout());
+setLayout(new BorderLayout());
 		
 		JPanel pnlLeft = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -51,6 +58,99 @@ public class PaymentPanelRailcard extends JPanel{
 		c.weightx = 1;
 		c.gridx = 1;
 		pnlLeft.add(txtDesc, c);
+		
+		JPanel pnlDepartures = new JPanel(new GridLayout(2, 2));
+		pnlDepartures.setBorder(BorderFactory.createTitledBorder("Departures"));
+		pnlDepartures.add(lblFromStation = new JLabel("From station: "));
+		pnlDepartures.add(txtFromStation = new AutoComboBox());
+		pnlDepartures.add(lblToStation = new JLabel("To station: "));
+		pnlDepartures.add(txtToStation = new AutoComboBox());
+		
+		rdPricePerMonth = new JRadioButton("Price per month");
+		rdPricePer3Month = new JRadioButton("Price per 3 month");
+		rdPricePerYear = new JRadioButton("Price per year");		
+		
+		c.weightx = 1;
+		c.gridy = 2;
+		c.gridx = 0;
+		c.gridwidth = 2;
+		c.gridheight = 2;
+		pnlLeft.add(pnlDepartures, c);
+		
+		ButtonGroup timePeriod = new ButtonGroup();
+		c.weightx = 1;
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		timePeriod.add(rdPricePerMonth);
+		timePeriod.add(rdPricePer3Month);
+		timePeriod.add(rdPricePerYear);
+		pnlLeft.add(rdPricePerMonth, c);
+		c.weightx = 1;
+		c.gridx = 0;
+		c.gridy = 5;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlLeft.add(rdPricePer3Month, c);
+		c.weightx = 1;
+		c.gridx = 0;
+		c.gridy = 6;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlLeft.add(rdPricePerYear, c);
+		
+		
+		lblPrice = new JLabel("Price: ");
+		c.weightx = .5;
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlLeft.add(lblPrice, c);
+		txtPrice = new JTextField(20);
+		txtPrice.setEditable(false);
+		c.gridx = 1;
+		c.weightx = 1;
+		pnlLeft.add(txtPrice, c);
+		c.gridx = 0;
+		c.gridy = 7;
+		btnPay = new JButton("Pay");
+		pnlLeft.add(btnPay, c);
+		
+		SpringLayout sp = new SpringLayout();
+		JPanel pnlRight = new JPanel(sp);
+		pnlRight.setPreferredSize(new Dimension(350, 500));
+		pnlRight.add(lblSoldBy = new JLabel("Sold by: "));
+		pnlRight.add(txtSoldBy = new JTextField());
+		txtSoldBy.setEditable(false);
+		pnlRight.add(lblValidFrom = new JLabel("Valid from: "));
+		pnlRight.add(txtValidFrom = new JTextField());
+		txtValidFrom.setEditable(false);
+		pnlRight.add(lblValidTo = new JLabel("Valid by: "));
+		pnlRight.add(txtValidTo = new JTextField());
+		txtValidTo.setEditable(false);
+		
+		pnlRight.add(btnSelectUser = new JButton("User"));
+		
+		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 30, SpringLayout.NORTH, pnlRight);
+		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -30, SpringLayout.EAST, pnlRight);
+		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 0, SpringLayout.NORTH, txtSoldBy);
+		sp.putConstraint(SpringLayout.EAST, lblSoldBy, -10, SpringLayout.WEST, txtSoldBy);
+		sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 230, SpringLayout.NORTH, txtSoldBy);
+		sp.putConstraint(SpringLayout.EAST, txtValidFrom, 0, SpringLayout.EAST, txtSoldBy);
+		sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 0, SpringLayout.NORTH, txtValidFrom);
+		sp.putConstraint(SpringLayout.EAST, lblValidFrom, -10, SpringLayout.WEST, txtValidFrom);
+		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 20, SpringLayout.NORTH, txtValidFrom);
+		sp.putConstraint(SpringLayout.EAST, txtValidTo, 0, SpringLayout.EAST, txtValidFrom);
+		sp.putConstraint(SpringLayout.NORTH, lblValidTo, 0, SpringLayout.NORTH, txtValidTo);
+		sp.putConstraint(SpringLayout.EAST, lblValidTo, -10, SpringLayout.WEST, txtValidTo);
+
+		add(pnlLeft);
+		add(pnlRight, BorderLayout.EAST);
+		JPanel pnlBack = new JPanel();
+		pnlBack.add(btnBack = new JButton("Back"));
+		add(pnlBack, BorderLayout.NORTH);
 		
 	}
 	public JButton getBtnBack() {
