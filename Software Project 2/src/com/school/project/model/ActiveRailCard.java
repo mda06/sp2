@@ -8,17 +8,21 @@ public class ActiveRailCard {
 	private Date validTo;
 	private String from;
 	private String to;
+	private User inNameOf;
 	private User user;
 	private RailCard railCard;
+	private Boolean archived;
 	
-	public ActiveRailCard(int id, Date validFrom, Date validTo, String from, String to, User user, RailCard railCard) {
+	public ActiveRailCard(int id, Date validFrom, Date validTo, String from, String to, User user, User inNameOf, RailCard railCard, Boolean archived) {
 		this.id = id;
 		this.validFrom = validFrom;
 		this.validTo = validTo;
 		this.from = from;
 		this.to = to;
+		this.inNameOf = inNameOf;
 		this.user = user;
 		this.railCard = railCard;
+		this.archived = archived;
 	}
 
 	public int getId() {
@@ -69,6 +73,14 @@ public class ActiveRailCard {
 		this.user = user;
 	}
 	
+	public User getInNameOf() {
+		return inNameOf;
+	}
+
+	public void setInNameOf(User inNameOf) {
+		this.inNameOf = inNameOf;
+	}
+
 	public RailCard getRailCard(){
 		return railCard;
 	}
@@ -77,6 +89,14 @@ public class ActiveRailCard {
 		this.railCard = railCard;
 	}
 	
+	public Boolean isArchived() {
+		return archived;
+	}
+
+	public void setArchived(Boolean archived) {
+		this.archived = archived;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

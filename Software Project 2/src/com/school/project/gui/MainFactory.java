@@ -76,7 +76,7 @@ public class MainFactory implements ConnectionListener {
 	private void initBaseModels(FrameController base) {
 		addCard(base, new LostItemController());
 		addCard(base, new TicketController(connectedUser));
-		addCard(base, new RailCardController());
+		addCard(base, new RailCardController(connectedUser));
 		addCard(base, new RouteController());
 		addCard(base, new UserController());
 	}
