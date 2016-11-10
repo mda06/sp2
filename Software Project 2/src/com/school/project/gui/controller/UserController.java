@@ -78,7 +78,7 @@ public class UserController extends BaseController<UserView>{
 			view.getLbPassword().setText(lh.getString("password"));
 			view.getLbPasswordControl().setText(lh.getString("passwordControl"));
 			view.getLbStreetNumber().setText(lh.getString("streetNumber"));
-			view.getLbStreetLine2().setText(lh.getString("streetLine2"));
+			view.getLblDate().setText(lh.getString("date"));
 			view.getLbZipcode().setText(lh.getString("zipcode"));
 			view.getLbCity().setText(lh.getString("city"));
 			view.getCBUseCredentials().setText(lh.getString("makeAccount"));
