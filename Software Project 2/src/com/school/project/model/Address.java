@@ -1,11 +1,11 @@
 package com.school.project.model;
 
 public class Address {
-	private int id, postalCode;
-	private String country, city, streetline1, streetline2;
+	private int id;
+	private String country, city, streetline1, streetline2, postalCode;
 	private boolean archived;
 	
-	public Address(int id, String streetline1, String streetline2, String city, int postalCode, String country,
+	public Address(int id, String streetline1, String streetline2, String city, String postalCode, String country,
 			boolean archived) {
 		super();
 		this.id = id;
@@ -23,10 +23,10 @@ public class Address {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 	public String getCity() {
@@ -68,7 +68,7 @@ public class Address {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + id;
-		result = prime * result + postalCode;
+		result = prime * result + postalCode.hashCode();
 		result = prime * result + ((streetline1 == null) ? 0 : streetline1.hashCode());
 		result = prime * result + ((streetline2 == null) ? 0 : streetline2.hashCode());
 		return result;

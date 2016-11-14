@@ -2,6 +2,8 @@ package com.school.project.gui.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +20,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-import javax.swing.text.MaskFormatter;
 
 public class UserView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,7 @@ public class UserView extends BaseView {
 			lbCity, lblDate, lblGender, lblSoortuser;
 	private JPasswordField pfPassword, pfPasswordControl;
 	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity;
-	private JButton btnComplete, btnBack;
+	private JButton btnComplete, btnBack, btnSelectUser;
 	private JPanel pnlAccount, pnlCredentials, pnlOptions;
 	private Component txtPassword;
 	private JCheckBox cBUseCredentials;
@@ -35,6 +36,7 @@ public class UserView extends BaseView {
 	private JFormattedTextField txtDate;
 	private JComboBox<String> cbUserType;
 	private String[] userType = {"Admin", "Employee", "Customer"};
+	private JButton test;
 
 	
 
@@ -43,7 +45,7 @@ public class UserView extends BaseView {
 		initLayout();
 	}
 
-	private void initLayout() {
+	public void initLayout() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		
@@ -73,6 +75,7 @@ public class UserView extends BaseView {
 		lblGender = new JLabel("Gender");
 		groupGender = new ButtonGroup();
 		lblSoortuser = new JLabel("User type");
+		btnSelectUser = new JButton("Select user");
 		
 		cBUseCredentials = new JCheckBox("useCredentials");
 		cBGenderM = new JRadioButton("M");
@@ -117,12 +120,14 @@ public class UserView extends BaseView {
 		pnlCredentials.add(lbPasswordControl);
 		pnlCredentials.add(pfPassword);
 		pnlCredentials.add(pfPasswordControl);
+		pnlOptions.add(cBUseCredentials);
+		pnlOptions.add(btnComplete);
+		pnlOptions.add(btnSelectUser);
 		
 		
 		//new buttons
 		//pnlCredentials.add(btnBack); //Do we need a back button? => no, i guess (Illya)
-		pnlOptions.add(cBUseCredentials);
-		pnlOptions.add(btnComplete);
+		
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
@@ -170,9 +175,15 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, cbUserType, 5, SpringLayout.SOUTH, lblSoortuser);
 		
 		
+		
+		
 		//new stuff
-		sp.putConstraint(SpringLayout.NORTH, btnComplete, 20, SpringLayout.HORIZONTAL_CENTER, pnlOptions);
 		sp.putConstraint(SpringLayout.NORTH, cBUseCredentials, 20, SpringLayout.NORTH, pnlOptions);
+		sp.putConstraint(SpringLayout.NORTH, btnComplete, 20, SpringLayout.SOUTH, cBUseCredentials);
+		
+		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 10, SpringLayout.EAST, btnComplete);
+		sp.putConstraint(SpringLayout.NORTH, btnSelectUser, 20, SpringLayout.SOUTH, cBUseCredentials);
+		
 		pnlAccount.setBorder(BorderFactory.createTitledBorder("Account"));
 		pnlCredentials.setBorder(BorderFactory.createTitledBorder("Credentials"));
 		pnlOptions.setBorder(BorderFactory.createTitledBorder("Options"));
@@ -182,25 +193,33 @@ public class UserView extends BaseView {
 		setLayout(sp);	
 		pnlAccount.setPreferredSize(new Dimension(300,300));
 		pnlCredentials.setPreferredSize(new Dimension(300,200));
-		pnlOptions.setPreferredSize(new Dimension(300,300));
+		pnlOptions.setPreferredSize(new Dimension(300,150));
 		add(pnlAccount);
 		add(pnlCredentials);
 		add(pnlOptions);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlAccount, 0, SpringLayout.HORIZONTAL_CENTER, this);
+		sp.putConstraint(SpringLayout.WEST, pnlOptions, 20, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, pnlOptions, 15, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, pnlAccount, 40, SpringLayout.EAST, pnlOptions);
 		sp.putConstraint(SpringLayout.NORTH, pnlAccount, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 500, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlCredentials, 0, SpringLayout.HORIZONTAL_CENTER, this);
-		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 30, SpringLayout.SOUTH, pnlAccount);
-		sp.putConstraint(SpringLayout.SOUTH, pnlCredentials, 800, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 15, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, pnlCredentials, 40, SpringLayout.EAST, pnlAccount);
+		
 			
-	}
-	public JPanel getpnlAccount(){
-		return pnlAccount;
+		test = new JButton("test");
+		add(test);
+		test.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeAll();
+				initLayout();
+				repaint();
+				validate();
+			}
+		});
+		sp.putConstraint(SpringLayout.SOUTH, test, 0, SpringLayout.SOUTH, this);
+		sp.putConstraint(SpringLayout.EAST, test, 0, SpringLayout.EAST, this);
 	}
 	
-	public JPanel getpnlCredentials(){
-		return pnlCredentials;
-	}
 	public JLabel getLbFirstName() {
 		return lbFirstName;
 	}
@@ -263,6 +282,30 @@ public class UserView extends BaseView {
 
 	public void setLbCity(JLabel lbCity) {
 		this.lbCity = lbCity;
+	}
+
+	public JLabel getLblDate() {
+		return lblDate;
+	}
+
+	public void setLblDate(JLabel lblDate) {
+		this.lblDate = lblDate;
+	}
+
+	public JLabel getLblGender() {
+		return lblGender;
+	}
+
+	public void setLblGender(JLabel lblGender) {
+		this.lblGender = lblGender;
+	}
+
+	public JLabel getLblSoortuser() {
+		return lblSoortuser;
+	}
+
+	public void setLblSoortuser(JLabel lblSoortuser) {
+		this.lblSoortuser = lblSoortuser;
 	}
 
 	public JPasswordField getPfPassword() {
@@ -345,20 +388,28 @@ public class UserView extends BaseView {
 		this.btnBack = btnBack;
 	}
 
-	public JPanel getPnlCredentials() {
+	public JPanel getPnlAccount() {
 		return pnlAccount;
 	}
 
-	public void setPnlCredentials(JPanel pnlCredentials) {
-		this.pnlAccount = pnlCredentials;
+	public void setPnlAccount(JPanel pnlAccount) {
+		this.pnlAccount = pnlAccount;
 	}
 
-	public JPanel getPnlAccount() {
+	public JPanel getPnlCredentials() {
 		return pnlCredentials;
 	}
 
-	public void setPnlAccount(JPanel pnlAccount) {
-		this.pnlCredentials = pnlAccount;
+	public void setPnlCredentials(JPanel pnlCredentials) {
+		this.pnlCredentials = pnlCredentials;
+	}
+
+	public JPanel getPnlOptions() {
+		return pnlOptions;
+	}
+
+	public void setPnlOptions(JPanel pnlOptions) {
+		this.pnlOptions = pnlOptions;
 	}
 
 	public Component getTxtPassword() {
@@ -369,15 +420,39 @@ public class UserView extends BaseView {
 		this.txtPassword = txtPassword;
 	}
 
-	public JLabel getLblDate() {
-		return lblDate;
+	public JCheckBox getcBUseCredentials() {
+		return cBUseCredentials;
 	}
 
-	public void setLblDate(JLabel lblDate) {
-		this.lblDate = lblDate;
+	public void setcBUseCredentials(JCheckBox cBUseCredentials) {
+		this.cBUseCredentials = cBUseCredentials;
 	}
 
-	public JTextField getTxtDate() {
+	public JRadioButton getcBGenderM() {
+		return cBGenderM;
+	}
+
+	public void setcBGenderM(JRadioButton cBGenderM) {
+		this.cBGenderM = cBGenderM;
+	}
+
+	public JRadioButton getcBGenderW() {
+		return cBGenderW;
+	}
+
+	public void setcBGenderW(JRadioButton cBGenderW) {
+		this.cBGenderW = cBGenderW;
+	}
+
+	public ButtonGroup getGroupGender() {
+		return groupGender;
+	}
+
+	public void setGroupGender(ButtonGroup groupGender) {
+		this.groupGender = groupGender;
+	}
+
+	public JFormattedTextField getTxtDate() {
 		return txtDate;
 	}
 
@@ -385,22 +460,6 @@ public class UserView extends BaseView {
 		this.txtDate = txtDate;
 	}
 
-	public JCheckBox getCBUseCredentials() {
-		return cBUseCredentials;
-	}
-
-	public void setCBUseCredentials(JCheckBox cBUseCredentials) {
-		this.cBUseCredentials = cBUseCredentials;
-	}
-
-	public JPanel getPnlOptions() {
-		return pnlOptions;
-	}
-
-	public void setPnlOptions(JPanel pnlOptions) {
-		this.pnlOptions = pnlOptions;
-	}
-	
 	public JComboBox<String> getCbUserType() {
 		return cbUserType;
 	}
@@ -409,15 +468,29 @@ public class UserView extends BaseView {
 		this.cbUserType = cbUserType;
 	}
 
-	private MaskFormatter createFormatter(String s) {
-	    MaskFormatter formatter = null;
-	    try {
-	        formatter = new MaskFormatter(s);
-	    } catch (java.text.ParseException exc) {
-	        System.err.println("formatter is bad: " + exc.getMessage());
-	        System.exit(-1);
-	    }
-	    return formatter;
+	public String[] getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String[] userType) {
+		this.userType = userType;
+	}
+
+	public JButton getTest() {
+		return test;
+	}
+
+	public void setTest(JButton test) {
+		this.test = test;
+	}
+
+	
+	public JButton getBtnSelectUser() {
+		return btnSelectUser;
+	}
+
+	public void setBtnSelectUser(JButton btnSelectUser) {
+		this.btnSelectUser = btnSelectUser;
 	}
 	
 

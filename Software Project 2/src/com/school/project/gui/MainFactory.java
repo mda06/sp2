@@ -28,6 +28,7 @@ public class MainFactory implements ConnectionListener {
 	private LanguageObservable languageObservable;
 
 	public MainFactory() {
+
 		try {
 			UIManager.setLookAndFeel(("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"));
 		} catch (UnsupportedLookAndFeelException e) {

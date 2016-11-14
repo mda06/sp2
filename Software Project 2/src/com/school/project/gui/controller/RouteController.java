@@ -79,8 +79,6 @@ public class RouteController extends BaseController<RouteView> {
 			view.getLbDeparture().setText(lh.getString("departure"));
 			view.getLbDate().setText(lh.getString("date"));
 			view.getLbUur().setText(lh.getString("uur"));
-			view.getRbSingle().setText(lh.getString("single"));
-			view.getRbReturn().setText(lh.getString("return"));
 			view.getRbDeparture().setText(lh.getString("departure"));
 			view.getRbArrival().setText(lh.getString("arrival"));
 			view.getBtnShowConnections().setText(lh.getString("showConnections"));
