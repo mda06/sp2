@@ -51,6 +51,7 @@ public class UserController extends BaseController<UserView> {
 					User newUser = getUserFromView();
 					AddressDAO.getInstance().add(newUser.getAddress());
 					UserDAO.getInstance().add(newUser);
+					newUser.getCredentials().setUserId(newUser.getId());
 					UserCredentialsDAO.getInstance().add(newUser.getCredentials());
 				}
 				
@@ -103,6 +104,7 @@ public class UserController extends BaseController<UserView> {
 			
 			if(useCred){
 				UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(),new String(view.getPfPassword().getPassword()), false);
+				
 				user.setCredentials(userCred);
 			}
 			return user;
