@@ -1,9 +1,7 @@
 package com.school.project.gui.view;
 
-import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -40,7 +38,6 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearch);
 		sp.putConstraint(SpringLayout.WEST, btnSearch, -120, SpringLayout.EAST, pnlSearch);
 		sp.putConstraint(SpringLayout.EAST, txtSearch, -20, SpringLayout.WEST, btnSearch);
-		sp.putConstraint(SpringLayout.NORTH, btnAdd, 0, SpringLayout.NORTH, btnSearch);
 		
 		pnlAdd = new JPanel();
 		pnlAdd.add(btnAdd = new JButton("Add a item"));
