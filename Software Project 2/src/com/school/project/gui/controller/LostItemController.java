@@ -10,7 +10,6 @@ import java.util.Observable;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.TitledBorder;
 
 import com.school.project.dao.LostItemDAO;
 import com.school.project.gui.model.LostItemTableModel;
@@ -118,9 +117,9 @@ public class LostItemController extends BaseController<LostItemView> {
 					.setHeaderValue(handler.getString("location"));
 			view.getTable().getTableHeader().repaint();
 			
-			((TitledBorder) view.getPnlAdd().getBorder()).setTitle(handler.getString("add"));
+			//((TitledBorder) view.getPnlAdd().getBorder()).setTitle(handler.getString("add"));
 			view.getPnlAdd().repaint();
-			((TitledBorder) view.getPnlSearch().getBorder()).setTitle(handler.getString("search"));
+			//((TitledBorder) view.getPnlSearch().getBorder()).setTitle(handler.getString("search"));
 			view.getPnlSearch().repaint();
 
 			addFrame.getBtnCancel().setText(handler.getString("cancel"));
