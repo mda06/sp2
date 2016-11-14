@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 import com.school.project.gui.controller.runnable.RouteConnectionRunnable;
@@ -16,6 +17,7 @@ import com.school.project.dao.UserDAO;
 public class UserController extends BaseController<UserView>{
 	
 	private Boolean useCred = false;
+	private String strErrorFillInTheBlanks, strErrorMatchingPassword;
 	
 	public UserController() {
 		super(new UserView());
@@ -32,40 +34,42 @@ public class UserController extends BaseController<UserView>{
 		});
 		view.getBtnComplete().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				String userCredOk;
-				String accountInfoOk;
-				
-				accountInfoOk = checkAccountInfo();
-				
-				if(accountInfoOk == "OK" && !useCred){
+				boolean accInfoOk = checkAccountInfo();
+				if(accInfoOk && !useCred){
 					//User newUser = new User( )
-//					User newUser = new User(-1, view.getTxtFirstName(), view.getTxtLastName(), accountInfoOk, accountInfoOk, null, useCred);
-//					UserDAO.getInstance().add(newUser);
+					//User newUser = new User(-1, view.getTxtFirstName(), view.getTxtLastName(), accountInfoOk, accountInfoOk, null, useCred);
+					//UserDAO.getInstance().add(newUser);
 				}
-				
-				if(useCred){
-					userCredOk = checkUserCredentials();
+				else if(accInfoOk){
+					if(checkUserCredentials()){
+						
+					}
 				}
 			}
 		});
 	}
 	
-	private String checkAccountInfo(){
+	private boolean checkAccountInfo(){
 		if(view.getTxtCity().getText().isEmpty() || view.getTxtFirstName().getText().isEmpty() || 
 				view.getTxtLastName().getText().isEmpty() || view.getTxtStreetNumber().getText().isEmpty() ||
-				view.getTxtZipcode().getText().isEmpty())
-			return "fillInTheBlanks";
-		return "OK";
+				view.getTxtZipcode().getText().isEmpty()){
+			JOptionPane.showMessageDialog(view.getPnlAccount(),strErrorFillInTheBlanks );
+			return false;
+		}
+			
+		return true;
 	}
 	
-	private String checkUserCredentials(){
+	private boolean checkUserCredentials(){
 		if(view.getTxtUsername().getText().isEmpty() || view.getPfPassword().getPassword().length == 0 || view.getPfPasswordControl().getPassword().length == 0){
-			return "fillInTheBlanks";
+			JOptionPane.showMessageDialog(view.getPnlAccount(),strErrorFillInTheBlanks );
+			return false;
 		}
 		if(!view.getPfPassword().getPassword().equals(view.getPfPasswordControl().getPassword())){
-			return "repeatPassword";
+			JOptionPane.showMessageDialog(view.getPnlAccount(),strErrorMatchingPassword);
+			return false;
 		}
-		return "OK";
+		return true;
 	}
 
 	
@@ -78,11 +82,17 @@ public class UserController extends BaseController<UserView>{
 			view.getLbPassword().setText(lh.getString("password"));
 			view.getLbPasswordControl().setText(lh.getString("passwordControl"));
 			view.getLbStreetNumber().setText(lh.getString("streetNumber"));
-			view.getLblDate().setText(lh.getString("date"));
+			view.getLblDate().setText(lh.getString("birthDate"));
 			view.getLbZipcode().setText(lh.getString("zipcode"));
 			view.getLbCity().setText(lh.getString("city"));
 			view.getCBUseCredentials().setText(lh.getString("makeAccount"));
 			view.getBtnComplete().setText(lh.getString("save"));
+			//view.getCBUseCredentials().removeAll();
+			view.getCbUserType().addItem("this item was added in the controller");
+			
+			
+			strErrorFillInTheBlanks = lh.getString("fillInTheBlanks");
+			strErrorMatchingPassword = lh.getString("matchingPasswords");
 			
 			((TitledBorder)view.getPnlOptions().getBorder()).setTitle(lh.getString("options"));
 			view.getPnlOptions().repaint();
