@@ -69,7 +69,6 @@ public class LostItemController extends BaseController<LostItemView> {
 				});
 			}
 		});
-
 	}
 
 	// TODO: put it in another thread
@@ -118,7 +117,7 @@ public class LostItemController extends BaseController<LostItemView> {
 			view.getTable().getColumnModel().getColumn(tableModel.COLUMN_LOCATION)
 					.setHeaderValue(handler.getString("location"));
 			view.getTable().getTableHeader().repaint();
-
+			
 			((TitledBorder) view.getPnlAdd().getBorder()).setTitle(handler.getString("add"));
 			view.getPnlAdd().repaint();
 			((TitledBorder) view.getPnlSearch().getBorder()).setTitle(handler.getString("search"));
@@ -132,6 +131,8 @@ public class LostItemController extends BaseController<LostItemView> {
 
 			strErrorAdd = handler.getString("errorAddLostItem");
 			strRemove = handler.getString("removeLostItem");
+			
+			view.getTxtSearch().setToolTipText(handler.getString("tooltipLostItem"));
 		}
 	}
 
@@ -147,7 +148,8 @@ public class LostItemController extends BaseController<LostItemView> {
 				}
 			}
 		});
-		view.getBtnSearch().addActionListener(new ActionListener() {
+		
+		ActionListener action = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
 					tableModel.removeRow(i);
@@ -163,6 +165,8 @@ public class LostItemController extends BaseController<LostItemView> {
 					initLostItemsToTable();
 				}
 			}
-		});
+		};
+		view.getBtnSearch().addActionListener(action);
+		view.getTxtSearch().addActionListener(action);
 	}
 }

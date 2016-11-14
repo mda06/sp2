@@ -230,4 +230,9 @@
 		<value lang="nl">Geboortedatum</value>
 		<value lang="fr">Date de naissance</value>
 	</string>
+	<string name="tooltipLostItem">
+		<value lang="en">Press [Enter] to view all</value>
+		<value lang="nl">Druk op [Enter] om alles te tonen</value>
+		<value lang="fr">Pressez [Bouton Entrée] pour voir tout</value>
+	</string>
 	</resources>
