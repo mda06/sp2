@@ -50,7 +50,7 @@ public class ActiveRailCardView extends BaseView {
 		
 		sp.putConstraint(SpringLayout.NORTH, lblUser, 20, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, lblUser, 20, SpringLayout.EAST, lblSelectUser);
-		sp.putConstraint(SpringLayout.EAST, lblUser, 100, SpringLayout.WEST, lblUser);
+		sp.putConstraint(SpringLayout.EAST, lblUser, 200, SpringLayout.WEST, lblUser);
 		sp.putConstraint(SpringLayout.SOUTH, lblUser, 70, SpringLayout.NORTH, this);
 		
 		sp.putConstraint(SpringLayout.NORTH, scroll, 150, SpringLayout.NORTH, this);
