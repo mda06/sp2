@@ -8,7 +8,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.security.auth.Refreshable;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -29,7 +28,7 @@ public class UserView extends BaseView {
 			lbCity, lblDate, lblGender, lblSoortuser;
 	private JPasswordField pfPassword, pfPasswordControl;
 	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity;
-	private JButton btnComplete, btnBack;
+	private JButton btnComplete, btnBack, btnSelectUser;
 	private JPanel pnlAccount, pnlCredentials, pnlOptions;
 	private Component txtPassword;
 	private JCheckBox cBUseCredentials;
@@ -77,6 +76,7 @@ public class UserView extends BaseView {
 		lblGender = new JLabel("Gender");
 		groupGender = new ButtonGroup();
 		lblSoortuser = new JLabel("User type");
+		btnSelectUser = new JButton("Select user");
 		
 		cBUseCredentials = new JCheckBox("useCredentials");
 		cBGenderM = new JRadioButton("M");
@@ -121,12 +121,14 @@ public class UserView extends BaseView {
 		pnlCredentials.add(lbPasswordControl);
 		pnlCredentials.add(pfPassword);
 		pnlCredentials.add(pfPasswordControl);
+		pnlOptions.add(cBUseCredentials);
+		pnlOptions.add(btnComplete);
+		pnlOptions.add(btnSelectUser);
 		
 		
 		//new buttons
 		//pnlCredentials.add(btnBack); //Do we need a back button? => no, i guess (Illya)
-		pnlOptions.add(cBUseCredentials);
-		pnlOptions.add(btnComplete);
+		
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
@@ -175,10 +177,15 @@ public class UserView extends BaseView {
 		
 		
 		
+		
 		//new stuff
 		sp.putConstraint(SpringLayout.NORTH, cBUseCredentials, 20, SpringLayout.NORTH, pnlOptions);
 		sp.putConstraint(SpringLayout.NORTH, btnComplete, 20, SpringLayout.SOUTH, cBUseCredentials);
-		pnlAccount.setBorder(BorderFactory.createTitledBorder("Accountqwerty"));
+		
+		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 10, SpringLayout.EAST, btnComplete);
+		sp.putConstraint(SpringLayout.NORTH, btnSelectUser, 20, SpringLayout.SOUTH, cBUseCredentials);
+		
+		pnlAccount.setBorder(BorderFactory.createTitledBorder("Account"));
 		pnlCredentials.setBorder(BorderFactory.createTitledBorder("Credentials"));
 		pnlOptions.setBorder(BorderFactory.createTitledBorder("Options"));
 
@@ -196,9 +203,9 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.WEST, pnlAccount, 40, SpringLayout.EAST, pnlOptions);
 		sp.putConstraint(SpringLayout.NORTH, pnlAccount, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 500, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlCredentials, 0, SpringLayout.HORIZONTAL_CENTER, this);
-		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 30, SpringLayout.SOUTH, pnlAccount);
-		sp.putConstraint(SpringLayout.SOUTH, pnlCredentials, 800, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 15, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, pnlCredentials, 40, SpringLayout.EAST, pnlAccount);
+		
 			
 		test = new JButton("test");
 		add(test);
@@ -478,15 +485,13 @@ public class UserView extends BaseView {
 		this.test = test;
 	}
 
-	private MaskFormatter createFormatter(String s) {
-	    MaskFormatter formatter = null;
-	    try {
-	        formatter = new MaskFormatter(s);
-	    } catch (java.text.ParseException exc) {
-	        System.err.println("formatter is bad: " + exc.getMessage());
-	        System.exit(-1);
-	    }
-	    return formatter;
+	
+	public JButton getBtnSelectUser() {
+		return btnSelectUser;
+	}
+
+	public void setBtnSelectUser(JButton btnSelectUser) {
+		this.btnSelectUser = btnSelectUser;
 	}
 	
 

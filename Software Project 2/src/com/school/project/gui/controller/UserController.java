@@ -13,6 +13,7 @@ import javax.swing.border.TitledBorder;
 import com.school.project.dao.AddressDAO;
 import com.school.project.dao.UserCredentialsDAO;
 import com.school.project.dao.UserDAO;
+import com.school.project.gui.controller.listener.SelectedUserListener;
 import com.school.project.gui.view.UserView;
 import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
@@ -20,18 +21,26 @@ import com.school.project.model.Address;
 import com.school.project.model.User;
 import com.school.project.model.UserCredential;
 
-public class UserController extends BaseController<UserView> {
+public class UserController extends BaseController<UserView> implements SelectedUserListener {
 
 	private Boolean useCred = false;
 	private String strErrorFillInTheBlanks, strErrorMatchingPassword;
+	private User user, inNameOf;
+	private SelectUserController selectUserController;
 
 	public UserController() {
 		super(new UserView());
 		view.getPnlCredentials().setVisible(useCred);
 		initOptions();
+		selectUserController = new SelectUserController(this);
 	}
 
 	public void initOptions() {
+		view.getBtnSelectUser().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectUserController.showPopup();
+			}
+		});
 		view.getcBUseCredentials().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				useCred = view.getcBUseCredentials().getModel().isSelected();
@@ -146,6 +155,16 @@ public class UserController extends BaseController<UserView> {
 			((TitledBorder) view.getPnlCredentials().getBorder()).setTitle(lh.getString("credentials"));
 			view.getPnlCredentials().repaint();
 		}
+	}
+
+	@Override
+	public void userIsSelected(User user) {
+		inNameOf = user;
+		view.getTxtFirstName().setText(user.getFirstName());
+		view.getTxtLastName().setText(user.getLastName());
+		//view.getTxtStreetNumber().setText(user.getAddress());
+		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
+		
 	}
 
 }
