@@ -10,6 +10,7 @@ import com.school.project.dao.ActiveRailCardDAO;
 import com.school.project.gui.controller.listener.SelectedUserListener;
 import com.school.project.gui.model.ActiveRailCardTableModel;
 import com.school.project.gui.view.ActiveRailCardView;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.ActiveRailCard;
 import com.school.project.model.User;
 
@@ -29,9 +30,11 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 	}
 
 	@Override
-	public void update(Observable arg, Object arg1) {
-		// TODO Auto-generated method stub
-		
+	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			//LanguageHandler
+			
+		}
 	}
 	
 	public void initActiveRailCardstoTable(){
@@ -44,6 +47,25 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 		view.getBtnSelectUser().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				selectUserController.showPopup();
+				
+				
+				/* Tabel leegmaken
+				 * 
+				for(int i = tableModel.getRowCount() - 1; i >= 0; i--){
+					tableModel.removeRow(i);
+				}
+				*/
+				
+				
+				/*
+					Toevoegen van ActiveRailCards verkocht door geselecteerde user
+					
+				if(!view.getLblUser().getText().isEmpty()){
+					for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getByName(view.getLblUser().getName())){
+						tableModel.addActiveRailCard(item);
+					}
+				}
+				*/
 			}
 		});
 	}
