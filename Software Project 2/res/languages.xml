@@ -11,9 +11,9 @@
 
 <resources>
 	<string name = "errorAddLostItem">
-		<value lang="en"> Error: please fill in all the fields </value>
-		<value lang="fr"> Erreur: Remplisez les champs </value>
-		<value lang="nl"> Fout: Vul de invoervelden</value>
+		<value lang="en"> Please fill in all the fields </value>
+		<value lang="fr"> Remplisez les champs </value>
+		<value lang="nl"> Vul de invoervelden in</value>
 	</string>
 	<string name = "removeLostItem">
 		<value lang="en"> Remove  </value>
@@ -214,5 +214,20 @@
 		<value lang="en">From - To</value>
 		<value lang="nl">Van - Naar</value>
 		<value lang="fr">De - à</value>
+	</string>
+	<string name="matchingPasswords">
+		<value lang="en">Passwords do not match</value>
+		<value lang="nl">Paswoorden komen niet overeen</value>
+		<value lang="fr">Les mots de passe ne correspondent pas</value>
+	</string>
+	<string name="fillInTheBlanks">
+		<value lang="en">Please fill in all the required fields</value>
+		<value lang="nl">Gelieve de verplichte velden in te vullen</value>
+		<value lang="fr">S'il vous plaît remplir les champs obligatoires</value>
+	</string>
+	<string name="birthDate">
+		<value lang="en">Date of birth</value>
+		<value lang="nl">Geboortedatum</value>
+		<value lang="fr">Date de naissance</value>
 	</string>
 	</resources>

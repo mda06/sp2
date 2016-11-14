@@ -33,11 +33,10 @@ public class UserView extends BaseView {
 	private JRadioButton cBGenderM, cBGenderW;
 	private ButtonGroup groupGender;
 	private JFormattedTextField txtDate;
-	private JComboBox<String> cbSoortUser;
-	private String[] keuze = {"Admin", "Boss", "User"};
+	private JComboBox<String> cbUserType;
+	private String[] userType = {"Admin", "Employee", "Customer"};
 
-	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	Date date = new Date();
+	
 
 	public UserView() {
 		super("NewUser");
@@ -45,6 +44,9 @@ public class UserView extends BaseView {
 	}
 
 	private void initLayout() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		
 		lbFirstName = new JLabel("First name");
 		txtFirstName = new JTextField(10);
 		lbLastName = new JLabel("Last name");
@@ -60,28 +62,30 @@ public class UserView extends BaseView {
 		txtLastName = new JTextField(10);
 		txtUsername = new JTextField(10);
 		txtStreetNumber = new JTextField(10);
-		txtDate = new JFormattedTextField(createFormatter("##/##/####"));
+		//txtDate = new JFormattedTextField(createFormatter("##/##/####"));
+		txtDate = new JFormattedTextField(dateFormat);
+		txtDate.setColumns(8);
+		txtDate.setText(dateFormat.format(date));
 		txtZipcode = new JTextField(5);
 		txtCity = new JTextField(10);
 		btnComplete = new JButton("Complete");
 		btnBack = new JButton("Back");
-		lblGender = new JLabel("Geslacht");
+		lblGender = new JLabel("Gender");
 		groupGender = new ButtonGroup();
 		lblSoortuser = new JLabel("User type");
 		
-		//new stuff
 		cBUseCredentials = new JCheckBox("useCredentials");
 		cBGenderM = new JRadioButton("M");
 		cBGenderM.setSelected(true);
 		cBGenderW = new JRadioButton("W");
-		cbSoortUser = new JComboBox<String>(keuze);
-		cbSoortUser.setSelectedIndex(2);
+		cbUserType = new JComboBox<String>(userType);
+		cbUserType.setSelectedIndex(2);
 		
 		groupGender.add(cBGenderM);
 		groupGender.add(cBGenderW);
 		
-		txtDate.setColumns(8);
-		txtDate.setText(dateFormat.format(date));
+		
+		
 
 		SpringLayout sp = new SpringLayout();
 		pnlAccount = new JPanel(sp);
@@ -105,7 +109,7 @@ public class UserView extends BaseView {
 		pnlAccount.add(cBGenderM);
 		pnlAccount.add(cBGenderW);
 		pnlAccount.add(lblGender);
-		pnlAccount.add(cbSoortUser);
+		pnlAccount.add(cbUserType);
 		pnlAccount.add(lblSoortuser);
 		pnlCredentials.add(lbUsername);
 		pnlCredentials.add(txtUsername);
@@ -162,8 +166,8 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, cBGenderW, 5, SpringLayout.SOUTH, lblGender);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblSoortuser, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, lblSoortuser, 5, SpringLayout.SOUTH, cBGenderW);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cbSoortUser, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, cbSoortUser, 5, SpringLayout.SOUTH, lblSoortuser);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cbUserType, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, cbUserType, 5, SpringLayout.SOUTH, lblSoortuser);
 		
 		
 		//new stuff
@@ -397,6 +401,14 @@ public class UserView extends BaseView {
 		this.pnlOptions = pnlOptions;
 	}
 	
+	public JComboBox<String> getCbUserType() {
+		return cbUserType;
+	}
+
+	public void setCbUserType(JComboBox<String> cbUserType) {
+		this.cbUserType = cbUserType;
+	}
+
 	private MaskFormatter createFormatter(String s) {
 	    MaskFormatter formatter = null;
 	    try {
