@@ -21,7 +21,7 @@ public class ActiveRailCardController {
 	private PaymentBackListener list;
 	private RailCard railcard;
 	private User user;
-	public ActiveRailCardController(PaymentPanelRailcard pnl, PaymentBackListener list, RailCard railcard, User user) {
+	public ActiveRailCardController(PaymentPanelRailcard pnl, PaymentBackListener list, User user) {
 		this.pnl = pnl;
 		this.list = list;
 		this.user = user;

@@ -1,8 +1,6 @@
 package com.school.project.gui.controller;
 
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 
 import javax.swing.JButton;
@@ -10,8 +8,12 @@ import javax.swing.JButton;
 import com.school.project.gui.view.RailCardView;
 import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
+import com.school.project.model.User;
 
 public class RailCardController extends BaseController<RailCardView> {
+
+	private ActiveRailCardController activeRailCard;
+
 	
 	public RailCardController() {
 		super(new RailCardView());

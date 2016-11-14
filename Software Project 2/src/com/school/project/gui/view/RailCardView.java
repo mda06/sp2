@@ -19,7 +19,7 @@ public class RailCardView extends BaseView {
 	private void initLayout() {
 		setLayout(new CardLayout());
 		add(pnlBtns = new JPanel(new GridLayout(0, 4, 5, 5)), KEY_BTNS);
-		add(pnlPay = new PaymentPanel(), KEY_PAY);
+		add(pnlPay = new PaymentPanel(), KEY_PAY); 
 		
 	}
 
