@@ -11,8 +11,9 @@ import com.school.project.gui.view.UserView;
 import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.User;
+import com.school.project.dao.UserDAO;
 
-public class UserController extends BaseController<UserView> {
+public class UserController extends BaseController<UserView>{
 	
 	private Boolean useCred = false;
 	
@@ -38,6 +39,8 @@ public class UserController extends BaseController<UserView> {
 				
 				if(accountInfoOk == "OK" && !useCred){
 					//User newUser = new User( )
+//					User newUser = new User(-1, view.getTxtFirstName(), view.getTxtLastName(), accountInfoOk, accountInfoOk, null, useCred);
+//					UserDAO.getInstance().add(newUser);
 				}
 				
 				if(useCred){
@@ -75,7 +78,7 @@ public class UserController extends BaseController<UserView> {
 			view.getLbPassword().setText(lh.getString("password"));
 			view.getLbPasswordControl().setText(lh.getString("passwordControl"));
 			view.getLbStreetNumber().setText(lh.getString("streetNumber"));
-			view.getLbStreetLine2().setText(lh.getString("streetLine2"));
+			view.getLblDate().setText(lh.getString("date"));
 			view.getLbZipcode().setText(lh.getString("zipcode"));
 			view.getLbCity().setText(lh.getString("city"));
 			view.getCBUseCredentials().setText(lh.getString("makeAccount"));

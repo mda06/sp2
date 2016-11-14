@@ -21,7 +21,7 @@ public class ConnectionDetailsFrame extends JFrame {
 		initLayout();
 		setAlwaysOnTop(true);
 		setTitle("Details");
-		setSize(800, 300);
+		setSize(850, 200);
 		setLocationRelativeTo(null);
 	}
 	
@@ -41,10 +41,10 @@ public class ConnectionDetailsFrame extends JFrame {
 		JPanel pnlNorth = new JPanel(new GridLayout(3, 2));
 		pnlNorth.add(lblDuration);
 		pnlNorth.add(txtDuration);
-		pnlNorth.add(lblArrival);
-		pnlNorth.add(txtArrival);
 		pnlNorth.add(lblDeparture);
 		pnlNorth.add(txtDeparture);
+		pnlNorth.add(lblArrival);
+		pnlNorth.add(txtArrival);
 		
 		add(pnlNorth, BorderLayout.NORTH);
 		add(scroll);

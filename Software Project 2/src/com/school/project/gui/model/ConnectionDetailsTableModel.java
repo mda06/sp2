@@ -11,9 +11,9 @@ import com.school.project.util.DateUtil;
 public class ConnectionDetailsTableModel extends DefaultTableModel {
 	private static final long serialVersionUID = 1L;
 
-	public final int COLUMN_TRAIN_DIR = 0, COLUMN_STEP_ON = 1, COLUMN_DEPART_PLATFORM = 2, COLUMN_DEPARTURE_DELAY = 3, COLUMN_ARRIVAL_TIME = 4,
-			COLUMN_ARRIVAL_PLATFORM = 5, COLUMN_ARRIVAL_DELAY = 6, COLUMN_DEPARTURE_TIME = 7;
-	public String[] COLUMN_NAMES = { "Train Direction", "Step on", "Platform", "Delay", "Arrival Time", "Arrival Platform", "Delay", "Time" };
+	public final int COLUMN_TRAIN_DIR = 0, COLUMN_STEP_OFF = 1, COLUMN_ARRIVAL_PLATFORM = 2, COLUMN_ARRIVAL_DELAY = 3, COLUMN_ARRIVAL_TIME = 4,
+			COLUMN_NEXT_PLATFORM = 5, COLUMN_NEXT_DELAY = 6, COLUMN_NEXT_TIME = 7;
+	public String[] COLUMN_NAMES = { "Train Direction", "Step off", "Arrival Platform", "Arrival Delay(s)", "Arrival Time", "Next Platform", "Next Delay(s)", "Next Time" };
 
 	public ConnectionDetailsTableModel() {
 	}
@@ -46,16 +46,16 @@ public class ConnectionDetailsTableModel extends DefaultTableModel {
 		case COLUMN_TRAIN_DIR:
 			returnValue = v.getDirection();
 			break;
-		case COLUMN_STEP_ON:
+		case COLUMN_STEP_OFF:
 			returnValue = v.getStation().getName();
 			break;
-		case COLUMN_DEPART_PLATFORM:
+		case COLUMN_NEXT_PLATFORM:
 			returnValue = v.getDepInfo().getPlatform().getName();
 			break;
-		case COLUMN_DEPARTURE_TIME:
+		case COLUMN_NEXT_TIME:
 			returnValue = DateUtil.timeStampToDate(v.getDepInfo().getTimeStamp());
 			break;
-		case COLUMN_DEPARTURE_DELAY:
+		case COLUMN_NEXT_DELAY:
 			returnValue = v.getDepInfo().getDelay();
 			break;
 		case COLUMN_ARRIVAL_TIME:

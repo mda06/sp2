@@ -78,7 +78,6 @@ public class RouteController extends BaseController<RouteView> {
 			view.getLbArrival().setText(lh.getString("arrival"));
 			view.getLbDeparture().setText(lh.getString("departure"));
 			view.getLbDate().setText(lh.getString("date"));
-			view.getLbNumber().setText(lh.getString("number"));
 			view.getLbUur().setText(lh.getString("uur"));
 			view.getRbSingle().setText(lh.getString("single"));
 			view.getRbReturn().setText(lh.getString("return"));
@@ -92,10 +91,6 @@ public class RouteController extends BaseController<RouteView> {
 			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_NUMBER_OF_VIAS).setHeaderValue(lh.getString("numberOfVias"));
 			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_FROM_TO).setHeaderValue(lh.getString("fromTo"));
 			view.getTblConnection().getTableHeader().repaint();
-			
-			
 		}
-		
 	}
-
 }

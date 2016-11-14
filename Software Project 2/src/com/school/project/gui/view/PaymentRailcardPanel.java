@@ -18,24 +18,26 @@ import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.custom.AutoComboBox;
 
-public class PaymentPanelRailcard extends JPanel{
-private static final long serialVersionUID = 1L;
-	
+public class PaymentRailcardPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+
 	private JButton btnBack, btnPay, btnSelectUser;
 	private JTextField txtName, txtSoldBy, txtValidFrom, txtValidTo, txtInNameOf;
 	private JTextArea txtDesc;
 	private AutoComboBox txtFromStation, txtToStation;
-	private JLabel lblName, lblDesc, lblSoldBy, lblValidFrom, lblValidTo, lblPricePerMonth, lblPricePer3Month, lblPricePerYear, lblFromStation, lblToStation; 
+	private JLabel lblName, lblDesc, lblSoldBy, lblValidFrom, lblValidTo, lblInNameOf;
+	private JLabel lblPricePerMonth, lblPricePer3Month, lblPricePerYear, lblFromStation, lblToStation;
 	private JRadioButton rdPricePerMonth, rdPricePer3Month, rdPricePerYear;
-	
-	public PaymentPanelRailcard() {
+	private ButtonGroup timePeriod;
+
+	public PaymentRailcardPanel() {
 		initLayout();
-		
+
 	}
-	
+
 	private void initLayout() {
 		setLayout(new BorderLayout());
-		
+
 		JPanel pnlLeft = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		lblName = new JLabel("Name: ");
@@ -60,28 +62,27 @@ private static final long serialVersionUID = 1L;
 		c.weightx = 1;
 		c.gridx = 1;
 		pnlLeft.add(txtDesc, c);
-		
+
 		JPanel pnlDepartures = new JPanel(new GridLayout(2, 2));
 		pnlDepartures.setBorder(BorderFactory.createTitledBorder("Departures"));
 		pnlDepartures.add(lblFromStation = new JLabel("From station: "));
 		pnlDepartures.add(txtFromStation = new AutoComboBox());
 		pnlDepartures.add(lblToStation = new JLabel("To station: "));
 		pnlDepartures.add(txtToStation = new AutoComboBox());
-		
+
 		rdPricePerMonth = new JRadioButton("Price per month");
 		rdPricePer3Month = new JRadioButton("Price per 3 month");
-		rdPricePerYear = new JRadioButton("Price per year");		
-		
+		rdPricePerYear = new JRadioButton("Price per year");
+
 		c.weightx = 1;
 		c.gridy = 2;
 		c.gridx = 0;
 		c.gridwidth = 2;
 		c.gridheight = 2;
 		pnlLeft.add(pnlDepartures, c);
-		
-		
+
 		// Toevoegen van radiobuttons en text
-		ButtonGroup timePeriod = new ButtonGroup();
+		timePeriod = new ButtonGroup();
 		c.weightx = 1;
 		c.gridx = 0;
 		c.gridy = 4;
@@ -90,6 +91,7 @@ private static final long serialVersionUID = 1L;
 		timePeriod.add(rdPricePerMonth);
 		timePeriod.add(rdPricePer3Month);
 		timePeriod.add(rdPricePerYear);
+		rdPricePerMonth.setSelected(true);
 		pnlLeft.add(rdPricePerMonth, c);
 		c.weightx = 1;
 		c.gridx = 0;
@@ -103,7 +105,7 @@ private static final long serialVersionUID = 1L;
 		c.gridheight = 1;
 		c.gridwidth = 1;
 		pnlLeft.add(rdPricePerYear, c);
-		
+
 		// Labels toevoegen
 		lblPricePerMonth = new JLabel("Test");
 		c.weightx = .5;
@@ -126,32 +128,43 @@ private static final long serialVersionUID = 1L;
 		c.gridheight = 1;
 		c.gridwidth = 1;
 		pnlLeft.add(lblPricePerYear, c);
-		
+
 		// Toevoegen pay button
 		c.gridx = 0;
 		c.gridy = 7;
 		btnPay = new JButton("Pay");
 		pnlLeft.add(btnPay, c);
-		
+
 		SpringLayout sp = new SpringLayout();
 		JPanel pnlRight = new JPanel(sp);
 		pnlRight.setPreferredSize(new Dimension(350, 500));
 		pnlRight.add(lblSoldBy = new JLabel("Sold by: "));
 		pnlRight.add(txtSoldBy = new JTextField());
 		txtSoldBy.setEditable(false);
+		pnlRight.add(lblInNameOf = new JLabel("In name of: "));
+		pnlRight.add(txtInNameOf = new JTextField());
+		txtInNameOf.setEditable(false);
 		pnlRight.add(lblValidFrom = new JLabel("Valid from: "));
 		pnlRight.add(txtValidFrom = new JTextField());
 		txtValidFrom.setEditable(false);
 		pnlRight.add(lblValidTo = new JLabel("Valid by: "));
 		pnlRight.add(txtValidTo = new JTextField());
 		txtValidTo.setEditable(false);
-		
+
 		pnlRight.add(btnSelectUser = new JButton("User"));
-		
+
 		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 30, SpringLayout.NORTH, pnlRight);
 		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -30, SpringLayout.EAST, pnlRight);
 		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 0, SpringLayout.NORTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, lblSoldBy, -10, SpringLayout.WEST, txtSoldBy);
+
+		sp.putConstraint(SpringLayout.NORTH, txtInNameOf, 10, SpringLayout.SOUTH, txtSoldBy);
+		sp.putConstraint(SpringLayout.EAST, txtInNameOf, 0, SpringLayout.EAST, txtSoldBy);
+		sp.putConstraint(SpringLayout.WEST, txtInNameOf, 0, SpringLayout.WEST, txtSoldBy);
+		sp.putConstraint(SpringLayout.NORTH, lblInNameOf, 0, SpringLayout.NORTH, txtInNameOf);
+		sp.putConstraint(SpringLayout.EAST, lblInNameOf, 0, SpringLayout.EAST, lblSoldBy);
+		sp.putConstraint(SpringLayout.WEST, lblInNameOf, 0, SpringLayout.WEST, lblSoldBy);
+		
 		sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 230, SpringLayout.NORTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, txtValidFrom, 0, SpringLayout.EAST, txtSoldBy);
 		sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 0, SpringLayout.NORTH, txtValidFrom);
@@ -167,45 +180,67 @@ private static final long serialVersionUID = 1L;
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
 	}
+
+	public ButtonGroup getTimePeriod() {
+		return timePeriod;
+	}
+	
 	public JButton getBtnBack() {
 		return btnBack;
 	}
+
 	public void setBtnBack(JButton btnBack) {
 		this.btnBack = btnBack;
 	}
+
 	public JButton getBtnPay() {
 		return btnPay;
 	}
+
 	public void setBtnPay(JButton btnPay) {
 		this.btnPay = btnPay;
 	}
+
 	public JButton getBtnSelectUser() {
 		return btnSelectUser;
 	}
+
 	public void setBtnSelectUser(JButton btnSelectUser) {
 		this.btnSelectUser = btnSelectUser;
 	}
+
 	public JTextField getTxtName() {
 		return txtName;
 	}
+
 	public void setTxtName(JTextField txtName) {
 		this.txtName = txtName;
 	}
+
 	public JTextField getTxtSoldBy() {
 		return txtSoldBy;
 	}
+
 	public void setTxtSoldBy(JTextField txtSoldBy) {
 		this.txtSoldBy = txtSoldBy;
 	}
+
 	public JTextField getTxtValidFrom() {
 		return txtValidFrom;
 	}
+
 	public void setTxtValidFrom(JTextField txtValidFrom) {
 		this.txtValidFrom = txtValidFrom;
 	}
+
+	public JLabel getLblInNameOf() {
+		return lblInNameOf;
+	}
+	
 	public JTextField getTxtValidTo() {
 		return txtValidTo;
 	}
+
 	public void setTxtValidTo(JTextField txtValidTo) {
 		this.txtValidTo = txtValidTo;
 	}
@@ -213,106 +248,137 @@ private static final long serialVersionUID = 1L;
 	public JTextField getTxtInNameOf() {
 		return txtInNameOf;
 	}
+
 	public void setTxtInNameOf(JTextField txtInNameOf) {
 		this.txtInNameOf = txtInNameOf;
 	}
+
 	public JTextArea getTxtDesc() {
 		return txtDesc;
 	}
+
 	public void setTxtDesc(JTextArea txtDesc) {
 		this.txtDesc = txtDesc;
 	}
+
 	public AutoComboBox getTxtFromStation() {
 		return txtFromStation;
 	}
+
 	public void setTxtFromStation(AutoComboBox txtFromStation) {
 		this.txtFromStation = txtFromStation;
 	}
+
 	public AutoComboBox getTxtToStation() {
 		return txtToStation;
 	}
+
 	public void setTxtToStation(AutoComboBox txtToStation) {
 		this.txtToStation = txtToStation;
 	}
+
 	public JLabel getLblName() {
 		return lblName;
 	}
+
 	public void setLblName(JLabel lblName) {
 		this.lblName = lblName;
 	}
+
 	public JLabel getLblDesc() {
 		return lblDesc;
 	}
+
 	public void setLblDesc(JLabel lblDesc) {
 		this.lblDesc = lblDesc;
 	}
+
 	public JLabel getLblSoldBy() {
 		return lblSoldBy;
 	}
+
 	public void setLblSoldBy(JLabel lblSoldBy) {
 		this.lblSoldBy = lblSoldBy;
 	}
+
 	public JLabel getLblValidFrom() {
 		return lblValidFrom;
 	}
+
 	public void setLblValidFrom(JLabel lblValidFrom) {
 		this.lblValidFrom = lblValidFrom;
 	}
+
 	public JLabel getLblValidTo() {
 		return lblValidTo;
 	}
+
 	public void setLblValidTo(JLabel lblValidTo) {
 		this.lblValidTo = lblValidTo;
 	}
+
 	public JLabel getLblPricePerYear() {
 		return lblPricePerYear;
 	}
+
 	public void setLblPricePerYear(JLabel lblPricePerYear) {
 		this.lblPricePerYear = lblPricePerYear;
 	}
+
 	public JLabel getLblPricePerMonth() {
 		return lblPricePerMonth;
 	}
+
 	public void setLblPricePerMonth(JLabel lblPricePerMonth) {
 		this.lblPricePerMonth = lblPricePerMonth;
 	}
+
 	public JLabel getLblPricePer3Month() {
 		return lblPricePer3Month;
 	}
+
 	public void setLblPricePer3Month(JLabel lblPricePer3Month) {
 		this.lblPricePer3Month = lblPricePer3Month;
 	}
-	
+
 	public JLabel getLblFromStation() {
 		return lblFromStation;
 	}
+
 	public void setLblFromStation(JLabel lblFromStation) {
 		this.lblFromStation = lblFromStation;
 	}
+
 	public JLabel getLblToStation() {
 		return lblToStation;
 	}
+
 	public void setLblToStation(JLabel lblToStation) {
 		this.lblToStation = lblToStation;
 	}
+
 	public JRadioButton getRdPricePerMonth() {
 		return rdPricePerMonth;
 	}
+
 	public void setRdPricePerMonth(JRadioButton rdPricePerMonth) {
 		this.rdPricePerMonth = rdPricePerMonth;
 	}
+
 	public JRadioButton getRdPricePer3Month() {
 		return rdPricePer3Month;
 	}
+
 	public void setRdPricePer3Month(JRadioButton rdPricePer3Month) {
 		this.rdPricePer3Month = rdPricePer3Month;
 	}
+
 	public JRadioButton getRdPricePerYear() {
 		return rdPricePerYear;
 	}
+
 	public void setRdPricePerYear(JRadioButton rdPricePerYear) {
 		this.rdPricePerYear = rdPricePerYear;
 	}
-	
-	
+
 }

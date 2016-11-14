@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -20,9 +19,8 @@ import com.school.project.gui.view.custom.AutoComboBox;
 public class RouteView extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private AutoComboBox txtDeparture, txtArrival;
-	private JLabel lbDeparture, lbArrival, lbNumber, lbUur, lbDate;
+	private JLabel lbDeparture, lbArrival, lbUur, lbDate;
 	private JRadioButton rbSingle, rbReturn, rbDeparture, rbArrival;
-	private JComboBox<Integer> cbNumber;
 	private JButton btnShowConnections;
 	private JFormattedTextField txtUur, txtDate;
 	private JTable tblConnection;
@@ -51,14 +49,12 @@ public class RouteView extends BaseView {
 		txtDate.setText(dateFormat.format(date));
 		lbDeparture = new JLabel("Departure:");
 		lbArrival = new JLabel("Arrival:");
-		lbNumber = new JLabel("Number");
 		lbUur = new JLabel("Uur:");
 		lbDate = new JLabel("Date: ");
 		rbSingle = new JRadioButton("Single");
 		rbReturn = new JRadioButton("Return");
 		rbDeparture = new JRadioButton("Departure");
 		rbArrival = new JRadioButton("Arrival");
-		cbNumber = new JComboBox<Integer>();
 		tblConnection = new JTable();
 		JScrollPane scroll = new JScrollPane(tblConnection);
 		btnShowConnections = new JButton("Show Connections");
@@ -74,11 +70,6 @@ public class RouteView extends BaseView {
 		deparArriv.add(rbDeparture);
 		rbDeparture.setSelected(true);
 
-		// opvullen combobox
-		for (int i = 1; i < 11; i++) {
-			cbNumber.addItem(i);
-		}
-
 		SpringLayout sp = new SpringLayout();
 		setLayout(sp);
 		add(txtDeparture);
@@ -86,13 +77,11 @@ public class RouteView extends BaseView {
 		add(txtUur);
 		add(lbDeparture);
 		add(lbArrival);
-		add(lbNumber);
 		add(lbUur);
 		add(rbSingle);
 		add(rbReturn);
 		add(rbDeparture);
 		add(rbArrival);
-		add(cbNumber);
 		add(lbDate);
 		add(txtDate);
 		add(scroll);
@@ -122,10 +111,6 @@ public class RouteView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, rbDeparture, 175, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, rbArrival, 320, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, rbArrival, 195, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, lbNumber, 30, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, lbNumber, 245, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, cbNumber, 100, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, cbNumber, 240, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, btnShowConnections, 250, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 240, SpringLayout.NORTH, this);	
 		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, btnShowConnections);
@@ -207,14 +192,6 @@ public class RouteView extends BaseView {
 		this.lbArrival = lbArrival;
 	}
 
-	public JLabel getLbNumber() {
-		return lbNumber;
-	}
-
-	public void setLbNumber(JLabel lbNumber) {
-		this.lbNumber = lbNumber;
-	}
-
 	public JRadioButton getRbSingle() {
 		return rbSingle;
 	}
@@ -245,14 +222,6 @@ public class RouteView extends BaseView {
 
 	public void setRbArrival(JRadioButton rbArrival) {
 		this.rbArrival = rbArrival;
-	}
-
-	public JComboBox<Integer> getCbNumber() {
-		return cbNumber;
-	}
-
-	public void setCbNumber(JComboBox<Integer> cbNumber) {
-		this.cbNumber = cbNumber;
 	}
 	
 	public JButton getBtnShowConnections(){

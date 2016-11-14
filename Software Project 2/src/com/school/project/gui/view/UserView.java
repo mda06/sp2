@@ -2,26 +2,42 @@ package com.school.project.gui.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.text.MaskFormatter;
 
 public class UserView extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFirstName, lbLastName, lbUsername, lbPassword, lbPasswordControl, lbStreetNumber, lbZipcode,
-			lbCity, lbStreetLine2;
+			lbCity, lblDate, lblGender, lblSoortuser;
 	private JPasswordField pfPassword, pfPasswordControl;
-	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity, txtStreetLine2;
+	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity;
 	private JButton btnComplete, btnBack;
 	private JPanel pnlAccount, pnlCredentials, pnlOptions;
 	private Component txtPassword;
 	private JCheckBox cBUseCredentials;
+	private JRadioButton cBGenderM, cBGenderW;
+	private ButtonGroup groupGender;
+	private JFormattedTextField txtDate;
+	private JComboBox<String> cbSoortUser;
+	private String[] keuze = {"Admin", "Boss", "User"};
+
+	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	Date date = new Date();
 
 	public UserView() {
 		super("NewUser");
@@ -36,7 +52,7 @@ public class UserView extends BaseView {
 		lbPassword = new JLabel("Password");
 		lbPasswordControl = new JLabel("Repeat password");
 		lbStreetNumber = new JLabel("Street + number");
-		lbStreetLine2 = new JLabel("Streetline 2");
+		lblDate = new JLabel("Date");
 		lbZipcode = new JLabel("Zipcode");
 		lbCity = new JLabel("City");
 		pfPassword = new JPasswordField(10);
@@ -44,16 +60,28 @@ public class UserView extends BaseView {
 		txtLastName = new JTextField(10);
 		txtUsername = new JTextField(10);
 		txtStreetNumber = new JTextField(10);
-		txtStreetLine2 = new JTextField(10);
+		txtDate = new JFormattedTextField(createFormatter("##/##/####"));
 		txtZipcode = new JTextField(5);
 		txtCity = new JTextField(10);
 		btnComplete = new JButton("Complete");
 		btnBack = new JButton("Back");
+		lblGender = new JLabel("Geslacht");
+		groupGender = new ButtonGroup();
+		lblSoortuser = new JLabel("User type");
 		
 		//new stuff
 		cBUseCredentials = new JCheckBox("useCredentials");
+		cBGenderM = new JRadioButton("M");
+		cBGenderM.setSelected(true);
+		cBGenderW = new JRadioButton("W");
+		cbSoortUser = new JComboBox<String>(keuze);
+		cbSoortUser.setSelectedIndex(2);
 		
+		groupGender.add(cBGenderM);
+		groupGender.add(cBGenderW);
 		
+		txtDate.setColumns(8);
+		txtDate.setText(dateFormat.format(date));
 
 		SpringLayout sp = new SpringLayout();
 		pnlAccount = new JPanel(sp);
@@ -69,11 +97,16 @@ public class UserView extends BaseView {
 		pnlAccount.add(lbStreetNumber);
 		pnlAccount.add(lbZipcode);
 		pnlAccount.add(lbCity);
-		pnlAccount.add(lbStreetLine2);
+		pnlAccount.add(lblDate);
 		pnlAccount.add(txtStreetNumber);
 		pnlAccount.add(txtZipcode);
 		pnlAccount.add(txtCity);
-		pnlAccount.add(txtStreetLine2);
+		pnlAccount.add(txtDate);
+		pnlAccount.add(cBGenderM);
+		pnlAccount.add(cBGenderW);
+		pnlAccount.add(lblGender);
+		pnlAccount.add(cbSoortUser);
+		pnlAccount.add(lblSoortuser);
 		pnlCredentials.add(lbUsername);
 		pnlCredentials.add(txtUsername);
 		pnlCredentials.add(lbPassword);
@@ -81,8 +114,9 @@ public class UserView extends BaseView {
 		pnlCredentials.add(pfPassword);
 		pnlCredentials.add(pfPasswordControl);
 		
+		
 		//new buttons
-		//pnlCredentials.add(btnBack); //Do we need a back button?
+		//pnlCredentials.add(btnBack); //Do we need a back button? => no, i guess (Illya)
 		pnlOptions.add(cBUseCredentials);
 		pnlOptions.add(btnComplete);
 		
@@ -97,12 +131,12 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, lbStreetNumber, 30, SpringLayout.NORTH, txtLastName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtStreetNumber, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, txtStreetNumber, 20, SpringLayout.NORTH, lbStreetNumber);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbStreetLine2, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lbStreetLine2, 30, SpringLayout.NORTH, txtStreetNumber);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtStreetLine2, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtStreetLine2, 20, SpringLayout.NORTH, lbStreetLine2);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblDate, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, lblDate, 30, SpringLayout.NORTH, txtStreetNumber);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtDate, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, txtDate, 20, SpringLayout.NORTH, lblDate);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbZipcode, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lbZipcode, 30, SpringLayout.NORTH, txtStreetLine2);
+		sp.putConstraint(SpringLayout.NORTH, lbZipcode, 30, SpringLayout.NORTH, txtDate);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtZipcode, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, txtZipcode, 20, SpringLayout.NORTH, lbZipcode);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbCity, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
@@ -120,6 +154,17 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, lbPasswordControl, 30, SpringLayout.NORTH, pfPassword);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pfPasswordControl, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
 		sp.putConstraint(SpringLayout.NORTH, pfPasswordControl, 20, SpringLayout.NORTH, lbPasswordControl);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblGender, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, lblGender, 5, SpringLayout.SOUTH, txtCity);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cBGenderM, -20, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, cBGenderM, 5, SpringLayout.SOUTH, lblGender);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cBGenderW, 20, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, cBGenderW, 5, SpringLayout.SOUTH, lblGender);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblSoortuser, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, lblSoortuser, 5, SpringLayout.SOUTH, cBGenderW);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cbSoortUser, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, cbSoortUser, 5, SpringLayout.SOUTH, lblSoortuser);
+		
 		
 		//new stuff
 		sp.putConstraint(SpringLayout.NORTH, btnComplete, 20, SpringLayout.HORIZONTAL_CENTER, pnlOptions);
@@ -139,10 +184,10 @@ public class UserView extends BaseView {
 		add(pnlOptions);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlAccount, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlAccount, 15, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 350, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 500, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pnlCredentials, 0, SpringLayout.HORIZONTAL_CENTER, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 30, SpringLayout.SOUTH, pnlAccount);
-		sp.putConstraint(SpringLayout.SOUTH, pnlCredentials, 600, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.SOUTH, pnlCredentials, 800, SpringLayout.NORTH, this);
 			
 	}
 	public JPanel getpnlAccount(){
@@ -320,20 +365,20 @@ public class UserView extends BaseView {
 		this.txtPassword = txtPassword;
 	}
 
-	public JLabel getLbStreetLine2() {
-		return lbStreetLine2;
+	public JLabel getLblDate() {
+		return lblDate;
 	}
 
-	public void setLbStreetLine2(JLabel lbStreetLine2) {
-		this.lbStreetLine2 = lbStreetLine2;
+	public void setLblDate(JLabel lblDate) {
+		this.lblDate = lblDate;
 	}
 
-	public JTextField getTxtStreetLine2() {
-		return txtStreetLine2;
+	public JTextField getTxtDate() {
+		return txtDate;
 	}
 
-	public void setTxtStreetLine2(JTextField txtStreetLine2) {
-		this.txtStreetLine2 = txtStreetLine2;
+	public void setTxtDate(JFormattedTextField txtDate) {
+		this.txtDate = txtDate;
 	}
 
 	public JCheckBox getCBUseCredentials() {
@@ -350,6 +395,17 @@ public class UserView extends BaseView {
 
 	public void setPnlOptions(JPanel pnlOptions) {
 		this.pnlOptions = pnlOptions;
+	}
+	
+	private MaskFormatter createFormatter(String s) {
+	    MaskFormatter formatter = null;
+	    try {
+	        formatter = new MaskFormatter(s);
+	    } catch (java.text.ParseException exc) {
+	        System.err.println("formatter is bad: " + exc.getMessage());
+	        System.exit(-1);
+	    }
+	    return formatter;
 	}
 	
 
