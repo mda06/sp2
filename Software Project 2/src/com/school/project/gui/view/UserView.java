@@ -20,7 +20,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-import javax.swing.text.MaskFormatter;
 
 public class UserView extends BaseView {
 	private static final long serialVersionUID = 1L;

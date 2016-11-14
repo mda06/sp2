@@ -11,11 +11,11 @@ public class TestAddress {
 	int check = 1; //1 = true, 0 = false
 	
 	public static Address getFirstAddress(){
-		return new Address(1, "Zonnekouter 18", " ", "Dilbeek", 1700, "Belgium", false);
+		return new Address(1, "Zonnekouter 18", " ", "Dilbeek", "1700", "Belgium", false);
 	}
 	
 	public static Address getSecondAddress(){
-		return new Address(2, "Nijverheidskaai 170", "Bus 5", "Anderlecht", 1070, "Belgium", false);
+		return new Address(2, "Nijverheidskaai 170", "Bus 5", "Anderlecht", "1070", "Belgium", false);
 	}
 	
 	@Test
@@ -24,7 +24,7 @@ public class TestAddress {
 		String streetline1 = "Zonnekouter 18";
 		String streetline2 = " ";
 		String city = "Dilbeek";
-		int postalCode = 1700;
+		String postalCode = "1700";
 		String country = "Belgium";
 		boolean archived = false;
 		
@@ -44,7 +44,7 @@ public class TestAddress {
 			a1.setStreetline1("Nijverheidskaai 170");
 			a1.setStreetline2("Bus 5");
 			a1.setCity("Anderlecht");
-			a1.setPostalCode(1070);
+			a1.setPostalCode("1070");
 			a1.setCountry("Belgium");
 			a1.setArchived(false);
 			

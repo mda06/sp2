@@ -93,8 +93,7 @@ public class UserController extends BaseController<UserView> implements Selected
 
 	private User getUserFromView() {
 		
-		Integer zipCode = Integer.parseInt(view.getTxtZipcode().getText());
-		Address address = new Address(0, view.getTxtStreetNumber().getText(), "",view.getTxtCity().getText(), (int) zipCode,"country",false);User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
+		Address address = new Address(0, view.getTxtStreetNumber().getText(), "",view.getTxtCity().getText(), view.getTxtZipcode().getText(),"country",false);User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
 
 		User.UserType userType = User.UserType.CUSTOMER;
 
@@ -160,9 +159,9 @@ public class UserController extends BaseController<UserView> implements Selected
 		inNameOf = user;
 		view.getTxtFirstName().setText(user.getFirstName());
 		view.getTxtLastName().setText(user.getLastName());
-		//view.getTxtStreetNumber().setText(user.getAddress());
+		view.getTxtStreetNumber().setText(user.getAddress().getStreetline1());
 		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
-		
+		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
 	}
 
 }
