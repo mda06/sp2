@@ -22,15 +22,15 @@ public class UserController extends BaseController<UserView>{
 	
 	public UserController() {
 		super(new UserView());
-		view.getpnlCredentials().setVisible(useCred);
+		view.getPnlCredentials().setVisible(useCred);
 		initOptions();
 	} 
 	
 	public void initOptions(){
-		view.getCBUseCredentials().addActionListener(new ActionListener() {
+		view.getcBUseCredentials().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				useCred = view.getCBUseCredentials().getModel().isSelected();
-				view.getpnlCredentials().setVisible(useCred);
+				useCred = view.getcBUseCredentials().getModel().isSelected();
+				view.getPnlCredentials().setVisible(useCred);
 			}
 		});
 		view.getBtnComplete().addActionListener(new ActionListener(){
@@ -92,7 +92,7 @@ public class UserController extends BaseController<UserView>{
 			view.getLblDate().setText(lh.getString("birthDate"));
 			view.getLbZipcode().setText(lh.getString("zipcode"));
 			view.getLbCity().setText(lh.getString("city"));
-			view.getCBUseCredentials().setText(lh.getString("makeAccount"));
+			view.getcBUseCredentials().setText(lh.getString("makeAccount"));
 			view.getBtnComplete().setText(lh.getString("save"));
 			
 			strErrorFillInTheBlanks = lh.getString("fillInTheBlanks");
@@ -100,10 +100,10 @@ public class UserController extends BaseController<UserView>{
 			
 			((TitledBorder)view.getPnlOptions().getBorder()).setTitle(lh.getString("options"));
 			view.getPnlOptions().repaint();
-			((TitledBorder)view.getpnlAccount().getBorder()).setTitle(lh.getString("account"));
-			view.getpnlAccount().repaint();
-			((TitledBorder)view.getpnlCredentials().getBorder()).setTitle(lh.getString("credentials"));
-			view.getpnlCredentials().repaint();
+			((TitledBorder)view.getPnlAccount().getBorder()).setTitle(lh.getString("account"));
+			view.getPnlAccount().repaint();
+			((TitledBorder)view.getPnlCredentials().getBorder()).setTitle(lh.getString("credentials"));
+			view.getPnlCredentials().repaint();
 		}
 	}
 
