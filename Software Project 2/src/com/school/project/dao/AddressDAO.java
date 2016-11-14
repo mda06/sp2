@@ -29,7 +29,7 @@ public class AddressDAO implements BaseDAO<Address> {
 		String streetline1 = res.getString("streetLine1");
 		String streetline2 = res.getString("streetLine2");
 		String city = res.getString("City");
-		int postalCode = res.getInt("postalCode");
+		String postalCode = res.getString("postalCode");
 		String country = res.getString("country");
 		boolean archived = res.getBoolean("archived");
 		return new Address(id, streetline1, streetline2, city, postalCode, country, archived);
@@ -47,7 +47,7 @@ public class AddressDAO implements BaseDAO<Address> {
 			st = connection.prepareStatement("INSERT INTO addresses(id, country, postalCode, city, streetLine1, streetLine2, archived)"
 					+ "VALUES (null, ?,?,?,?,?,?)", returnId);
 			st.setString(1, obj.getCountry());
-			st.setInt(2, obj.getPostalCode());
+			st.setString(2, obj.getPostalCode());
 			st.setString(3, obj.getCity());
 			st.setString(4, obj.getStreetline1());
 			st.setString(5, obj.getStreetline2());
@@ -138,7 +138,7 @@ public class AddressDAO implements BaseDAO<Address> {
 		try{
 			stat = connection.prepareStatement("UPDATE addresses SET country = ?, postalCode = ?, city = ?, streetLine1 = ?, streetLine2 = ?, archived = ? WHERE id = ?;");
 			stat.setString(1, obj.getCountry());
-			stat.setInt(2, obj.getPostalCode());
+			stat.setString(2, obj.getPostalCode());
 			stat.setString(3, obj.getCity());
 			stat.setString(4, obj.getStreetline1());
 			stat.setString(5, obj.getStreetline2());

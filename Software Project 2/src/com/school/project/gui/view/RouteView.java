@@ -2,7 +2,9 @@ package com.school.project.gui.view;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -14,15 +16,21 @@ import javax.swing.JTable;
 import javax.swing.SpringLayout;
 import javax.swing.text.MaskFormatter;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import com.school.project.gui.model.DateRouteFormatter;
 import com.school.project.gui.view.custom.AutoComboBox;
 
 public class RouteView extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private AutoComboBox txtDeparture, txtArrival;
 	private JLabel lbDeparture, lbArrival, lbUur, lbDate;
-	private JRadioButton rbSingle, rbReturn, rbDeparture, rbArrival;
+	private JRadioButton rbDeparture, rbArrival;
 	private JButton btnShowConnections;
-	private JFormattedTextField txtUur, txtDate;
+	private JFormattedTextField txtUur;
+	private JDatePickerImpl datePicker;
 	private JTable tblConnection;
 
 	public RouteView() {
@@ -32,38 +40,30 @@ public class RouteView extends BaseView {
 	}
 
 	private void initLayout() {
-		// Datum van vandaag
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = new Date();
 		// Huidig uur
 		DateFormat houreFormat = new SimpleDateFormat("HH:mm");
 		Date hour = new Date();
-		//aanmaken objecten
+		// aanmaken objecten
 		txtDeparture = new AutoComboBox();
 		txtArrival = new AutoComboBox();
 		txtUur = new JFormattedTextField(createFormatter("##:##"));
 		txtUur.setColumns(4);
 		txtUur.setText(houreFormat.format(hour));
-		txtDate = new JFormattedTextField(createFormatter("##/##/####"));
-		txtDate.setColumns(8);
-		txtDate.setText(dateFormat.format(date));
+		UtilDateModel dateModel = new UtilDateModel();
+		Calendar cal = Calendar.getInstance();
+		dateModel.setValue(cal.getTime());
+		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, new Properties());
+		datePicker = new JDatePickerImpl(datePanel, new DateRouteFormatter());
+
 		lbDeparture = new JLabel("Departure:");
 		lbArrival = new JLabel("Arrival:");
 		lbUur = new JLabel("Uur:");
 		lbDate = new JLabel("Date: ");
-		rbSingle = new JRadioButton("Single");
-		rbReturn = new JRadioButton("Return");
 		rbDeparture = new JRadioButton("Departure");
 		rbArrival = new JRadioButton("Arrival");
 		tblConnection = new JTable();
 		JScrollPane scroll = new JScrollPane(tblConnection);
 		btnShowConnections = new JButton("Show Connections");
-
-		// buttongroup
-		ButtonGroup singleReturn = new ButtonGroup();
-		singleReturn.add(rbSingle);
-		singleReturn.add(rbReturn);
-		rbReturn.setSelected(true);
 
 		ButtonGroup deparArriv = new ButtonGroup();
 		deparArriv.add(rbArrival);
@@ -78,12 +78,10 @@ public class RouteView extends BaseView {
 		add(lbDeparture);
 		add(lbArrival);
 		add(lbUur);
-		add(rbSingle);
-		add(rbReturn);
 		add(rbDeparture);
 		add(rbArrival);
 		add(lbDate);
-		add(txtDate);
+		add(datePicker);
 		add(scroll);
 		add(btnShowConnections);
 
@@ -95,14 +93,10 @@ public class RouteView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, lbArrival, 105, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, lbDeparture, 30, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, lbDeparture, 65, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, rbSingle, 20, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, rbSingle, 140, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, rbReturn, 150, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, rbReturn, 140, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, lbDate, 30, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, lbDate, 185, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, txtDate, 70, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, txtDate, 180, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.NORTH, lbDate, 140, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, datePicker, 70, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, datePicker, 140, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, lbUur, 210, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, lbUur, 185, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, txtUur, 250, SpringLayout.WEST, this);
@@ -112,7 +106,7 @@ public class RouteView extends BaseView {
 		sp.putConstraint(SpringLayout.WEST, rbArrival, 320, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, rbArrival, 195, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, btnShowConnections, 250, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 240, SpringLayout.NORTH, this);	
+		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 240, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, btnShowConnections);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -30, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.EAST, scroll, -30, SpringLayout.EAST, this);
@@ -122,7 +116,6 @@ public class RouteView extends BaseView {
 	public void setTxtDeparture(AutoComboBox txtDeparture) {
 		this.txtDeparture = txtDeparture;
 	}
-	
 
 	public JTable getTblConnection() {
 		return tblConnection;
@@ -135,11 +128,12 @@ public class RouteView extends BaseView {
 	public void setTxtArrival(AutoComboBox txtArrival) {
 		this.txtArrival = txtArrival;
 	}
-	
-	public AutoComboBox getTxtDeparture(){
+
+	public AutoComboBox getTxtDeparture() {
 		return txtDeparture;
 	}
-	public AutoComboBox getTxtArrival(){
+
+	public AutoComboBox getTxtArrival() {
 		return txtArrival;
 	}
 
@@ -167,14 +161,9 @@ public class RouteView extends BaseView {
 		this.txtUur = txtUur;
 	}
 
-	public JFormattedTextField getTxtDate() {
-		return txtDate;
+	public JDatePickerImpl getTxtDate() {
+		return datePicker;
 	}
-
-	public void setTxtDate(JFormattedTextField txtDate) {
-		this.txtDate = txtDate;
-	}
-
 
 	public JLabel getLbDeparture() {
 		return lbDeparture;
@@ -192,22 +181,6 @@ public class RouteView extends BaseView {
 		this.lbArrival = lbArrival;
 	}
 
-	public JRadioButton getRbSingle() {
-		return rbSingle;
-	}
-
-	public void setRbSingle(JRadioButton rbSingle) {
-		this.rbSingle = rbSingle;
-	}
-
-	public JRadioButton getRbReturn() {
-		return rbReturn;
-	}
-
-	public void setRbReturn(JRadioButton rbReturn) {
-		this.rbReturn = rbReturn;
-	}
-
 	public JRadioButton getRbDeparture() {
 		return rbDeparture;
 	}
@@ -223,20 +196,20 @@ public class RouteView extends BaseView {
 	public void setRbArrival(JRadioButton rbArrival) {
 		this.rbArrival = rbArrival;
 	}
-	
-	public JButton getBtnShowConnections(){
+
+	public JButton getBtnShowConnections() {
 		return btnShowConnections;
 	}
-	
+
 	protected MaskFormatter createFormatter(String s) {
-	    MaskFormatter formatter = null;
-	    try {
-	        formatter = new MaskFormatter(s);
-	    } catch (java.text.ParseException exc) {
-	        System.err.println("formatter is bad: " + exc.getMessage());
-	        System.exit(-1);
-	    }
-	    return formatter;
+		MaskFormatter formatter = null;
+		try {
+			formatter = new MaskFormatter(s);
+		} catch (java.text.ParseException exc) {
+			System.err.println("formatter is bad: " + exc.getMessage());
+			System.exit(-1);
+		}
+		return formatter;
 	}
 
 }
