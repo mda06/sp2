@@ -72,6 +72,12 @@ public class UserController extends BaseController<UserView>{
 		}
 		return true;
 	}
+	
+	private User getUserFromView(){
+		
+		//User user = new User(0, view.get, type, firstName, lastName, dateOfBirth, archived)
+		return null;
+	}
 
 	
 	public void update(Observable o, Object arg) {
@@ -88,18 +94,6 @@ public class UserController extends BaseController<UserView>{
 			view.getLbCity().setText(lh.getString("city"));
 			view.getCBUseCredentials().setText(lh.getString("makeAccount"));
 			view.getBtnComplete().setText(lh.getString("save"));
-			
-			String[] userType = {"Admin", "Employee", "Customer"};
-			
-			DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) view.getCbUserType().getModel();
-			model.removeAllElements();
-			DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(userType);
-			view.getCbUserType().setModel( model2 );
-			
-			/*view.getCbUserType().addItem("this item was added in the controller");
-			view.getCbUserType().insertItemAt("banaan", 0);
-			view.getCbUserType().removeAll();
-			view.getCbUserType().remove(0);*/
 			
 			strErrorFillInTheBlanks = lh.getString("fillInTheBlanks");
 			strErrorMatchingPassword = lh.getString("matchingPasswords");
