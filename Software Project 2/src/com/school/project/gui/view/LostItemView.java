@@ -1,6 +1,7 @@
 package com.school.project.gui.view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -40,9 +41,7 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.WEST, btnSearch, -120, SpringLayout.EAST, pnlSearch);
 		sp.putConstraint(SpringLayout.EAST, txtSearch, -20, SpringLayout.WEST, btnSearch);
 		
-		pnlSearch.setBorder(BorderFactory.createTitledBorder("Search"));
 		pnlAdd = new JPanel();
-		pnlAdd.setBorder(BorderFactory.createTitledBorder("Add"));
 		pnlAdd.add(btnAdd = new JButton("Add a item"));
 		btnAdd.setPreferredSize(new Dimension(100, 30));
 		table = new JTable();	
@@ -58,7 +57,7 @@ public class LostItemView extends BaseView{
 		add(scroll);	
 		sp.putConstraint(SpringLayout.WEST, pnlSearch, 15, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlSearch, 5, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, pnlSearch, -150, SpringLayout.EAST, this);
+		sp.putConstraint(SpringLayout.EAST, pnlSearch, -200, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlSearch, 60, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlAdd, 15, SpringLayout.EAST, pnlSearch);
 		sp.putConstraint(SpringLayout.NORTH, pnlAdd, 0, SpringLayout.NORTH, pnlSearch);
@@ -68,6 +67,13 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, pnlSearch);
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, pnlAdd);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -15, SpringLayout.SOUTH, this);
+		
+		Font small = new Font("Arial", Font.PLAIN, 24);
+		
+		txtSearch.setFont(small);
+		btnSearch.setFont(small);
+		btnAdd.setFont(small);
+		table.setFont(small);
 	}
 	
 	public JButton getBtnAdd() {
