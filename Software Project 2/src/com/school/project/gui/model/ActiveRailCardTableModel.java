@@ -63,6 +63,9 @@ public class ActiveRailCardTableModel extends DefaultTableModel {
 	    
 	    return returnValue;
 	}
+	public void addActiveRailCard(ActiveRailCard item){
+		addRow(new Object[]{item});
+	}
 	
 	public ActiveRailCard getActiveRailCard(int rowIndex){
 		return ((ActiveRailCard)(((Vector<?>)getDataVector().elementAt(rowIndex)).elementAt(0)));

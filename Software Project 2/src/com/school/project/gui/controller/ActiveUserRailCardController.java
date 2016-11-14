@@ -2,19 +2,20 @@ package com.school.project.gui.controller;
 
 import java.util.Observable;
 
+import com.school.project.dao.ActiveRailCardDAO;
 import com.school.project.gui.model.ActiveRailCardTableModel;
 import com.school.project.gui.view.ActiveRailCardView;
+import com.school.project.model.ActiveRailCard;
 
 public class ActiveUserRailCardController extends BaseController<ActiveRailCardView>{
 	private ActiveRailCardTableModel tableModel;
-	private String strErrorAdd, strRemove;
 	
 	public ActiveUserRailCardController(){
 		super(new ActiveRailCardView());
 		tableModel = new ActiveRailCardTableModel();
 		view.getTable().setModel(tableModel);
 		view.getTable().setAutoCreateRowSorter(true);
-		
+		initActiveRailCardstoTable();
 		
 	}
 
@@ -24,4 +25,9 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 		
 	}
 	
+	public void initActiveRailCardstoTable(){
+		for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getAll()){
+			tableModel.addActiveRailCard(item);
+		}
+	}
 }
