@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 import com.school.project.dao.AddressDAO;
+import com.school.project.dao.UserCredentialsDAO;
 import com.school.project.dao.UserDAO;
 import com.school.project.gui.controller.listener.SelectedUserListener;
 import com.school.project.gui.view.UserView;
@@ -18,6 +19,7 @@ import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.Address;
 import com.school.project.model.User;
+import com.school.project.model.UserCredential;
 
 public class UserController extends BaseController<UserView> implements SelectedUserListener {
 
@@ -48,14 +50,19 @@ public class UserController extends BaseController<UserView> implements Selected
 		view.getBtnComplete().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean accInfoOk = checkAccountInfo();
-				if (accInfoOk) {
+				if (accInfoOk && !useCred) {
 					User newUser = getUserFromView();
 					AddressDAO.getInstance().add(newUser.getAddress());
 					UserDAO.getInstance().add(newUser);
-				}
-				if(useCred && checkUserCredentials()){
 					
 				}
+				else if(accInfoOk && useCred && checkUserCredentials()){
+					User newUser = getUserFromView();
+					AddressDAO.getInstance().add(newUser.getAddress());
+					UserDAO.getInstance().add(newUser);
+					UserCredentialsDAO.getInstance().add(newUser.getCredentials());
+				}
+				
 			}
 		});
 	}
@@ -102,12 +109,19 @@ public class UserController extends BaseController<UserView> implements Selected
 			User user = new User(0, gender, userType, view.getTxtFirstName().getText(), view.getTxtLastName().getText(),
 					date, false);
 			user.setAddress(address);
+			
+			if(useCred){
+				UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(),new String(view.getPfPassword().getPassword()), false);
+				user.setCredentials(userCred);
+			}
 			return user;
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(view.getPnlAccount(), "Fill in a valid date : dd/mm/yyyy");
 
 			return null;
 		}
+		
+		
 
 	}
 
