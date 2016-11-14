@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
@@ -87,9 +88,18 @@ public class UserController extends BaseController<UserView>{
 			view.getLbCity().setText(lh.getString("city"));
 			view.getCBUseCredentials().setText(lh.getString("makeAccount"));
 			view.getBtnComplete().setText(lh.getString("save"));
-			//view.getCBUseCredentials().removeAll();
-			view.getCbUserType().addItem("this item was added in the controller");
 			
+			String[] userType = {"Admin", "Employee", "Customer"};
+			
+			DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) view.getCbUserType().getModel();
+			model.removeAllElements();
+			DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(userType);
+			view.getCbUserType().setModel( model2 );
+			
+			/*view.getCbUserType().addItem("this item was added in the controller");
+			view.getCbUserType().insertItemAt("banaan", 0);
+			view.getCbUserType().removeAll();
+			view.getCbUserType().remove(0);*/
 			
 			strErrorFillInTheBlanks = lh.getString("fillInTheBlanks");
 			strErrorMatchingPassword = lh.getString("matchingPasswords");
