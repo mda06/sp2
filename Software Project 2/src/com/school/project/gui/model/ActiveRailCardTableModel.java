@@ -55,7 +55,7 @@ public class ActiveRailCardTableModel extends DefaultTableModel {
 	    	returnValue = getActiveRailCard(rowIndex).getValidTo();
 	    	break;
 	    case COLUMN_SOLD_BY_USER:
-	    	returnValue = getActiveRailCard(rowIndex).getUser().getFirstName() + "/n" + getActiveRailCard(rowIndex).getUser().getLastName();
+	    	returnValue = getActiveRailCard(rowIndex).getUser().getFirstName() + " " + getActiveRailCard(rowIndex).getUser().getLastName();
 	    	break;
 	    default:
 	    	throw new IllegalArgumentException("Invalid column index");	
