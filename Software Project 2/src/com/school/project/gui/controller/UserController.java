@@ -2,27 +2,35 @@ package com.school.project.gui.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.Caret;
 
+import com.school.project.gui.controller.listener.SelectedUserListener;
 import com.school.project.gui.controller.runnable.RouteConnectionRunnable;
 import com.school.project.gui.view.UserView;
 import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.User;
+import com.school.project.util.DateUtil;
 import com.school.project.dao.UserDAO;
 
-public class UserController extends BaseController<UserView>{
+public class UserController extends BaseController<UserView> implements SelectedUserListener{
 	
 	private Boolean useCred = false;
 	private String strErrorFillInTheBlanks, strErrorMatchingPassword;
+	private SelectUserController selectUserController;
+	private User user, inNameOf;
 	
 	public UserController() {
 		super(new UserView());
+		//null
 		view.getPnlCredentials().setVisible(useCred);
 		initOptions();
+		selectUserController = new SelectUserController(this);
 	} 
 	
 	public void initOptions(){
@@ -34,6 +42,8 @@ public class UserController extends BaseController<UserView>{
 		});
 		view.getBtnComplete().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				//if(user == null){createNewUser}()
+				//user kom  vd select
 				boolean accInfoOk = checkAccountInfo();
 				if(accInfoOk && !useCred){
 					//User newUser = new User( )
@@ -45,6 +55,11 @@ public class UserController extends BaseController<UserView>{
 						
 					}
 				}
+			}
+		});
+		view.getBtnSelectUser().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				selectUserController.showPopup();
 			}
 		});
 	}
@@ -103,4 +118,12 @@ public class UserController extends BaseController<UserView>{
 		}
 	}
 
+	@Override
+	public void userIsSelected(User user) {
+		inNameOf = user;
+		view.getTxtFirstName().setText(user.getFirstName());
+		view.getTxtLastName().setText(user.getLastName());
+		//view.getTxtStreetNumber().setText(user.getAddress());
+		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
+	}
 }
