@@ -139,5 +139,10 @@ public class LostItemController extends BaseController<LostItemView> {
 		    	}
 		    }
 		});
+		view.getBtnSearch().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JOptionPane.showConfirmDialog(view.getPnlSearch(), "het werkt");
+			}
+		});
 	}
 }
