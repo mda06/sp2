@@ -153,7 +153,7 @@ public class PaymentRailcardPanel extends JPanel {
 
 		pnlRight.add(btnSelectUser = new JButton("User"));
 
-		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 30, SpringLayout.NORTH, pnlRight);
+		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 50, SpringLayout.NORTH, pnlRight);
 		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -30, SpringLayout.EAST, pnlRight);
 		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 0, SpringLayout.NORTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, lblSoldBy, -30, SpringLayout.WEST, txtSoldBy);
@@ -172,15 +172,16 @@ public class PaymentRailcardPanel extends JPanel {
 		sp.putConstraint(SpringLayout.EAST, txtValidTo, 0, SpringLayout.EAST, txtValidFrom);
 		sp.putConstraint(SpringLayout.NORTH, lblValidTo, 0, SpringLayout.NORTH, txtValidTo);
 		sp.putConstraint(SpringLayout.EAST, lblValidTo, -10, SpringLayout.WEST, txtValidTo);
+		
+		sp.putConstraint(SpringLayout.EAST, btnSelectUser, 0, SpringLayout.EAST, txtSoldBy);
+		sp.putConstraint(SpringLayout.SOUTH, btnSelectUser, -10, SpringLayout.NORTH, txtSoldBy);
+		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 0, SpringLayout.WEST, lblInNameOf);
 
 		add(pnlLeft);
 		add(pnlRight, BorderLayout.EAST);
 		JPanel pnlBack = new JPanel();
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
-		
-
-//		private ButtonGroup timePeriod;
 		
 		Font small = new Font("Arial", Font.PLAIN, 24);
 		Font big = new Font("Arial", Font.PLAIN, 30);

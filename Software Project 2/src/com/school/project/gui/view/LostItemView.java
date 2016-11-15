@@ -36,15 +36,14 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.SOUTH, txtSearch, 0, SpringLayout.SOUTH, pnlSearch);
 		sp.putConstraint(SpringLayout.NORTH, btnSearch, 0, SpringLayout.NORTH, txtSearch);
 		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearch);
-		sp.putConstraint(SpringLayout.WEST, btnSearch, -120, SpringLayout.EAST, pnlSearch);
+		sp.putConstraint(SpringLayout.WEST, btnSearch, -150, SpringLayout.EAST, pnlSearch);
 		sp.putConstraint(SpringLayout.EAST, txtSearch, -20, SpringLayout.WEST, btnSearch);
+		
 		
 		pnlAdd = new JPanel();
 		pnlAdd.add(btnAdd = new JButton("Add a item"));
 		table = new JTable();	
-		JScrollPane scroll = new JScrollPane(table);
-		
-		
+		JScrollPane scroll = new JScrollPane(table);		
 
 		sp = new SpringLayout();
 
@@ -57,13 +56,14 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.EAST, pnlSearch, -200, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlSearch, 60, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlAdd, 15, SpringLayout.EAST, pnlSearch);
-		sp.putConstraint(SpringLayout.NORTH, pnlAdd, 0, SpringLayout.NORTH, pnlSearch);
-		sp.putConstraint(SpringLayout.SOUTH, pnlAdd, 0, SpringLayout.SOUTH, pnlSearch);
+		sp.putConstraint(SpringLayout.NORTH, pnlAdd, 5, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.SOUTH, pnlAdd, 60, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.EAST, pnlAdd, -15, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, pnlSearch);
 		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, pnlSearch);
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, pnlAdd);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -15, SpringLayout.SOUTH, this);
+		
 		
 		Font small = new Font("Arial", Font.PLAIN, 24);
 		
@@ -71,6 +71,8 @@ public class LostItemView extends BaseView{
 		btnSearch.setFont(small);
 		btnAdd.setFont(small);
 		table.setFont(small);
+		table.setRowHeight(30);
+		table.getTableHeader().setFont(small);
 	}
 	
 	public JButton getBtnAdd() {
