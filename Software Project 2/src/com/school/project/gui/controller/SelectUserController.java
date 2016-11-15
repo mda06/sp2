@@ -35,6 +35,14 @@ public class SelectUserController implements Observer{
 		initEvents();
 	}
 	
+	private void selectEvent(){
+			if(list != null) {
+				User user = tableModel.getUserAt(popup.getTblUsers().getSelectedRow());
+				list.userIsSelected(user);
+				popup.dispose();
+			}
+	}
+	
 	private void initEvents() {
 		ActionListener searchAction = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -50,23 +58,16 @@ public class SelectUserController implements Observer{
 		
 		ActionListener selectAction = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(list != null) {
-					User user = tableModel.getUserAt(popup.getTblUsers().getSelectedRow());
-					list.userIsSelected(user);
-					popup.dispose();
-				}
+				selectEvent();	
 			}
+			
 		};
 		popup.getBtnSelect().addActionListener(selectAction);
 		
 		MouseListener selectDoubleClick = new MouseAdapter(){
 			public void mouseClicked(MouseEvent me){
 				if(me.getClickCount() == 2){
-					if(list != null) {
-						User user = tableModel.getUserAt(popup.getTblUsers().getSelectedRow());
-						list.userIsSelected(user);
-						popup.dispose();
-					}
+					selectEvent();
 				}
 			}
 		};
