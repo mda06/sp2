@@ -66,7 +66,7 @@
 		<value lang="en"> Lost Objects </value>
 	</string>
 	<string name = "RailCard">
-		<value lang="nl"> Abonnement </value>
+		<value lang="nl"> Abonnementen </value>
 		<value lang="fr"> Abonnements </value>
 		<value lang="en"> Railcards </value>
 	</string>
@@ -234,5 +234,47 @@
 		<value lang="en">Press [Enter] to view all</value>
 		<value lang="nl">Druk op [Enter] om alles te tonen</value>
 		<value lang="fr">Pressez [Bouton Entrée] pour voir tout</value>
+	</string>
+	
+	<string name="ActiveRailCard">
+		<value lang="en">Active Railcards</value>
+		<value lang="nl">Actieve abonnementen</value>
+		<value lang="fr">Abonnements actif</value>
+	</string>
+	
+	<string name="selectUser">
+		<value lang="en">Select user</value>
+		<value lang="nl">Kies gebruiker</value>
+		<value lang="fr">Choisis un utilisateur</value>
+	</string>
+	<string name="selectedUser">
+		<value lang="en">Selected user:</value>
+		<value lang="nl">Gekozen gebruiker:</value>
+		<value lang="fr">Utilisateur sélectionné:</value>
+	</string>
+	<string name="from">
+		<value lang="en">From</value>
+		<value lang="nl">Van</value>
+		<value lang="fr">De</value>
+	</string>
+	<string name="to">
+		<value lang="en">To</value>
+		<value lang="nl">Naar:</value>
+		<value lang="fr">à</value>
+	</string>
+	<string name="validFrom">
+		<value lang="en">Valid from</value>
+		<value lang="nl">Geldig van</value>
+		<value lang="fr">Date de début</value>
+	</string>
+	<string name="validTo">
+		<value lang="en">Valid to</value>
+		<value lang="nl">Geldig tot</value>
+		<value lang="fr">Date d'expiration</value>
+	</string>
+	<string name="soldByUser">
+		<value lang="en">Sold by user</value>
+		<value lang="nl">Verkocht door gebruiker</value>
+		<value lang="fr">Vendu par l'utilisateur</value>
 	</string>
 	</resources>
