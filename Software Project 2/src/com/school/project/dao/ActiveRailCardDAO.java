@@ -202,14 +202,15 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 	}
 
 	// op id zoeken van user in ActiveUserRailCardController
-	public List<ActiveRailCard> getByName(int soldByUser){
+	public List<ActiveRailCard> getByName(int inNameOf){
 		List<ActiveRailCard> lst = new ArrayList<ActiveRailCard>();
 		Connection connection = DatabaseHandler.getInstance().getConnection();
 		PreparedStatement stat = null;
 		ResultSet res = null;
 		
 		try{
-			stat = connection.prepareStatement("SELECT * FROM activeRailCards WHERE archived = 0 AND soldByUser = ?;");
+			stat = connection.prepareStatement("SELECT * FROM activeRailcards WHERE archived = 0 AND inNameOf = ?;");
+			stat.setInt(1, inNameOf);
 			res = stat.executeQuery();
 			while(res.next()){
 				lst.add(getByResultSet(res));

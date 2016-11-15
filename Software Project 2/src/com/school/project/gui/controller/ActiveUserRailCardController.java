@@ -53,21 +53,7 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 	public void initEvents(){
 		view.getBtnSelectUser().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				selectUserController.showPopup();
-				 
-				for(int i = tableModel.getRowCount() - 1; i >= 0; i--){
-					tableModel.removeRow(i);
-				}
-				
-				
-				/*
-				//	Toevoegen van ActiveRailCards verkocht door geselecteerde user	
-				if(!view.getLblUser().getText().isEmpty()){
-					for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getByName(9)){
-						tableModel.addActiveRailCard(item);
-					}
-				}
-				*/
+				selectUserController.showPopup();				
 			}
 		});
 	}
@@ -76,5 +62,14 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 	public void userIsSelected(User user) {
 		inNameOf = user;
 		view.getLblUser().setText(user.getFirstName() + " " + user.getLastName());
+		
+		for(int i = tableModel.getRowCount() - 1; i >= 0; i--){
+			tableModel.removeRow(i);
+		}
+
+		//	Toevoegen van ActiveRailCards verkocht door geselecteerde user	
+			for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getByName(user.getId())){
+				tableModel.addActiveRailCard(item);
+			}
 	}
 }
