@@ -236,8 +236,8 @@
 		<value lang="fr">Pressez [Bouton Entrée] pour voir tout</value>
 	</string>
 	
-	<string name="activeRailCards">
-		<value lang="en">Active railcards</value>
+	<string name="ActiveRailCard">
+		<value lang="en">Active Railcards</value>
 		<value lang="nl">Actieve abonnementen</value>
 		<value lang="fr">Abonnements actif</value>
 	</string>
