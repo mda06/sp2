@@ -127,6 +127,7 @@ public class UserController extends BaseController<UserView> implements Selected
 	public void update(Observable o, Object arg) {
 		if (o instanceof LanguageObservable) {
 			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			view.getBtnSelectUser().setText(lh.getString("selectUser"));
 			view.getLbFirstName().setText(lh.getString("firstName"));
 			view.getLbLastName().setText(lh.getString("lastName"));
 			view.getLbUsername().setText(lh.getString("username"));

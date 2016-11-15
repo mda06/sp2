@@ -25,8 +25,8 @@ public class ActiveRailCardView extends BaseView {
 		SpringLayout sp = new SpringLayout();
 		setLayout(sp);
 		
-		btnSelectUser = new JButton("Select user");
-		lblSelectUser = new JLabel("Selected user:");
+		btnSelectUser = new JButton();
+		lblSelectUser = new JLabel();
 		lblUser = new JLabel();
 		
 		add(btnSelectUser);
