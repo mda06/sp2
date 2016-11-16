@@ -93,7 +93,7 @@ public class UserController extends BaseController<UserView> implements Selected
 	}
 
 	private User getUserFromView() {
-		
+		//TODO :Unhandled exceptions!
 		Integer zipCode = Integer.parseInt(view.getTxtZipcode().getText());
 		Address address = new Address(0, view.getTxtStreetNumber().getText(), "",view.getTxtCity().getText(), (int) zipCode,"country",false);User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
 
