@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
@@ -25,11 +27,34 @@ public class UserController extends BaseController<UserView> implements Selected
 
 	private Boolean useCred = false;
 	private String strErrorFillInTheBlanks, strErrorMatchingPassword;
-	private User user, inNameOf;
+	private int connectedUserAuthlvl;
+	private ArrayList<String> availableTypes;
+	private User inNameOf;
 	private SelectUserController selectUserController;
 
-	public UserController() {
+	public UserController(User connectedUser) {
 		super(new UserView());
+		availableTypes = new ArrayList<>();
+
+		// Respect userType order! (0=Cust, 1=Emp, 2=Admin) Do not change
+		if (connectedUser != null) {
+			User.UserType connectedUserType = connectedUser.getType();
+			switch (connectedUserType) {
+			case CUSTOMER:
+				connectedUserAuthlvl = 0;
+				break;
+			case EMPLOYEE:
+				availableTypes.add("Customer");
+				connectedUserAuthlvl = 1;
+				break;
+			case ADMIN:
+				availableTypes.add("Customer");
+				availableTypes.add("Employee");
+				availableTypes.add("Admin");
+				connectedUserAuthlvl = 2;
+				break;
+			}
+		}
 		view.getPnlCredentials().setVisible(useCred);
 		initOptions();
 		selectUserController = new SelectUserController(this);
@@ -54,15 +79,14 @@ public class UserController extends BaseController<UserView> implements Selected
 					User newUser = getUserFromView();
 					AddressDAO.getInstance().add(newUser.getAddress());
 					UserDAO.getInstance().add(newUser);
-					
-				}
-				else if(accInfoOk && useCred && checkUserCredentials()){
+
+				} else if (accInfoOk && useCred && checkUserCredentials()) {
 					User newUser = getUserFromView();
 					AddressDAO.getInstance().add(newUser.getAddress());
 					UserDAO.getInstance().add(newUser);
 					UserCredentialsDAO.getInstance().add(newUser.getCredentials());
 				}
-				
+
 			}
 		});
 	}
@@ -84,7 +108,7 @@ public class UserController extends BaseController<UserView> implements Selected
 			JOptionPane.showMessageDialog(view.getPnlAccount(), strErrorFillInTheBlanks);
 			return false;
 		}
-		if (!Arrays.equals(view.getPfPassword().getPassword(),view.getPfPasswordControl().getPassword())) {
+		if (!Arrays.equals(view.getPfPassword().getPassword(), view.getPfPasswordControl().getPassword())) {
 			JOptionPane.showMessageDialog(view.getPnlAccount(), strErrorMatchingPassword);
 			return false;
 		}
@@ -92,10 +116,23 @@ public class UserController extends BaseController<UserView> implements Selected
 	}
 
 	private User getUserFromView() {
-		
-		Address address = new Address(0, view.getTxtStreetNumber().getText(), "",view.getTxtCity().getText(), view.getTxtZipcode().getText(),"country",false);User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
+		// TODO: Lacks country and streetline2
+		Address address = new Address(0, view.getTxtStreetNumber().getText(), "", view.getTxtCity().getText(),
+				view.getTxtZipcode().getText(), "country", false);
+		User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
+		User.UserType userType;
 
-		User.UserType userType = User.UserType.CUSTOMER;
+		// No need to check user authentication level, handled in constructor.
+		switch (view.getCbUserType().getSelectedIndex()) {
+		case 1:
+			userType = User.UserType.CUSTOMER;
+			break;
+		case 2:
+			userType = User.UserType.ADMIN;
+			break;
+		default:
+			userType = User.UserType.EMPLOYEE;
+		}
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		formatter.setLenient(false);
@@ -108,9 +145,10 @@ public class UserController extends BaseController<UserView> implements Selected
 			User user = new User(0, gender, userType, view.getTxtFirstName().getText(), view.getTxtLastName().getText(),
 					date, false);
 			user.setAddress(address);
-			
-			if(useCred){
-				UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(),new String(view.getPfPassword().getPassword()), false);
+
+			if (useCred) {
+				UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(),
+						new String(view.getPfPassword().getPassword()), false);
 				user.setCredentials(userCred);
 			}
 			return user;
@@ -119,8 +157,6 @@ public class UserController extends BaseController<UserView> implements Selected
 
 			return null;
 		}
-		
-		
 
 	}
 
@@ -144,7 +180,10 @@ public class UserController extends BaseController<UserView> implements Selected
 			strErrorMatchingPassword = lh.getString("matchingPasswords");
 
 			// Filling the userType combobox:
-			// view.getCbUserType().addItem("Admin");
+			view.getCbUserType().removeAllItems();
+			for (int i = 0; i < availableTypes.size(); i++) {
+				view.getCbUserType().addItem(lh.getString(availableTypes.get(i)));
+			}
 
 			((TitledBorder) view.getPnlOptions().getBorder()).setTitle(lh.getString("options"));
 			view.getPnlOptions().repaint();

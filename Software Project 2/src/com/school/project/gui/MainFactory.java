@@ -80,7 +80,7 @@ public class MainFactory implements ConnectionListener {
 		addCard(base, new TicketController(connectedUser));
 		addCard(base, new RailCardController(connectedUser));
 		addCard(base, new RouteController());
-		addCard(base, new UserController());
+		addCard(base, new UserController(connectedUser));
 		addCard(base, new ActiveUserRailCardController());
 	}
 

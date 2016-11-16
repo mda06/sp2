@@ -277,4 +277,19 @@
 		<value lang="nl">Verkocht door gebruiker</value>
 		<value lang="fr">Vendu par l'utilisateur</value>
 	</string>
+	<string name="Customer">
+		<value lang="en">Customer</value>
+		<value lang="nl">Klant</value>
+		<value lang="fr">Client</value>
+	</string>
+	<string name="Employee">
+		<value lang="en">Employee</value>
+		<value lang="nl">Werknemer</value>
+		<value lang="fr">Employé</value>
+	</string>
+	<string name="Admin">
+		<value lang="en">Admin</value>
+		<value lang="nl">Admin</value>
+		<value lang="fr">Admin</value>
+	</string>
 	</resources>
