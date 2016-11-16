@@ -24,6 +24,10 @@ public class RouteConnectionRunnable implements Runnable {
 		String departure = view.getTxtDeparture().getText();
 		String arrival = view.getTxtArrival().getText();
 		Date selectedDate = (Date) view.getTxtDate().getModel().getValue();
+		if(selectedDate == null){
+			JOptionPane.showMessageDialog(view, "Please fill in the blanks!");
+			return;
+		}
 		String date = new SimpleDateFormat("dd/MM/yyyy").format(selectedDate);
 		System.out.println(date);
 		String hour = view.getTxtUur().getText();

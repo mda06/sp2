@@ -37,8 +37,9 @@ public class PaymentPanel extends JPanel {
 		JPanel pnlLeft = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		lblName = new JLabel("Name: ");
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.BOTH;
 		c.ipady = 35;
+		c.ipadx = 15;
 		c.weightx = .5;
 		c.gridx = 0;
 		c.gridy = 0;
@@ -85,7 +86,7 @@ public class PaymentPanel extends JPanel {
 		c.gridx = 1;
 		c.weightx = 1;
 		pnlLeft.add(txtPrice, c);
-		c.gridx = 0;
+		c.gridx = 1;
 		c.gridy = 5;
 		btnPay = new JButton("Pay");
 		pnlLeft.add(btnPay, c);
@@ -102,6 +103,7 @@ public class PaymentPanel extends JPanel {
 		pnlRight.add(lblValidTo = new JLabel("Valid by: "));
 		pnlRight.add(txtValidTo = new JTextField());
 		txtValidTo.setEditable(false);
+		
 		
 		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 30, SpringLayout.NORTH, pnlRight);
 		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -30, SpringLayout.EAST, pnlRight);
@@ -122,32 +124,31 @@ public class PaymentPanel extends JPanel {
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
 		
-//		private JButton btnBack, btnPay;
-//		private JTextField txtName, txtSoldBy, txtValidFrom, txtValidTo, txtPrice;
-//		private JTextArea txtDesc;
-//		private AutoComboBox txtFromStation, txtToStation;
-//		private JLabel lblName, lblDesc, lblSoldBy, lblValidFrom, lblValidTo, lblPrice, lblFromStation, lblToStation;
-		
-		Font klein = new Font("Arial", Font.PLAIN, 24);
-		Font groot = new Font("Arial", Font.PLAIN, 30);
+		Font small = new Font("Arial", Font.PLAIN, 24);
+		Font big = new Font("Arial", Font.PLAIN, 30);
 		
 		btnBack.setPreferredSize(new Dimension(200, 70));
-		txtName.setFont(groot);
-		txtSoldBy.setFont(klein);
-		lblSoldBy.setFont(klein);
-		txtValidFrom.setFont(klein);
-		txtValidTo.setFont(klein);
-		txtPrice.setFont(groot);
-		btnBack.setFont(groot);
-		lblValidFrom.setFont(klein);
-		lblValidTo.setFont(klein);
-		lblFromStation.setFont(klein);
-		lblToStation.setFont(klein);
-		lblDesc.setFont(klein);
-		lblPrice.setFont(klein);
-		lblName.setFont(klein);
-		btnPay.setFont(klein);
 		txtDesc.setFont(new Font("Arial", Font.PLAIN,18));
+		
+		txtName.setFont(big);
+		txtPrice.setFont(big);
+		btnBack.setFont(big);
+		
+		txtSoldBy.setFont(small);
+		lblSoldBy.setFont(small);
+		txtValidFrom.setFont(small);
+		txtValidTo.setFont(small);
+		lblValidFrom.setFont(small);
+		lblValidTo.setFont(small);
+		lblFromStation.setFont(small);
+		lblToStation.setFont(small);
+		lblDesc.setFont(small);
+		lblPrice.setFont(small);
+		lblName.setFont(small);
+		btnPay.setFont(small);
+		txtFromStation.setFont(small); 
+		txtToStation.setFont(small);
+		
 		
 		
 		

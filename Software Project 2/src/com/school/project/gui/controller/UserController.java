@@ -60,7 +60,6 @@ public class UserController extends BaseController<UserView> implements Selected
 					User newUser = getUserFromView();
 					AddressDAO.getInstance().add(newUser.getAddress());
 					UserDAO.getInstance().add(newUser);
-					newUser.getCredentials().setUserId(newUser.getId());
 					UserCredentialsDAO.getInstance().add(newUser.getCredentials());
 				}
 				
@@ -93,9 +92,8 @@ public class UserController extends BaseController<UserView> implements Selected
 	}
 
 	private User getUserFromView() {
-		//TODO :Unhandled exceptions!
-		Integer zipCode = Integer.parseInt(view.getTxtZipcode().getText());
-		Address address = new Address(0, view.getTxtStreetNumber().getText(), "",view.getTxtCity().getText(), (int) zipCode,"country",false);User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
+		
+		Address address = new Address(0, view.getTxtStreetNumber().getText(), "",view.getTxtCity().getText(), view.getTxtZipcode().getText(),"country",false);User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
 
 		User.UserType userType = User.UserType.CUSTOMER;
 
@@ -113,7 +111,6 @@ public class UserController extends BaseController<UserView> implements Selected
 			
 			if(useCred){
 				UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(),new String(view.getPfPassword().getPassword()), false);
-				
 				user.setCredentials(userCred);
 			}
 			return user;
@@ -130,6 +127,7 @@ public class UserController extends BaseController<UserView> implements Selected
 	public void update(Observable o, Object arg) {
 		if (o instanceof LanguageObservable) {
 			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			view.getBtnSelectUser().setText(lh.getString("selectUser"));
 			view.getLbFirstName().setText(lh.getString("firstName"));
 			view.getLbLastName().setText(lh.getString("lastName"));
 			view.getLbUsername().setText(lh.getString("username"));
@@ -162,9 +160,9 @@ public class UserController extends BaseController<UserView> implements Selected
 		inNameOf = user;
 		view.getTxtFirstName().setText(user.getFirstName());
 		view.getTxtLastName().setText(user.getLastName());
-		//view.getTxtStreetNumber().setText(user.getAddress());
+		view.getTxtStreetNumber().setText(user.getAddress().getStreetline1());
 		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
-		
+		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
 	}
 
 }

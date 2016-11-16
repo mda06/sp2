@@ -1,6 +1,7 @@
 package com.school.project.gui.view;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;

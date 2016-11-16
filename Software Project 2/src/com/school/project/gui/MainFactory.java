@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.school.project.dao.DatabaseHandler;
+import com.school.project.gui.controller.ActiveUserRailCardController;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.FrameController;
 import com.school.project.gui.controller.LoginController;
@@ -80,6 +81,7 @@ public class MainFactory implements ConnectionListener {
 		addCard(base, new RailCardController(connectedUser));
 		addCard(base, new RouteController());
 		addCard(base, new UserController());
+		addCard(base, new ActiveUserRailCardController());
 	}
 
 	private void addCard(FrameController base, BaseController<?> bc) {

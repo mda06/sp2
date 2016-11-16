@@ -1,5 +1,6 @@
 package com.school.project.gui.view;
 
+import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -85,9 +86,9 @@ public class RouteView extends BaseView {
 		add(scroll);
 		add(btnShowConnections);
 
-		sp.putConstraint(SpringLayout.WEST, txtDeparture, 100, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, txtDeparture, 200, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, txtDeparture, 60, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, txtArrival, 100, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, txtArrival, 200, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, txtArrival, 100, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, lbArrival, 30, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, lbArrival, 105, SpringLayout.NORTH, this);
@@ -95,22 +96,44 @@ public class RouteView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, lbDeparture, 65, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, lbDate, 30, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, lbDate, 140, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, datePicker, 70, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, datePicker, 200, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, datePicker, 140, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, lbUur, 210, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, lbUur, 30, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, lbUur, 185, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, txtUur, 250, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, txtUur, 0, SpringLayout.WEST, txtDeparture);
 		sp.putConstraint(SpringLayout.NORTH, txtUur, 180, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, rbDeparture, 320, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, rbDeparture, 175, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, rbArrival, 320, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, rbArrival, 195, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, btnShowConnections, 250, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 240, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.WEST, rbDeparture, 50, SpringLayout.EAST, txtUur);
+		sp.putConstraint(SpringLayout.NORTH, rbDeparture, 0, SpringLayout.NORTH, txtUur);
+		sp.putConstraint(SpringLayout.WEST, rbArrival, 200, SpringLayout.WEST, rbDeparture);
+		sp.putConstraint(SpringLayout.NORTH, rbArrival, 0, SpringLayout.NORTH, rbDeparture);
+		sp.putConstraint(SpringLayout.WEST, btnShowConnections, 100, SpringLayout.EAST, txtDeparture);
+		sp.putConstraint(SpringLayout.EAST, btnShowConnections, 500, SpringLayout.WEST, btnShowConnections);
+		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 0, SpringLayout.NORTH, txtDeparture);
+		sp.putConstraint(SpringLayout.SOUTH, btnShowConnections, 0, SpringLayout.SOUTH, rbArrival);
 		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, btnShowConnections);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -30, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.EAST, scroll, -30, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.WEST, scroll, 30, SpringLayout.WEST, this);
+		
+		Font small = new Font("Arial", Font.PLAIN, 24);
+		Font big = new Font("Arial", Font.PLAIN, 30);
+		
+		txtDeparture.setFont(small);
+		txtArrival.setFont(small);
+		lbDeparture.setFont(small);
+		lbArrival.setFont(small);
+		lbUur.setFont(small);
+		lbDate.setFont(small);
+		rbDeparture.setFont(small);
+		rbArrival.setFont(small);
+		txtUur.setFont(small);
+		datePicker.setFont(small);
+		tblConnection.setFont(small);
+		tblConnection.getTableHeader().setFont(small);
+		tblConnection.setRowHeight(30);
+		
+		btnShowConnections.setFont(big);
+		
 	}
 
 	public void setTxtDeparture(AutoComboBox txtDeparture) {

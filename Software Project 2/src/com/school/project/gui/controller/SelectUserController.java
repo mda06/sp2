@@ -2,6 +2,9 @@ package com.school.project.gui.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -32,26 +35,43 @@ public class SelectUserController implements Observer{
 		initEvents();
 	}
 	
+	private void selectEvent(){
+			if(list != null) {
+				User user = tableModel.getUserAt(popup.getTblUsers().getSelectedRow());
+				list.userIsSelected(user);
+				popup.dispose();
+			}
+	}
+	
 	private void initEvents() {
-		popup.getBtnSearch().addActionListener(new ActionListener() {
+		ActionListener searchAction = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				for(int i = tableModel.getRowCount() - 1; i >= 0; i--){
 					tableModel.removeRow(i);
 				}
-				
 				new Thread(runnable).start();
 			}
-		});
+		};
+		popup.getBtnSearch().addActionListener(searchAction);
+		popup.getTxtFirstName().addActionListener(searchAction);
+		popup.getTxtLastName().addActionListener(searchAction);
 		
-		popup.getBtnSelect().addActionListener(new ActionListener() {
+		ActionListener selectAction = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(list != null) {
-					User user = tableModel.getUserAt(popup.getTblUsers().getSelectedRow());
-					list.userIsSelected(user);
-					popup.dispose();
+				selectEvent();	
+			}
+			
+		};
+		popup.getBtnSelect().addActionListener(selectAction);
+		
+		MouseListener selectDoubleClick = new MouseAdapter(){
+			public void mouseClicked(MouseEvent me){
+				if(me.getClickCount() == 2){
+					selectEvent();
 				}
 			}
-		});
+		};
+		popup.getTblUsers().addMouseListener(selectDoubleClick);
 	}
 	
 	public void showPopup() {
