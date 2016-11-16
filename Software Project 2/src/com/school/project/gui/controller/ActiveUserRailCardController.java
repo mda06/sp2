@@ -16,7 +16,6 @@ import com.school.project.model.User;
 public class ActiveUserRailCardController extends BaseController<ActiveRailCardView> implements SelectedUserListener{
 	private ActiveRailCardTableModel tableModel;
 	private SelectUserController selectUserController;
-	private User inNameOf;
 	
 	public ActiveUserRailCardController(){
 		super(new ActiveRailCardView());
@@ -60,7 +59,6 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 
 	@Override
 	public void userIsSelected(User user) {
-		inNameOf = user;
 		view.getLblUser().setText(user.getFirstName() + " " + user.getLastName());
 		
 		for(int i = tableModel.getRowCount() - 1; i >= 0; i--){
@@ -68,8 +66,8 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 		}
 
 		//	Toevoegen van ActiveRailCards verkocht door geselecteerde user	
-			for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getByName(user.getId())){
-				tableModel.addActiveRailCard(item);
-			}
+		for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getByName(user.getId())){
+			tableModel.addActiveRailCard(item);
+		}
 	}
 }
