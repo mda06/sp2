@@ -259,6 +259,26 @@ public class UserController extends BaseController<UserView> implements Selected
 		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
 		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
 		view.getTxtCity().setText(user.getAddress().getCity());
+		boolean isMale = (user.getGender() == User.Gender.MALE);
+		view.getcBGenderM().setSelected(isMale);
+		view.getcBGenderM().setSelected(!isMale);
+		
+		connectedUserType = user.getType();
+		int index = 0;
+		switch (user.getType()) {
+		case CUSTOMER:
+			index = 0;
+			break;
+		case EMPLOYEE:
+			index = 1;
+			break;
+		case ADMIN:
+			index = 2;
+			break;
+		}
+
+		view.getCbUserType().setSelectedIndex(index);
+		
 	}
 
 }
