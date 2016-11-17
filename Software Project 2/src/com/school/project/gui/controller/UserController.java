@@ -162,6 +162,7 @@ public class UserController extends BaseController<UserView> implements Selected
 		view.getTxtStreetNumber().setText(user.getAddress().getStreetline1());
 		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
 		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
-	}
+		
+		}
 
 }
