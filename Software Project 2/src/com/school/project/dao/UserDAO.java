@@ -82,6 +82,9 @@ public class UserDAO implements BaseDAO<User>{
 				e.printStackTrace();
 			}
 		}
+		
+		if(obj.hasCredentials())
+			obj.getCredentials().setUserId(obj.getId());
 	}
 
 	@Override

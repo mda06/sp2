@@ -2,11 +2,11 @@ package com.school.project.gui.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -64,7 +64,6 @@ public class PaymentRailcardPanel extends JPanel {
 		pnlLeft.add(txtDesc, c);
 
 		JPanel pnlDepartures = new JPanel(new GridLayout(2, 2));
-		pnlDepartures.setBorder(BorderFactory.createTitledBorder("Departures"));
 		pnlDepartures.add(lblFromStation = new JLabel("From station: "));
 		pnlDepartures.add(txtFromStation = new AutoComboBox());
 		pnlDepartures.add(lblToStation = new JLabel("To station: "));
@@ -107,21 +106,21 @@ public class PaymentRailcardPanel extends JPanel {
 		pnlLeft.add(rdPricePerYear, c);
 
 		// Labels toevoegen
-		lblPricePerMonth = new JLabel("Test");
+		lblPricePerMonth = new JLabel("One Month");
 		c.weightx = .5;
 		c.gridx = 1;
 		c.gridy = 4;
 		c.gridheight = 1;
 		c.gridwidth = 1;
 		pnlLeft.add(lblPricePerMonth, c);
-		lblPricePer3Month = new JLabel("Test");
+		lblPricePer3Month = new JLabel("Three Month");
 		c.weightx = .5;
 		c.gridx = 1;
 		c.gridy = 5;
 		c.gridheight = 1;
 		c.gridwidth = 1;
 		pnlLeft.add(lblPricePer3Month, c);
-		lblPricePerYear = new JLabel("Test");
+		lblPricePerYear = new JLabel("Price Year");
 		c.weightx = .5;
 		c.gridx = 1;
 		c.gridy = 6;
@@ -130,19 +129,19 @@ public class PaymentRailcardPanel extends JPanel {
 		pnlLeft.add(lblPricePerYear, c);
 
 		// Toevoegen pay button
-		c.gridx = 0;
+		c.gridx = 1;
 		c.gridy = 7;
 		btnPay = new JButton("Pay");
 		pnlLeft.add(btnPay, c);
 
 		SpringLayout sp = new SpringLayout();
 		JPanel pnlRight = new JPanel(sp);
-		pnlRight.setPreferredSize(new Dimension(350, 500));
+		pnlRight.setPreferredSize(new Dimension(500, 500));
 		pnlRight.add(lblSoldBy = new JLabel("Sold by: "));
-		pnlRight.add(txtSoldBy = new JTextField());
+		pnlRight.add(txtSoldBy = new JTextField(12));
 		txtSoldBy.setEditable(false);
 		pnlRight.add(lblInNameOf = new JLabel("In name of: "));
-		pnlRight.add(txtInNameOf = new JTextField());
+		pnlRight.add(txtInNameOf = new JTextField(12));
 		txtInNameOf.setEditable(false);
 		pnlRight.add(lblValidFrom = new JLabel("Valid from: "));
 		pnlRight.add(txtValidFrom = new JTextField());
@@ -153,32 +152,68 @@ public class PaymentRailcardPanel extends JPanel {
 
 		pnlRight.add(btnSelectUser = new JButton("User"));
 
-		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 30, SpringLayout.NORTH, pnlRight);
+		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 50, SpringLayout.NORTH, pnlRight);
 		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -30, SpringLayout.EAST, pnlRight);
 		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 0, SpringLayout.NORTH, txtSoldBy);
-		sp.putConstraint(SpringLayout.EAST, lblSoldBy, -10, SpringLayout.WEST, txtSoldBy);
+		sp.putConstraint(SpringLayout.EAST, lblSoldBy, -30, SpringLayout.WEST, txtSoldBy);
 
 		sp.putConstraint(SpringLayout.NORTH, txtInNameOf, 10, SpringLayout.SOUTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, txtInNameOf, 0, SpringLayout.EAST, txtSoldBy);
 		sp.putConstraint(SpringLayout.WEST, txtInNameOf, 0, SpringLayout.WEST, txtSoldBy);
 		sp.putConstraint(SpringLayout.NORTH, lblInNameOf, 0, SpringLayout.NORTH, txtInNameOf);
 		sp.putConstraint(SpringLayout.EAST, lblInNameOf, 0, SpringLayout.EAST, lblSoldBy);
-		sp.putConstraint(SpringLayout.WEST, lblInNameOf, 0, SpringLayout.WEST, lblSoldBy);
 		
 		sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 230, SpringLayout.NORTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, txtValidFrom, 0, SpringLayout.EAST, txtSoldBy);
 		sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 0, SpringLayout.NORTH, txtValidFrom);
 		sp.putConstraint(SpringLayout.EAST, lblValidFrom, -10, SpringLayout.WEST, txtValidFrom);
-		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 20, SpringLayout.NORTH, txtValidFrom);
+		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 50, SpringLayout.NORTH, txtValidFrom);
 		sp.putConstraint(SpringLayout.EAST, txtValidTo, 0, SpringLayout.EAST, txtValidFrom);
 		sp.putConstraint(SpringLayout.NORTH, lblValidTo, 0, SpringLayout.NORTH, txtValidTo);
 		sp.putConstraint(SpringLayout.EAST, lblValidTo, -10, SpringLayout.WEST, txtValidTo);
+		
+		sp.putConstraint(SpringLayout.EAST, btnSelectUser, 0, SpringLayout.EAST, txtSoldBy);
+		sp.putConstraint(SpringLayout.SOUTH, btnSelectUser, -10, SpringLayout.NORTH, txtSoldBy);
+		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 0, SpringLayout.WEST, lblInNameOf);
 
 		add(pnlLeft);
 		add(pnlRight, BorderLayout.EAST);
 		JPanel pnlBack = new JPanel();
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
+		
+		Font small = new Font("Arial", Font.PLAIN, 24);
+		Font big = new Font("Arial", Font.PLAIN, 30);
+		
+		btnBack.setPreferredSize(new Dimension(200, 70));
+		txtDesc.setFont(new Font("Arial", Font.PLAIN,18));
+		
+		txtName.setFont(big);
+		btnBack.setFont(big);
+		
+		txtSoldBy.setFont(small);
+		lblSoldBy.setFont(small);
+		txtValidFrom.setFont(small);
+		txtValidTo.setFont(small);
+		lblValidFrom.setFont(small);
+		lblValidTo.setFont(small);
+		lblFromStation.setFont(small);
+		lblToStation.setFont(small);
+		lblDesc.setFont(small);
+		lblName.setFont(small);
+		btnPay.setFont(small);
+		txtFromStation.setFont(small); 
+		txtToStation.setFont(small);
+		btnSelectUser.setFont(small);
+		txtInNameOf.setFont(small);
+		lblInNameOf.setFont(small);
+		lblPricePerMonth.setFont(small);
+		lblPricePer3Month.setFont(small);
+		lblPricePerYear.setFont(small);
+		rdPricePerMonth.setFont(small);
+		rdPricePer3Month.setFont(small);
+		rdPricePerYear.setFont(small);
+		
 	}
 
 	public ButtonGroup getTimePeriod() {

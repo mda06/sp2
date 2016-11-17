@@ -2,6 +2,7 @@ package com.school.project.gui.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -131,44 +132,46 @@ public class UserView extends BaseView {
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtFirstName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtFirstName, 20, SpringLayout.NORTH, lbFirstName);
+		sp.putConstraint(SpringLayout.NORTH, txtFirstName, 5, SpringLayout.SOUTH, lbFirstName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbLastName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lbLastName, 30, SpringLayout.NORTH, txtFirstName);
+		sp.putConstraint(SpringLayout.NORTH, lbLastName, 5, SpringLayout.SOUTH, txtFirstName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtLastName, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtLastName, 20, SpringLayout.NORTH, lbLastName);
+		sp.putConstraint(SpringLayout.NORTH, txtLastName, 5, SpringLayout.SOUTH, lbLastName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbStreetNumber, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lbStreetNumber, 30, SpringLayout.NORTH, txtLastName);
+		sp.putConstraint(SpringLayout.NORTH, lbStreetNumber, 5, SpringLayout.SOUTH, txtLastName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtStreetNumber, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtStreetNumber, 20, SpringLayout.NORTH, lbStreetNumber);
+		sp.putConstraint(SpringLayout.NORTH, txtStreetNumber, 5, SpringLayout.SOUTH, lbStreetNumber);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblDate, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lblDate, 30, SpringLayout.NORTH, txtStreetNumber);
+		sp.putConstraint(SpringLayout.NORTH, lblDate, 5, SpringLayout.SOUTH, txtStreetNumber);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtDate, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtDate, 20, SpringLayout.NORTH, lblDate);
+		sp.putConstraint(SpringLayout.NORTH, txtDate, 5, SpringLayout.SOUTH, lblDate);
+		sp.putConstraint(SpringLayout.WEST, txtDate, 0, SpringLayout.WEST, txtFirstName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbZipcode, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lbZipcode, 30, SpringLayout.NORTH, txtDate);
+		sp.putConstraint(SpringLayout.NORTH, lbZipcode, 5, SpringLayout.SOUTH, txtDate);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtZipcode, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtZipcode, 20, SpringLayout.NORTH, lbZipcode);
+		sp.putConstraint(SpringLayout.NORTH, txtZipcode, 5, SpringLayout.SOUTH, lbZipcode);
+		sp.putConstraint(SpringLayout.WEST, txtZipcode, 0, SpringLayout.WEST, txtFirstName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbCity, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lbCity, 30, SpringLayout.NORTH, txtZipcode);
+		sp.putConstraint(SpringLayout.NORTH, lbCity, 5, SpringLayout.SOUTH, txtZipcode);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtCity, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtCity, 20, SpringLayout.NORTH, lbCity);
+		sp.putConstraint(SpringLayout.NORTH, txtCity, 5, SpringLayout.SOUTH, lbCity);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbUsername, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtUsername, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
-		sp.putConstraint(SpringLayout.NORTH, txtUsername, 20, SpringLayout.NORTH, lbUsername);	
+		sp.putConstraint(SpringLayout.NORTH, txtUsername, 5, SpringLayout.SOUTH, lbUsername);	
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbPassword, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
-		sp.putConstraint(SpringLayout.NORTH, lbPassword, 30, SpringLayout.NORTH, txtUsername);
+		sp.putConstraint(SpringLayout.NORTH, lbPassword, 5, SpringLayout.SOUTH, txtUsername);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pfPassword, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
-		sp.putConstraint(SpringLayout.NORTH, pfPassword, 20, SpringLayout.NORTH, lbPassword);
+		sp.putConstraint(SpringLayout.NORTH, pfPassword, 5, SpringLayout.SOUTH, lbPassword);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbPasswordControl, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
-		sp.putConstraint(SpringLayout.NORTH, lbPasswordControl, 30, SpringLayout.NORTH, pfPassword);
+		sp.putConstraint(SpringLayout.NORTH, lbPasswordControl, 5, SpringLayout.SOUTH, pfPassword);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pfPasswordControl, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
-		sp.putConstraint(SpringLayout.NORTH, pfPasswordControl, 20, SpringLayout.NORTH, lbPasswordControl);
+		sp.putConstraint(SpringLayout.NORTH, pfPasswordControl, 5, SpringLayout.SOUTH, lbPasswordControl);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblGender, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, lblGender, 5, SpringLayout.SOUTH, txtCity);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cBGenderM, -20, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, cBGenderM, 5, SpringLayout.SOUTH, lblGender);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cBGenderW, 20, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.WEST, cBGenderM, -25, SpringLayout.WEST, lblGender);
 		sp.putConstraint(SpringLayout.NORTH, cBGenderW, 5, SpringLayout.SOUTH, lblGender);
+		sp.putConstraint(SpringLayout.WEST, cBGenderW, 15, SpringLayout.EAST, cBGenderM);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblSoortuser, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, lblSoortuser, 5, SpringLayout.SOUTH, cBGenderW);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cbUserType, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
@@ -181,8 +184,11 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, cBUseCredentials, 20, SpringLayout.NORTH, pnlOptions);
 		sp.putConstraint(SpringLayout.NORTH, btnComplete, 20, SpringLayout.SOUTH, cBUseCredentials);
 		
-		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 10, SpringLayout.EAST, btnComplete);
-		sp.putConstraint(SpringLayout.NORTH, btnSelectUser, 20, SpringLayout.SOUTH, cBUseCredentials);
+		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 0, SpringLayout.WEST, cBUseCredentials);
+		sp.putConstraint(SpringLayout.WEST, btnComplete, 0, SpringLayout.WEST, cBUseCredentials);
+		sp.putConstraint(SpringLayout.EAST, btnSelectUser, 0, SpringLayout.EAST, cBUseCredentials);
+		sp.putConstraint(SpringLayout.NORTH, btnSelectUser, 10, SpringLayout.SOUTH, btnComplete);
+		sp.putConstraint(SpringLayout.EAST, btnComplete, 0, SpringLayout.EAST, cBUseCredentials);
 		
 		pnlAccount.setBorder(BorderFactory.createTitledBorder("Account"));
 		pnlCredentials.setBorder(BorderFactory.createTitledBorder("Credentials"));
@@ -191,9 +197,9 @@ public class UserView extends BaseView {
 		
 		sp = new SpringLayout();
 		setLayout(sp);	
-		pnlAccount.setPreferredSize(new Dimension(300,300));
-		pnlCredentials.setPreferredSize(new Dimension(300,200));
-		pnlOptions.setPreferredSize(new Dimension(300,150));
+		pnlAccount.setPreferredSize(new Dimension(300,700));
+		pnlCredentials.setPreferredSize(new Dimension(300,280));
+		pnlOptions.setPreferredSize(new Dimension(300,200));
 		add(pnlAccount);
 		add(pnlCredentials);
 		add(pnlOptions);
@@ -201,7 +207,7 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, pnlOptions, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlAccount, 40, SpringLayout.EAST, pnlOptions);
 		sp.putConstraint(SpringLayout.NORTH, pnlAccount, 15, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 500, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 700, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlCredentials, 40, SpringLayout.EAST, pnlAccount);
 		
@@ -218,6 +224,38 @@ public class UserView extends BaseView {
 		});
 		sp.putConstraint(SpringLayout.SOUTH, test, 0, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.EAST, test, 0, SpringLayout.EAST, this);
+
+		Font small = new Font("Arial", Font.PLAIN, 24);
+		
+		lbFirstName.setFont(small);
+		lbLastName.setFont(small);
+		lbUsername.setFont(small);
+		lbPassword.setFont(small);
+		lbPasswordControl.setFont(small);
+		lbStreetNumber.setFont(small);
+		lbZipcode.setFont(small);
+		lbCity.setFont(small);
+		lblDate.setFont(small);
+		lblGender.setFont(small);
+		lblSoortuser.setFont(small);
+		pfPassword.setFont(small);
+		pfPasswordControl.setFont(small);
+		txtFirstName.setFont(small);
+		txtLastName.setFont(small);
+		txtUsername.setFont(small);
+		txtStreetNumber.setFont(small);
+		txtZipcode.setFont(small);
+		txtCity.setFont(small);
+		btnComplete.setFont(small);
+		btnBack.setFont(small);
+		btnSelectUser.setFont(small);
+		cBUseCredentials.setFont(small);
+		cBGenderM.setFont(small);
+		cBGenderW.setFont(small);
+		txtDate.setFont(small);
+		cbUserType.setFont(small);
+		test.setFont(small);
+		
 	}
 	
 	public JLabel getLbFirstName() {

@@ -2,8 +2,10 @@ package com.school.project.gui.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -19,17 +21,40 @@ import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.Address;
 import com.school.project.model.User;
+import com.school.project.model.User.UserType;
 import com.school.project.model.UserCredential;
+import com.school.project.util.HashUtil;
 
 public class UserController extends BaseController<UserView> implements SelectedUserListener {
 
 	private Boolean useCred = false;
-	private String strErrorFillInTheBlanks, strErrorMatchingPassword;
-	private User user, inNameOf;
+	private String strErrorFillInTheBlanks, strErrorMatchingPassword, stdConfirmUserSaved, stdConfirmUserUpdated;
+	@SuppressWarnings("unused")
+	private UserType connectedUserType;
+	private ArrayList<String> availableTypes;
 	private SelectUserController selectUserController;
+	private User selectedUser;
 
-	public UserController() {
+	public UserController(User connectedUser) {
 		super(new UserView());
+		availableTypes = new ArrayList<>();
+		selectedUser = null;
+
+		if (connectedUser != null) {
+			connectedUserType = connectedUser.getType();
+			switch (connectedUser.getType()) {
+			case CUSTOMER:
+				break;
+			case EMPLOYEE:
+				availableTypes.add("Customer");
+				break;
+			case ADMIN:
+				availableTypes.add("Customer");
+				availableTypes.add("Employee");
+				availableTypes.add("Admin");
+				break;
+			}
+		}
 		view.getPnlCredentials().setVisible(useCred);
 		initOptions();
 		selectUserController = new SelectUserController(this);
@@ -50,21 +75,54 @@ public class UserController extends BaseController<UserView> implements Selected
 		view.getBtnComplete().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean accInfoOk = checkAccountInfo();
-				if (accInfoOk && !useCred) {
-					User newUser = getUserFromView();
-					AddressDAO.getInstance().add(newUser.getAddress());
-					UserDAO.getInstance().add(newUser);
-					
+				if(selectedUser == null) {
+					if (accInfoOk && !useCred) {
+						User newUser = getUserFromView();
+						AddressDAO.getInstance().add(newUser.getAddress());
+						UserDAO.getInstance().add(newUser);
+						clearFields();
+						JOptionPane.showMessageDialog(view, stdConfirmUserSaved);
+					} else if (accInfoOk && useCred && checkUserCredentials()) {
+						User newUser = getUserFromView();
+						AddressDAO.getInstance().add(newUser.getAddress());
+						UserDAO.getInstance().add(newUser);
+						UserCredentialsDAO.getInstance().add(newUser.getCredentials());
+						clearFields();
+						JOptionPane.showMessageDialog(view, stdConfirmUserSaved);
+					} 
+				} else {
+					if (accInfoOk && !useCred) {
+						User newUser = getUserFromView();
+						AddressDAO.getInstance().update(newUser.getAddress());
+						UserDAO.getInstance().update(newUser);
+						clearFields();
+						JOptionPane.showMessageDialog(view, stdConfirmUserUpdated);
+					} else if (accInfoOk && useCred && checkUserCredentials()) {
+						User newUser = getUserFromView();
+						AddressDAO.getInstance().update(newUser.getAddress());
+						UserDAO.getInstance().update(newUser);
+						if(newUser.getCredentials().getId() > 0)
+							UserCredentialsDAO.getInstance().update(newUser.getCredentials());
+						else 
+							UserCredentialsDAO.getInstance().add(newUser.getCredentials());
+						clearFields();
+						JOptionPane.showMessageDialog(view, stdConfirmUserUpdated);
+					}
 				}
-				else if(accInfoOk && useCred && checkUserCredentials()){
-					User newUser = getUserFromView();
-					AddressDAO.getInstance().add(newUser.getAddress());
-					UserDAO.getInstance().add(newUser);
-					UserCredentialsDAO.getInstance().add(newUser.getCredentials());
-				}
-				
 			}
 		});
+	}
+	
+	private void clearFields() {
+		selectedUser = null;
+		view.getPfPassword().setText("");
+		view.getPfPasswordControl().setText("");
+		view.getTxtFirstName().setText("");
+		view.getTxtLastName().setText("");
+		view.getTxtUsername().setText("");
+		view.getTxtStreetNumber().setText("");
+		view.getTxtZipcode().setText("");
+		view.getTxtCity().setText("");
 	}
 
 	private boolean checkAccountInfo() {
@@ -84,7 +142,7 @@ public class UserController extends BaseController<UserView> implements Selected
 			JOptionPane.showMessageDialog(view.getPnlAccount(), strErrorFillInTheBlanks);
 			return false;
 		}
-		if (!Arrays.equals(view.getPfPassword().getPassword(),view.getPfPasswordControl().getPassword())) {
+		if (!Arrays.equals(view.getPfPassword().getPassword(), view.getPfPasswordControl().getPassword())) {
 			JOptionPane.showMessageDialog(view.getPnlAccount(), strErrorMatchingPassword);
 			return false;
 		}
@@ -92,10 +150,23 @@ public class UserController extends BaseController<UserView> implements Selected
 	}
 
 	private User getUserFromView() {
-		
-		Address address = new Address(0, view.getTxtStreetNumber().getText(), "",view.getTxtCity().getText(), view.getTxtZipcode().getText(),"country",false);User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
+		// TODO: Lacks country and streetline2
+		Address address = new Address(0, view.getTxtStreetNumber().getText(), "", view.getTxtCity().getText(),
+				view.getTxtZipcode().getText(), "country", false);
+		User.Gender gender = (view.getcBGenderM().isSelected() ? User.Gender.MALE : User.Gender.FEMALE);
+		User.UserType userType;
 
-		User.UserType userType = User.UserType.CUSTOMER;
+		// No need to check user authentication level, handled in constructor.
+		switch (view.getCbUserType().getSelectedIndex()) {
+		case 1:
+			userType = User.UserType.CUSTOMER;
+			break;
+		case 2:
+			userType = User.UserType.ADMIN;
+			break;
+		default:
+			userType = User.UserType.EMPLOYEE;
+		}
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		formatter.setLenient(false);
@@ -104,29 +175,49 @@ public class UserController extends BaseController<UserView> implements Selected
 			java.util.Date utilDate = formatter.parse(userInput);
 
 			java.sql.Date date = new java.sql.Date(utilDate.getTime());
-
-			User user = new User(0, gender, userType, view.getTxtFirstName().getText(), view.getTxtLastName().getText(),
-					date, false);
-			user.setAddress(address);
 			
-			if(useCred){
-				UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(),new String(view.getPfPassword().getPassword()), false);
-				user.setCredentials(userCred);
+			User user = null;
+			if(selectedUser == null) {
+				user = new User(0, gender, userType, view.getTxtFirstName().getText(), view.getTxtLastName().getText(),date, false);
+				user.setAddress(address);
+			} else {
+				user = selectedUser;
+				user.setGender(gender);
+				user.setType(userType);
+				user.setFirstName(view.getTxtFirstName().getText());
+				user.setLastName(view.getTxtLastName().getText());
+				user.setDateOfBirth(date);
+				Address adr = user.getAddress();
+				adr.setCity(address.getCity());
+				adr.setCountry(address.getCountry());
+				adr.setPostalCode(address.getPostalCode());
+				adr.setStreetline1(address.getStreetline1());
+				adr.setStreetline2(address.getStreetline2());
+			}
+			
+			UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(), HashUtil.getSHA512SecurePassword(new String(view.getPfPassword().getPassword())), false);
+			if (useCred) {
+				if(selectedUser == null || !selectedUser.hasCredentials())
+					user.setCredentials(userCred);
+				else {
+					UserCredential uc = user.getCredentials();
+					uc.setPassword(userCred.getPassword());
+					uc.setUsername(userCred.getUsername());
+				}
 			}
 			return user;
-		} catch (ParseException e) {
+		} catch (ParseException | UnsupportedEncodingException e) {
 			JOptionPane.showMessageDialog(view.getPnlAccount(), "Fill in a valid date : dd/mm/yyyy");
 
 			return null;
 		}
-		
-		
 
 	}
 
 	public void update(Observable o, Object arg) {
 		if (o instanceof LanguageObservable) {
 			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			view.getBtnSelectUser().setText(lh.getString("selectUser"));
 			view.getLbFirstName().setText(lh.getString("firstName"));
 			view.getLbLastName().setText(lh.getString("lastName"));
 			view.getLbUsername().setText(lh.getString("username"));
@@ -141,9 +232,14 @@ public class UserController extends BaseController<UserView> implements Selected
 
 			strErrorFillInTheBlanks = lh.getString("fillInTheBlanks");
 			strErrorMatchingPassword = lh.getString("matchingPasswords");
+			stdConfirmUserSaved = lh.getString("confirmUserSaved");
+			stdConfirmUserUpdated = lh.getString("confirmUserUpdated");
 
 			// Filling the userType combobox:
-			// view.getCbUserType().addItem("Admin");
+			view.getCbUserType().removeAllItems();
+			for (int i = 0; i < availableTypes.size(); i++) {
+				view.getCbUserType().addItem(lh.getString(availableTypes.get(i)));
+			}
 
 			((TitledBorder) view.getPnlOptions().getBorder()).setTitle(lh.getString("options"));
 			view.getPnlOptions().repaint();
@@ -156,12 +252,33 @@ public class UserController extends BaseController<UserView> implements Selected
 
 	@Override
 	public void userIsSelected(User user) {
-		inNameOf = user;
+		selectedUser = user;
 		view.getTxtFirstName().setText(user.getFirstName());
 		view.getTxtLastName().setText(user.getLastName());
 		view.getTxtStreetNumber().setText(user.getAddress().getStreetline1());
 		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
 		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
+		view.getTxtCity().setText(user.getAddress().getCity());
+		boolean isMale = (user.getGender() == User.Gender.MALE);
+		view.getcBGenderM().setSelected(isMale);
+		view.getcBGenderM().setSelected(!isMale);
+		
+		connectedUserType = user.getType();
+		int index = 0;
+		switch (user.getType()) {
+		case CUSTOMER:
+			index = 0;
+			break;
+		case EMPLOYEE:
+			index = 1;
+			break;
+		case ADMIN:
+			index = 2;
+			break;
+		}
+
+		view.getCbUserType().setSelectedIndex(index);
+		
 		
 		}
 
