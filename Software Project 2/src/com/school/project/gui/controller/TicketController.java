@@ -36,7 +36,6 @@ public class TicketController extends BaseController<TicketView> implements Paym
 					ticketSale.showTicket(t);
 				}
 			});
-			
 		}
 	}
 
@@ -47,8 +46,6 @@ public class TicketController extends BaseController<TicketView> implements Paym
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

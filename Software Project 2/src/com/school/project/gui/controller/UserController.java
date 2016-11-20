@@ -21,6 +21,7 @@ import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.Address;
 import com.school.project.model.User;
+import com.school.project.model.User.Gender;
 import com.school.project.model.User.UserType;
 import com.school.project.model.UserCredential;
 import com.school.project.util.HashUtil;
@@ -259,7 +260,8 @@ public class UserController extends BaseController<UserView> implements Selected
 		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
 		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
 		view.getTxtCity().setText(user.getAddress().getCity());
-		if(user.getGender() == user.getGender().MALE){
+		user.getGender();
+		if(user.getGender() == Gender.MALE){
 			view.getcBGenderM().setSelected(true);
 		} else{
 			view.getcBGenderW().setSelected(true);

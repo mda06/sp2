@@ -14,6 +14,7 @@ import com.school.project.gui.controller.listener.SelectedUserListener;
 import com.school.project.gui.controller.runnable.SelectUserRunnable;
 import com.school.project.gui.model.SelectUserTableModel;
 import com.school.project.gui.view.SelectUserPopup;
+import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.User;
 
@@ -85,7 +86,13 @@ public class SelectUserController implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof LanguageObservable) {
-			//Translate everything...
+			LanguageHandler lh = ((LanguageObservable)o).getLanguageHandler();
+			popup.getLblFirstName().setText(lh.getString("firstName"));
+			popup.getLblLastName().setText(lh.getString("lastName"));
+			popup.getBtnSearch().setText(lh.getString("search"));
+			popup.getBtnSelect().setText(lh.getString("select"));
+			popup.getTblUsers().getColumnModel().getColumn(tableModel.COLUMN_USER).setHeaderValue(lh.getString("user"));
+			popup.repaint();
 		}
 	}
 	
