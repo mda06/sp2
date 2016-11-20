@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<!DOCTYPE resources [
+	<!ELEMENT resources (string*)>
+	<!ATTLIST string name ID #REQUIRED>
+	<!ELEMENT string (value, value, value)>
+	<!ELEMENT value (#PCDATA)>
+	<!ATTLIST value lang (en|fr|nl) #REQUIRED>
+]>
+
+
+
+<resources>
+	<string name = "errorAddLostItem">
+		<value lang="en"> Please fill in all the fields </value>
+		<value lang="fr"> Remplisez les champs </value>
+		<value lang="nl"> Vul de invoervelden in</value>
+	</string>
+	<string name="confirmUserSaved">
+	    <value lang="en"> User saved </value>
+		<value lang="fr"> Utilisateur enregistré </value>
+		<value lang="nl"> Gebruiker opgeslaan</value>
+	</string>
+	<string name="confirmUserUpdated">
+	    <value lang="en"> User updated </value>
+		<value lang="fr"> Utilisateur modifié </value>
+		<value lang="nl"> Gebruiker gewijzigd</value>
+	</string>
+	<string name = "removeLostItem">
+		<value lang="en"> Remove  </value>
+		<value lang="fr"> Supprimer </value>
+		<value lang="nl"> Verwijder </value>
+	</string>
+
+	<string name = "columnTrainDir">
+		<value lang="en"> Train Direction  </value>
+		<value lang="fr"> Train Direction </value>
+		<value lang="nl"> Trein Directie </value>
+	</string>
+	<string name = "columnStepOff">
+		<value lang="en"> Step off  </value>
+		<value lang="fr"> Descendez </value>
+		<value lang="nl"> Stap uit </value>
+	</string>
+	<string name = "columnArrivalPlatform">
+		<value lang="en"> Arrivel platform  </value>
+		<value lang="fr"> Platform d'arrivé </value>
+		<value lang="nl"> Aankomstplatform </value>
+	</string>
+	<string name = "columnArrivalDelays">
+		<value lang="en"> Arrival Delay(s)  </value>
+		<value lang="fr"> Delay(s) d'arrivé </value>
+		<value lang="nl"> Aankomst delay(s) </value>
+	</string>
+	<string name = "columnNextPlatform">
+		<value lang="en"> Next Platform  </value>
+		<value lang="fr"> Platforme prochaine </value>
+		<value lang="nl"> Volgende platform </value>
+	</string>
+	<string name = "columnNextDelays">
+		<value lang="en"> Next Delay(s)  </value>
+		<value lang="fr"> Delay(s) prochains </value>
+		<value lang="nl"> Volgende delay(s) </value>
+	</string>
+	<string name = "columnNextTime">
+		<value lang="en"> Next Time  </value>
+		<value lang="fr"> Prochain temps </value>
+		<value lang="nl"> Volgende tijd </value>
+	</string>
+	
+	<string name = "search">
+		<value lang="en"> Search </value>
+		<value lang="fr"> Chercher </value>
+		<value lang="nl"> Zoeken</value>
+	</string>
+	<string name = "save">
+		<value lang="nl"> Opslaan </value>
+		<value lang="fr"> Enregistrer </value>
+		<value lang="en"> Save </value>
+	</string>
+	<string name = "cancel">
+		<value lang="nl"> Annuleren </value>
+		<value lang="fr"> Annuler </value>
+		<value lang="en"> Cancel </value>
+	</string>
+	<string name = "add">
+		<value lang="nl"> Toevoegen </value>
+		<value lang="fr"> Ajouter </value>
+		<value lang="en"> Add </value>
+	</string>
+	<string name = "type">
+		<value lang="nl"> Type </value>
+		<value lang="fr"> Type </value>
+		<value lang="en"> Type </value>
+	</string>
+	<string name = "description">
+		<value lang="nl"> Descriptie </value>
+		<value lang="fr"> Description </value>
+		<value lang="en"> Description </value>
+	</string>
+	<string name = "location">
+		<value lang="nl"> Locatie </value>
+		<value lang="fr"> Emplacement </value>
+		<value lang="en"> Location </value>
+	</string>
+	<string name = "options">
+		<value lang="nl"> Opties </value>
+		<value lang="fr"> Options </value>
+		<value lang="en"> Options </value>
+	</string>
+	<string name = "lostItemView">
+		<value lang="nl"> Verloren Voorwerpen </value>
+		<value lang="fr"> Objets Perdus </value>
+		<value lang="en"> Lost Objects </value>
+	</string>
+	<string name = "RailCard">
+		<value lang="nl"> Abonnementen </value>
+		<value lang="fr"> Abonnements </value>
+		<value lang="en"> Railcards </value>
+	</string>
+	<string name = "TicketView">
+		<value lang="nl"> Tickets </value>
+		<value lang="fr"> Ticket </value>
+		<value lang="en"> Tickets </value>
+	</string>
+	<string name = "Route">
+		<value lang="nl"> Route </value>
+		<value lang="fr"> Route </value>
+		<value lang="en"> Route </value>
+	</string>
+	<string name = "login">
+		<value lang="nl"> Log in </value>
+		<value lang="fr"> S'identifier </value>
+		<value lang="en"> Login </value>
+	</string>
+	<string name = "password">
+		<value lang="nl"> Wachtwoord </value>
+		<value lang="fr"> Mot de passe </value>
+		<value lang="en"> Password </value>
+	</string>
+	<string name = "username">
+		<value lang="nl"> Gebruikersnaam </value>
+		<value lang="fr"> Nom d'utilisateur </value>
+		<value lang="en"> Username </value>
+	</string>
+	<string name = "UserView">
+		<value lang="nl"> Gebruikers </value>
+		<value lang="fr"> Utilisateurs </value>
+		<value lang="en"> Users </value>
+	</string>
+	<string name = "user">
+		<value lang="nl"> Gebruiker </value>
+		<value lang="fr"> Utilisateur </value>
+		<value lang="en"> User </value>
+	</string>
+	<string name = "firstName">
+		<value lang="nl"> Voornaam</value>
+		<value lang="fr"> Prénom</value>
+		<value lang="en"> First name</value>
+	</string>
+	<string name = "select">
+		<value lang="nl"> Selecteer</value>
+		<value lang="fr"> Sélectionner</value>
+		<value lang="en"> Select</value>
+	</string>
+	<string name = "lastName">
+		<value lang="nl"> Achternaam</value>
+		<value lang="fr"> Nom de Famile</value>
+		<value lang="en"> Last name</value>
+	</string>
+	<string name = "passwordControl">
+		<value lang="nl"> Herhaal paswoord</value>
+		<value lang="fr"> La vérification du mot de passe</value>
+		<value lang="en"> Repeat password</value>
+	</string>
+	<string name = "streetNumber">
+		<value lang="nl">Straat en huisnummer</value>
+		<value lang="fr">Adresse</value>
+		<value lang="en">Street and number</value>
+	</string>
+	<string name = "streetLine2">
+		<value lang="nl">2de adres</value>
+		<value lang="fr">2e place</value>
+		<value lang="en">2nd place</value>
+	</string>
+	<string name = "zipcode">
+		<value lang="nl">Postcode</value>
+		<value lang="fr">Code postal</value>
+		<value lang="en">Zip code</value>
+	</string>
+	<string name = "city">
+		<value lang="nl">Stad</value>
+		<value lang="fr">Ville</value>
+		<value lang="en">City</value>
+	</string>
+	<string name = "account">
+		<value lang="nl">Account</value>
+		<value lang="fr">Compt</value>
+		<value lang="en">Account</value>
+	</string>
+	<string name = "credentials">
+		<value lang="nl">Credentials</value>
+		<value lang="fr">Credentials</value>
+		<value lang="en">Credentials</value>
+	</string>
+	<string name="makeAccount">
+		<value lang="en">Create an account</value>
+		<value lang="nl">Account aanmaken</value>
+		<value lang="fr">Créer un compte</value>
+	</string>
+	<string name="arrival">
+		<value lang="en">Arrival</value>
+		<value lang="nl">Aankomst</value>
+		<value lang="fr">Arrivée</value>
+	</string>
+	<string name="departure">
+		<value lang="en">Departure</value>
+		<value lang="nl">Vertrek</value>
+		<value lang="fr">Départ</value>
+	</string>
+	<string name="date">
+		<value lang="en">Date</value>
+		<value lang="nl">Datum</value>
+		<value lang="fr">Date</value>
+	</string>
+	<string name="number">
+		<value lang="en">Number</value>
+		<value lang="nl">Nummer</value>
+		<value lang="fr">Nombre</value>
+	</string>
+	<string name="uur">
+		<value lang="en">Hour</value>
+		<value lang="nl">Uur</value>
+		<value lang="fr">Heure</value>
+	</string>
+	<string name="single">
+		<value lang="en">Single</value>
+		<value lang="nl">Enkel</value>
+		<value lang="fr">Unique</value>
+	</string>
+	<string name="return">
+		<value lang="en">Return</value>
+		<value lang="nl">Heen en terug</value>
+		<value lang="fr">Retour</value>
+	</string>
+	<string name="showConnections">
+		<value lang="en">Show connections</value>
+		<value lang="nl">Toon connecties</value>
+		<value lang="fr">Montrer les connexions</value>
+	</string>
+	<string name="arrivalTime">
+		<value lang="en">Arrival time</value>
+		<value lang="nl">Aankomst tijd</value>
+		<value lang="fr">Heure d'arrivée</value>
+	</string>
+	<string name="departureTime">
+		<value lang="en">Departure time</value>
+		<value lang="nl">Vertrek tijd</value>
+		<value lang="fr">Heure de départ</value>
+	</string>
+	<string name="duration">
+		<value lang="en">Duration</value>
+		<value lang="nl">Duur</value>
+		<value lang="fr">Durée</value>
+	</string>
+	<string name="numberOfVias">
+		<value lang="en">Number of vias</value>
+		<value lang="nl">Aantal overstappen</value>
+		<value lang="fr">Nombre de vias</value>
+	</string>
+	<string name="fromTo">
+		<value lang="en">From - To</value>
+		<value lang="nl">Van - Naar</value>
+		<value lang="fr">De - à</value>
+	</string>
+	<string name="matchingPasswords">
+		<value lang="en">Passwords do not match</value>
+		<value lang="nl">Paswoorden komen niet overeen</value>
+		<value lang="fr">Les mots de passe ne correspondent pas</value>
+	</string>
+	<string name="fillInTheBlanks">
+		<value lang="en">Please fill in all the required fields</value>
+		<value lang="nl">Gelieve de verplichte velden in te vullen</value>
+		<value lang="fr">S'il vous plaît remplir les champs obligatoires</value>
+	</string>
+	<string name="birthDate">
+		<value lang="en">Date of birth</value>
+		<value lang="nl">Geboortedatum</value>
+		<value lang="fr">Date de naissance</value>
+	</string>
+	<string name="tooltipLostItem">
+		<value lang="en">Press [Enter] to view all</value>
+		<value lang="nl">Druk op [Enter] om alles te tonen</value>
+		<value lang="fr">Pressez [Bouton Entrée] pour voir tout</value>
+	</string>
+	
+	<string name="ActiveRailCard">
+		<value lang="en">Active Railcards</value>
+		<value lang="nl">Actieve abonnementen</value>
+		<value lang="fr">Abonnements actif</value>
+	</string>
+	
+	<string name="selectUser">
+		<value lang="en">Select user</value>
+		<value lang="nl">Kies gebruiker</value>
+		<value lang="fr">Choisis un utilisateur</value>
+	</string>
+	<string name="selectedUser">
+		<value lang="en">Selected user:</value>
+		<value lang="nl">Gekozen gebruiker:</value>
+		<value lang="fr">Utilisateur sélectionné:</value>
+	</string>
+	<string name="from">
+		<value lang="en">From</value>
+		<value lang="nl">Van</value>
+		<value lang="fr">De</value>
+	</string>
+	<string name="to">
+		<value lang="en">To</value>
+		<value lang="nl">Naar:</value>
+		<value lang="fr">à</value>
+	</string>
+	<string name="validFrom">
+		<value lang="en">Valid from</value>
+		<value lang="nl">Geldig van</value>
+		<value lang="fr">Date de début</value>
+	</string>
+	<string name="validTo">
+		<value lang="en">Valid to</value>
+		<value lang="nl">Geldig tot</value>
+		<value lang="fr">Date d'expiration</value>
+	</string>
+	<string name="soldByUser">
+		<value lang="en">Sold by user</value>
+		<value lang="nl">Verkocht door gebruiker</value>
+		<value lang="fr">Vendu par l'utilisateur</value>
+	</string>
+	<string name="Customer">
+		<value lang="en">Customer</value>
+		<value lang="nl">Klant</value>
+		<value lang="fr">Client</value>
+	</string>
+	<string name="Employee">
+		<value lang="en">Employee</value>
+		<value lang="nl">Werknemer</value>
+		<value lang="fr">Employé</value>
+	</string>
+	<string name="Admin">
+		<value lang="en">Admin</value>
+		<value lang="nl">Admin</value>
+		<value lang="fr">Admin</value>
+	</string>
+	</resources>

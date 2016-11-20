@@ -1,11 +1,25 @@
 package com.school.project;
 
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
+import com.school.project.gui.MainFactory;
+import com.school.project.util.NetUtil;
+
 public class Main {
-
-	public static void main(String[] args) {
-		System.out.println("We are the best");
-		System.out.println("JSON.jar is now in the main branch!");
-		System.out.println("We are now in the main branch");
+	private static boolean testIfCurlIsActive() {
+		try {
+			NetUtil.curlURL("https://www.google.com");
+		} catch (IOException io) {
+			io.printStackTrace();
+			JOptionPane.showMessageDialog(null, "CURL is not installed on this PC, please install curl before to use this program");
+			return false;
+		}
+		return true;
 	}
-
+	public static void main(String[] args) {
+		if(testIfCurlIsActive())
+			new MainFactory().showLoginFrame();	
+	}
 }
