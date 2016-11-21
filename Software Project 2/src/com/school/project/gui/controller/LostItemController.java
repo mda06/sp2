@@ -93,7 +93,7 @@ public class LostItemController extends BaseController<LostItemView> {
 							strRemove + selectedItem.getType() + "?");
 					if (confirmed == JOptionPane.OK_OPTION) {
 						selectedItem.setPickedUp(true);
-						LostItemDAO.getInstance().update(selectedItem);
+						LostItemDAO.getInstance().delete(selectedItem);
 						tableModel.removeRow(view.getTable().getSelectedRow());
 					}
 				}
