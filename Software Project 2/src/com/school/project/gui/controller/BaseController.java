@@ -14,4 +14,7 @@ public abstract class BaseController<T extends BaseView> implements Observer{
 	public T getBaseView() {
 		return view;
 	}
+	
+	public void show(){}
+	public void hide(){}
 }
