@@ -14,6 +14,7 @@ import com.school.project.language.LanguageObservable;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
+import com.school.project.util.FontUtil;
 
 public class TicketController extends BaseController<TicketView> implements PaymentBackListener {
 
@@ -30,6 +31,7 @@ public class TicketController extends BaseController<TicketView> implements Paym
 		for(Ticket t : TicketCache.getInstance().getCache()) {
 			JButton btn = new JButton(t.getName());
 			view.getPnlBtns().add(btn);
+			btn.setFont(FontUtil.getInstance().getSmall());
 			btn.setActionCommand(String.valueOf(t.getId()));
 			btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

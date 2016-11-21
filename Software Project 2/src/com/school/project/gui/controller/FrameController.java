@@ -15,6 +15,7 @@ import com.school.project.gui.controller.listener.LanguageActionListener;
 import com.school.project.gui.view.FrameView;
 import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
+import com.school.project.util.FontUtil;
 
 public class FrameController implements Observer {
 	private FrameView frame;
@@ -40,7 +41,7 @@ public class FrameController implements Observer {
 	public void addCard(BaseController<?> controller) {
 		final String KEY = controller.getBaseView().CARD_KEY; 
 		JButton btn = new JButton(KEY);
-		
+		btn.setFont(FontUtil.getInstance().getSmall());
 		if(oldButtonColor == null){
 			oldButtonColor = btn.getBackground();
 		}
@@ -77,7 +78,6 @@ public class FrameController implements Observer {
 					JButton btn = (JButton)c;
 					String acc = btn.getActionCommand();
 					btn.setText(handler.getString(acc));
-					
 					btn.setBackground(this.oldButtonColor);
 				}
 			}

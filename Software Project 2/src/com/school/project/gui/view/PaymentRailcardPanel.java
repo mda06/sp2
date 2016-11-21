@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.custom.AutoComboBox;
+import com.school.project.util.FontUtil;
 
 public class PaymentRailcardPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -182,37 +183,34 @@ public class PaymentRailcardPanel extends JPanel {
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
 		
-		Font small = new Font("Arial", Font.PLAIN, 24);
-		Font big = new Font("Arial", Font.PLAIN, 30);
-		
 		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN,18));
 		
-		txtName.setFont(big);
-		btnBack.setFont(big);
+		txtName.setFont(FontUtil.getInstance().getBig());
+		btnBack.setFont(FontUtil.getInstance().getBig());
 		
-		txtSoldBy.setFont(small);
-		lblSoldBy.setFont(small);
-		txtValidFrom.setFont(small);
-		txtValidTo.setFont(small);
-		lblValidFrom.setFont(small);
-		lblValidTo.setFont(small);
-		lblFromStation.setFont(small);
-		lblToStation.setFont(small);
-		lblDesc.setFont(small);
-		lblName.setFont(small);
-		btnPay.setFont(small);
-		txtFromStation.setFont(small); 
-		txtToStation.setFont(small);
-		btnSelectUser.setFont(small);
-		txtInNameOf.setFont(small);
-		lblInNameOf.setFont(small);
-		lblPricePerMonth.setFont(small);
-		lblPricePer3Month.setFont(small);
-		lblPricePerYear.setFont(small);
-		rdPricePerMonth.setFont(small);
-		rdPricePer3Month.setFont(small);
-		rdPricePerYear.setFont(small);
+		txtSoldBy.setFont(FontUtil.getInstance().getSmall());
+		lblSoldBy.setFont(FontUtil.getInstance().getSmall());
+		txtValidFrom.setFont(FontUtil.getInstance().getSmall());
+		txtValidTo.setFont(FontUtil.getInstance().getSmall());
+		lblValidFrom.setFont(FontUtil.getInstance().getSmall());
+		lblValidTo.setFont(FontUtil.getInstance().getSmall());
+		lblFromStation.setFont(FontUtil.getInstance().getSmall());
+		lblToStation.setFont(FontUtil.getInstance().getSmall());
+		lblDesc.setFont(FontUtil.getInstance().getSmall());
+		lblName.setFont(FontUtil.getInstance().getSmall());
+		btnPay.setFont(FontUtil.getInstance().getSmall());
+		txtFromStation.setFont(FontUtil.getInstance().getSmall()); 
+		txtToStation.setFont(FontUtil.getInstance().getSmall());
+		btnSelectUser.setFont(FontUtil.getInstance().getSmall());
+		txtInNameOf.setFont(FontUtil.getInstance().getSmall());
+		lblInNameOf.setFont(FontUtil.getInstance().getSmall());
+		lblPricePerMonth.setFont(FontUtil.getInstance().getSmall());
+		lblPricePer3Month.setFont(FontUtil.getInstance().getSmall());
+		lblPricePerYear.setFont(FontUtil.getInstance().getSmall());
+		rdPricePerMonth.setFont(FontUtil.getInstance().getSmall());
+		rdPricePer3Month.setFont(FontUtil.getInstance().getSmall());
+		rdPricePerYear.setFont(FontUtil.getInstance().getSmall());
 		
 	}
 

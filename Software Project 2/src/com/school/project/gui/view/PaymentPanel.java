@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.custom.AutoComboBox;
+import com.school.project.util.FontUtil;
 
 public class PaymentPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -124,30 +125,27 @@ public class PaymentPanel extends JPanel {
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
 		
-		Font small = new Font("Arial", Font.PLAIN, 24);
-		Font big = new Font("Arial", Font.PLAIN, 30);
-		
 		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN,18));
 		
-		txtName.setFont(big);
-		txtPrice.setFont(big);
-		btnBack.setFont(big);
+		txtName.setFont(FontUtil.getInstance().getBig());
+		txtPrice.setFont(FontUtil.getInstance().getBig());
+		btnBack.setFont(FontUtil.getInstance().getBig());
 		
-		txtSoldBy.setFont(small);
-		lblSoldBy.setFont(small);
-		txtValidFrom.setFont(small);
-		txtValidTo.setFont(small);
-		lblValidFrom.setFont(small);
-		lblValidTo.setFont(small);
-		lblFromStation.setFont(small);
-		lblToStation.setFont(small);
-		lblDesc.setFont(small);
-		lblPrice.setFont(small);
-		lblName.setFont(small);
-		btnPay.setFont(small);
-		txtFromStation.setFont(small); 
-		txtToStation.setFont(small);
+		txtSoldBy.setFont(FontUtil.getInstance().getSmall());
+		lblSoldBy.setFont(FontUtil.getInstance().getSmall());
+		txtValidFrom.setFont(FontUtil.getInstance().getSmall());
+		txtValidTo.setFont(FontUtil.getInstance().getSmall());
+		lblValidFrom.setFont(FontUtil.getInstance().getSmall());
+		lblValidTo.setFont(FontUtil.getInstance().getSmall());
+		lblFromStation.setFont(FontUtil.getInstance().getSmall());
+		lblToStation.setFont(FontUtil.getInstance().getSmall());
+		lblDesc.setFont(FontUtil.getInstance().getSmall());
+		lblPrice.setFont(FontUtil.getInstance().getSmall());
+		lblName.setFont(FontUtil.getInstance().getSmall());
+		btnPay.setFont(FontUtil.getInstance().getSmall());
+		txtFromStation.setFont(FontUtil.getInstance().getSmall()); 
+		txtToStation.setFont(FontUtil.getInstance().getSmall());
 		
 		
 		
