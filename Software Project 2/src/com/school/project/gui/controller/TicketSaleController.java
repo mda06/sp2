@@ -10,15 +10,15 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
+import com.school.project.dao.TicketSaleDAO;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.PaymentPanel;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketSale;
 import com.school.project.model.User;
 import com.school.project.nmbs.model.StationCache;
-import com.school.project.dao.TicketSaleDAO;
 
-public class TicketSaleController {
+public class TicketSaleController{
 	private PaymentPanel pnl;
 	private PaymentBackListener list;
 	private Ticket ticket;
@@ -87,4 +87,5 @@ public class TicketSaleController {
 			pnl.getTxtFromStation().setEnabled(false);
 		}
 	}
+
 }

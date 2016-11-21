@@ -145,6 +145,21 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 		if(o instanceof LanguageObservable){
 			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
 			fillInTheBlanks = lh.getString("fillInTheBlanks");
+			
+			pnl.getBtnPay().setText(lh.getString("Pay"));
+			pnl.getBtnSelectUser().setText(lh.getString("user"));
+			pnl.getLblDesc().setText(lh.getString("description"));
+			pnl.getLblFromStation().setText(lh.getString("from"));
+			pnl.getLblToStation().setText(lh.getString("to"));
+			pnl.getLblPricePer3Month().setText(lh.getString("pricePer") + " 3 " +lh.getString("months"));
+			pnl.getLblPricePerMonth().setText(lh.getString("pricePer") + " "+ lh.getString("month"));
+			pnl.getLblPricePerYear().setText(lh.getString("pricePer") + " " + lh.getString("year"));
+			pnl.getLblSoldBy().setText(lh.getString("soldBy"));
+			pnl.getLblValidFrom().setText(lh.getString("validFrom"));
+			pnl.getLblValidTo().setText(lh.getString("validTo"));
+			pnl.getLblInNameOf().setText(lh.getString("inNameOf"));
+			pnl.getBtnBack().setText(lh.getString("back"));
+			
 		}
 		
 	}
