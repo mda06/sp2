@@ -12,6 +12,7 @@ import com.school.project.gui.view.RailCardView;
 import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.User;
+import com.school.project.util.FontUtil;
 
 public class RailCardController extends BaseController<RailCardView> implements PaymentBackListener {
 	
@@ -29,6 +30,7 @@ public class RailCardController extends BaseController<RailCardView> implements 
 			JButton btn = new JButton(rc.getName());
 			btn.setActionCommand(String.valueOf(rc.getId()));
 			view.getPnlBtns().add(btn);
+			btn.setFont(FontUtil.getInstance().getSmall());
 			btn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
 					RailCard rc = RailCardCache.getInstance().getRailCard(Integer.parseInt(e.getActionCommand()));

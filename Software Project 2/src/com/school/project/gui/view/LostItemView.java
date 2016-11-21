@@ -1,13 +1,13 @@
 package com.school.project.gui.view;
 
-import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import com.school.project.util.FontUtil;
 
 public class LostItemView extends BaseView{
 	private static final long serialVersionUID = 1L;
@@ -64,15 +64,12 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnAdd);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -15, SpringLayout.SOUTH, this);
 		
-		
-		Font small = new Font("Arial", Font.PLAIN, 24);
-		
-		txtSearch.setFont(small);
-		btnSearch.setFont(small);
-		btnAdd.setFont(small);
-		table.setFont(small);
+		txtSearch.setFont(FontUtil.getInstance().getSmall());
+		btnSearch.setFont(FontUtil.getInstance().getSmall());
+		btnAdd.setFont(FontUtil.getInstance().getSmall());
+		table.setFont(FontUtil.getInstance().getSmall());
 		table.setRowHeight(30);
-		table.getTableHeader().setFont(small);
+		table.getTableHeader().setFont(FontUtil.getInstance().getSmall());
 	}
 	
 	public JButton getBtnAdd() {

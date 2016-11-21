@@ -2,7 +2,6 @@ package com.school.project.gui.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +18,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import com.school.project.util.FontUtil;
 
 public class UserView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -219,35 +220,33 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlCredentials, 40, SpringLayout.EAST, pnlAccount);
 		
-		Font small = new Font("Arial", Font.PLAIN, 24);
-		
-		lbFirstName.setFont(small);
-		lbLastName.setFont(small);
-		lbUsername.setFont(small);
-		lbPassword.setFont(small);
-		lbPasswordControl.setFont(small);
-		lbStreetNumber.setFont(small);
-		lbZipcode.setFont(small);
-		lbCity.setFont(small);
-		lblDate.setFont(small);
-		lblGender.setFont(small);
-		lblSoortuser.setFont(small);
-		pfPassword.setFont(small);
-		pfPasswordControl.setFont(small);
-		txtFirstName.setFont(small);
-		txtLastName.setFont(small);
-		txtUsername.setFont(small);
-		txtStreetNumber.setFont(small);
-		txtZipcode.setFont(small);
-		txtCity.setFont(small);
-		btnComplete.setFont(small);
-		btnBack.setFont(small);
-		btnSelectUser.setFont(small);
-		cBUseCredentials.setFont(small);
-		cBGenderM.setFont(small);
-		cBGenderW.setFont(small);
-		txtDate.setFont(small);
-		cbUserType.setFont(small);
+		lbFirstName.setFont(FontUtil.getInstance().getSmall());
+		lbLastName.setFont(FontUtil.getInstance().getSmall());
+		lbUsername.setFont(FontUtil.getInstance().getSmall());
+		lbPassword.setFont(FontUtil.getInstance().getSmall());
+		lbPasswordControl.setFont(FontUtil.getInstance().getSmall());
+		lbStreetNumber.setFont(FontUtil.getInstance().getSmall());
+		lbZipcode.setFont(FontUtil.getInstance().getSmall());
+		lbCity.setFont(FontUtil.getInstance().getSmall());
+		lblDate.setFont(FontUtil.getInstance().getSmall());
+		lblGender.setFont(FontUtil.getInstance().getSmall());
+		lblSoortuser.setFont(FontUtil.getInstance().getSmall());
+		pfPassword.setFont(FontUtil.getInstance().getSmall());
+		pfPasswordControl.setFont(FontUtil.getInstance().getSmall());
+		txtFirstName.setFont(FontUtil.getInstance().getSmall());
+		txtLastName.setFont(FontUtil.getInstance().getSmall());
+		txtUsername.setFont(FontUtil.getInstance().getSmall());
+		txtStreetNumber.setFont(FontUtil.getInstance().getSmall());
+		txtZipcode.setFont(FontUtil.getInstance().getSmall());
+		txtCity.setFont(FontUtil.getInstance().getSmall());
+		btnComplete.setFont(FontUtil.getInstance().getSmall());
+		btnBack.setFont(FontUtil.getInstance().getSmall());
+		btnSelectUser.setFont(FontUtil.getInstance().getSmall());
+		cBUseCredentials.setFont(FontUtil.getInstance().getSmall());
+		cBGenderM.setFont(FontUtil.getInstance().getSmall());
+		cBGenderW.setFont(FontUtil.getInstance().getSmall());
+		txtDate.setFont(FontUtil.getInstance().getSmall());
+		cbUserType.setFont(FontUtil.getInstance().getSmall());
 	}
 	
 	public JLabel getLbFirstName() {

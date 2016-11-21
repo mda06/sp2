@@ -1,12 +1,12 @@
 package com.school.project.gui.view;
 
-import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
+
+import com.school.project.util.FontUtil;
 
 public class ActiveRailCardView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -58,15 +58,13 @@ public class ActiveRailCardView extends BaseView {
 		sp.putConstraint(SpringLayout.WEST, scroll, 30, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.EAST, scroll, -30, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -30, SpringLayout.SOUTH, this);
+
 		
-		Font small = new Font("Arial", Font.PLAIN, 24);
-		Font big = new Font("Arial", Font.PLAIN, 30);
-		
-		btnSelectUser.setFont(big);
-		lblSelectUser.setFont(big);
-		lblUser.setFont(big);
-		table.setFont(small);
-		table.getTableHeader().setFont(small);
+		btnSelectUser.setFont(FontUtil.getInstance().getBig());
+		lblSelectUser.setFont(FontUtil.getInstance().getBig());
+		lblUser.setFont(FontUtil.getInstance().getBig());
+		table.setFont(FontUtil.getInstance().getSmall());
+		table.getTableHeader().setFont(FontUtil.getInstance().getSmall());
 		table.setRowHeight(30);
 		
 	}

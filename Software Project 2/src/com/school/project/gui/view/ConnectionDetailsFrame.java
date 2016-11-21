@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import com.school.project.util.FontUtil;
+
 public class ConnectionDetailsFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +23,7 @@ public class ConnectionDetailsFrame extends JFrame {
 		initLayout();
 		setAlwaysOnTop(true);
 		setTitle("Details");
-		setSize(850, 200);
+		setSize(MAXIMIZED_HORIZ, MAXIMIZED_VERT);
 		setLocationRelativeTo(null);
 	}
 	
@@ -36,6 +38,7 @@ public class ConnectionDetailsFrame extends JFrame {
 		txtDeparture = new JTextField(20);
 		txtDeparture.setEditable(false);
 		tblDetails = new JTable();
+		tblDetails.setRowHeight(30);
 		JScrollPane scroll = new JScrollPane(tblDetails);
 		
 		JPanel pnlNorth = new JPanel(new GridLayout(3, 2));
@@ -45,6 +48,18 @@ public class ConnectionDetailsFrame extends JFrame {
 		pnlNorth.add(txtDeparture);
 		pnlNorth.add(lblArrival);
 		pnlNorth.add(txtArrival);
+		
+		
+		
+		lblDuration.setFont(FontUtil.getInstance().getSmall());
+		lblDeparture.setFont(FontUtil.getInstance().getSmall());
+		lblArrival.setFont(FontUtil.getInstance().getSmall());
+		txtDuration.setFont(FontUtil.getInstance().getSmall());
+		txtArrival.setFont(FontUtil.getInstance().getSmall());
+		txtDeparture.setFont(FontUtil.getInstance().getSmall());
+		tblDetails.setFont(FontUtil.getInstance().getSmall());
+		tblDetails.getTableHeader().setFont(FontUtil.getInstance().getSmall());
+		
 		
 		add(pnlNorth, BorderLayout.NORTH);
 		add(scroll);
