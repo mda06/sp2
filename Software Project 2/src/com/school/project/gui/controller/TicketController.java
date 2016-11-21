@@ -9,6 +9,8 @@ import javax.swing.JButton;
 
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.TicketView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
@@ -46,6 +48,20 @@ public class TicketController extends BaseController<TicketView> implements Paym
 	
 	@Override
 	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
+			view.getPnlPayment().getBtnBack().setText(lh.getString("back"));
+			view.getPnlPayment().getLblName().setText(lh.getString("Name"));
+			view.getPnlPayment().getLblSoldBy().setText(lh.getString("soldBy"));
+			view.getPnlPayment().getLblDesc().setText(lh.getString("desc"));
+			view.getPnlPayment().getLblFromStation().setText(lh.getString("fromStation"));
+			view.getPnlPayment().getLblToStation().setText(lh.getString("toStation"));
+			view.getPnlPayment().getLblPrice().setText(lh.getString("price"));
+			view.getPnlPayment().getLblValidFrom().setText(lh.getString("validFrom"));
+			view.getPnlPayment().getLblValidTo().setText(lh.getString("validBy"));
+			view.getPnlPayment().getBtnPay().setText(lh.getString("pay"));
+			
+		}
 	}
 
 	@Override
