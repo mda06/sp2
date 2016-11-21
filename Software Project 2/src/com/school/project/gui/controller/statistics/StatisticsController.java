@@ -14,5 +14,9 @@ public class StatisticsController extends BaseController<StatisticsView> {
 	@Override
 	public void update(Observable o, Object arg) {
 	}
-
+	
+	@Override
+	public void show() {
+		view.updateDataset();
+	}
 }

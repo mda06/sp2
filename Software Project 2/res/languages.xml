@@ -10,6 +10,16 @@
 
 
 <resources>
+    <string name = "Settings">
+		<value lang="en"> Settings  </value>
+		<value lang="fr"> Propriétées </value>
+		<value lang="nl"> Eigenschappen </value>
+	</string>
+	<string name = "statistics">
+		<value lang="en"> Statistics  </value>
+		<value lang="fr"> Statistiques </value>
+		<value lang="nl"> Statistieken </value>
+	</string>
 	<string name = "errorAddLostItem">
 		<value lang="en"> Please fill in all the fields </value>
 		<value lang="fr"> Remplisez les champs </value>
@@ -30,7 +40,6 @@
 		<value lang="fr"> Supprimer </value>
 		<value lang="nl"> Verwijder </value>
 	</string>
-
 	<string name = "columnTrainDir">
 		<value lang="en"> Train Direction  </value>
 		<value lang="fr"> Train Direction </value>
