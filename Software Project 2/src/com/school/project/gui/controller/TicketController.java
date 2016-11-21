@@ -51,15 +51,15 @@ public class TicketController extends BaseController<TicketView> implements Paym
 		if(o instanceof LanguageObservable){
 			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
 			view.getPnlPayment().getBtnBack().setText(lh.getString("back"));
-			view.getPnlPayment().getLblName().setText(lh.getString("Name"));
+			view.getPnlPayment().getLblName().setText(lh.getString("name"));
 			view.getPnlPayment().getLblSoldBy().setText(lh.getString("soldBy"));
-			view.getPnlPayment().getLblDesc().setText(lh.getString("desc"));
-			view.getPnlPayment().getLblFromStation().setText(lh.getString("fromStation"));
-			view.getPnlPayment().getLblToStation().setText(lh.getString("toStation"));
+			view.getPnlPayment().getLblDesc().setText(lh.getString("description"));
+			view.getPnlPayment().getLblFromStation().setText(lh.getString("from"));
+			view.getPnlPayment().getLblToStation().setText(lh.getString("to"));
 			view.getPnlPayment().getLblPrice().setText(lh.getString("price"));
 			view.getPnlPayment().getLblValidFrom().setText(lh.getString("validFrom"));
-			view.getPnlPayment().getLblValidTo().setText(lh.getString("validBy"));
-			view.getPnlPayment().getBtnPay().setText(lh.getString("pay"));
+			view.getPnlPayment().getLblValidTo().setText(lh.getString("validTo"));
+			view.getPnlPayment().getBtnPay().setText(lh.getString("Pay"));
 			
 		}
 	}
