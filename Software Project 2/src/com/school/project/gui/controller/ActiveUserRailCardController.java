@@ -46,6 +46,7 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 	public void initActiveRailCardstoTable(){
 		for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getAll()){
 			tableModel.addActiveRailCard(item);
+			
 		}
 	}
 	
