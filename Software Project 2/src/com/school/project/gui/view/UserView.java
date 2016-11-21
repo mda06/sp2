@@ -23,9 +23,9 @@ import javax.swing.SpringLayout;
 public class UserView extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private JLabel lbFirstName, lbLastName, lbUsername, lbPassword, lbPasswordControl, lbStreetNumber, lbZipcode,
-			lbCity, lblDate, lblGender, lblSoortuser;
+			lbCity, lblDate, lblGender, lblSoortuser, lbCountry, lbStreetline2;
 	private JPasswordField pfPassword, pfPasswordControl;
-	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity;
+	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity, txtCountry, txtStreetline2;
 	private JButton btnComplete, btnBack, btnSelectUser;
 	private JPanel pnlAccount, pnlCredentials, pnlOptions;
 	private Component txtPassword;
@@ -71,13 +71,16 @@ public class UserView extends BaseView {
 		groupGender = new ButtonGroup();
 		lblSoortuser = new JLabel("User type");
 		btnSelectUser = new JButton("Select user");
-		
 		cBUseCredentials = new JCheckBox("useCredentials");
 		cBGenderM = new JRadioButton("M");
 		cBGenderM.setSelected(true);
 		cBGenderW = new JRadioButton("W");
 		cbUserType = new JComboBox<String>(userType);
 		cbUserType.setSelectedIndex(2);
+		lbCountry = new JLabel("Country");
+		txtCountry = new JTextField(10);
+		lbStreetline2 = new JLabel("Streetline 2");
+		txtStreetline2 = new JTextField(10);
 		
 		groupGender.add(cBGenderM);
 		groupGender.add(cBGenderW);
@@ -109,6 +112,10 @@ public class UserView extends BaseView {
 		pnlAccount.add(lblGender);
 		pnlAccount.add(cbUserType);
 		pnlAccount.add(lblSoortuser);
+		pnlAccount.add(lbCountry);
+		pnlAccount.add(txtCountry);
+		pnlAccount.add(lbStreetline2);
+		pnlAccount.add(txtStreetline2);
 		pnlCredentials.add(lbUsername);
 		pnlCredentials.add(txtUsername);
 		pnlCredentials.add(lbPassword);
@@ -135,8 +142,14 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, lbStreetNumber, 5, SpringLayout.SOUTH, txtLastName);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtStreetNumber, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, txtStreetNumber, 5, SpringLayout.SOUTH, lbStreetNumber);
+		
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbStreetline2, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, lbStreetline2, 5, SpringLayout.SOUTH, txtStreetNumber);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtStreetline2, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, txtStreetline2, 5, SpringLayout.SOUTH, lbStreetline2);
+		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblDate, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lblDate, 5, SpringLayout.SOUTH, txtStreetNumber);
+		sp.putConstraint(SpringLayout.NORTH, lblDate, 5, SpringLayout.SOUTH, txtStreetline2);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtDate, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, txtDate, 5, SpringLayout.SOUTH, lblDate);
 		sp.putConstraint(SpringLayout.WEST, txtDate, 0, SpringLayout.WEST, txtFirstName);
@@ -148,7 +161,21 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbCity, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
 		sp.putConstraint(SpringLayout.NORTH, lbCity, 5, SpringLayout.SOUTH, txtZipcode);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtCity, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, txtCity, 5, SpringLayout.SOUTH, lbCity);
+		sp.putConstraint(SpringLayout.NORTH, txtCity, 5, SpringLayout.SOUTH, lbCity);		
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbCountry, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, lbCountry, 5, SpringLayout.SOUTH, txtCity);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtCountry, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, txtCountry, 5, SpringLayout.SOUTH, lbCountry);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblGender, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, lblGender, 5, SpringLayout.SOUTH, txtCountry);
+		sp.putConstraint(SpringLayout.NORTH, cBGenderM, 5, SpringLayout.SOUTH, lblGender);
+		sp.putConstraint(SpringLayout.WEST, cBGenderM, -25, SpringLayout.WEST, lblGender);
+		sp.putConstraint(SpringLayout.NORTH, cBGenderW, 5, SpringLayout.SOUTH, lblGender);
+		sp.putConstraint(SpringLayout.WEST, cBGenderW, 15, SpringLayout.EAST, cBGenderM);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblSoortuser, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, lblSoortuser, 5, SpringLayout.SOUTH, cBGenderW);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cbUserType, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
+		sp.putConstraint(SpringLayout.NORTH, cbUserType, 5, SpringLayout.SOUTH, lblSoortuser);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lbUsername, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, txtUsername, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
 		sp.putConstraint(SpringLayout.NORTH, txtUsername, 5, SpringLayout.SOUTH, lbUsername);	
@@ -160,19 +187,6 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, lbPasswordControl, 5, SpringLayout.SOUTH, pfPassword);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, pfPasswordControl, 0, SpringLayout.HORIZONTAL_CENTER, pnlCredentials);
 		sp.putConstraint(SpringLayout.NORTH, pfPasswordControl, 5, SpringLayout.SOUTH, lbPasswordControl);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblGender, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lblGender, 5, SpringLayout.SOUTH, txtCity);
-		sp.putConstraint(SpringLayout.NORTH, cBGenderM, 5, SpringLayout.SOUTH, lblGender);
-		sp.putConstraint(SpringLayout.WEST, cBGenderM, -25, SpringLayout.WEST, lblGender);
-		sp.putConstraint(SpringLayout.NORTH, cBGenderW, 5, SpringLayout.SOUTH, lblGender);
-		sp.putConstraint(SpringLayout.WEST, cBGenderW, 15, SpringLayout.EAST, cBGenderM);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, lblSoortuser, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, lblSoortuser, 5, SpringLayout.SOUTH, cBGenderW);
-		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, cbUserType, 0, SpringLayout.HORIZONTAL_CENTER, pnlAccount);
-		sp.putConstraint(SpringLayout.NORTH, cbUserType, 5, SpringLayout.SOUTH, lblSoortuser);
-		
-		
-		
 		
 		//new stuff
 		sp.putConstraint(SpringLayout.NORTH, cBUseCredentials, 20, SpringLayout.NORTH, pnlOptions);
@@ -191,7 +205,7 @@ public class UserView extends BaseView {
 		
 		sp = new SpringLayout();
 		setLayout(sp);	
-		pnlAccount.setPreferredSize(new Dimension(300,700));
+		pnlAccount.setPreferredSize(new Dimension(300,800));
 		pnlCredentials.setPreferredSize(new Dimension(300,280));
 		pnlOptions.setPreferredSize(new Dimension(300,200));
 		add(pnlAccount);
@@ -201,7 +215,7 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, pnlOptions, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlAccount, 40, SpringLayout.EAST, pnlOptions);
 		sp.putConstraint(SpringLayout.NORTH, pnlAccount, 15, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 700, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.SOUTH, pnlAccount, 750, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlCredentials, 40, SpringLayout.EAST, pnlAccount);
 		
@@ -498,6 +512,38 @@ public class UserView extends BaseView {
 
 	public void setBtnSelectUser(JButton btnSelectUser) {
 		this.btnSelectUser = btnSelectUser;
+	}
+
+	public JLabel getLbCountry() {
+		return lbCountry;
+	}
+
+	public void setLbCountry(JLabel lbCountry) {
+		this.lbCountry = lbCountry;
+	}
+
+	public JLabel getLbStreetline2() {
+		return lbStreetline2;
+	}
+
+	public void setLbStreetline2(JLabel lbStreetline2) {
+		this.lbStreetline2 = lbStreetline2;
+	}
+
+	public JTextField getTxtCountry() {
+		return txtCountry;
+	}
+
+	public void setTxtCountry(JTextField txtCountry) {
+		this.txtCountry = txtCountry;
+	}
+
+	public JTextField getTxtStreetline2() {
+		return txtStreetline2;
+	}
+
+	public void setTxtStreetline2(JTextField txtStreetline2) {
+		this.txtStreetline2 = txtStreetline2;
 	}
 
 }
