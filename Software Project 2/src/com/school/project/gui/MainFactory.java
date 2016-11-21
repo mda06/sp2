@@ -20,6 +20,7 @@ import com.school.project.gui.controller.SettingsController;
 import com.school.project.gui.controller.TicketController;
 import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
+import com.school.project.gui.controller.statistics.StatisticsController;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
@@ -64,6 +65,17 @@ public class MainFactory implements ConnectionListener {
 		languageObservable.addObserver(login);
 		login.getLoginView().setVisible(true);
 		languageObservable.languageChanged();
+		login.getLoginView().addWindowListener(new WindowListener(){
+			public void windowOpened(WindowEvent e) {}
+			public void windowClosing(WindowEvent e) {
+				DatabaseHandler.getInstance().closeConnection();
+			}
+			public void windowClosed(WindowEvent e) {}
+			public void windowIconified(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
+		});
 	}
 
 	public void showBaseFrame() {
@@ -108,6 +120,7 @@ public class MainFactory implements ConnectionListener {
 		addCard(base, new ActiveUserRailCardController());
 		if(connectedUser.getType() == UserType.ADMIN) {
 			addCard(base, new SettingsController(languageObservable));
+			addCard(base, new StatisticsController());
 		}
 	}
 
