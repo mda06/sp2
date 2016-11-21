@@ -16,6 +16,7 @@ import com.school.project.gui.controller.LoginController;
 import com.school.project.gui.controller.LostItemController;
 import com.school.project.gui.controller.RailCardController;
 import com.school.project.gui.controller.RouteController;
+import com.school.project.gui.controller.SettingsController;
 import com.school.project.gui.controller.TicketController;
 import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
@@ -23,6 +24,7 @@ import com.school.project.language.LanguageObservable;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
+import com.school.project.model.User.UserType;
 import com.school.project.nmbs.dao.StationDAO;
 
 public class MainFactory implements ConnectionListener {
@@ -104,6 +106,9 @@ public class MainFactory implements ConnectionListener {
 		addCard(base, new RouteController());
 		addCard(base, new UserController(connectedUser));
 		addCard(base, new ActiveUserRailCardController());
+		if(connectedUser.getType() == UserType.ADMIN) {
+			addCard(base, new SettingsController(languageObservable));
+		}
 	}
 
 	private void addCard(FrameController base, BaseController<?> bc) {
