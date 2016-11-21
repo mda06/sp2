@@ -30,6 +30,43 @@
 		<value lang="fr"> Supprimer </value>
 		<value lang="nl"> Verwijder </value>
 	</string>
+
+	<string name = "columnTrainDir">
+		<value lang="en"> Train Direction  </value>
+		<value lang="fr"> Train Direction </value>
+		<value lang="nl"> Trein Directie </value>
+	</string>
+	<string name = "columnStepOff">
+		<value lang="en"> Step off  </value>
+		<value lang="fr"> Descendez </value>
+		<value lang="nl"> Stap uit </value>
+	</string>
+	<string name = "columnArrivalPlatform">
+		<value lang="en"> Arrivel platform  </value>
+		<value lang="fr"> Platform d'arrivé </value>
+		<value lang="nl"> Aankomstplatform </value>
+	</string>
+	<string name = "columnArrivalDelays">
+		<value lang="en"> Arrival Delay(s)  </value>
+		<value lang="fr"> Delay(s) d'arrivé </value>
+		<value lang="nl"> Aankomst delay(s) </value>
+	</string>
+	<string name = "columnNextPlatform">
+		<value lang="en"> Next Platform  </value>
+		<value lang="fr"> Platforme prochaine </value>
+		<value lang="nl"> Volgende platform </value>
+	</string>
+	<string name = "columnNextDelays">
+		<value lang="en"> Next Delay(s)  </value>
+		<value lang="fr"> Delay(s) prochains </value>
+		<value lang="nl"> Volgende delay(s) </value>
+	</string>
+	<string name = "columnNextTime">
+		<value lang="en"> Next Time  </value>
+		<value lang="fr"> Prochain temps </value>
+		<value lang="nl"> Volgende tijd </value>
+	</string>
+	
 	<string name = "search">
 		<value lang="en"> Search </value>
 		<value lang="fr"> Chercher </value>
@@ -105,15 +142,25 @@
 		<value lang="fr"> Nom d'utilisateur </value>
 		<value lang="en"> Username </value>
 	</string>
-	<string name = "NewUser">
-		<value lang="nl"> Nieuwe gebruiker </value>
-		<value lang="fr"> Nouvel utilisateur </value>
-		<value lang="en"> New User </value>
+	<string name = "UserView">
+		<value lang="nl"> Gebruikers </value>
+		<value lang="fr"> Utilisateurs </value>
+		<value lang="en"> Users </value>
+	</string>
+	<string name = "user">
+		<value lang="nl"> Gebruiker </value>
+		<value lang="fr"> Utilisateur </value>
+		<value lang="en"> User </value>
 	</string>
 	<string name = "firstName">
 		<value lang="nl"> Voornaam</value>
 		<value lang="fr"> Prénom</value>
 		<value lang="en"> First name</value>
+	</string>
+	<string name = "select">
+		<value lang="nl"> Selecteer</value>
+		<value lang="fr"> Sélectionner</value>
+		<value lang="en"> Select</value>
 	</string>
 	<string name = "lastName">
 		<value lang="nl"> Achternaam</value>

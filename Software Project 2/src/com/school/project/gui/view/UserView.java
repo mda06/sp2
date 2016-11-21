@@ -3,8 +3,6 @@ package com.school.project.gui.view;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,12 +35,9 @@ public class UserView extends BaseView {
 	private JFormattedTextField txtDate;
 	private JComboBox<String> cbUserType;
 	private String[] userType = {"Admin", "Employee", "Customer"};
-	private JButton test;
-
-	
 
 	public UserView() {
-		super("NewUser");
+		super("UserView");
 		initLayout();
 	}
 
@@ -65,7 +60,6 @@ public class UserView extends BaseView {
 		txtLastName = new JTextField(10);
 		txtUsername = new JTextField(10);
 		txtStreetNumber = new JTextField(10);
-		//txtDate = new JFormattedTextField(createFormatter("##/##/####"));
 		txtDate = new JFormattedTextField(dateFormat);
 		txtDate.setColumns(8);
 		txtDate.setText(dateFormat.format(date));
@@ -211,20 +205,6 @@ public class UserView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, pnlCredentials, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlCredentials, 40, SpringLayout.EAST, pnlAccount);
 		
-			
-		test = new JButton("test");
-		add(test);
-		test.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				removeAll();
-				initLayout();
-				repaint();
-				validate();
-			}
-		});
-		sp.putConstraint(SpringLayout.SOUTH, test, 0, SpringLayout.SOUTH, this);
-		sp.putConstraint(SpringLayout.EAST, test, 0, SpringLayout.EAST, this);
-
 		Font small = new Font("Arial", Font.PLAIN, 24);
 		
 		lbFirstName.setFont(small);
@@ -254,8 +234,6 @@ public class UserView extends BaseView {
 		cBGenderW.setFont(small);
 		txtDate.setFont(small);
 		cbUserType.setFont(small);
-		test.setFont(small);
-		
 	}
 	
 	public JLabel getLbFirstName() {
@@ -513,15 +491,6 @@ public class UserView extends BaseView {
 	public void setUserType(String[] userType) {
 		this.userType = userType;
 	}
-
-	public JButton getTest() {
-		return test;
-	}
-
-	public void setTest(JButton test) {
-		this.test = test;
-	}
-
 	
 	public JButton getBtnSelectUser() {
 		return btnSelectUser;
@@ -530,6 +499,5 @@ public class UserView extends BaseView {
 	public void setBtnSelectUser(JButton btnSelectUser) {
 		this.btnSelectUser = btnSelectUser;
 	}
-	
 
 }

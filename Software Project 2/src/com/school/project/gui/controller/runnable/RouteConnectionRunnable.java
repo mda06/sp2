@@ -29,7 +29,6 @@ public class RouteConnectionRunnable implements Runnable {
 			return;
 		}
 		String date = new SimpleDateFormat("dd/MM/yyyy").format(selectedDate);
-		System.out.println(date);
 		String hour = view.getTxtUur().getText();
 		String departureSelect = "depart";
 		if (view.getRbArrival().isSelected()) {

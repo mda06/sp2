@@ -89,6 +89,8 @@ public class RouteController extends BaseController<RouteView> {
 			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_NUMBER_OF_VIAS).setHeaderValue(lh.getString("numberOfVias"));
 			view.getTblConnection().getColumnModel().getColumn(tblModel.COLUMN_FROM_TO).setHeaderValue(lh.getString("fromTo"));
 			view.getTblConnection().getTableHeader().repaint();
+			
+			detailsController.update(o, arg);
 		}
 	}
 }

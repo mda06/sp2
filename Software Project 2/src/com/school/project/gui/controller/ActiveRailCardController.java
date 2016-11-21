@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -18,7 +20,7 @@ import com.school.project.model.RailCard;
 import com.school.project.model.User;
 import com.school.project.nmbs.model.StationCache;
 
-public class ActiveRailCardController implements SelectedUserListener {
+public class ActiveRailCardController implements SelectedUserListener, Observer{
 	private PaymentRailcardPanel pnl;
 	private PaymentBackListener list;
 	private RailCard railcard;
@@ -43,7 +45,6 @@ public class ActiveRailCardController implements SelectedUserListener {
 		pnl.getBtnSelectUser().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				selectUserController.showPopup();
-				/// dff
 			}
 		});
 		pnl.getBtnBack().addActionListener(new ActionListener() {
@@ -133,6 +134,11 @@ public class ActiveRailCardController implements SelectedUserListener {
 			pnl.getTxtToStation().setEnabled(false);
 			pnl.getTxtFromStation().setEnabled(false);
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		selectUserController.update(o, arg);
 	}
 
 }

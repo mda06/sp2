@@ -3,6 +3,8 @@ package com.school.project.gui;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -27,6 +29,7 @@ public class MainFactory implements ConnectionListener {
 	private User connectedUser;
 	private LoginController login;
 	private LanguageObservable languageObservable;
+	private boolean isCacheLoaded;
 
 	public MainFactory() {
 
@@ -41,10 +44,14 @@ public class MainFactory implements ConnectionListener {
 		} catch (IllegalAccessException e) {
 			//e.printStackTrace();
 		}
-
-		StationDAO.loadCache();
-		TicketCache.getInstance().loadCache();
-		RailCardCache.getInstance().loadCache();
+		
+		isCacheLoaded = false;
+		new Thread(() -> {
+			StationDAO.loadCache();
+			TicketCache.getInstance().loadCache();
+			RailCardCache.getInstance().loadCache();
+			isCacheLoaded = true;
+		}).start();
 		
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
@@ -58,6 +65,21 @@ public class MainFactory implements ConnectionListener {
 	}
 
 	public void showBaseFrame() {
+		if(!isCacheLoaded) {
+			JFrame frame = new JFrame("Loading");
+			frame.getContentPane().add(new JLabel("Please wait until the cache is loaded..."));
+			frame.pack();
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
+		}
+		while(!isCacheLoaded) {
+			try {
+				Thread.sleep(150);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
 		FrameController frame = new FrameController(languageObservable);
 		languageObservable.addObserver(frame);
 		initBaseModels(frame);

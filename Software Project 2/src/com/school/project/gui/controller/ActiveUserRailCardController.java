@@ -22,7 +22,6 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 		tableModel = new ActiveRailCardTableModel();
 		view.getTable().setModel(tableModel);
 		view.getTable().setAutoCreateRowSorter(true);
-		initActiveRailCardstoTable();
 		initEvents();
 		selectUserController = new SelectUserController(this);
 	}
@@ -40,15 +39,11 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 			view.getTable().getColumnModel().getColumn(tableModel.COLUMN_VALID_TO).setHeaderValue(handler.getString("validTo"));
 			view.getTable().getColumnModel().getColumn(tableModel.COLUMN_SOLD_BY_USER).setHeaderValue(handler.getString("soldByUser"));
 			view.repaint();
+			selectUserController.update(o, arg);
 		}
 	}
 	
-	public void initActiveRailCardstoTable(){
-		for(ActiveRailCard item : ActiveRailCardDAO.getInstance().getAll()){
-			tableModel.addActiveRailCard(item);
-			
-		}
-	}
+
 	
 	public void initEvents(){
 		view.getBtnSelectUser().addActionListener(new ActionListener(){

@@ -50,5 +50,6 @@ public class RailCardController extends BaseController<RailCardView> implements 
 	
 	@Override
 	public void update(Observable o, Object arg) {
+		railcardController.update(o, arg);
 	}
 }

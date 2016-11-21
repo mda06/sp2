@@ -32,7 +32,7 @@ public class LostItemController extends BaseController<LostItemView> {
 		view.getTable().setAutoCreateRowSorter(true);
 
 		view.getTxtSearch().setFocusable(true);
-		initLostItemsToTable();
+		new Thread(() -> initLostItemsToTable()).start();;
 		initSearchBoxEvents();
 		initAddLostItem();
 		initRemoveLostItem();
@@ -70,11 +70,9 @@ public class LostItemController extends BaseController<LostItemView> {
 		});
 	}
 
-	// TODO: put it in another thread
 	public void initLostItemsToTable() {
 		for (LostItem item : LostItemDAO.getInstance().getAll()) {
 			tableModel.addLostItem(item);
-			//System.out.println("Adding from init ...");
 		}
 	}
 
@@ -116,12 +114,7 @@ public class LostItemController extends BaseController<LostItemView> {
 			view.getTable().getColumnModel().getColumn(tableModel.COLUMN_LOCATION)
 					.setHeaderValue(handler.getString("location"));
 			view.getTable().getTableHeader().repaint();
-			
-			//((TitledBorder) view.getPnlAdd().getBorder()).setTitle(handler.getString("add"));
-			view.getPnlAdd().repaint();
-			//((TitledBorder) view.getPnlSearch().getBorder()).setTitle(handler.getString("search"));
-			view.getPnlSearch().repaint();
-
+		
 			addFrame.getBtnCancel().setText(handler.getString("cancel"));
 			addFrame.getBtnSave().setText(handler.getString("save"));
 			addFrame.getLblType().setText(handler.getString("type"));
@@ -157,7 +150,6 @@ public class LostItemController extends BaseController<LostItemView> {
 				if (!view.getTxtSearch().getText().isEmpty()) {
 					for (LostItem item : LostItemDAO.getInstance().getByDescription(view.getTxtSearch().getText())) {
 						tableModel.addLostItem(item);
-						//System.out.println("Adding from desc ...");
 					}
 					view.getTxtSearch().setText("");
 				} else {
