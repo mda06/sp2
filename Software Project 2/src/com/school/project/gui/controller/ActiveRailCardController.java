@@ -15,6 +15,8 @@ import com.school.project.dao.ActiveRailCardDAO;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.controller.listener.SelectedUserListener;
 import com.school.project.gui.view.PaymentRailcardPanel;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.ActiveRailCard;
 import com.school.project.model.RailCard;
 import com.school.project.model.User;
@@ -26,6 +28,7 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 	private RailCard railcard;
 	private User user, inNameOf;
 	private SelectUserController selectUserController;
+	private String fillInTheBlanks;
 
 	public ActiveRailCardController(PaymentRailcardPanel pnl, PaymentBackListener list, User user) {
 		this.pnl = pnl;
@@ -61,9 +64,9 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 				Date validTo = new Date(getValidityPeriod().getTime().getTime());
 
 				if(inNameOf == null) {
-					JOptionPane.showMessageDialog(pnl, "Please enter a user");
+					JOptionPane.showMessageDialog(pnl, fillInTheBlanks);
 				} else if (railcard.isHasFixedRoute() && (from.isEmpty() || to.isEmpty())) {
-					JOptionPane.showMessageDialog(pnl, "Please enter from and to stations");
+					JOptionPane.showMessageDialog(pnl, fillInTheBlanks);
 				} else {
 					ActiveRailCard activeRailCard = new ActiveRailCard(-1, validFrom, validTo, from, to, user, inNameOf, railcard, false);
 					ActiveRailCardDAO.getInstance().add(activeRailCard);
@@ -139,6 +142,11 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		selectUserController.update(o, arg);
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			fillInTheBlanks = lh.getString("fillInTheBlanks");
+		}
+		
 	}
 
 }
