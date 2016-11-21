@@ -93,7 +93,7 @@
 		<value lang="en"> Type </value>
 	</string>
 	<string name = "description">
-		<value lang="nl"> Descriptie </value>
+		<value lang="nl"> Beschrijving </value>
 		<value lang="fr"> Description </value>
 		<value lang="en"> Description </value>
 	</string>
@@ -334,6 +334,12 @@
 		<value lang="nl">Verkocht door gebruiker</value>
 		<value lang="fr">Vendu par l'utilisateur</value>
 	</string>
+	
+	<string name="soldBy">
+		<value lang="en">Sold by</value>
+		<value lang="nl">Verkocht door</value>
+		<value lang="fr">Vendu par</value>
+	</string>
 	<string name="Customer">
 		<value lang="en">Customer</value>
 		<value lang="nl">Klant</value>
@@ -348,5 +354,40 @@
 		<value lang="en">Admin</value>
 		<value lang="nl">Admin</value>
 		<value lang="fr">Admin</value>
+	</string>
+	<string name="Pay">
+		<value lang="en">Pay</value>
+		<value lang="nl">Betalen</value>
+		<value lang="fr">Payer</value>
+	</string>
+	<string name="pricePer">
+		<value lang="en">Price per</value>
+		<value lang="nl">Prijs per</value>
+		<value lang="fr">Prix par</value>
+	</string>
+	<string name="months">
+		<value lang="en">months</value>
+		<value lang="nl">maanden</value>
+		<value lang="fr">mois</value>
+	</string>
+	<string name="month">
+		<value lang="en">month</value>
+		<value lang="nl">maand</value>
+		<value lang="fr">mois</value>
+	</string>
+	<string name="year">
+		<value lang="en">year</value>
+		<value lang="nl">jaar</value>
+		<value lang="fr">année</value>
+	</string>
+	<string name="back">
+		<value lang="en">Back</value>
+		<value lang="nl">Terug</value>
+		<value lang="fr">Retour</value>
+	</string>
+	<string name="inNameOf">
+		<value lang="nl">In naam van</value>
+		<value lang="en">In name of</value>
+		<value lang="fr">Au nom de</value>
 	</string>
 	</resources>
