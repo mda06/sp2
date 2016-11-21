@@ -390,4 +390,14 @@
 		<value lang="en">In name of</value>
 		<value lang="fr">Au nom de</value>
 	</string>
+	<string name="name">
+		<value lang="en">name</value>
+		<value lang="nl">naam</value>
+		<value lang="fr">nom</value>
+	</string>
+	<string name="price">
+		<value lang="en">Price</value>
+		<value lang="nl">Prijs</value>
+		<value lang="fr">Prix</value>
+	</string>
 	</resources>
