@@ -1,6 +1,5 @@
 package com.school.project.language;
 
-import java.io.File;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -35,7 +34,6 @@ public class LanguageHandler {
 		// source:
 		// https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 		try {
-			File fXmlFile = new File("./res/languages.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
@@ -61,8 +59,7 @@ public class LanguageHandler {
 					exception.printStackTrace();
 				}
 			});
-
-			Document doc = dBuilder.parse(fXmlFile);
+			Document doc = dBuilder.parse(getClass().getResource("/languages.xml").openStream());
 			doc.getDocumentElement().normalize();
 
 			NodeList stringNodes = doc.getElementsByTagName("string");
