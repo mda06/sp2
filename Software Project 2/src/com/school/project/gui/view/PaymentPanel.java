@@ -128,24 +128,24 @@ public class PaymentPanel extends JPanel {
 		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN,18));
 		
-		txtName.setFont(FontUtil.getInstance().getBig());
-		txtPrice.setFont(FontUtil.getInstance().getBig());
-		btnBack.setFont(FontUtil.getInstance().getBig());
+		FontUtil.getInstance().bindBigFont(txtName);
+		FontUtil.getInstance().bindBigFont(txtPrice);
+		FontUtil.getInstance().bindBigFont(btnBack);
 		
-		txtSoldBy.setFont(FontUtil.getInstance().getSmall());
-		lblSoldBy.setFont(FontUtil.getInstance().getSmall());
-		txtValidFrom.setFont(FontUtil.getInstance().getSmall());
-		txtValidTo.setFont(FontUtil.getInstance().getSmall());
-		lblValidFrom.setFont(FontUtil.getInstance().getSmall());
-		lblValidTo.setFont(FontUtil.getInstance().getSmall());
-		lblFromStation.setFont(FontUtil.getInstance().getSmall());
-		lblToStation.setFont(FontUtil.getInstance().getSmall());
-		lblDesc.setFont(FontUtil.getInstance().getSmall());
-		lblPrice.setFont(FontUtil.getInstance().getSmall());
-		lblName.setFont(FontUtil.getInstance().getSmall());
-		btnPay.setFont(FontUtil.getInstance().getSmall());
-		txtFromStation.setFont(FontUtil.getInstance().getSmall()); 
-		txtToStation.setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindSmallFont(txtSoldBy);
+		FontUtil.getInstance().bindSmallFont(lblSoldBy);
+		FontUtil.getInstance().bindSmallFont(txtValidFrom);
+		FontUtil.getInstance().bindSmallFont(txtValidTo);
+		FontUtil.getInstance().bindSmallFont(lblValidFrom);
+		FontUtil.getInstance().bindSmallFont(lblValidTo);
+		FontUtil.getInstance().bindSmallFont(lblFromStation);
+		FontUtil.getInstance().bindSmallFont(lblToStation);
+		FontUtil.getInstance().bindSmallFont(lblDesc);
+		FontUtil.getInstance().bindSmallFont(lblPrice);
+		FontUtil.getInstance().bindSmallFont(lblName);
+		FontUtil.getInstance().bindSmallFont(btnPay);
+		FontUtil.getInstance().bindSmallFont(txtFromStation); 
+		FontUtil.getInstance().bindSmallFont(txtToStation);
 		
 		
 		

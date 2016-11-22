@@ -48,14 +48,14 @@ public class LostItemAddFrame extends JFrame {
 		getContentPane().add(btnCancel);
 		getContentPane().add(btnSave);
 		
-		lblType.setFont(FontUtil.getInstance().getSmall());
-		lblDescription.setFont(FontUtil.getInstance().getSmall());
-		lblLocation.setFont(FontUtil.getInstance().getSmall());
-		txtType.setFont(FontUtil.getInstance().getSmall());
-		txtDescription.setFont(FontUtil.getInstance().getSmall());
-		txtLocation.setFont(FontUtil.getInstance().getSmall());
-		btnSave.setFont(FontUtil.getInstance().getSmall());
-		btnCancel.setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindSmallFont(lblType);
+		FontUtil.getInstance().bindSmallFont(lblDescription);
+		FontUtil.getInstance().bindSmallFont(lblLocation);
+		FontUtil.getInstance().bindSmallFont(txtType);
+		FontUtil.getInstance().bindSmallFont(txtDescription);
+		FontUtil.getInstance().bindSmallFont(txtLocation);
+		FontUtil.getInstance().bindSmallFont(btnSave);
+		FontUtil.getInstance().bindSmallFont(btnCancel);
 		
 		pack();
 	}

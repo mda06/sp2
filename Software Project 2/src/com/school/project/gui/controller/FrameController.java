@@ -45,7 +45,7 @@ public class FrameController implements Observer {
 	public void addCard(BaseController<?> controller) {
 		final String KEY = controller.getBaseView().CARD_KEY;
 		JButton btn = new JButton(KEY);
-		btn.setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindSmallFont(btn);
 		if(oldButtonColor == null){
 			oldButtonColor = btn.getBackground();
 		}

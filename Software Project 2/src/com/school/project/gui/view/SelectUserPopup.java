@@ -71,14 +71,14 @@ public class SelectUserPopup extends JFrame {
 		sp.putConstraint(SpringLayout.NORTH, scroll, 20, SpringLayout.SOUTH, btnSearch);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -20, SpringLayout.NORTH, btnSelect);
 		
-		lblFirstName.setFont(FontUtil.getInstance().getSmall());
-		lblLastName.setFont(FontUtil.getInstance().getSmall());
-		txtFirstName.setFont(FontUtil.getInstance().getSmall());
-		txtLastName.setFont(FontUtil.getInstance().getSmall());
-		tblUsers.setFont(FontUtil.getInstance().getSmall());
-		tblUsers.getTableHeader().setFont(FontUtil.getInstance().getSmall());
-		btnSearch.setFont(FontUtil.getInstance().getSmall());
-		btnSelect.setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindSmallFont(lblFirstName);
+		FontUtil.getInstance().bindSmallFont(lblLastName);
+		FontUtil.getInstance().bindSmallFont(txtFirstName);
+		FontUtil.getInstance().bindSmallFont(txtLastName);
+		FontUtil.getInstance().bindSmallFont(tblUsers);
+		FontUtil.getInstance().bindSmallFont(tblUsers.getTableHeader());
+		FontUtil.getInstance().bindSmallFont(btnSearch);
+		FontUtil.getInstance().bindSmallFont(btnSelect);
 		
 		add(pnl);
 	}

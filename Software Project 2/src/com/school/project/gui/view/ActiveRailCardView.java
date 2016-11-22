@@ -60,11 +60,11 @@ public class ActiveRailCardView extends BaseView {
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -30, SpringLayout.SOUTH, this);
 
 		
-		btnSelectUser.setFont(FontUtil.getInstance().getBig());
-		lblSelectUser.setFont(FontUtil.getInstance().getBig());
-		lblUser.setFont(FontUtil.getInstance().getBig());
-		table.setFont(FontUtil.getInstance().getSmall());
-		table.getTableHeader().setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindBigFont(btnSelectUser);
+		FontUtil.getInstance().bindBigFont(lblSelectUser);
+		FontUtil.getInstance().bindBigFont(lblUser);
+		FontUtil.getInstance().bindSmallFont(table);
+		FontUtil.getInstance().bindSmallFont(table.getTableHeader());
 		table.setRowHeight(30);
 		
 	}

@@ -30,7 +30,7 @@ public class RailCardController extends BaseController<RailCardView> implements 
 			JButton btn = new JButton(rc.getName());
 			btn.setActionCommand(String.valueOf(rc.getId()));
 			view.getPnlBtns().add(btn);
-			btn.setFont(FontUtil.getInstance().getSmall());
+			FontUtil.getInstance().bindSmallFont(btn);
 			btn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
 					RailCard rc = RailCardCache.getInstance().getRailCard(Integer.parseInt(e.getActionCommand()));

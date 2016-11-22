@@ -46,13 +46,13 @@ public class LoginView extends JFrame{
 		pnl.add(lUsername);
 		pnl.add(lPassword);
 		
-		lUsername.setFont(FontUtil.getInstance().getBig());
-		lPassword.setFont(FontUtil.getInstance().getBig());
-		btnLogin.setFont(FontUtil.getInstance().getBig());
+		FontUtil.getInstance().bindBigFont(lUsername);
+		FontUtil.getInstance().bindBigFont(lPassword);
+		FontUtil.getInstance().bindBigFont(btnLogin);
 		btnLogin.setPreferredSize(new Dimension(450, 40));
 		
-		txtUsername.setFont(FontUtil.getInstance().getBig());
-		txtPassword.setFont(FontUtil.getInstance().getBig());
+		FontUtil.getInstance().bindBigFont(txtUsername);
+		FontUtil.getInstance().bindBigFont(txtPassword);
 	
 		sp.putConstraint(SpringLayout.VERTICAL_CENTER, btnLogin, 40, SpringLayout.VERTICAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, btnLogin, 14, SpringLayout.HORIZONTAL_CENTER, pnl);

@@ -10,6 +10,26 @@
 
 
 <resources>
+    <string name = "lblFontBig">
+		<value lang="en"> Big Font  </value>
+		<value lang="fr"> Grande Police </value>
+		<value lang="nl"> Groote Lettertype </value>
+	</string>
+    <string name = "lblFontSmall">
+		<value lang="en"> Small Font  </value>
+		<value lang="fr"> Petite Police </value>
+		<value lang="nl"> Kleine Lettertype </value>
+	</string>
+	<string name = "btnFontBig">
+		<value lang="en"> Change Big Font  </value>
+		<value lang="fr"> Changer Grande Police </value>
+		<value lang="nl"> Verander Groote Lettertype </value>
+	</string>
+    <string name = "btnFontSmall">
+		<value lang="en"> Change Small Font  </value>
+		<value lang="fr"> Changer Petite Police </value>
+		<value lang="nl"> Verander Kleine Lettertype </value>
+	</string>
     <string name = "Settings">
 		<value lang="en"> Settings  </value>
 		<value lang="fr"> Propriétées </value>

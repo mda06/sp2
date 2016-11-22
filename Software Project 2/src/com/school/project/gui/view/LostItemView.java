@@ -64,12 +64,12 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnAdd);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -15, SpringLayout.SOUTH, this);
 		
-		txtSearch.setFont(FontUtil.getInstance().getSmall());
-		btnSearch.setFont(FontUtil.getInstance().getSmall());
-		btnAdd.setFont(FontUtil.getInstance().getSmall());
-		table.setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindSmallFont(txtSearch);
+		FontUtil.getInstance().bindSmallFont(btnSearch);
+		FontUtil.getInstance().bindSmallFont(btnAdd);
+		FontUtil.getInstance().bindSmallFont(table);
 		table.setRowHeight(30);
-		table.getTableHeader().setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindSmallFont(table.getTableHeader());
 	}
 	
 	public JButton getBtnAdd() {

@@ -31,7 +31,8 @@ public class TicketController extends BaseController<TicketView> implements Paym
 		for(Ticket t : TicketCache.getInstance().getCache()) {
 			JButton btn = new JButton(t.getName());
 			view.getPnlBtns().add(btn);
-			btn.setFont(FontUtil.getInstance().getSmall());
+
+			FontUtil.getInstance().bindSmallFont(btn);
 			btn.setActionCommand(String.valueOf(t.getId()));
 			btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

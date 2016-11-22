@@ -51,14 +51,14 @@ public class ConnectionDetailsFrame extends JFrame {
 		
 		
 		
-		lblDuration.setFont(FontUtil.getInstance().getSmall());
-		lblDeparture.setFont(FontUtil.getInstance().getSmall());
-		lblArrival.setFont(FontUtil.getInstance().getSmall());
-		txtDuration.setFont(FontUtil.getInstance().getSmall());
-		txtArrival.setFont(FontUtil.getInstance().getSmall());
-		txtDeparture.setFont(FontUtil.getInstance().getSmall());
-		tblDetails.setFont(FontUtil.getInstance().getSmall());
-		tblDetails.getTableHeader().setFont(FontUtil.getInstance().getSmall());
+		FontUtil.getInstance().bindSmallFont(lblDuration);
+		FontUtil.getInstance().bindSmallFont(lblDeparture);
+		FontUtil.getInstance().bindSmallFont(lblArrival);
+		FontUtil.getInstance().bindSmallFont(txtDuration);
+		FontUtil.getInstance().bindSmallFont(txtArrival);
+		FontUtil.getInstance().bindSmallFont(txtDeparture);
+		FontUtil.getInstance().bindSmallFont(tblDetails);
+		FontUtil.getInstance().bindSmallFont(tblDetails.getTableHeader());
 		
 		
 		add(pnlNorth, BorderLayout.NORTH);
