@@ -18,8 +18,9 @@ public class Main {
 		}
 		return true;
 	}
+
 	public static void main(String[] args) {
-		if(testIfCurlIsActive())
-			new MainFactory().showLoginFrame();	
+		if (testIfCurlIsActive()) 
+			new MainFactory().showLoginFrame();
 	}
 }
