@@ -212,6 +212,39 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		}
 	}
 	
+	public HashMap<Ticket, Integer> getBestTicketSaleStatistic() {
+		HashMap<Ticket, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT count(*) AS total, ticketId FROM ticketSales GROUP BY ticketId";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()) {
+				Ticket u = TicketDAO.getInstance().get(res.getInt("ticketId"));
+				Integer nb = res.getInt("total");
+				map.put(u, nb);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null) res.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		
+		return map;
+	}
+	
 	public HashMap<User, Integer> getTicketSaleByUserStatistic() {
 		HashMap<User, Integer> map = new HashMap<>();
 		
