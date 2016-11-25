@@ -1,24 +1,37 @@
 package com.school.project.gui.view.settings;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
-import com.school.project.gui.view.BaseView;
 import com.school.project.gui.view.TicketView;
 
-public class TicketSettingsView extends BaseView {
-	private static final long serialVersionUID = 1L;
-	private JPanel pnlPanel;
-	private JButton btnTest;
-	
-	public TicketSettingsView() {
-		super("ticketSettings");
-		initLayout();
-		}
+public class TicketSettingsView extends TicketView {
 
-	private void initLayout() {
-		TicketSettingsAdapter tsa = new TicketSettingsAdapter();
-		pnlPanel = new JPanel();
-		
+	private static final long serialVersionUID = 1L;
+	private JButton btnNewticket;
+	private TicketEditorPanel pnlTicketEditor;
+	
+	public final String KEY_EDIT = "editor";
+	
+	public TicketSettingsView(){
+		this.getPnlBtns().add(btnNewticket = new JButton("new ticket"));
+		//remove(this.getPnlPayment());
+		add(pnlTicketEditor = new TicketEditorPanel(),KEY_EDIT);
 	}
+
+	public TicketEditorPanel getPnlTicketEditor() {
+		return pnlTicketEditor;
+	}
+
+	public void setPnlTicketEditor(TicketEditorPanel pnlTicketEditor) {
+		this.pnlTicketEditor = pnlTicketEditor;
+	}
+
+	public JButton getBtnNewticket() {
+		return btnNewticket;
+	}
+
+	public void setBtnNewticket(JButton btnNewticket) {
+		this.btnNewticket = btnNewticket;
+	}
+	
 }
