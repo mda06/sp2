@@ -94,4 +94,8 @@ public class LanguageHandler {
 	public void setLanguageObservable(LanguageObservable languageObservable) {
 		observable = languageObservable;
 	}
+	
+	public HashMap<Language, HashMap<String, String>> getWords() {
+		return words;
+	}
 }
