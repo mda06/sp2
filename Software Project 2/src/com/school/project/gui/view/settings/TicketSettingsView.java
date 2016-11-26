@@ -11,7 +11,6 @@ public class TicketSettingsView extends TicketView {
 	private TicketEditorPanel pnlTicketEditor;
 	
 	public final String KEY_EDIT = "editor";
-	TicketSettingsAdapter tsa;
 	
 	public TicketSettingsView(){
 		this.getPnlBtns().add(btnNewticket = new JButton("new ticket"));
@@ -34,6 +33,7 @@ public class TicketSettingsView extends TicketView {
 	private void initLayout() {
 		//add(tsa);
 		pnlPanel = new JPanel();
+	}
 		
 	public void setBtnNewticket(JButton btnNewticket) {
 		this.btnNewticket = btnNewticket;
