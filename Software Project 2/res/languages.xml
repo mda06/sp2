@@ -10,6 +10,11 @@
 
 
 <resources>
+    <string name = "LanguageSettings">
+		<value lang="en"> Language Settings  </value>
+		<value lang="fr"> Propriétées de language </value>
+		<value lang="nl"> Taal eigenschappen </value>
+	</string>
     <string name = "lblFontBig">
 		<value lang="en"> Big Font  </value>
 		<value lang="fr"> Grande Police </value>
@@ -144,7 +149,7 @@
 	<string name = "RailCard">
 		<value lang="nl"> Abonnementen </value>
 		<value lang="fr"> Abonnements </value>
-		<value lang="en"> Railcards </value>
+		<value lang="en"> Rail cards </value>
 	</string>
 	<string name = "TicketView">
 		<value lang="nl"> Tickets </value>
@@ -323,7 +328,7 @@
 	</string>
 	
 	<string name="ActiveRailCard">
-		<value lang="en">Active Railcards</value>
+		<value lang="en">Active rail cards</value>
 		<value lang="nl">Actieve abonnementen</value>
 		<value lang="fr">Abonnements actif</value>
 	</string>

@@ -2,6 +2,7 @@ package com.school.project.gui.controller;
 
 import java.util.Observable;
 
+import com.school.project.gui.controller.settings.LanguageSettingsController;
 import com.school.project.gui.controller.settings.LayoutSettingsController;
 import com.school.project.gui.controller.settings.RailCardSettingsController;
 import com.school.project.gui.controller.settings.TicketSettingsController;
@@ -21,6 +22,7 @@ public class SettingsController extends BaseController<SettingsView>{
 		addSetting(new TicketSettingsController());
 		addSetting(new RailCardSettingsController());
 		addSetting(new LayoutSettingsController());
+		addSetting(new LanguageSettingsController(observable.getLanguageHandler()));
 	}
 	
 	private void addSetting(BaseController<?> bc) {

@@ -3,23 +3,20 @@ package com.school.project.gui.controller.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.school.project.gui.view.FrameView;
-import com.school.project.language.LanguageHandler.Language;
 import com.school.project.language.LanguageObservable;
 
 public class LanguageActionListener implements ActionListener {
-	private FrameView frame;
 	private LanguageObservable languageObservable;
 	
-	public LanguageActionListener(FrameView frame, LanguageObservable obs) {
-		this.frame = frame;
+	public LanguageActionListener(LanguageObservable obs) {
 		languageObservable = obs;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == frame.getMiEn()) languageObservable.getLanguageHandler().setLanguage(Language.EN);
-		else if(e.getSource() == frame.getMiNl()) languageObservable.getLanguageHandler().setLanguage(Language.NL);
-		else if(e.getSource() == frame.getMiFr()) languageObservable.getLanguageHandler().setLanguage(Language.FR);
+		String ac = e.getActionCommand();
+		if(ac != null && !ac.isEmpty()) {
+			languageObservable.getLanguageHandler().setLanguage(ac);
+		}
 	}
 }

@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 
 import com.school.project.gui.controller.listener.LanguageActionListener;
 import com.school.project.gui.view.BaseView;
@@ -36,10 +37,13 @@ public class FrameController implements Observer {
 	}
 
 	private void initLanguageEvents() {
-		LanguageActionListener ll = new LanguageActionListener(frame, languageObservable);
-		frame.getMiEn().addActionListener(ll);
-		frame.getMiFr().addActionListener(ll);
-		frame.getMiNl().addActionListener(ll);
+		LanguageActionListener ll = new LanguageActionListener(languageObservable);
+		for(String l : languageObservable.getLanguageHandler().getLanguages()) {
+			JMenuItem mi = new JMenuItem(l);
+			mi.setActionCommand(l);
+			mi.addActionListener(ll);
+			frame.getMenuOptions().add(mi);
+		}
 	}
 
 	public void addCard(BaseController<?> controller) {

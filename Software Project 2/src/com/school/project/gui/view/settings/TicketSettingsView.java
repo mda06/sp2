@@ -30,11 +30,6 @@ public class TicketSettingsView extends TicketView {
 		return btnNewticket;
 	}
 
-	private void initLayout() {
-		//add(tsa);
-		//pnlPanel = new JPanel();
-	}
-		
 	public void setBtnNewticket(JButton btnNewticket) {
 		this.btnNewticket = btnNewticket;
 	}
