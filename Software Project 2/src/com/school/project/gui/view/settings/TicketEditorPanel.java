@@ -1,6 +1,10 @@
 package com.school.project.gui.view.settings;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -9,11 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.school.project.util.FontUtil;
+
 public class TicketEditorPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	
 
 	private JButton btnBack, btnSave;
 	private JTextField txtName, txtPrice;
@@ -24,37 +28,69 @@ public class TicketEditorPanel extends JPanel {
 	private JCheckBox cbHasFixedRoute;
 
 	public TicketEditorPanel() {
-		btnBack = new JButton("Back");
-		btnSave = new JButton("Save");
-
-		txtName = new JTextField();
-		txtPrice = new JTextField();
-		txtDesc = new JTextArea();
-
-		lblName = new JLabel("Name");
-		lblDesc = new JLabel("Desc");
-		lblPrice = new JLabel("Price");
-
 		cbHasFixedRoute = new JCheckBox("fixed route");
-
 		initLayout();
 	}
 
 	private void initLayout() {
+		setLayout(new BorderLayout());
 
-		BorderLayout bl = new BorderLayout();
-		setLayout(bl);
-		
-		//TODO: deftige layout
-		add(txtName, BorderLayout.LINE_START);
-		add(txtPrice, BorderLayout.LINE_END);
-		add(txtDesc, BorderLayout.CENTER);
-		add(btnSave, BorderLayout.AFTER_LAST_LINE);
-		add(cbHasFixedRoute, BorderLayout.EAST);
-		add(btnBack, BorderLayout.NORTH);
+		JPanel pnlLeft = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
 
-		
+		lblName = new JLabel("Name");
+		c.fill = GridBagConstraints.BOTH;
+		c.ipady = 35;
+		c.ipadx = 15;
+		c.weightx = .5;
+		c.gridx = 0;
+		c.gridy = 0;
+		pnlLeft.add(lblName, c);
+		txtName = new JTextField(20);
+		c.gridx = 1;
+		c.weightx = 1;
+		pnlLeft.add(txtName, c);
+		lblDesc = new JLabel("Desc");
+		c.weightx = .5;
+		c.gridx = 0;
+		c.gridy = 1;
+		pnlLeft.add(lblDesc, c);
+		txtDesc = new JTextArea();
+		c.weightx = 1;
+		c.gridx = 1;
+		pnlLeft.add(txtDesc, c);
 
+		lblPrice = new JLabel("Price: ");
+		c.weightx = .5;
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlLeft.add(lblPrice, c);
+		txtPrice = new JTextField(20);
+		c.gridx = 1;
+		c.weightx = 1;
+		pnlLeft.add(txtPrice, c);
+		btnSave = new JButton("Save");
+		c.gridx = 1;
+		c.gridy = 5;
+		pnlLeft.add(btnSave, c);
+
+		add(pnlLeft, BorderLayout.WEST);
+		JPanel pnlBack = new JPanel();
+		pnlBack.add(btnBack = new JButton("Back"));
+		add(pnlBack, BorderLayout.NORTH);
+		btnBack.setPreferredSize(new Dimension(200, 70));
+		txtDesc.setFont(new Font("Arial", Font.PLAIN, 18));
+
+		FontUtil.getInstance().bindBigFont(txtName);
+		FontUtil.getInstance().bindBigFont(txtPrice);
+		FontUtil.getInstance().bindBigFont(btnBack);
+
+		FontUtil.getInstance().bindSmallFont(lblDesc);
+		FontUtil.getInstance().bindSmallFont(lblPrice);
+		FontUtil.getInstance().bindSmallFont(lblName);
+		FontUtil.getInstance().bindSmallFont(btnSave);
 	}
 
 	public JButton getBtnBack() {
