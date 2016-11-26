@@ -10,6 +10,7 @@ public class TicketSettingsView extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private JPanel pnlPanel;
 	private JButton btnTest;
+	TicketSettingsAdapter tsa;
 	
 	public TicketSettingsView() {
 		super("ticketSettings");
@@ -17,7 +18,7 @@ public class TicketSettingsView extends BaseView {
 		}
 
 	private void initLayout() {
-		TicketSettingsAdapter tsa = new TicketSettingsAdapter();
+		//add(tsa);
 		pnlPanel = new JPanel();
 		
 	}
