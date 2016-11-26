@@ -32,7 +32,7 @@ public class TicketSettingsView extends TicketView {
 
 	private void initLayout() {
 		//add(tsa);
-		pnlPanel = new JPanel();
+		//pnlPanel = new JPanel();
 	}
 		
 	public void setBtnNewticket(JButton btnNewticket) {
