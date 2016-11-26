@@ -112,12 +112,12 @@ public class MainFactory implements ConnectionListener {
 	}
 
 	private void initBaseModels(FrameController base) {
-		addCard(base, new LostItemController());
 		addCard(base, new TicketController(connectedUser));
 		addCard(base, new RailCardController(connectedUser));
 		addCard(base, new RouteController());
 		addCard(base, new UserController(connectedUser));
 		addCard(base, new ActiveUserRailCardController());
+		addCard(base, new LostItemController());
 		if(connectedUser.getType() == UserType.ADMIN) {
 			addCard(base, new SettingsController(languageObservable));
 			addCard(base, new StatisticsController());
