@@ -9,6 +9,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import com.school.project.util.FontUtil;;
+
 public class SelectUserPopup extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
@@ -69,6 +71,14 @@ public class SelectUserPopup extends JFrame {
 		sp.putConstraint(SpringLayout.NORTH, scroll, 20, SpringLayout.SOUTH, btnSearch);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -20, SpringLayout.NORTH, btnSelect);
 		
+		FontUtil.getInstance().bindSmallFont(lblFirstName);
+		FontUtil.getInstance().bindSmallFont(lblLastName);
+		FontUtil.getInstance().bindSmallFont(txtFirstName);
+		FontUtil.getInstance().bindSmallFont(txtLastName);
+		FontUtil.getInstance().bindSmallFont(tblUsers);
+		FontUtil.getInstance().bindSmallFont(tblUsers.getTableHeader());
+		FontUtil.getInstance().bindSmallFont(btnSearch);
+		FontUtil.getInstance().bindSmallFont(btnSelect);
 		
 		add(pnl);
 	}

@@ -1,8 +1,8 @@
 package com.school.project.dao;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +18,7 @@ public class DatabaseHandler {
 	
 	private DatabaseHandler() {
 		String name = "", user = "", pass = "";
-		try (BufferedReader br = new BufferedReader(new FileReader("res/dbCredentials.txt"))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/dbCredentials.txt")))) {
 
 			String line;
 			int i = 0;

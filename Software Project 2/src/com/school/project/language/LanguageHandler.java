@@ -1,7 +1,8 @@
 package com.school.project.language;
 
-import java.io.File;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,28 +15,21 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 public class LanguageHandler {
-	public enum Language {
-		NL, FR, EN;
-	}
-
-	private Language currentLanguage;
+	
+	private String currentLanguage;
 	private LanguageObservable observable;
-	private HashMap<Language, HashMap<String, String>> words;
+	private HashMap<String, HashMap<String, String>> words;
 
 	public LanguageHandler() {
-		currentLanguage = Language.EN;
-		words = new HashMap<Language, HashMap<String, String>>();
+		currentLanguage = "en";
+		words = new HashMap<String, HashMap<String, String>>();
 		initWords();
 	}
 
 	private void initWords() {
-		words.put(Language.NL, new HashMap<String, String>());
-		words.put(Language.FR, new HashMap<String, String>());
-		words.put(Language.EN, new HashMap<String, String>());
 		// source:
 		// https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 		try {
-			File fXmlFile = new File("./res/languages.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
@@ -61,8 +55,7 @@ public class LanguageHandler {
 					exception.printStackTrace();
 				}
 			});
-
-			Document doc = dBuilder.parse(fXmlFile);
+			Document doc = dBuilder.parse(getClass().getResource("/languages.xml").openStream());
 			doc.getDocumentElement().normalize();
 
 			NodeList stringNodes = doc.getElementsByTagName("string");
@@ -73,11 +66,15 @@ public class LanguageHandler {
 				NodeList valueNodes = stringEl.getElementsByTagName("value");
 				for (int j = 0; j < valueNodes.getLength(); j++) {
 					Element valueEl = (Element) valueNodes.item(j);
-					Language lang = Language.valueOf(valueEl.getAttribute("lang").toUpperCase());
-					if (!valueEl.getTextContent().isEmpty()) // DTD checkt niet
-																// alles
+					String lang = valueEl.getAttribute("lang");
+					if(words.get(lang) == null) 
+						words.put(lang, new HashMap<>());
+					
+						
+					if (!valueEl.getTextContent().isEmpty()) // DTD checkt niet alles
 						words.get(lang).put(key, valueEl.getTextContent());
-					else words.get(lang).put(key, "!" + key);
+					else 
+						words.get(lang).put(key, "!" + key);
 				}
 			}
 		} catch (Exception e) {
@@ -85,7 +82,7 @@ public class LanguageHandler {
 		}
 	}
 
-	public void setLanguage(Language l) {
+	public void setLanguage(String l) {
 		currentLanguage = l;
 		observable.languageChanged();
 	}
@@ -93,8 +90,24 @@ public class LanguageHandler {
 	public String getString(String key) {
 		return words.get(currentLanguage).get(key);
 	}
+	
+	public String getCurrentLanguage() {
+		return currentLanguage;
+	}
+	
+	public List<String> getLanguages() {
+		return words.keySet().stream().collect(Collectors.toList());
+	}
 
+	public void addNewLanguage(String key, HashMap<String, String> newWords) {
+		words.put(key, newWords);
+	}
+	
 	public void setLanguageObservable(LanguageObservable languageObservable) {
 		observable = languageObservable;
+	}
+	
+	public HashMap<String, HashMap<String, String>> getWords() {
+		return words;
 	}
 }

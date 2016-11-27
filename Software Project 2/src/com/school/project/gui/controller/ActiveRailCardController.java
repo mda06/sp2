@@ -15,6 +15,8 @@ import com.school.project.dao.ActiveRailCardDAO;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.controller.listener.SelectedUserListener;
 import com.school.project.gui.view.PaymentRailcardPanel;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.ActiveRailCard;
 import com.school.project.model.RailCard;
 import com.school.project.model.User;
@@ -26,6 +28,7 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 	private RailCard railcard;
 	private User user, inNameOf;
 	private SelectUserController selectUserController;
+	private String fillInTheBlanks;
 
 	public ActiveRailCardController(PaymentRailcardPanel pnl, PaymentBackListener list, User user) {
 		this.pnl = pnl;
@@ -61,9 +64,9 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 				Date validTo = new Date(getValidityPeriod().getTime().getTime());
 
 				if(inNameOf == null) {
-					JOptionPane.showMessageDialog(pnl, "Please enter a user");
+					JOptionPane.showMessageDialog(pnl, fillInTheBlanks);
 				} else if (railcard.isHasFixedRoute() && (from.isEmpty() || to.isEmpty())) {
-					JOptionPane.showMessageDialog(pnl, "Please enter from and to stations");
+					JOptionPane.showMessageDialog(pnl, fillInTheBlanks);
 				} else {
 					ActiveRailCard activeRailCard = new ActiveRailCard(-1, validFrom, validTo, from, to, user, inNameOf, railcard, false);
 					ActiveRailCardDAO.getInstance().add(activeRailCard);
@@ -139,6 +142,26 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		selectUserController.update(o, arg);
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			fillInTheBlanks = lh.getString("fillInTheBlanks");
+			
+			pnl.getBtnPay().setText(lh.getString("Pay"));
+			pnl.getBtnSelectUser().setText(lh.getString("user"));
+			pnl.getLblDesc().setText(lh.getString("description"));
+			pnl.getLblFromStation().setText(lh.getString("from"));
+			pnl.getLblToStation().setText(lh.getString("to"));
+			pnl.getLblPricePer3Month().setText(lh.getString("pricePer") + " 3 " +lh.getString("months"));
+			pnl.getLblPricePerMonth().setText(lh.getString("pricePer") + " "+ lh.getString("month"));
+			pnl.getLblPricePerYear().setText(lh.getString("pricePer") + " " + lh.getString("year"));
+			pnl.getLblSoldBy().setText(lh.getString("soldBy"));
+			pnl.getLblValidFrom().setText(lh.getString("validFrom"));
+			pnl.getLblValidTo().setText(lh.getString("validTo"));
+			pnl.getLblInNameOf().setText(lh.getString("inNameOf"));
+			pnl.getBtnBack().setText(lh.getString("back"));
+			
+		}
+		
 	}
 
 }

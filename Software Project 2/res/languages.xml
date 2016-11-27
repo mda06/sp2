@@ -10,6 +10,51 @@
 
 
 <resources>
+    <string name = "LanguageSettings">
+		<value lang="en"> Language Settings  </value>
+		<value lang="fr"> Propriétées de language </value>
+		<value lang="nl"> Taal eigenschappen </value>
+	</string>
+	<string name = "file">
+		<value lang="en"> File  </value>
+		<value lang="fr"> Fichier </value>
+		<value lang="nl"> File </value>
+	</string>
+	<string name = "disconnect">
+		<value lang="en"> Disconnect  </value>
+		<value lang="fr"> Déconnecter </value>
+		<value lang="nl"> Uitloggen </value>
+	</string>
+    <string name = "lblFontBig">
+		<value lang="en"> Big Font  </value>
+		<value lang="fr"> Grande Police </value>
+		<value lang="nl"> Groote Lettertype </value>
+	</string>
+    <string name = "lblFontSmall">
+		<value lang="en"> Small Font  </value>
+		<value lang="fr"> Petite Police </value>
+		<value lang="nl"> Kleine Lettertype </value>
+	</string>
+	<string name = "btnFontBig">
+		<value lang="en"> Change Big Font  </value>
+		<value lang="fr"> Changer Grande Police </value>
+		<value lang="nl"> Verander Groote Lettertype </value>
+	</string>
+    <string name = "btnFontSmall">
+		<value lang="en"> Change Small Font  </value>
+		<value lang="fr"> Changer Petite Police </value>
+		<value lang="nl"> Verander Kleine Lettertype </value>
+	</string>
+    <string name = "Settings">
+		<value lang="en"> Settings  </value>
+		<value lang="fr"> Propriétées </value>
+		<value lang="nl"> Eigenschappen </value>
+	</string>
+	<string name = "statistics">
+		<value lang="en"> Statistics  </value>
+		<value lang="fr"> Statistiques </value>
+		<value lang="nl"> Statistieken </value>
+	</string>
 	<string name = "errorAddLostItem">
 		<value lang="en"> Please fill in all the fields </value>
 		<value lang="fr"> Remplisez les champs </value>
@@ -30,7 +75,6 @@
 		<value lang="fr"> Supprimer </value>
 		<value lang="nl"> Verwijder </value>
 	</string>
-
 	<string name = "columnTrainDir">
 		<value lang="en"> Train Direction  </value>
 		<value lang="fr"> Train Direction </value>
@@ -93,7 +137,7 @@
 		<value lang="en"> Type </value>
 	</string>
 	<string name = "description">
-		<value lang="nl"> Descriptie </value>
+		<value lang="nl"> Beschrijving </value>
 		<value lang="fr"> Description </value>
 		<value lang="en"> Description </value>
 	</string>
@@ -115,7 +159,7 @@
 	<string name = "RailCard">
 		<value lang="nl"> Abonnementen </value>
 		<value lang="fr"> Abonnements </value>
-		<value lang="en"> Railcards </value>
+		<value lang="en"> Rail cards </value>
 	</string>
 	<string name = "TicketView">
 		<value lang="nl"> Tickets </value>
@@ -294,7 +338,7 @@
 	</string>
 	
 	<string name="ActiveRailCard">
-		<value lang="en">Active Railcards</value>
+		<value lang="en">Active rail cards</value>
 		<value lang="nl">Actieve abonnementen</value>
 		<value lang="fr">Abonnements actif</value>
 	</string>
@@ -334,6 +378,12 @@
 		<value lang="nl">Verkocht door gebruiker</value>
 		<value lang="fr">Vendu par l'utilisateur</value>
 	</string>
+	
+	<string name="soldBy">
+		<value lang="en">Sold by</value>
+		<value lang="nl">Verkocht door</value>
+		<value lang="fr">Vendu par</value>
+	</string>
 	<string name="Customer">
 		<value lang="en">Customer</value>
 		<value lang="nl">Klant</value>
@@ -348,5 +398,50 @@
 		<value lang="en">Admin</value>
 		<value lang="nl">Admin</value>
 		<value lang="fr">Admin</value>
+	</string>
+	<string name="Pay">
+		<value lang="en">Pay</value>
+		<value lang="nl">Betalen</value>
+		<value lang="fr">Payer</value>
+	</string>
+	<string name="pricePer">
+		<value lang="en">Price per</value>
+		<value lang="nl">Prijs per</value>
+		<value lang="fr">Prix par</value>
+	</string>
+	<string name="months">
+		<value lang="en">months</value>
+		<value lang="nl">maanden</value>
+		<value lang="fr">mois</value>
+	</string>
+	<string name="month">
+		<value lang="en">month</value>
+		<value lang="nl">maand</value>
+		<value lang="fr">mois</value>
+	</string>
+	<string name="year">
+		<value lang="en">year</value>
+		<value lang="nl">jaar</value>
+		<value lang="fr">année</value>
+	</string>
+	<string name="back">
+		<value lang="en">Back</value>
+		<value lang="nl">Terug</value>
+		<value lang="fr">Retour</value>
+	</string>
+	<string name="inNameOf">
+		<value lang="nl">In naam van</value>
+		<value lang="en">In name of</value>
+		<value lang="fr">Au nom de</value>
+	</string>
+	<string name="name">
+		<value lang="en">name</value>
+		<value lang="nl">naam</value>
+		<value lang="fr">nom</value>
+	</string>
+	<string name="price">
+		<value lang="en">Price</value>
+		<value lang="nl">Prijs</value>
+		<value lang="fr">Prix</value>
 	</string>
 	</resources>

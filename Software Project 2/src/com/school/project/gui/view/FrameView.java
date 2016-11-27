@@ -15,8 +15,8 @@ public class FrameView extends JFrame{
 	private JPanel pnlBtns, pnlCard;
 	private JSplitPane split;
 	private JMenuBar menuBar;
-	private JMenu menuOptions;
-	private JMenuItem miEn, miNl, miFr;
+	private JMenu menuOptions, menuFile;
+	private JMenuItem mnDisconnect;
 	
 	public FrameView() {
 		setTitle("FrameView");
@@ -39,13 +39,9 @@ public class FrameView extends JFrame{
 	private void initMenu(){
 		menuBar = new JMenuBar();
 		menuOptions = new JMenu("Options");
-		miEn = new JMenuItem("English");
-		miFr = new JMenuItem("Francais");
-		miNl = new JMenuItem("Nederlands");
-		menuOptions.add(miNl);
-		menuOptions.add(miFr);
-		menuOptions.add(miEn);
+		menuBar.add(menuFile = new JMenu("File"));
 		menuBar.add(menuOptions);
+		menuFile.add(mnDisconnect = new JMenuItem("Disconnect"));
 		this.setJMenuBar(menuBar);
 	}
 	
@@ -61,33 +57,11 @@ public class FrameView extends JFrame{
 		return menuOptions;
 	}
 
-	public void setMenuOptions(JMenu menuOptions) {
-		this.menuOptions = menuOptions;
+	public JMenuItem getMnDisconnect() {
+		return mnDisconnect;
 	}
 
-	public JMenuItem getMiEn() {
-		return miEn;
+	public JMenu getMenuFile() {
+		return menuFile;
 	}
-
-	public void setMiEn(JMenuItem miEn) {
-		this.miEn = miEn;
-	}
-
-	public JMenuItem getMiNl() {
-		return miNl;
-	}
-
-	public void setMiNl(JMenuItem miNl) {
-		this.miNl = miNl;
-	}
-
-	public JMenuItem getMiFr() {
-		return miFr;
-	}
-
-	public void setMiFr(JMenuItem miFr) {
-		this.miFr = miFr;
-	}
-	
-	
 }

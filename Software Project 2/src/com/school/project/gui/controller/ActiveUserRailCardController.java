@@ -43,6 +43,8 @@ public class ActiveUserRailCardController extends BaseController<ActiveRailCardV
 		}
 	}
 	
+
+	
 	public void initEvents(){
 		view.getBtnSelectUser().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){

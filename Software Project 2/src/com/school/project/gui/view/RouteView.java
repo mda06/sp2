@@ -1,6 +1,5 @@
 package com.school.project.gui.view;
 
-import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,6 +22,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import com.school.project.gui.model.DateRouteFormatter;
 import com.school.project.gui.view.custom.AutoComboBox;
+import com.school.project.util.FontUtil;
 
 public class RouteView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -115,24 +115,21 @@ public class RouteView extends BaseView {
 		sp.putConstraint(SpringLayout.EAST, scroll, -30, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.WEST, scroll, 30, SpringLayout.WEST, this);
 		
-		Font small = new Font("Arial", Font.PLAIN, 24);
-		Font big = new Font("Arial", Font.PLAIN, 30);
-		
-		txtDeparture.setFont(small);
-		txtArrival.setFont(small);
-		lbDeparture.setFont(small);
-		lbArrival.setFont(small);
-		lbUur.setFont(small);
-		lbDate.setFont(small);
-		rbDeparture.setFont(small);
-		rbArrival.setFont(small);
-		txtUur.setFont(small);
-		datePicker.setFont(small);
-		tblConnection.setFont(small);
-		tblConnection.getTableHeader().setFont(small);
+		FontUtil.getInstance().bindSmallFont(txtDeparture);
+		FontUtil.getInstance().bindSmallFont(txtArrival);
+		FontUtil.getInstance().bindSmallFont(lbDeparture);
+		FontUtil.getInstance().bindSmallFont(lbArrival);
+		FontUtil.getInstance().bindSmallFont(lbUur);
+		FontUtil.getInstance().bindSmallFont(lbDate);
+		FontUtil.getInstance().bindSmallFont(rbDeparture);
+		FontUtil.getInstance().bindSmallFont(rbArrival);
+		FontUtil.getInstance().bindSmallFont(txtUur);
+		FontUtil.getInstance().bindSmallFont(datePicker);
+		FontUtil.getInstance().bindSmallFont(tblConnection);
+		FontUtil.getInstance().bindSmallFont(tblConnection.getTableHeader());
 		tblConnection.setRowHeight(30);
 		
-		btnShowConnections.setFont(big);
+		FontUtil.getInstance().bindBigFont(btnShowConnections);
 		
 	}
 

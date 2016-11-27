@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import com.school.project.model.TicketSale;
 import com.school.project.model.Ticket;
-import com.school.project.model.User;
 import com.school.project.model.TicketCache;
+import com.school.project.model.TicketSale;
+import com.school.project.model.User;
 
 public class TicketSaleDAO implements BaseDAO<TicketSale> {
 	
@@ -209,7 +210,72 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 				e.printStackTrace();
 			}
 		}
-
+	}
+	
+	public HashMap<Ticket, Integer> getBestTicketSaleStatistic() {
+		HashMap<Ticket, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT count(*) AS total, ticketId FROM ticketSales GROUP BY ticketId";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()) {
+				Ticket u = TicketDAO.getInstance().get(res.getInt("ticketId"));
+				Integer nb = res.getInt("total");
+				map.put(u, nb);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null) res.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		
+		return map;
+	}
+	
+	public HashMap<User, Integer> getTicketSaleByUserStatistic() {
+		HashMap<User, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT count(*) AS total, soldByUser FROM `ticketSales` GROUP BY soldByUser";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()) {
+				User u = UserDAO.getInstance().get(res.getInt("soldByUser"));
+				Integer nb = res.getInt("total");
+				map.put(u, nb);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null) res.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		
+		return map;
 	}
 
 }

@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.custom.AutoComboBox;
+import com.school.project.util.FontUtil;
 
 public class PaymentPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -124,30 +125,27 @@ public class PaymentPanel extends JPanel {
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);
 		
-		Font small = new Font("Arial", Font.PLAIN, 24);
-		Font big = new Font("Arial", Font.PLAIN, 30);
-		
 		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN,18));
 		
-		txtName.setFont(big);
-		txtPrice.setFont(big);
-		btnBack.setFont(big);
+		FontUtil.getInstance().bindBigFont(txtName);
+		FontUtil.getInstance().bindBigFont(txtPrice);
+		FontUtil.getInstance().bindBigFont(btnBack);
 		
-		txtSoldBy.setFont(small);
-		lblSoldBy.setFont(small);
-		txtValidFrom.setFont(small);
-		txtValidTo.setFont(small);
-		lblValidFrom.setFont(small);
-		lblValidTo.setFont(small);
-		lblFromStation.setFont(small);
-		lblToStation.setFont(small);
-		lblDesc.setFont(small);
-		lblPrice.setFont(small);
-		lblName.setFont(small);
-		btnPay.setFont(small);
-		txtFromStation.setFont(small); 
-		txtToStation.setFont(small);
+		FontUtil.getInstance().bindSmallFont(txtSoldBy);
+		FontUtil.getInstance().bindSmallFont(lblSoldBy);
+		FontUtil.getInstance().bindSmallFont(txtValidFrom);
+		FontUtil.getInstance().bindSmallFont(txtValidTo);
+		FontUtil.getInstance().bindSmallFont(lblValidFrom);
+		FontUtil.getInstance().bindSmallFont(lblValidTo);
+		FontUtil.getInstance().bindSmallFont(lblFromStation);
+		FontUtil.getInstance().bindSmallFont(lblToStation);
+		FontUtil.getInstance().bindSmallFont(lblDesc);
+		FontUtil.getInstance().bindSmallFont(lblPrice);
+		FontUtil.getInstance().bindSmallFont(lblName);
+		FontUtil.getInstance().bindSmallFont(btnPay);
+		FontUtil.getInstance().bindSmallFont(txtFromStation); 
+		FontUtil.getInstance().bindSmallFont(txtToStation);
 		
 		
 		

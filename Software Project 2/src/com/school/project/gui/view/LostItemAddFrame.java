@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import com.school.project.gui.view.custom.AutoComboBox;
 import com.school.project.nmbs.model.StationCache;
+import com.school.project.util.FontUtil;
 
 public class LostItemAddFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -46,6 +47,15 @@ public class LostItemAddFrame extends JFrame {
 		getContentPane().add(txtLocation);
 		getContentPane().add(btnCancel);
 		getContentPane().add(btnSave);
+		
+		FontUtil.getInstance().bindSmallFont(lblType);
+		FontUtil.getInstance().bindSmallFont(lblDescription);
+		FontUtil.getInstance().bindSmallFont(lblLocation);
+		FontUtil.getInstance().bindSmallFont(txtType);
+		FontUtil.getInstance().bindSmallFont(txtDescription);
+		FontUtil.getInstance().bindSmallFont(txtLocation);
+		FontUtil.getInstance().bindSmallFont(btnSave);
+		FontUtil.getInstance().bindSmallFont(btnCancel);
 		
 		pack();
 	}

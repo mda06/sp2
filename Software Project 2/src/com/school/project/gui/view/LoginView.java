@@ -1,7 +1,6 @@
 package com.school.project.gui.view;
 
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import com.school.project.util.FontUtil;
 
 public class LoginView extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -45,13 +46,13 @@ public class LoginView extends JFrame{
 		pnl.add(lUsername);
 		pnl.add(lPassword);
 		
-		lUsername.setFont(new Font("Arial", Font.PLAIN, 30));
-		lPassword.setFont(new Font("Arial", Font.PLAIN, 30));
-		btnLogin.setFont(new Font("Arial", Font.PLAIN, 30));
+		FontUtil.getInstance().bindBigFont(lUsername);
+		FontUtil.getInstance().bindBigFont(lPassword);
+		FontUtil.getInstance().bindBigFont(btnLogin);
 		btnLogin.setPreferredSize(new Dimension(450, 40));
 		
-		txtUsername.setFont(new Font("Arial", Font.PLAIN, 30));
-		txtPassword.setFont(new Font("Arial", Font.PLAIN, 30));
+		FontUtil.getInstance().bindBigFont(txtUsername);
+		FontUtil.getInstance().bindBigFont(txtPassword);
 	
 		sp.putConstraint(SpringLayout.VERTICAL_CENTER, btnLogin, 40, SpringLayout.VERTICAL_CENTER, pnl);
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, btnLogin, 14, SpringLayout.HORIZONTAL_CENTER, pnl);

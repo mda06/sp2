@@ -16,18 +16,23 @@ import com.school.project.gui.controller.LoginController;
 import com.school.project.gui.controller.LostItemController;
 import com.school.project.gui.controller.RailCardController;
 import com.school.project.gui.controller.RouteController;
+import com.school.project.gui.controller.SettingsController;
 import com.school.project.gui.controller.TicketController;
 import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
+import com.school.project.gui.controller.listener.DisconnectListener;
+import com.school.project.gui.controller.statistics.StatisticsController;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
+import com.school.project.model.User.UserType;
 import com.school.project.nmbs.dao.StationDAO;
 
-public class MainFactory implements ConnectionListener {
+public class MainFactory implements ConnectionListener, DisconnectListener {
 	private User connectedUser;
 	private LoginController login;
+	private FrameController frame;
 	private LanguageObservable languageObservable;
 	private boolean isCacheLoaded;
 
@@ -62,6 +67,17 @@ public class MainFactory implements ConnectionListener {
 		languageObservable.addObserver(login);
 		login.getLoginView().setVisible(true);
 		languageObservable.languageChanged();
+		login.getLoginView().addWindowListener(new WindowListener(){
+			public void windowOpened(WindowEvent e) {}
+			public void windowClosing(WindowEvent e) {
+				DatabaseHandler.getInstance().closeConnection();
+			}
+			public void windowClosed(WindowEvent e) {}
+			public void windowIconified(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
+		});
 	}
 
 	public void showBaseFrame() {
@@ -80,7 +96,7 @@ public class MainFactory implements ConnectionListener {
 			}
 		}
 		
-		FrameController frame = new FrameController(languageObservable);
+		frame = new FrameController(languageObservable, this);
 		languageObservable.addObserver(frame);
 		initBaseModels(frame);
 		frame.getFrameView().setVisible(true);
@@ -98,12 +114,16 @@ public class MainFactory implements ConnectionListener {
 	}
 
 	private void initBaseModels(FrameController base) {
-		addCard(base, new LostItemController());
 		addCard(base, new TicketController(connectedUser));
 		addCard(base, new RailCardController(connectedUser));
 		addCard(base, new RouteController());
 		addCard(base, new UserController(connectedUser));
 		addCard(base, new ActiveUserRailCardController());
+		addCard(base, new LostItemController());
+		if(connectedUser.getType() == UserType.ADMIN) {
+			addCard(base, new SettingsController(languageObservable));
+			addCard(base, new StatisticsController());
+		}
 	}
 
 	private void addCard(FrameController base, BaseController<?> bc) {
@@ -119,5 +139,12 @@ public class MainFactory implements ConnectionListener {
 		}
 		showBaseFrame();
 		languageObservable.languageChanged();
+	}
+
+	@Override
+	public void disconnect() {
+		connectedUser = null;
+		frame.getFrameView().dispose();
+		showLoginFrame();
 	}
 }
