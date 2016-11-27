@@ -15,6 +15,16 @@
 		<value lang="fr"> Propriétées de language </value>
 		<value lang="nl"> Taal eigenschappen </value>
 	</string>
+	<string name = "file">
+		<value lang="en"> File  </value>
+		<value lang="fr"> Fichier </value>
+		<value lang="nl"> File </value>
+	</string>
+	<string name = "disconnect">
+		<value lang="en"> Disconnect  </value>
+		<value lang="fr"> Déconnecter </value>
+		<value lang="nl"> Uitloggen </value>
+	</string>
     <string name = "lblFontBig">
 		<value lang="en"> Big Font  </value>
 		<value lang="fr"> Grande Police </value>

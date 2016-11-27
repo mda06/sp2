@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -14,7 +15,8 @@ public class FrameView extends JFrame{
 	private JPanel pnlBtns, pnlCard;
 	private JSplitPane split;
 	private JMenuBar menuBar;
-	private JMenu menuOptions;
+	private JMenu menuOptions, menuFile;
+	private JMenuItem mnDisconnect;
 	
 	public FrameView() {
 		setTitle("FrameView");
@@ -37,7 +39,9 @@ public class FrameView extends JFrame{
 	private void initMenu(){
 		menuBar = new JMenuBar();
 		menuOptions = new JMenu("Options");
+		menuBar.add(menuFile = new JMenu("File"));
 		menuBar.add(menuOptions);
+		menuFile.add(mnDisconnect = new JMenuItem("Disconnect"));
 		this.setJMenuBar(menuBar);
 	}
 	
@@ -51,5 +55,13 @@ public class FrameView extends JFrame{
 
 	public JMenu getMenuOptions() {
 		return menuOptions;
+	}
+
+	public JMenuItem getMnDisconnect() {
+		return mnDisconnect;
+	}
+
+	public JMenu getMenuFile() {
+		return menuFile;
 	}
 }

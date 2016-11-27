@@ -13,6 +13,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 
+import com.school.project.gui.controller.listener.DisconnectListener;
 import com.school.project.gui.controller.listener.LanguageActionListener;
 import com.school.project.gui.view.BaseView;
 import com.school.project.gui.view.FrameView;
@@ -26,14 +27,21 @@ public class FrameController implements Observer {
 	private ArrayList<String> lstCardKeys;
 	private HashMap<BaseView, BaseController<?>> controllers;
 	private Color oldButtonColor;
+	private DisconnectListener disconnectListener;
 
-	public FrameController(LanguageObservable languageObservable) {
+	public FrameController(LanguageObservable languageObservable, DisconnectListener disconnectListener) {
 		frame = new FrameView();
+		this.disconnectListener = disconnectListener;
 		this.oldButtonColor = null;
 		this.languageObservable = languageObservable;
 		lstCardKeys = new ArrayList<String>();
 		controllers = new HashMap<>();
 		initLanguageEvents();
+		initDisconnectEvent();
+	}
+	
+	private void initDisconnectEvent() {
+		frame.getMnDisconnect().addActionListener((e) -> disconnectListener.disconnect());
 	}
 
 	private void initLanguageEvents() {
@@ -98,6 +106,8 @@ public class FrameController implements Observer {
 		if (observable instanceof LanguageObservable) {
 			LanguageHandler handler = ((LanguageObservable) observable).getLanguageHandler();
 			frame.getMenuOptions().setText(handler.getString("options"));
+			frame.getMenuFile().setText(handler.getString("file"));
+			frame.getMnDisconnect().setText(handler.getString("disconnect"));
 			for (Component c : frame.getPanelBtns().getComponents()) {
 				if (c instanceof JButton) {
 					JButton btn = (JButton) c;

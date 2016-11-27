@@ -23,7 +23,7 @@ public class ConnectionDetailsFrame extends JFrame {
 		initLayout();
 		setAlwaysOnTop(true);
 		setTitle("Details");
-		setSize(MAXIMIZED_HORIZ, MAXIMIZED_VERT);
+		pack();
 		setLocationRelativeTo(null);
 	}
 	
@@ -49,8 +49,6 @@ public class ConnectionDetailsFrame extends JFrame {
 		pnlNorth.add(lblArrival);
 		pnlNorth.add(txtArrival);
 		
-		
-		
 		FontUtil.getInstance().bindSmallFont(lblDuration);
 		FontUtil.getInstance().bindSmallFont(lblDeparture);
 		FontUtil.getInstance().bindSmallFont(lblArrival);
@@ -59,7 +57,6 @@ public class ConnectionDetailsFrame extends JFrame {
 		FontUtil.getInstance().bindSmallFont(txtDeparture);
 		FontUtil.getInstance().bindSmallFont(tblDetails);
 		FontUtil.getInstance().bindSmallFont(tblDetails.getTableHeader());
-		
 		
 		add(pnlNorth, BorderLayout.NORTH);
 		add(scroll);

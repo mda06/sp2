@@ -20,6 +20,7 @@ import com.school.project.gui.controller.SettingsController;
 import com.school.project.gui.controller.TicketController;
 import com.school.project.gui.controller.UserController;
 import com.school.project.gui.controller.listener.ConnectionListener;
+import com.school.project.gui.controller.listener.DisconnectListener;
 import com.school.project.gui.controller.statistics.StatisticsController;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.RailCardCache;
@@ -28,9 +29,10 @@ import com.school.project.model.User;
 import com.school.project.model.User.UserType;
 import com.school.project.nmbs.dao.StationDAO;
 
-public class MainFactory implements ConnectionListener {
+public class MainFactory implements ConnectionListener, DisconnectListener {
 	private User connectedUser;
 	private LoginController login;
+	private FrameController frame;
 	private LanguageObservable languageObservable;
 	private boolean isCacheLoaded;
 
@@ -94,7 +96,7 @@ public class MainFactory implements ConnectionListener {
 			}
 		}
 		
-		FrameController frame = new FrameController(languageObservable);
+		frame = new FrameController(languageObservable, this);
 		languageObservable.addObserver(frame);
 		initBaseModels(frame);
 		frame.getFrameView().setVisible(true);
@@ -137,5 +139,12 @@ public class MainFactory implements ConnectionListener {
 		}
 		showBaseFrame();
 		languageObservable.languageChanged();
+	}
+
+	@Override
+	public void disconnect() {
+		connectedUser = null;
+		frame.getFrameView().dispose();
+		showLoginFrame();
 	}
 }
