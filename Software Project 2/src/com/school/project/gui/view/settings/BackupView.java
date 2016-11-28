@@ -21,6 +21,18 @@ public class BackupView extends BaseView{
 		setLayout(sp);
 		add(btnBackup);
 	}
+
+	public JButton getBtnBackup() {
+		return btnBackup;
+	}
+
+	public void setBtnBackup(JButton btnBackup) {
+		this.btnBackup = btnBackup;
+	}
+	
+	
+	
+	
 	
 	
 }
