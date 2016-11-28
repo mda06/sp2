@@ -484,4 +484,34 @@
 		<value lang="nl">backup</value>
 		<value lang="fr">Sauvegarde</value>
 	</string>
+	<string name="hasFixedRoute">
+		<value lang="en">Has fixed route</value>
+		<value lang="nl">Heeft vaste route</value>
+		<value lang="fr">A itinéraire fixe</value>
+	</string>
+	<string name="validityPeriod">
+		<value lang="en">Validity period</value>
+		<value lang="nl">Geldigheidsduur</value>
+		<value lang="fr">Période de validité</value>
+	</string>
+	<string name="days">
+		<value lang="en">Days</value>
+		<value lang="nl">Dagen</value>
+		<value lang="fr">Jours</value>
+	</string>
+	<string name="saveSucces">
+		<value lang="en">Ticket saved!</value>
+		<value lang="nl">Ticket opgeslaan!</value>
+		<value lang="fr">Ticket enregistré!</value>
+	</string>
+	<string name="updateSucces">
+		<value lang="en">Ticket updated!</value>
+		<value lang="nl">Ticket geupdate!</value>
+		<value lang="fr">Ticket mis à jour!</value>
+	</string>
+	<string name="confirmDelete">
+		<value lang="en">Are you sure?</value>
+		<value lang="nl">Ben je zeker?</value>
+		<value lang="fr">Êtes-vous sûr</value>
+	</string>
 	</resources>
