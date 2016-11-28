@@ -109,7 +109,7 @@ public class TicketEditorController {
 		pnl.getTxtDesc().setText(ticket.getDescription());
 		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()));
 		pnl.getCbHasFixedRoute().setSelected(ticket.isHasFixedRoute());
-		
+		pnl.getJcValidityPer().setSelectedIndex(ticket.getValidityPeriod()-1);
 		pnl.getBtnDelete().setVisible(true);
 	}
 
