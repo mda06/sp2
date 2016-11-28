@@ -260,4 +260,36 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 		}
 		return map;
 	}
+	public HashMap<User, Integer> getActiveRailCardByUserStatistic(){
+		HashMap<User, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT count(*) AS total, soldByUser FROM activeRailcards GROUP BY soldByUser";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()){
+				User u = UserDAO.getInstance().get(res.getInt("soldByUser"));
+				Integer nb = res.getInt("total");
+				map.put(u, nb);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(stat != null){res.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
 }
