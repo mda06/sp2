@@ -10,7 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.school.project.dao.AddressDAO;
 import com.school.project.dao.TicketSaleDAO;
+import com.school.project.dao.UserDAO;
 import com.school.project.model.Address;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketCache;
@@ -32,15 +34,11 @@ public class DummyData {
 		return instance;
 	}
 	
-	public static void main(String[] args) {
-		getInstance().insertDummyUsers("BE_SURE_WITH_WHAT_YOU_DO");
-	}
-	
 	public void insertDummyUsers(String secureCheck) {
 		if(!secureCheck.equals("BE_SURE_WITH_WHAT_YOU_DO")) return;
 		
 		//Settings
-		final int NB_USERS = 1;
+		final int NB_USERS = 20;
 		final String FILTERS = "gender,name,location,";
 		
 		String apiUrl = "https://randomuser.me/api/";
@@ -61,7 +59,7 @@ public class DummyData {
 				String city = StringUtils.capitalize(address.getString("city"));
 				String streetline1 = StringUtils.capitalize(address.getString("street"));
 				String streetline2 = "";
-				String postalCode = Integer.toString(address.getInt("postcode"));
+				String postalCode = address.get("postcode").toString();
 				String country = StringUtils.capitalize(address.getString("state"));
 				long msBegin = 290158893000L;
 				long ms = msBegin + (Math.abs(rand.nextLong()) % (40L * 365 * 24 * 60 * 60 * 1000));
@@ -69,7 +67,9 @@ public class DummyData {
 				
 				User finalUser = new User(-1, g, UserType.CUSTOMER, firstName, lastName, dateOfBirth, false);
 				finalUser.setAddress(new Address(-1, streetline1, streetline2, city, postalCode, country, false));
-				System.out.println(finalUser);
+				
+				AddressDAO.getInstance().add(finalUser.getAddress());
+				UserDAO.getInstance().add(finalUser);
 			});
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
