@@ -1,15 +1,14 @@
 package com.school.project.gui.view.settings;
 
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class RailCardEditorPanel extends TicketEditorPanel {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel lblPricePerMonth, lblPricePer3Month, lblPricePerYear;
 	private JTextField txtPricePerMonth, txtPricePer3Month, txtPricePerYear;
-	
-	private static final long serialVersionUID = 1L;
 	
 	public RailCardEditorPanel(){
 		super();
@@ -25,10 +24,61 @@ public class RailCardEditorPanel extends TicketEditorPanel {
 		txtPricePer3Month = new JTextField();
 		txtPricePerYear = new JTextField();
 		
-		pnlLeft.removeAll();
+		pnlLeft.remove(this.getLblPrice());
+		pnlLeft.remove(this.getTxtPrice());
+		pnlLeft.remove(this.getLblValidityPer());
+		pnlLeft.remove(this.getJcValidityPer());
+		pnlLeft.remove(this.getLblDays());
 		
 	}
 	
-	
+	public JLabel getLblPricePerMonth() {
+		return lblPricePerMonth;
+	}
 
+	public void setLblPricePerMonth(JLabel lblPricePerMonth) {
+		this.lblPricePerMonth = lblPricePerMonth;
+	}
+
+	public JLabel getLblPricePer3Month() {
+		return lblPricePer3Month;
+	}
+
+	public void setLblPricePer3Month(JLabel lblPricePer3Month) {
+		this.lblPricePer3Month = lblPricePer3Month;
+	}
+
+	public JLabel getLblPricePerYear() {
+		return lblPricePerYear;
+	}
+
+	public void setLblPricePerYear(JLabel lblPricePerYear) {
+		this.lblPricePerYear = lblPricePerYear;
+	}
+
+	public JTextField getTxtPricePerMonth() {
+		return txtPricePerMonth;
+	}
+
+	public void setTxtPricePerMonth(JTextField txtPricePerMonth) {
+		this.txtPricePerMonth = txtPricePerMonth;
+	}
+
+	public JTextField getTxtPricePer3Month() {
+		return txtPricePer3Month;
+	}
+
+	public void setTxtPricePer3Month(JTextField txtPricePer3Month) {
+		this.txtPricePer3Month = txtPricePer3Month;
+	}
+
+	public JTextField getTxtPricePerYear() {
+		return txtPricePerYear;
+	}
+
+	public void setTxtPricePerYear(JTextField txtPricePerYear) {
+		this.txtPricePerYear = txtPricePerYear;
+	}
+
+	
 }

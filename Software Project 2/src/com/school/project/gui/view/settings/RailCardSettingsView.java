@@ -1,10 +1,7 @@
 package com.school.project.gui.view.settings;
 
-import java.awt.Color;
-
 import javax.swing.JButton;
 
-import com.school.project.gui.view.BaseView;
 import com.school.project.gui.view.RailCardView;
 
 public class RailCardSettingsView extends RailCardView{
@@ -14,10 +11,28 @@ public class RailCardSettingsView extends RailCardView{
 	
 	private TicketEditorPanel pnlRailCardEditor;
 	
-	public final String KEY_EDIT = "editor";
-	
+
 	public RailCardSettingsView() {
 		this.getPnlBtns().add(btnNewRailCard = new JButton("New Railcard"));
 		add(pnlRailCardEditor = new RailCardEditorPanel(), KEY_EDIT);
 	}
+	
+	public JButton getBtnNewRailCard() {
+		return btnNewRailCard;
+	}
+
+	public void setBtnNewRailCard(JButton btnNewRailCard) {
+		this.btnNewRailCard = btnNewRailCard;
+	}
+
+	public TicketEditorPanel getPnlRailCardEditor() {
+		return pnlRailCardEditor;
+	}
+
+	public void setPnlRailCardEditor(TicketEditorPanel pnlRailCardEditor) {
+		this.pnlRailCardEditor = pnlRailCardEditor;
+	}
+
+	public final String KEY_EDIT = "editor";
+	
 }
