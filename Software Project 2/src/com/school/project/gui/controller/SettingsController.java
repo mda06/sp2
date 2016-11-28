@@ -1,6 +1,5 @@
 package com.school.project.gui.controller;
 
-import java.awt.Component;
 import java.util.Observable;
 
 import com.school.project.gui.controller.settings.BackupController;
