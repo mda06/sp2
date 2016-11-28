@@ -56,6 +56,7 @@ public class TicketSettingsController extends BaseController<TicketSettingsView>
 
 	@Override
 	public void update(Observable o, Object arg) {
+		tEdit.update(o, arg);
 	}
 	
 	@Override
