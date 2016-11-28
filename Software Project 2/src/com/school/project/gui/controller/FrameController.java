@@ -85,6 +85,8 @@ public class FrameController implements Observer {
 							break;
 						}
 					}
+					// Change color of the button
+					update(languageObservable, frame);
 					btn.setBackground(new Color(50, 111, 209));
 				}
 			}
