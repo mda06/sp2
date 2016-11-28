@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -228,5 +228,36 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 			}
 		}
 		return lst;
+	}
+	public HashMap<ActiveRailCard, Integer> getBestActiveRailCardStatistic(){
+		HashMap<ActiveRailCard, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT count(*) AS total, railcardId FROM activeRailcards GROUP BY railcardId";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()){
+				ActiveRailCard a = ActiveRailCardDAO.getInstance().get(res.getInt("railcardId"));
+				Integer nb = res.getInt("total");
+				map.put(a, nb);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null){ res.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return map;
 	}
 }

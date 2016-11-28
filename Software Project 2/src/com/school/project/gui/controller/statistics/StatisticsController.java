@@ -8,6 +8,7 @@ import org.jfree.ui.RectangleInsets;
 
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.model.statistics.AbstractChartModel;
+import com.school.project.gui.model.statistics.data.BestActiveRailCardStatistic;
 import com.school.project.gui.model.statistics.data.BestTicketSaleStatistic;
 import com.school.project.gui.model.statistics.data.TicketSaleByUsersStatistic;
 import com.school.project.gui.view.statistics.StatisticsView;
@@ -27,6 +28,7 @@ public class StatisticsController extends BaseController<StatisticsView> {
 			view.getTabbedPane().removeAll();
 			view.getTabbedPane().add("Ticket Sales", createChartModel(new TicketSaleByUsersStatistic()));
 			view.getTabbedPane().add("Best Ticket Sales", createChartModel(new BestTicketSaleStatistic()));
+			view.getTabbedPane().add("Best Active Railcards", createChartModel(new BestActiveRailCardStatistic()));
 			view.repaint();
 		}).start();
 	}

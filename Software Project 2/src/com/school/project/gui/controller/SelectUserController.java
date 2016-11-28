@@ -2,6 +2,8 @@ package com.school.project.gui.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -53,18 +55,20 @@ public class SelectUserController implements Observer{
 				new Thread(runnable).start();
 			}
 		};
-		popup.getBtnSearch().addActionListener(searchAction);
-		popup.getTxtFirstName().addActionListener(searchAction);
-		popup.getTxtLastName().addActionListener(searchAction);
-		
+		KeyListener keyListener = new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				searchAction.actionPerformed(null);
+			}
+			public void keyPressed(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {}
+		};
 		ActionListener selectAction = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				selectEvent();	
 			}
 			
 		};
-		popup.getBtnSelect().addActionListener(selectAction);
-		
 		MouseListener selectDoubleClick = new MouseAdapter(){
 			public void mouseClicked(MouseEvent me){
 				if(me.getClickCount() == 2){
@@ -72,6 +76,12 @@ public class SelectUserController implements Observer{
 				}
 			}
 		};
+		popup.getBtnSearch().addActionListener(searchAction);
+		popup.getTxtFirstName().addActionListener(searchAction);
+		popup.getTxtLastName().addActionListener(searchAction);
+		popup.getTxtFirstName().addKeyListener(keyListener);
+		popup.getTxtLastName().addKeyListener(keyListener);
+		popup.getBtnSelect().addActionListener(selectAction);
 		popup.getTblUsers().addMouseListener(selectDoubleClick);
 	}
 	
