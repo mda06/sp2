@@ -29,7 +29,7 @@ public class StatisticsController extends BaseController<StatisticsView> {
 			view.getTabbedPane().removeAll();
 			view.getTabbedPane().add("Ticket Sales", createChartModel(new TicketSaleByUsersStatistic()));
 			view.getTabbedPane().add("Best Ticket Sales", createChartModel(new BestTicketSaleStatistic()));
-			view.getTabbedPane().add("Active Railcard", createChartModel(new ActiveRailCardByUsersStatistic()));
+			view.getTabbedPane().add("Active Railcards", createChartModel(new ActiveRailCardByUsersStatistic()));
 			view.getTabbedPane().add("Best Active Railcards", createChartModel(new BestActiveRailCardStatistic()));
 			view.repaint();
 		}).start();
