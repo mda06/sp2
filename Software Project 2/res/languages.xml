@@ -459,5 +459,29 @@
 		<value lang="nl">Geslacht</value>
 		<value lang="fr">le sexe</value>
 	</string>
-	
+	<string name="TicketSettings">
+		<value lang="en">Ticket settings</value>
+		<value lang="nl">Ticket instellingen</value>
+		<value lang="fr">Ticket paramètres</value>
+	</string>
+	<string name="RailcardSettings">
+		<value lang="en">Railcard settings</value>
+		<value lang="nl">Railcard instellingen</value>
+		<value lang="fr">Railcard paramètres</value>
+	</string>
+	<string name="LayoutSettings">
+		<value lang="en">Layout settings</value>
+		<value lang="nl">Lay-out instellingen</value>
+		<value lang="fr">disposition paramètres</value>
+	</string>
+	<string name="LanguageSettings">
+		<value lang="en">Language settings</value>
+		<value lang="nl">Taal instellingen</value>
+		<value lang="fr">Paramètres de langue</value>
+	</string>
+	<string name="Backup">
+		<value lang="en">Backup</value>
+		<value lang="nl">backup</value>
+		<value lang="fr">Sauvegarde</value>
+	</string>
 	</resources>
