@@ -24,7 +24,7 @@ public class TicketEditorPanel extends JPanel {
 	private JTextField txtName, txtPrice;
 	private JTextArea txtDesc;
 
-	private JLabel lblName, lblDesc, lblPrice, lblValidityPer;
+	private JLabel lblName, lblDesc, lblPrice, lblValidityPer, lblDays;
 
 	private JCheckBox cbHasFixedRoute;
 	
@@ -42,7 +42,6 @@ public class TicketEditorPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		JPanel pnlRight = new JPanel(new GridBagLayout());
-		GridBagConstraints cr = new GridBagConstraints();
 
 		lblName = new JLabel("Name");
 		c.fill = GridBagConstraints.BOTH;
@@ -50,7 +49,7 @@ public class TicketEditorPanel extends JPanel {
 		c.ipadx = 15;
 		c.weightx = .5;
 		c.gridx = 0;
-		c.gridy = 0;
+		c.gridy = 1;
 		pnlLeft.add(lblName, c);
 		txtName = new JTextField(20);
 		c.gridx = 1;
@@ -59,7 +58,7 @@ public class TicketEditorPanel extends JPanel {
 		lblDesc = new JLabel("Desc");
 		c.weightx = .5;
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 2;
 		pnlLeft.add(lblDesc, c);
 		txtDesc = new JTextArea();
 		txtDesc.setColumns(60);
@@ -86,26 +85,45 @@ public class TicketEditorPanel extends JPanel {
 		pnlLeft.add(btnSave, c);
 		
 		btnDelete = new JButton("Delete ticket");
-		c.weightx = .5;
+		c.weightx = .0;
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 1;
 		c.gridheight = 1;
 		c.gridwidth = 1;
 		pnlRight.add(btnDelete);
-		jcValidityPer = new JComboBox<>();
-		c.weightx = 1;
-		c.gridx = 0;
-		c.gridy = 4;
-		c.gridheight = 1;
-		c.gridwidth = 1;
-		pnlRight.add(jcValidityPer, c);
+		
+		
 		lblValidityPer = new JLabel("Validity period: ");
 		c.weightx = 1;
-		c.gridx = 4;
-		c.gridy = 4;
+		c.gridx = 0;
+		c.gridy = 0;
 		c.gridheight = 1;
 		c.gridwidth = 1;
-		pnlRight.add(lblValidityPer,c);
+		
+		pnlLeft.add(lblValidityPer,c);
+		
+		JPanel pnlValidity = new JPanel(new GridBagLayout());
+		jcValidityPer = new JComboBox<>();
+		jcValidityPer.setPreferredSize(new Dimension(20,10));
+		c.weightx = 1;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlValidity.add(jcValidityPer, c);
+		lblDays = new JLabel("Days");
+		c.gridx = 1;
+		c.ipadx = 0;
+		pnlValidity.add(lblDays,c);
+		cbHasFixedRoute = new JCheckBox("Has fixed route");
+		
+		c.gridx = 2;
+		pnlValidity.add(cbHasFixedRoute,c);
+		
+		c.gridx = 1;
+		pnlLeft.add(pnlValidity, c);
+		
+		
 		
 
 		add(pnlLeft, BorderLayout.WEST);
@@ -119,11 +137,47 @@ public class TicketEditorPanel extends JPanel {
 		FontUtil.getInstance().bindBigFont(txtName);
 		FontUtil.getInstance().bindBigFont(txtPrice);
 		FontUtil.getInstance().bindBigFont(btnBack);
-
+		
+		FontUtil.getInstance().bindSmallFont(btnDelete);
+		//FontUtil.getInstance().bindSmallFont(lblDays);
+		//FontUtil.getInstance().bindSmallFont(lblValidityPer);
+		//FontUtil.getInstance().bindSmallFont(cbHasFixedRoute);
 		FontUtil.getInstance().bindSmallFont(lblDesc);
 		FontUtil.getInstance().bindSmallFont(lblPrice);
 		FontUtil.getInstance().bindSmallFont(lblName);
 		FontUtil.getInstance().bindSmallFont(btnSave);
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
+	public JLabel getLblValidityPer() {
+		return lblValidityPer;
+	}
+
+	public void setLblValidityPer(JLabel lblValidityPer) {
+		this.lblValidityPer = lblValidityPer;
+	}
+
+	public JLabel getLblDays() {
+		return lblDays;
+	}
+
+	public void setLblDays(JLabel lblDays) {
+		this.lblDays = lblDays;
+	}
+
+	public JComboBox<Integer> getJcValidityPer() {
+		return jcValidityPer;
+	}
+
+	public void setJcValidityPer(JComboBox<Integer> jcValidityPer) {
+		this.jcValidityPer = jcValidityPer;
 	}
 
 	public JButton getBtnBack() {
