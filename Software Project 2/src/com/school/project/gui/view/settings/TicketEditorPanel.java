@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -19,13 +20,15 @@ public class TicketEditorPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private JButton btnBack, btnSave;
+	private JButton btnBack, btnSave, btnDelete;
 	private JTextField txtName, txtPrice;
 	private JTextArea txtDesc;
 
-	private JLabel lblName, lblDesc, lblPrice;
+	private JLabel lblName, lblDesc, lblPrice, lblValidityPer;
 
 	private JCheckBox cbHasFixedRoute;
+	
+	private JComboBox<Integer> jcValidityPer;
 
 	public TicketEditorPanel() {
 		cbHasFixedRoute = new JCheckBox("fixed route");
@@ -37,6 +40,9 @@ public class TicketEditorPanel extends JPanel {
 
 		JPanel pnlLeft = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		
+		JPanel pnlRight = new JPanel(new GridBagLayout());
+		GridBagConstraints cr = new GridBagConstraints();
 
 		lblName = new JLabel("Name");
 		c.fill = GridBagConstraints.BOTH;
@@ -56,6 +62,9 @@ public class TicketEditorPanel extends JPanel {
 		c.gridy = 1;
 		pnlLeft.add(lblDesc, c);
 		txtDesc = new JTextArea();
+		txtDesc.setColumns(60);
+		txtDesc.setPreferredSize(new Dimension(70,40));
+		txtDesc.setLineWrap(true);
 		c.weightx = 1;
 		c.gridx = 1;
 		pnlLeft.add(txtDesc, c);
@@ -75,8 +84,32 @@ public class TicketEditorPanel extends JPanel {
 		c.gridx = 1;
 		c.gridy = 5;
 		pnlLeft.add(btnSave, c);
+		
+		btnDelete = new JButton("Delete ticket");
+		c.weightx = .5;
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlRight.add(btnDelete);
+		jcValidityPer = new JComboBox<>();
+		c.weightx = 1;
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlRight.add(jcValidityPer, c);
+		lblValidityPer = new JLabel("Validity period: ");
+		c.weightx = 1;
+		c.gridx = 4;
+		c.gridy = 4;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		pnlRight.add(lblValidityPer,c);
+		
 
 		add(pnlLeft, BorderLayout.WEST);
+		add(pnlRight, BorderLayout.EAST);
 		JPanel pnlBack = new JPanel();
 		pnlBack.add(btnBack = new JButton("Back"));
 		add(pnlBack, BorderLayout.NORTH);

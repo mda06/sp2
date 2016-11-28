@@ -230,6 +230,10 @@ public class UserController extends BaseController<UserView> implements Selected
 			view.getLbCity().setText(lh.getString("city"));
 			view.getcBUseCredentials().setText(lh.getString("makeAccount"));
 			view.getBtnComplete().setText(lh.getString("save"));
+			view.getLblGender().setText(lh.getString("gender"));
+			view.getLbStreetline2().setText(lh.getString("streetLine2"));
+			view.getLbCountry().setText(lh.getString("country"));
+			view.getLblSoortuser().setText(lh.getString("userType"));
 
 			strErrorFillInTheBlanks = lh.getString("fillInTheBlanks");
 			strErrorMatchingPassword = lh.getString("matchingPasswords");

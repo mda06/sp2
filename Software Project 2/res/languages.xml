@@ -444,4 +444,20 @@
 		<value lang="nl">Prijs</value>
 		<value lang="fr">Prix</value>
 	</string>
+	<string name="soortUser">
+		<value lang="en">User type</value>
+		<value lang="nl">Soort gebruiker</value>
+		<value lang="fr">Type d'utilisateur</value>
+	</string>
+	<string name="country">
+		<value lang="en">Country</value>
+		<value lang="nl">Land</value>
+		<value lang="fr">pays</value>
+	</string>
+	<string name="gender">
+		<value lang="en">Gender</value>
+		<value lang="nl">Geslacht</value>
+		<value lang="fr">le sexe</value>
+	</string>
+	
 	</resources>
