@@ -26,7 +26,9 @@ public class TicketEditorController {
 		strUpdateSuccess = "Ticket updated";
 		strConfirmDelete = "Delete this ticket?";
 		
-		for(int i = 0; i < 100; i++){
+		
+		
+		for(int i = 0; i < 999; i++){
 			pnl.getJcValidityPer().addItem(i+1);
 		}
 		initEvents();
@@ -109,6 +111,7 @@ public class TicketEditorController {
 		pnl.getTxtDesc().setText(ticket.getDescription());
 		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()));
 		pnl.getCbHasFixedRoute().setSelected(ticket.isHasFixedRoute());
+		System.out.println(ticket.getValidityPeriod());
 		pnl.getJcValidityPer().setSelectedIndex(ticket.getValidityPeriod()-1);
 		pnl.getBtnDelete().setVisible(true);
 	}

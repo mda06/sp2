@@ -23,6 +23,8 @@ public class TicketEditorPanel extends JPanel {
 	private JButton btnBack, btnSave, btnDelete;
 	private JTextField txtName, txtPrice;
 	private JTextArea txtDesc;
+	
+	protected JPanel pnlLeft;
 
 	private JLabel lblName, lblDesc, lblPrice, lblValidityPer, lblDays;
 
@@ -38,7 +40,7 @@ public class TicketEditorPanel extends JPanel {
 	private void initLayout() {
 		setLayout(new BorderLayout());
 
-		JPanel pnlLeft = new JPanel(new GridBagLayout());
+		pnlLeft = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		JPanel pnlRight = new JPanel(new GridBagLayout());
