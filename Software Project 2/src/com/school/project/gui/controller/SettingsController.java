@@ -1,5 +1,6 @@
 package com.school.project.gui.controller;
 
+import java.awt.Component;
 import java.util.Observable;
 
 import com.school.project.gui.controller.settings.BackupController;
@@ -37,7 +38,16 @@ public class SettingsController extends BaseController<SettingsView> {
 	public void update(Observable o, Object arg) {
 		if (o instanceof LanguageObservable) {
 			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
-			view.getTabbedPane();
+			int tabCounts = view.getTabbedPane().getTabCount();
+			for(int i = 0; i < tabCounts; i++){
+				String str = "";
+				if(i == 0) str ="TicketSettings";
+				else if (i == 1) str = "RailcardSettings";
+				else if (i == 2) str = "LayoutSettings";
+				else if (i == 3) str = "LanguageSettings";
+				else if (i == 4) str = "Backup";
+				view.getTabbedPane().setTitleAt(i, lh.getString(str));
+			}
 		}
 	}
 }
