@@ -23,6 +23,7 @@ public class ActiveRailCardByUsersStatistic extends AbstractPieChartModel {
 			dataset.setValue(e.getKey().getLastName() + " " + e.getKey().getFirstName(), e.getValue());
 		}
 		return dataset;
+		
 	}
 
 }
