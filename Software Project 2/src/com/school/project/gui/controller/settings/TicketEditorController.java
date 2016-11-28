@@ -15,7 +15,7 @@ public class TicketEditorController {
 	private TicketEditorPanel pnl;
 	private PaymentBackListener list;
 	private Ticket ticket;
-	private String strErrorFillIn, strSaveSuccess, strUpdateSuccess;
+	private String strErrorFillIn, strSaveSuccess, strUpdateSuccess, strConfirmDelete;
 
 	public TicketEditorController(TicketEditorPanel pnl, PaymentBackListener list) {
 		this.pnl = pnl;
@@ -24,7 +24,11 @@ public class TicketEditorController {
 		strErrorFillIn = "Error, please fill in all the fiels";
 		strSaveSuccess = "Ticket saved";
 		strUpdateSuccess = "Ticket updated";
-
+		strConfirmDelete = "Delete this ticket?";
+		
+		for(int i = 0; i < 100; i++){
+			pnl.getJcValidityPer().addItem(i+1);
+		}
 		initEvents();
 	}
 
@@ -32,6 +36,17 @@ public class TicketEditorController {
 		pnl.getBtnBack().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				list.backToPreviousView();
+			}
+		});
+		
+		pnl.getBtnDelete().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int response = JOptionPane.showConfirmDialog(pnl, strConfirmDelete);
+				if(response == JOptionPane.OK_OPTION && ticket != null){
+					TicketDAO.getInstance().delete(ticket);
+				}
+				list.backToPreviousView();
+				//TODO: Cache updaten anders problemen!
 			}
 		});
 
@@ -51,6 +66,7 @@ public class TicketEditorController {
 				ticket.setPrice(Double.parseDouble(pnl.getTxtPrice().getText()));
 				ticket.setName(pnl.getTxtName().getText());
 				ticket.setDescription(pnl.getTxtDesc().getText());
+				ticket.setValidityPeriod(pnl.getJcValidityPer().getSelectedIndex()+1);
 				ticket.setHasFixedRoute(pnl.getCbHasFixedRoute().isSelected());
 
 				if(!newTicket) {
@@ -93,6 +109,8 @@ public class TicketEditorController {
 		pnl.getTxtDesc().setText(ticket.getDescription());
 		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()));
 		pnl.getCbHasFixedRoute().setSelected(ticket.isHasFixedRoute());
+		pnl.getJcValidityPer().setSelectedIndex(ticket.getValidityPeriod()-1);
+		pnl.getBtnDelete().setVisible(true);
 	}
 
 	public void newTicket() {
@@ -101,6 +119,8 @@ public class TicketEditorController {
 		pnl.getTxtDesc().setText("");
 		pnl.getTxtPrice().setText("");
 		pnl.getCbHasFixedRoute().setSelected(false);
+		
+		pnl.getBtnDelete().setVisible(false);
 	}
 
 }
