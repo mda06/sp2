@@ -137,9 +137,9 @@
 		<value lang="en"> Type </value>
 	</string>
 	<string name = "description">
-		<value lang="nl"> Beschrijving </value>
-		<value lang="fr"> Description </value>
-		<value lang="en"> Description </value>
+		<value lang="nl"> Beschrijving: </value>
+		<value lang="fr"> Description: </value>
+		<value lang="en"> Description: </value>
 	</string>
 	<string name = "location">
 		<value lang="nl"> Locatie </value>
@@ -177,14 +177,14 @@
 		<value lang="en"> Login </value>
 	</string>
 	<string name = "password">
-		<value lang="nl"> Wachtwoord </value>
-		<value lang="fr"> Mot de passe </value>
-		<value lang="en"> Password </value>
+		<value lang="nl"> Wachtwoord: </value>
+		<value lang="fr"> Mot de passe: </value>
+		<value lang="en"> Password: </value>
 	</string>
 	<string name = "username">
-		<value lang="nl"> Gebruikersnaam </value>
-		<value lang="fr"> Nom d'utilisateur </value>
-		<value lang="en"> Username </value>
+		<value lang="nl"> Gebruikersnaam: </value>
+		<value lang="fr"> Nom d'utilisateur: </value>
+		<value lang="en"> Username: </value>
 	</string>
 	<string name = "UserView">
 		<value lang="nl"> Gebruikers </value>
@@ -262,9 +262,9 @@
 		<value lang="fr">Départ</value>
 	</string>
 	<string name="date">
-		<value lang="en">Date</value>
-		<value lang="nl">Datum</value>
-		<value lang="fr">Date</value>
+		<value lang="en">Date:</value>
+		<value lang="nl">Datum:</value>
+		<value lang="fr">Date:</value>
 	</string>
 	<string name="number">
 		<value lang="en">Number</value>
@@ -354,35 +354,35 @@
 		<value lang="fr">Utilisateur sélectionné:</value>
 	</string>
 	<string name="from">
-		<value lang="en">From</value>
-		<value lang="nl">Van</value>
-		<value lang="fr">De</value>
+		<value lang="en">From:</value>
+		<value lang="nl">Van:</value>
+		<value lang="fr">De:</value>
 	</string>
 	<string name="to">
-		<value lang="en">To</value>
+		<value lang="en">To:</value>
 		<value lang="nl">Naar:</value>
-		<value lang="fr">à</value>
+		<value lang="fr">À:</value>
 	</string>
 	<string name="validFrom">
-		<value lang="en">Valid from</value>
-		<value lang="nl">Geldig van</value>
-		<value lang="fr">Date de début</value>
+		<value lang="en">Valid from:</value>
+		<value lang="nl">Geldig van:</value>
+		<value lang="fr">Date de début:</value>
 	</string>
 	<string name="validTo">
-		<value lang="en">Valid to</value>
-		<value lang="nl">Geldig tot</value>
-		<value lang="fr">Date d'expiration</value>
+		<value lang="en">Valid to:</value>
+		<value lang="nl">Geldig tot:</value>
+		<value lang="fr">Date d'expiration:</value>
 	</string>
 	<string name="soldByUser">
-		<value lang="en">Sold by user</value>
-		<value lang="nl">Verkocht door gebruiker</value>
-		<value lang="fr">Vendu par l'utilisateur</value>
+		<value lang="en">Sold by user:</value>
+		<value lang="nl">Verkocht door gebruiker:</value>
+		<value lang="fr">Vendu par l'utilisateur:</value>
 	</string>
 	
 	<string name="soldBy">
-		<value lang="en">Sold by</value>
-		<value lang="nl">Verkocht door</value>
-		<value lang="fr">Vendu par</value>
+		<value lang="en">Sold by:</value>
+		<value lang="nl">Verkocht door:</value>
+		<value lang="fr">Vendu par:</value>
 	</string>
 	<string name="Customer">
 		<value lang="en">Customer</value>
@@ -430,19 +430,19 @@
 		<value lang="fr">Retour</value>
 	</string>
 	<string name="inNameOf">
-		<value lang="nl">In naam van</value>
-		<value lang="en">In name of</value>
-		<value lang="fr">Au nom de</value>
+		<value lang="nl">In naam van:</value>
+		<value lang="en">In name of:</value>
+		<value lang="fr">Au nom de:</value>
 	</string>
 	<string name="name">
-		<value lang="en">name</value>
-		<value lang="nl">naam</value>
-		<value lang="fr">nom</value>
+		<value lang="en">Name:</value>
+		<value lang="nl">Naam:</value>
+		<value lang="fr">Nom:</value>
 	</string>
 	<string name="price">
-		<value lang="en">Price</value>
-		<value lang="nl">Prijs</value>
-		<value lang="fr">Prix</value>
+		<value lang="en">Price:</value>
+		<value lang="nl">Prijs:</value>
+		<value lang="fr">Prix:</value>
 	</string>
 	<string name="soortUser">
 		<value lang="en">User type</value>
@@ -459,5 +459,29 @@
 		<value lang="nl">Geslacht</value>
 		<value lang="fr">le sexe</value>
 	</string>
-	
+	<string name="TicketSettings">
+		<value lang="en">Ticket settings</value>
+		<value lang="nl">Ticket instellingen</value>
+		<value lang="fr">Ticket paramètres</value>
+	</string>
+	<string name="RailcardSettings">
+		<value lang="en">Railcard settings</value>
+		<value lang="nl">Railcard instellingen</value>
+		<value lang="fr">Railcard paramètres</value>
+	</string>
+	<string name="LayoutSettings">
+		<value lang="en">Layout settings</value>
+		<value lang="nl">Lay-out instellingen</value>
+		<value lang="fr">disposition paramètres</value>
+	</string>
+	<string name="LanguageSettings">
+		<value lang="en">Language settings</value>
+		<value lang="nl">Taal instellingen</value>
+		<value lang="fr">Paramètres de langue</value>
+	</string>
+	<string name="Backup">
+		<value lang="en">Backup</value>
+		<value lang="nl">backup</value>
+		<value lang="fr">Sauvegarde</value>
+	</string>
 	</resources>

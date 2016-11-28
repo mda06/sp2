@@ -1,6 +1,7 @@
 package com.school.project.gui.view;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ public class FrameView extends JFrame{
 		initLayout();
 		initMenu();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setMinimumSize(new Dimension(640,480));
 	}
 	
 	private void initLayout() {

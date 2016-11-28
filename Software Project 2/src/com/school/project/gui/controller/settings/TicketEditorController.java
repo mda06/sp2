@@ -2,21 +2,28 @@ package com.school.project.gui.controller.settings;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JOptionPane;
 
 import com.school.project.dao.TicketDAO;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.settings.TicketEditorPanel;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketCache;
 
-public class TicketEditorController {
+public class TicketEditorController implements Observer{
 	private TicketEditorPanel pnl;
 	private PaymentBackListener list;
 	private Ticket ticket;
 	private String strErrorFillIn, strSaveSuccess, strUpdateSuccess, strConfirmDelete;
 
+	public TicketEditorController(){
+		super();
+	}
 	public TicketEditorController(TicketEditorPanel pnl, PaymentBackListener list) {
 		this.pnl = pnl;
 		this.list = list;
@@ -125,5 +132,19 @@ public class TicketEditorController {
 		
 		pnl.getBtnDelete().setVisible(false);
 	}
+
+	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o).getLanguageHandler();
+			pnl.getLblName().setText(lh.getString("name"));
+			pnl.getBtnBack().setText(lh.getString("back"));
+			pnl.getBtnSave().setText(lh.getString("save"));
+			pnl.getBtnDelete().setText(lh.getString("delete"));
+			pnl.getLblDesc().setText(lh.getString("description"));
+			pnl.getLblPrice().setText(lh.getString("price"));
+		}
+	}
+	
+	
 
 }
