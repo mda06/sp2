@@ -28,10 +28,7 @@ public class TicketEditorController implements Observer{
 		this.pnl = pnl;
 		this.list = list;
 		ticket = null;
-		strErrorFillIn = "Error, please fill in all the fiels";
-		strSaveSuccess = "Ticket saved";
-		strUpdateSuccess = "Ticket updated";
-		strConfirmDelete = "Delete this ticket?";
+		
 		
 		for(int i = 0; i < 100; i++){
 			pnl.getJcValidityPer().addItem(i+1);
@@ -139,6 +136,14 @@ public class TicketEditorController implements Observer{
 			pnl.getBtnDelete().setText(lh.getString("delete"));
 			pnl.getLblDesc().setText(lh.getString("description"));
 			pnl.getLblPrice().setText(lh.getString("price"));
+			pnl.getCbHasFixedRoute().setText(lh.getString("hasFixedRoute"));
+			pnl.getLblValidityPer().setText(lh.getString("validityPeriod"));
+			pnl.getLblDays().setText(lh.getString("days"));
+			strErrorFillIn = lh.getString("errorAddLostItem");
+			strSaveSuccess = lh.getString("saveSucces");
+			strUpdateSuccess = lh.getString("updateSucces");
+			strConfirmDelete = lh.getString("confirmDelete");
+			
 		}
 	}
 	
