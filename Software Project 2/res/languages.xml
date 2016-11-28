@@ -11,210 +11,210 @@
 
 <resources>
     <string name = "LanguageSettings">
-		<value lang="en"> Language Settings  </value>
-		<value lang="fr"> Propriétées de language </value>
-		<value lang="nl"> Taal eigenschappen </value>
+		<value lang="en">Language Settings</value>
+		<value lang="fr">Propriétées de language</value>
+		<value lang="nl">Taal eigenschappen</value>
 	</string>
 	<string name = "file">
-		<value lang="en"> File  </value>
-		<value lang="fr"> Fichier </value>
-		<value lang="nl"> File </value>
+		<value lang="en">File</value>
+		<value lang="fr">Fichier</value>
+		<value lang="nl">File</value>
 	</string>
 	<string name = "disconnect">
-		<value lang="en"> Disconnect  </value>
-		<value lang="fr"> Déconnecter </value>
-		<value lang="nl"> Uitloggen </value>
+		<value lang="en">Disconnect</value>
+		<value lang="fr">Déconnecter</value>
+		<value lang="nl">Uitloggen</value>
 	</string>
     <string name = "lblFontBig">
-		<value lang="en"> Big Font  </value>
-		<value lang="fr"> Grande Police </value>
-		<value lang="nl"> Groote Lettertype </value>
+		<value lang="en">Big Font</value>
+		<value lang="fr">Grande Police</value>
+		<value lang="nl">Groote Lettertype</value>
 	</string>
     <string name = "lblFontSmall">
-		<value lang="en"> Small Font  </value>
-		<value lang="fr"> Petite Police </value>
-		<value lang="nl"> Kleine Lettertype </value>
+		<value lang="en">Small Font</value>
+		<value lang="fr">Petite Police</value>
+		<value lang="nl">Kleine Lettertype</value>
 	</string>
 	<string name = "btnFontBig">
-		<value lang="en"> Change Big Font  </value>
-		<value lang="fr"> Changer Grande Police </value>
-		<value lang="nl"> Verander Groote Lettertype </value>
+		<value lang="en">Change Big Font</value>
+		<value lang="fr">Changer Grande Police</value>
+		<value lang="nl">Verander Groote Lettertype</value>
 	</string>
     <string name = "btnFontSmall">
-		<value lang="en"> Change Small Font  </value>
-		<value lang="fr"> Changer Petite Police </value>
-		<value lang="nl"> Verander Kleine Lettertype </value>
+		<value lang="en">Change Small Font</value>
+		<value lang="fr">Changer Petite Police</value>
+		<value lang="nl">Verander Kleine Lettertype</value>
 	</string>
     <string name = "Settings">
-		<value lang="en"> Settings  </value>
-		<value lang="fr"> Propriétées </value>
-		<value lang="nl"> Eigenschappen </value>
+		<value lang="en">Settings</value>
+		<value lang="fr">Propriétées</value>
+		<value lang="nl">Eigenschappen</value>
 	</string>
 	<string name = "statistics">
-		<value lang="en"> Statistics  </value>
-		<value lang="fr"> Statistiques </value>
-		<value lang="nl"> Statistieken </value>
+		<value lang="en">Statistics</value>
+		<value lang="fr">Statistiques</value>
+		<value lang="nl">Statistieken</value>
 	</string>
 	<string name = "errorAddLostItem">
-		<value lang="en"> Please fill in all the fields </value>
-		<value lang="fr"> Remplisez les champs </value>
-		<value lang="nl"> Vul de invoervelden in</value>
+		<value lang="en">Please fill in all the fields</value>
+		<value lang="fr">Remplisez les champs</value>
+		<value lang="nl">Vul de invoervelden in</value>
 	</string>
 	<string name="confirmUserSaved">
-	    <value lang="en"> User saved </value>
-		<value lang="fr"> Utilisateur enregistré </value>
-		<value lang="nl"> Gebruiker opgeslaan</value>
+	    <value lang="en">User saved </value>
+		<value lang="fr">Utilisateur enregistré</value>
+		<value lang="nl">Gebruiker opgeslaan</value>
 	</string>
 	<string name="confirmUserUpdated">
-	    <value lang="en"> User updated </value>
-		<value lang="fr"> Utilisateur modifié </value>
-		<value lang="nl"> Gebruiker gewijzigd</value>
+	    <value lang="en">User updated</value>
+		<value lang="fr">Utilisateur modifié</value>
+		<value lang="nl">Gebruiker gewijzigd</value>
 	</string>
 	<string name = "removeLostItem">
-		<value lang="en"> Remove  </value>
-		<value lang="fr"> Supprimer </value>
-		<value lang="nl"> Verwijder </value>
+		<value lang="en">Remove</value>
+		<value lang="fr">Supprimer</value>
+		<value lang="nl">Verwijder</value>
 	</string>
 	<string name = "columnTrainDir">
-		<value lang="en"> Train Direction  </value>
-		<value lang="fr"> Train Direction </value>
-		<value lang="nl"> Trein Directie </value>
+		<value lang="en">Train Direction</value>
+		<value lang="fr">Train Direction</value>
+		<value lang="nl">Trein Directie</value>
 	</string>
 	<string name = "columnStepOff">
-		<value lang="en"> Step off  </value>
-		<value lang="fr"> Descendez </value>
-		<value lang="nl"> Stap uit </value>
+		<value lang="en">Step off</value>
+		<value lang="fr">Descendez</value>
+		<value lang="nl">Stap uit</value>
 	</string>
 	<string name = "columnArrivalPlatform">
-		<value lang="en"> Arrivel platform  </value>
-		<value lang="fr"> Platform d'arrivé </value>
-		<value lang="nl"> Aankomstplatform </value>
+		<value lang="en">Arrivel platform</value>
+		<value lang="fr">Platform d'arrivé</value>
+		<value lang="nl">Aankomstplatform</value>
 	</string>
 	<string name = "columnArrivalDelays">
-		<value lang="en"> Arrival Delay(s)  </value>
-		<value lang="fr"> Delay(s) d'arrivé </value>
-		<value lang="nl"> Aankomst delay(s) </value>
+		<value lang="en">Arrival Delay(s)</value>
+		<value lang="fr">Delay(s) d'arrivé</value>
+		<value lang="nl">Aankomst delay(s)</value>
 	</string>
 	<string name = "columnNextPlatform">
-		<value lang="en"> Next Platform  </value>
-		<value lang="fr"> Platforme prochaine </value>
-		<value lang="nl"> Volgende platform </value>
+		<value lang="en">Next Platform</value>
+		<value lang="fr">Platforme prochaine</value>
+		<value lang="nl">Volgende platform</value>
 	</string>
 	<string name = "columnNextDelays">
-		<value lang="en"> Next Delay(s)  </value>
-		<value lang="fr"> Delay(s) prochains </value>
-		<value lang="nl"> Volgende delay(s) </value>
+		<value lang="en">Next Delay(s)</value>
+		<value lang="fr">Delay(s) prochains</value>
+		<value lang="nl">Volgende delay(s)</value>
 	</string>
 	<string name = "columnNextTime">
-		<value lang="en"> Next Time  </value>
-		<value lang="fr"> Prochain temps </value>
-		<value lang="nl"> Volgende tijd </value>
+		<value lang="en">Next Time</value>
+		<value lang="fr">Prochain temps</value>
+		<value lang="nl">Volgende tijd</value>
 	</string>
 	
 	<string name = "search">
-		<value lang="en"> Search </value>
-		<value lang="fr"> Chercher </value>
-		<value lang="nl"> Zoeken</value>
+		<value lang="en">Search</value>
+		<value lang="fr">Chercher</value>
+		<value lang="nl">Zoeken</value>
 	</string>
 	<string name = "save">
-		<value lang="nl"> Opslaan </value>
-		<value lang="fr"> Enregistrer </value>
-		<value lang="en"> Save </value>
+		<value lang="nl">Opslaan</value>
+		<value lang="fr">Enregistrer</value>
+		<value lang="en">Save</value>
 	</string>
 	<string name = "cancel">
-		<value lang="nl"> Annuleren </value>
-		<value lang="fr"> Annuler </value>
-		<value lang="en"> Cancel </value>
+		<value lang="nl">Annuleren </value>
+		<value lang="fr">Annuler</value>
+		<value lang="en">Cancel</value>
 	</string>
 	<string name = "add">
-		<value lang="nl"> Toevoegen </value>
-		<value lang="fr"> Ajouter </value>
-		<value lang="en"> Add </value>
+		<value lang="nl">Toevoegen</value>
+		<value lang="fr">Ajouter</value>
+		<value lang="en">Add</value>
 	</string>
 	<string name = "type">
-		<value lang="nl"> Type </value>
-		<value lang="fr"> Type </value>
-		<value lang="en"> Type </value>
+		<value lang="nl">Type</value>
+		<value lang="fr">Type</value>
+		<value lang="en">Type</value>
 	</string>
 	<string name = "description">
-		<value lang="nl"> Beschrijving: </value>
-		<value lang="fr"> Description: </value>
-		<value lang="en"> Description: </value>
+		<value lang="nl">Beschrijving:</value>
+		<value lang="fr">Description:</value>
+		<value lang="en">Description:</value>
 	</string>
 	<string name = "location">
-		<value lang="nl"> Locatie </value>
-		<value lang="fr"> Emplacement </value>
-		<value lang="en"> Location </value>
+		<value lang="nl">Locatie</value>
+		<value lang="fr">Emplacement</value>
+		<value lang="en">Location</value>
 	</string>
 	<string name = "options">
-		<value lang="nl"> Opties </value>
-		<value lang="fr"> Options </value>
-		<value lang="en"> Options </value>
+		<value lang="nl">Opties</value>
+		<value lang="fr">Options</value>
+		<value lang="en">Options</value>
 	</string>
 	<string name = "lostItemView">
-		<value lang="nl"> Verloren Voorwerpen </value>
-		<value lang="fr"> Objets Perdus </value>
-		<value lang="en"> Lost Objects </value>
+		<value lang="nl">Verloren Voorwerpen</value>
+		<value lang="fr">Objets Perdus</value>
+		<value lang="en">Lost Objects</value>
 	</string>
 	<string name = "RailCard">
-		<value lang="nl"> Abonnementen </value>
-		<value lang="fr"> Abonnements </value>
-		<value lang="en"> Rail cards </value>
+		<value lang="nl">Abonnementen</value>
+		<value lang="fr">Abonnements</value>
+		<value lang="en">Rail cards</value>
 	</string>
 	<string name = "TicketView">
-		<value lang="nl"> Tickets </value>
-		<value lang="fr"> Ticket </value>
-		<value lang="en"> Tickets </value>
+		<value lang="nl">Tickets</value>
+		<value lang="fr">Ticket</value>
+		<value lang="en">Tickets</value>
 	</string>
 	<string name = "Route">
-		<value lang="nl"> Route </value>
-		<value lang="fr"> Route </value>
-		<value lang="en"> Route </value>
+		<value lang="nl">Route</value>
+		<value lang="fr">Route</value>
+		<value lang="en">Route</value>
 	</string>
 	<string name = "login">
-		<value lang="nl"> Log in </value>
-		<value lang="fr"> S'identifier </value>
-		<value lang="en"> Login </value>
+		<value lang="nl">Log in</value>
+		<value lang="fr">S'identifier</value>
+		<value lang="en">Login</value>
 	</string>
 	<string name = "password">
-		<value lang="nl"> Wachtwoord: </value>
-		<value lang="fr"> Mot de passe: </value>
-		<value lang="en"> Password: </value>
+		<value lang="nl">Wachtwoord:</value>
+		<value lang="fr">Mot de passe:</value>
+		<value lang="en">Password:</value>
 	</string>
 	<string name = "username">
-		<value lang="nl"> Gebruikersnaam: </value>
-		<value lang="fr"> Nom d'utilisateur: </value>
-		<value lang="en"> Username: </value>
+		<value lang="nl">Gebruikersnaam:</value>
+		<value lang="fr">Nom d'utilisateur:</value>
+		<value lang="en">Username:</value>
 	</string>
 	<string name = "UserView">
-		<value lang="nl"> Gebruikers </value>
-		<value lang="fr"> Utilisateurs </value>
-		<value lang="en"> Users </value>
+		<value lang="nl">Gebruikers </value>
+		<value lang="fr">Utilisateurs</value>
+		<value lang="en">Users</value>
 	</string>
 	<string name = "user">
-		<value lang="nl"> Gebruiker </value>
-		<value lang="fr"> Utilisateur </value>
-		<value lang="en"> User </value>
+		<value lang="nl">Gebruiker</value>
+		<value lang="fr">Utilisateur</value>
+		<value lang="en">User</value>
 	</string>
 	<string name = "firstName">
-		<value lang="nl"> Voornaam</value>
-		<value lang="fr"> Prénom</value>
-		<value lang="en"> First name</value>
+		<value lang="nl">Voornaam</value>
+		<value lang="fr">Prénom</value>
+		<value lang="en">First name</value>
 	</string>
 	<string name = "select">
-		<value lang="nl"> Selecteer</value>
-		<value lang="fr"> Sélectionner</value>
-		<value lang="en"> Select</value>
+		<value lang="nl">Selecteer</value>
+		<value lang="fr">Sélectionner</value>
+		<value lang="en">Select</value>
 	</string>
 	<string name = "lastName">
-		<value lang="nl"> Achternaam</value>
-		<value lang="fr"> Nom de Famile</value>
-		<value lang="en"> Last name</value>
+		<value lang="nl">Achternaam</value>
+		<value lang="fr">Nom de Famile</value>
+		<value lang="en">Last name</value>
 	</string>
 	<string name = "passwordControl">
-		<value lang="nl"> Herhaal paswoord</value>
-		<value lang="fr"> La vérification du mot de passe</value>
-		<value lang="en"> Repeat password</value>
+		<value lang="nl">Herhaal paswoord</value>
+		<value lang="fr">La vérification du mot de passe</value>
+		<value lang="en">Repeat password</value>
 	</string>
 	<string name = "streetNumber">
 		<value lang="nl">Straat en huisnummer</value>
@@ -410,19 +410,19 @@
 		<value lang="fr">Prix par</value>
 	</string>
 	<string name="months">
-		<value lang="en">months</value>
-		<value lang="nl">maanden</value>
-		<value lang="fr">mois</value>
+		<value lang="en">Months</value>
+		<value lang="nl">Maanden</value>
+		<value lang="fr">Mois</value>
 	</string>
 	<string name="month">
-		<value lang="en">month</value>
-		<value lang="nl">maand</value>
-		<value lang="fr">mois</value>
+		<value lang="en">Month</value>
+		<value lang="nl">Maand</value>
+		<value lang="fr">Mois</value>
 	</string>
 	<string name="year">
-		<value lang="en">year</value>
-		<value lang="nl">jaar</value>
-		<value lang="fr">année</value>
+		<value lang="en">Year</value>
+		<value lang="nl">Jaar</value>
+		<value lang="fr">Année</value>
 	</string>
 	<string name="back">
 		<value lang="en">Back</value>
@@ -435,9 +435,9 @@
 		<value lang="fr">Au nom de:</value>
 	</string>
 	<string name="name">
-		<value lang="en">Name:</value>
-		<value lang="nl">Naam:</value>
-		<value lang="fr">Nom:</value>
+		<value lang="en"> Name:</value>
+		<value lang="nl"> Naam:</value>
+		<value lang="fr"> Nom:</value>
 	</string>
 	<string name="price">
 		<value lang="en">Price:</value>
@@ -514,4 +514,10 @@
 		<value lang="nl">Ben je zeker?</value>
 		<value lang="fr">Êtes-vous sûr</value>
 	</string>
+	<string name="delete">
+		<value lang="en">Delete</value>
+		<value lang="nl">Verwijderen</value>
+		<value lang="fr">Suprime</value>
+	</string>
+	
 	</resources>
