@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.school.project.model.Ticket;
-import com.school.project.model.TicketCache;
 import com.school.project.model.TicketSale;
 import com.school.project.model.User;
 
@@ -41,7 +40,7 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		String from = res.getString("departureStation");
 		String to = res.getString("arrivalStation");
 		boolean archived = res.getBoolean("archived");
-		Ticket ticket = TicketCache.getInstance().getTicket(res.getInt("ticketId"));
+		Ticket ticket = TicketDAO.getInstance().get(res.getInt("ticketId"));
 		User user = UserDAO.getInstance().get(res.getInt("soldByUser"));
 		return new TicketSale(id, validFrom, validTo, soldOn, from, to, archived, ticket, user);
 	}
