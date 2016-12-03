@@ -51,7 +51,7 @@ public class BackupController extends BaseController<BackupView>{
 				
 				fc.setDialogType(JFileChooser.SAVE_DIALOG);
 				fc.setSelectedFile(new File(prefix + "-" + slctTable + "-" + currentDate));
-				fc.setFileFilter(new FileNameExtensionFilter("CSV (Comma delimited (*.csv)", "csv"));
+				fc.setFileFilter(new FileNameExtensionFilter("CSV (Comma delimited) (*.csv)", "csv"));
 				int returnVal = fc.showDialog(view, "Save");
 				
 				if(returnVal == JFileChooser.APPROVE_OPTION){
