@@ -435,9 +435,9 @@
 		<value lang="fr">Au nom de:</value>
 	</string>
 	<string name="name">
-		<value lang="en"> Name:</value>
-		<value lang="nl"> Naam:</value>
-		<value lang="fr"> Nom:</value>
+		<value lang="en">Name:</value>
+		<value lang="nl">Naam:</value>
+		<value lang="fr">Nom:</value>
 	</string>
 	<string name="price">
 		<value lang="en">Price:</value>
