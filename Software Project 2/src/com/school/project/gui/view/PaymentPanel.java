@@ -67,6 +67,12 @@ public class PaymentPanel extends JPanel {
 		pnlLeft.add(btnPay);
 		pnlLeft.add(pnlDepartures);
 		pnlLeft.add(btnBack);
+		pnlLeft.add(lblSoldBy);
+		pnlLeft.add(txtSoldBy);
+		pnlLeft.add(lblValidFrom);
+		pnlLeft.add(txtValidFrom);
+		pnlLeft.add(lblValidTo);
+		pnlLeft.add(txtValidTo);
 
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, btnBack, 0, SpringLayout.HORIZONTAL_CENTER, pnlLeft);
 		
@@ -74,112 +80,55 @@ public class PaymentPanel extends JPanel {
 		sp.putConstraint(SpringLayout.WEST, lblName, 20, SpringLayout.WEST, pnlLeft);
 		sp.putConstraint(SpringLayout.WEST, txtName, 170, SpringLayout.WEST, lblName);
 		sp.putConstraint(SpringLayout.NORTH, txtName, 190, SpringLayout.NORTH, pnlLeft);
-		sp.putConstraint(SpringLayout.EAST, txtName, 0, SpringLayout.EAST, pnlLeft);
+		sp.putConstraint(SpringLayout.EAST, txtName, -300, SpringLayout.EAST, pnlLeft);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblDesc, 30, SpringLayout.SOUTH, lblName);
 		sp.putConstraint(SpringLayout.WEST, lblDesc, 20, SpringLayout.WEST, pnlLeft);
 		sp.putConstraint(SpringLayout.WEST, txtDesc, 170, SpringLayout.WEST, lblDesc);
 		sp.putConstraint(SpringLayout.NORTH, txtDesc, 20, SpringLayout.SOUTH, txtName);
-		sp.putConstraint(SpringLayout.EAST, txtDesc, 0, SpringLayout.EAST, pnlLeft);
+		sp.putConstraint(SpringLayout.EAST, txtDesc, -300, SpringLayout.EAST, pnlLeft);
 		
 		sp.putConstraint(SpringLayout.NORTH, pnlDepartures, 30, SpringLayout.SOUTH, txtDesc);
 		sp.putConstraint(SpringLayout.WEST, pnlDepartures, 20, SpringLayout.WEST, pnlLeft);
-		sp.putConstraint(SpringLayout.EAST, pnlDepartures, 0, SpringLayout.EAST, pnlLeft);
+		sp.putConstraint(SpringLayout.EAST, pnlDepartures, -300, SpringLayout.EAST, pnlLeft);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblPrice, 30, SpringLayout.SOUTH, pnlDepartures);
 		sp.putConstraint(SpringLayout.WEST, lblPrice, 20, SpringLayout.WEST, pnlLeft);
 		sp.putConstraint(SpringLayout.WEST, txtPrice, 170, SpringLayout.WEST, lblPrice);
 		sp.putConstraint(SpringLayout.NORTH, txtPrice, 20, SpringLayout.SOUTH, pnlDepartures);
-		sp.putConstraint(SpringLayout.EAST, txtPrice, 0, SpringLayout.EAST, pnlLeft);
+		sp.putConstraint(SpringLayout.EAST, txtPrice, -300, SpringLayout.EAST, pnlLeft);
 
 		sp.putConstraint(SpringLayout.NORTH, btnPay, 30, SpringLayout.SOUTH, lblPrice);
 		sp.putConstraint(SpringLayout.WEST, btnPay, 20, SpringLayout.WEST, pnlLeft);
-		sp.putConstraint(SpringLayout.EAST, btnPay, 0, SpringLayout.EAST, pnlLeft);
+		sp.putConstraint(SpringLayout.EAST, btnPay, -300, SpringLayout.EAST, pnlLeft);
 		
-		add(pnlLeft);
-		pnlLeft.setBorder(BorderFactory.createTitledBorder("left"));
 		
+		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 120, SpringLayout.NORTH, pnlLeft);
+		sp.putConstraint(SpringLayout.WEST, lblSoldBy, 40, SpringLayout.EAST, txtDesc);
+		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 115, SpringLayout.NORTH, pnlLeft);
+		sp.putConstraint(SpringLayout.WEST, txtSoldBy, 120, SpringLayout.WEST, lblSoldBy);
+		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -5, SpringLayout.EAST, pnlLeft);
+		
+		sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 120, SpringLayout.SOUTH, lblSoldBy);
+		sp.putConstraint(SpringLayout.WEST, lblValidFrom, 40, SpringLayout.EAST, txtDesc);
+		sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 115, SpringLayout.SOUTH, lblSoldBy);
+		sp.putConstraint(SpringLayout.WEST, txtValidFrom, 120, SpringLayout.WEST, lblValidFrom);
+		sp.putConstraint(SpringLayout.EAST, txtValidFrom, -5, SpringLayout.EAST, pnlLeft);
+		
+		sp.putConstraint(SpringLayout.NORTH, lblValidTo, 40, SpringLayout.SOUTH, lblValidFrom);
+		sp.putConstraint(SpringLayout.WEST, lblValidTo, 40, SpringLayout.EAST, txtDesc);
+		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 35, SpringLayout.SOUTH, lblValidFrom);
+		sp.putConstraint(SpringLayout.WEST, txtValidTo, 120, SpringLayout.WEST, lblValidFrom);
+		sp.putConstraint(SpringLayout.EAST, txtValidTo, -5, SpringLayout.EAST, pnlLeft);
+		
+		
+		add(pnlLeft);		
 		sp.putConstraint(SpringLayout.NORTH, pnlLeft, 1, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, pnlLeft, -300, SpringLayout.EAST, this);
+		sp.putConstraint(SpringLayout.EAST, pnlLeft, 1, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.SOUTH, pnlLeft, 1, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlLeft, 1, SpringLayout.EAST, this);
 		
-		
-		
-		
-		sp = new SpringLayout();
-		JPanel pnlRight = new JPanel(sp);
-		sp.putConstraint(SpringLayout.NORTH, pnlRight, 1, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, pnlRight, 1, SpringLayout.EAST, this);
-		sp.putConstraint(SpringLayout.SOUTH, pnlRight, 1, SpringLayout.SOUTH, this);
-		sp.putConstraint(SpringLayout.WEST, pnlRight, 1, SpringLayout.EAST, this);
-		
-		pnlRight.setBorder(BorderFactory.createTitledBorder("right"));
-		
-		pnlRight.add(lblSoldBy);
-		pnlRight.add(txtSoldBy);
-		//pnlRight.add(lblValidFrom);
-		//pnlRight.add(txtValidTo);
-		//pnlRight.add(lblValidTo);
-		//pnlRight.add(txtValidTo);
-		
-		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 100, SpringLayout.NORTH, pnlRight);
-		sp.putConstraint(SpringLayout.WEST, lblSoldBy, 20, SpringLayout.WEST, pnlRight);
-		sp.putConstraint(SpringLayout.WEST, txtSoldBy, 50, SpringLayout.WEST, lblSoldBy);
-		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 90, SpringLayout.NORTH, pnlRight);
-		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -10, SpringLayout.EAST, pnlRight);
-		
-		//add(pnlRight);
-		
-		
-
-		/*
-		 * JPanel pnlRight = new JPanel(new SpringLayout());
-		 * pnlRight.setPreferredSize(new Dimension(350, 500));
-		 * pnlRight.add(lblSoldBy = new JLabel("Sold by: "));
-		 * pnlRight.add(txtSoldBy = new JTextField());
-		 * txtSoldBy.setEditable(false); pnlRight.add(lblValidFrom = new
-		 * JLabel("Valid from: ")); pnlRight.add(txtValidFrom = new
-		 * JTextField()); txtValidFrom.setEditable(false);
-		 * pnlRight.add(lblValidTo = new JLabel("Valid by: "));
-		 * pnlRight.add(txtValidTo = new JTextField());
-		 * txtValidTo.setEditable(false);
-		 * 
-		 * sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 30,
-		 * SpringLayout.NORTH, pnlRight); sp.putConstraint(SpringLayout.EAST,
-		 * txtSoldBy, -30, SpringLayout.EAST, pnlRight);
-		 * sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 5,
-		 * SpringLayout.NORTH, txtSoldBy); sp.putConstraint(SpringLayout.EAST,
-		 * lblSoldBy, -10, SpringLayout.WEST, txtSoldBy);
-		 * sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 230,
-		 * SpringLayout.NORTH, txtSoldBy); sp.putConstraint(SpringLayout.EAST,
-		 * txtValidFrom, 0, SpringLayout.EAST, txtSoldBy);
-		 * sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 0,
-		 * SpringLayout.NORTH, txtValidFrom);
-		 * sp.putConstraint(SpringLayout.EAST, lblValidFrom, -10,
-		 * SpringLayout.WEST, txtValidFrom);
-		 * sp.putConstraint(SpringLayout.NORTH, txtValidTo, 50,
-		 * SpringLayout.NORTH, txtValidFrom);
-		 * sp.putConstraint(SpringLayout.EAST, txtValidTo, 0, SpringLayout.EAST,
-		 * txtValidFrom); sp.putConstraint(SpringLayout.NORTH, lblValidTo, 0,
-		 * SpringLayout.NORTH, txtValidTo); sp.putConstraint(SpringLayout.EAST,
-		 * lblValidTo, -10, SpringLayout.WEST, txtValidTo);
-		 * 
-		 * add(pnlLeft);
-		 * 
-		 * sp.putConstraint(SpringLayout.NORTH, pnlLeft, 1, SpringLayout.NORTH,
-		 * this); sp.putConstraint(SpringLayout.EAST, pnlLeft, 1,
-		 * SpringLayout.WEST, pnlRight); sp.putConstraint(SpringLayout.SOUTH,
-		 * pnlLeft, 1, SpringLayout.SOUTH, this);
-		 * sp.putConstraint(SpringLayout.WEST, pnlLeft, 1, SpringLayout.WEST,
-		 * this);
-		 */
-
-		// add(pnlRight, BorderLayout.EAST);
-		// JPanel pnlBack = new JPanel();
-		// pnlBack.add(btnBack);
-		// add(pnlBack, BorderLayout.NORTH);
-
+	
 		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN, 18));
 
