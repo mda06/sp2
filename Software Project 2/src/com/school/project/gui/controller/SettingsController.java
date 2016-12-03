@@ -5,6 +5,7 @@ import java.util.Observable;
 import com.school.project.gui.controller.settings.BackupController;
 import com.school.project.gui.controller.settings.LanguageSettingsController;
 import com.school.project.gui.controller.settings.LayoutSettingsController;
+import com.school.project.gui.controller.settings.NFCSettingsController;
 import com.school.project.gui.controller.settings.RailCardSettingsController;
 import com.school.project.gui.controller.settings.TicketSettingsController;
 import com.school.project.gui.view.SettingsView;
@@ -26,6 +27,7 @@ public class SettingsController extends BaseController<SettingsView> {
 		addSetting(new LayoutSettingsController());
 		addSetting(new LanguageSettingsController(observable.getLanguageHandler()));
 		addSetting(new BackupController());
+		addSetting(new NFCSettingsController());
 	}
 
 	private void addSetting(BaseController<?> bc) {
