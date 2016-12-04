@@ -11,7 +11,7 @@ import com.school.project.gui.view.BaseView;
 public class BackupView extends BaseView{
 	private static final long serialVersionUID = 1L;
 	private JLabel lblPrefix, lblContent;
-	private JButton btnBackup;
+	private JButton btnSave, btnSaveAll;
 	private JTextField txtPrefix;
 	private JComboBox<String> comboTables;
 
@@ -29,7 +29,8 @@ public class BackupView extends BaseView{
 		add(txtPrefix = new JTextField(20));
 		add(lblContent = new JLabel("Backup content:"));
 		add(comboTables = new JComboBox<String>(tableList));
-		add(btnBackup = new JButton("Save"));
+		add(btnSave = new JButton("Save"));
+		add(btnSaveAll = new JButton("Save All"));
 	
 			
 		sp.putConstraint(SpringLayout.WEST, lblPrefix, 15, SpringLayout.WEST, this);
@@ -40,17 +41,19 @@ public class BackupView extends BaseView{
 		sp.putConstraint(SpringLayout.WEST, lblContent, 15, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, comboTables, 20, SpringLayout.NORTH, lblContent);
 		sp.putConstraint(SpringLayout.WEST, comboTables, -35, SpringLayout.SOUTH, lblContent);
-		sp.putConstraint(SpringLayout.WEST, btnBackup, 30, SpringLayout.EAST, comboTables);
-		sp.putConstraint(SpringLayout.NORTH, btnBackup, 20, SpringLayout.NORTH, lblContent);
+		sp.putConstraint(SpringLayout.WEST, btnSave, 30, SpringLayout.EAST, comboTables);
+		sp.putConstraint(SpringLayout.NORTH, btnSave, 20, SpringLayout.NORTH, lblContent);
+		sp.putConstraint(SpringLayout.WEST, btnSaveAll, 30, SpringLayout.EAST, comboTables);
+		sp.putConstraint(SpringLayout.NORTH, btnSaveAll, 30, SpringLayout.NORTH, btnSave);
 		
 	}
 
-	public JButton getBtnBackup() {
-		return btnBackup;
+	public JButton getBtnSave() {
+		return btnSave;
 	}
 
-	public void setBtnBackup(JButton btnBackup) {
-		this.btnBackup = btnBackup;
+	public void setBtnBackup(JButton btnSave) {
+		this.btnSave = btnSave;
 	}
 
 	public JTextField getTxtPrefix() {
@@ -77,9 +80,11 @@ public class BackupView extends BaseView{
 		this.comboTables = comboTables;
 	}
 
-	
-	
-	
-	
-	
+	public JButton getBtnSaveAll() {
+		return btnSaveAll;
+	}
+
+	public void setBtnSaveAll(JButton btnSaveAll) {
+		this.btnSaveAll = btnSaveAll;
+	}
 }

@@ -39,29 +39,44 @@ public class BackupController extends BaseController<BackupView>{
 		super(new BackupView());
 		initEvents();
 	}
-
+	
 	private void initEvents(){
-		view.getBtnBackup().addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ev) {	
-				JFileChooser fc = new JFileChooser();
-				String prefix = view.getTxtPrefix().getText();
-				String slctTable = view.getComboTables().getSelectedItem().toString();
-				SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
-				String currentDate = sdf.format(new Date());
-				
-				fc.setDialogType(JFileChooser.SAVE_DIALOG);
-				fc.setSelectedFile(new File(prefix + "-" + slctTable + "-" + currentDate));
-				fc.setFileFilter(new FileNameExtensionFilter("CSV (Comma delimited (*.csv)", "csv"));
-				int returnVal = fc.showDialog(view, "Save");
-				
-				if(returnVal == JFileChooser.APPROVE_OPTION){
-					new Thread(() -> saveToCSV(fc.getSelectedFile().getAbsolutePath())).start();
-				}
+		view.getBtnSave().addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {	
+				invokeFilechooser(view.getComboTables().getSelectedItem().toString());
 			}	
+		});
+		
+		view.getBtnSaveAll().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				invokeFilechooser("");
+			}
 		});
 	}
 	
-	private void saveToCSV(String filepath) {		
+	private void invokeFilechooser(String slctTable){
+		JFileChooser fc = new JFileChooser();
+		String prefix = view.getTxtPrefix().getText();
+		//String slctTable = view.getComboTables().getSelectedItem().toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		String currentDate = sdf.format(new Date());
+		
+		fc.setDialogType(JFileChooser.SAVE_DIALOG);
+		if(slctTable != ""){
+			fc.setSelectedFile(new File(prefix + "-" + slctTable + "-" + currentDate));
+		}
+		else{
+			fc.setSelectedFile(new File(prefix + "-" + "allTables" + "-" + currentDate));
+		}
+		fc.setFileFilter(new FileNameExtensionFilter("CSV (Comma delimited) (*.csv)", "csv"));
+		int returnVal = fc.showDialog(view, "Save");
+		
+		if(returnVal == JFileChooser.APPROVE_OPTION){
+			new Thread(() -> saveToCSV(fc.getSelectedFile().getAbsolutePath(), slctTable)).start();
+		}
+	}
+	
+	private void saveToCSV(String filepath, String selectedTable) {		
 		List<Ticket> tickets = TicketDAO.getInstance().getAll();
 		List<ActiveRailCard> activeRailCards = ActiveRailCardDAO.getInstance().getAll();
 		List<Address> addresses = AddressDAO.getInstance().getAll();
@@ -69,11 +84,11 @@ public class BackupController extends BaseController<BackupView>{
 		List<RailCard> railCards = RailCardDAO.getInstance().getAll();
 		List<TicketSale> ticketSales = TicketSaleDAO.getInstance().getAll();
 		List<User> users = UserDAO.getInstance().getAll();
-		
+				
 		try{	
 			BufferedWriter bw = new BufferedWriter(new FileWriter(filepath + ".csv"));
 			
-			if(view.getComboTables().getSelectedItem() == "activeRailcards"){
+			if(selectedTable == "activeRailcards" || selectedTable == ""){
 				//ActiveRailCards
 				for(int i = 0; i < activeRailCards.size(); i++){
 					ActiveRailCard arc = activeRailCards.get(i);
@@ -84,7 +99,7 @@ public class BackupController extends BaseController<BackupView>{
 				}
 				bw.newLine();
 			}
-			else if(view.getComboTables().getSelectedItem() == "addresses"){
+			if(selectedTable == "addresses" || selectedTable == ""){
 				//Addresses
 				for(int i = 0; i < addresses.size(); i++){
 					Address a = addresses.get(i);
@@ -95,7 +110,7 @@ public class BackupController extends BaseController<BackupView>{
 				bw.newLine();
 			}
 			
-			else if(view.getComboTables().getSelectedItem() == "lostItems"){
+			if(selectedTable == "lostItems" || selectedTable == ""){
 				//LostItems
 				for(int i = 0; i < lostItems.size(); i++){
 					LostItem li = lostItems.get(i);
@@ -106,7 +121,7 @@ public class BackupController extends BaseController<BackupView>{
 				bw.newLine();
 			}
 			
-			else if(view.getComboTables().getSelectedItem() == "railcards"){
+			if(selectedTable == "railcards" || selectedTable == ""){
 				//RailCards
 				for(int i = 0; i < railCards.size(); i++){
 					RailCard rc = railCards.get(i);
@@ -117,7 +132,7 @@ public class BackupController extends BaseController<BackupView>{
 				bw.newLine();
 			}
 			
-			else if(view.getComboTables().getSelectedItem() == "tickets"){
+			if(selectedTable == "tickets" || selectedTable == ""){
 				//Tickets
 				for(int i = 0; i < tickets.size(); i++){
 					Ticket t = tickets.get(i);
@@ -128,7 +143,7 @@ public class BackupController extends BaseController<BackupView>{
 				bw.newLine();
 			}
 			
-			else if(view.getComboTables().getSelectedItem() == "ticketSales"){
+			if(selectedTable == "ticketSales" || selectedTable == ""){
 				//TicketSales
 				for(int i = 0; i < ticketSales.size(); i++){
 					TicketSale ts = ticketSales.get(i);
@@ -139,7 +154,7 @@ public class BackupController extends BaseController<BackupView>{
 				bw.newLine();
 			}
 			
-			else if(view.getComboTables().getSelectedItem() == "users"){				
+			if(selectedTable == "users" || selectedTable == ""){				
 				//Users
 				for(int i = 0; i < users.size(); i++){
 					User u = users.get(i);
@@ -155,11 +170,10 @@ public class BackupController extends BaseController<BackupView>{
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		JOptionPane.showMessageDialog(view, "Success");
+		JOptionPane.showMessageDialog(view, "File successfully saved");
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {	
 	}
-
 }
