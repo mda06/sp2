@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -23,6 +24,7 @@ public class PaymentPanel extends JPanel {
 	private JTextArea txtDesc;
 	private AutoComboBox txtFromStation, txtToStation;
 	private JLabel lblName, lblDesc, lblSoldBy, lblValidFrom, lblValidTo, lblPrice, lblFromStation, lblToStation;
+	private JScrollPane scrollPane;
 
 	public PaymentPanel() {
 		initLayout();
@@ -38,30 +40,43 @@ public class PaymentPanel extends JPanel {
 		txtName = new JTextField();
 		txtName.setEditable(false);
 		lblDesc = new JLabel("Description: ");
-		txtDesc = new JTextArea(2, 20);
+		txtDesc = new JTextArea(5, 20);
+		txtDesc.setLineWrap(true);
+		txtDesc.setEditable(false);
 		lblPrice = new JLabel("Price: ");
 		txtPrice = new JTextField(20);
+		txtPrice.setEditable(false);
 		btnPay = new JButton("Pay");
 		btnPay.setPreferredSize(new Dimension(0, 70));
 		lblSoldBy = new JLabel("Sold by: ");
 		txtSoldBy = new JTextField();
+		txtSoldBy.setEditable(false);
 		lblValidFrom = new JLabel("Valid from: ");
 		txtValidFrom = new JTextField();
+		txtValidFrom.setEditable(false);
 		lblValidTo = new JLabel("Valid to: ");
 		txtValidTo = new JTextField();
+		txtValidTo.setEditable(false);
 		btnBack = new JButton("Back");
-
+		scrollPane = new JScrollPane(txtDesc);
+		lblFromStation = new JLabel("From station: ");
+		txtFromStation = new AutoComboBox();
+		txtFromStation.setEditable(true);
+		lblToStation = new JLabel("To station: ");
+		txtToStation = new AutoComboBox();
+		txtToStation.setEditable(true);
+		
 		JPanel pnlDepartures = new JPanel(new GridLayout(2, 2));
 		pnlDepartures.setBorder(BorderFactory.createTitledBorder(""));
-		pnlDepartures.add(lblFromStation = new JLabel("From station: "));
-		pnlDepartures.add(txtFromStation = new AutoComboBox());
-		pnlDepartures.add(lblToStation = new JLabel("To station: "));
-		pnlDepartures.add(txtToStation = new AutoComboBox());
+		pnlDepartures.add(lblFromStation);
+		pnlDepartures.add(txtFromStation);
+		pnlDepartures.add(lblToStation);
+		pnlDepartures.add(txtToStation);
 
 		pnlLeft.add(lblName);
 		pnlLeft.add(txtName);
 		pnlLeft.add(lblDesc);
-		pnlLeft.add(txtDesc);
+		pnlLeft.add(scrollPane);
 		pnlLeft.add(lblPrice);
 		pnlLeft.add(txtPrice);
 		pnlLeft.add(btnPay);
@@ -84,11 +99,11 @@ public class PaymentPanel extends JPanel {
 		
 		sp.putConstraint(SpringLayout.NORTH, lblDesc, 30, SpringLayout.SOUTH, lblName);
 		sp.putConstraint(SpringLayout.WEST, lblDesc, 20, SpringLayout.WEST, pnlLeft);
-		sp.putConstraint(SpringLayout.WEST, txtDesc, 170, SpringLayout.WEST, lblDesc);
-		sp.putConstraint(SpringLayout.NORTH, txtDesc, 20, SpringLayout.SOUTH, txtName);
-		sp.putConstraint(SpringLayout.EAST, txtDesc, -300, SpringLayout.EAST, pnlLeft);
+		sp.putConstraint(SpringLayout.WEST, scrollPane, 170, SpringLayout.WEST, lblDesc);
+		sp.putConstraint(SpringLayout.NORTH, scrollPane, 20, SpringLayout.SOUTH, txtName);
+		sp.putConstraint(SpringLayout.EAST, scrollPane, -300, SpringLayout.EAST, pnlLeft);
 		
-		sp.putConstraint(SpringLayout.NORTH, pnlDepartures, 30, SpringLayout.SOUTH, txtDesc);
+		sp.putConstraint(SpringLayout.NORTH, pnlDepartures, 30, SpringLayout.SOUTH, scrollPane);
 		sp.putConstraint(SpringLayout.WEST, pnlDepartures, 20, SpringLayout.WEST, pnlLeft);
 		sp.putConstraint(SpringLayout.EAST, pnlDepartures, -300, SpringLayout.EAST, pnlLeft);
 		
@@ -104,19 +119,19 @@ public class PaymentPanel extends JPanel {
 		
 		
 		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 120, SpringLayout.NORTH, pnlLeft);
-		sp.putConstraint(SpringLayout.WEST, lblSoldBy, 40, SpringLayout.EAST, txtDesc);
+		sp.putConstraint(SpringLayout.WEST, lblSoldBy, 40, SpringLayout.EAST, scrollPane);
 		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 115, SpringLayout.NORTH, pnlLeft);
 		sp.putConstraint(SpringLayout.WEST, txtSoldBy, 120, SpringLayout.WEST, lblSoldBy);
 		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -5, SpringLayout.EAST, pnlLeft);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 120, SpringLayout.SOUTH, lblSoldBy);
-		sp.putConstraint(SpringLayout.WEST, lblValidFrom, 40, SpringLayout.EAST, txtDesc);
+		sp.putConstraint(SpringLayout.WEST, lblValidFrom, 40, SpringLayout.EAST, scrollPane);
 		sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 115, SpringLayout.SOUTH, lblSoldBy);
 		sp.putConstraint(SpringLayout.WEST, txtValidFrom, 120, SpringLayout.WEST, lblValidFrom);
 		sp.putConstraint(SpringLayout.EAST, txtValidFrom, -5, SpringLayout.EAST, pnlLeft);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblValidTo, 40, SpringLayout.SOUTH, lblValidFrom);
-		sp.putConstraint(SpringLayout.WEST, lblValidTo, 40, SpringLayout.EAST, txtDesc);
+		sp.putConstraint(SpringLayout.WEST, lblValidTo, 40, SpringLayout.EAST, scrollPane);
 		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 35, SpringLayout.SOUTH, lblValidFrom);
 		sp.putConstraint(SpringLayout.WEST, txtValidTo, 120, SpringLayout.WEST, lblValidFrom);
 		sp.putConstraint(SpringLayout.EAST, txtValidTo, -5, SpringLayout.EAST, pnlLeft);
