@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.BaseView;
+import com.school.project.util.FontUtil;
 
 public class LanguageSettingsView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -53,6 +54,10 @@ public class LanguageSettingsView extends BaseView {
 		sp.putConstraint(SpringLayout.NORTH, scroll, 20, SpringLayout.SOUTH, btnLoad);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -20, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.EAST, scroll, -20, SpringLayout.EAST, this);
+		
+		FontUtil.getInstance().bindSmallFont(btnLoad);
+		FontUtil.getInstance().bindSmallFont(comboLanguages);
+		FontUtil.getInstance().bindBigFont(btnSave);
 	}
 
 	public JComboBox<String> getComboLanguages() {
