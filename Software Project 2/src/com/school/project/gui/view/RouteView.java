@@ -110,7 +110,7 @@ public class RouteView extends BaseView {
 		sp.putConstraint(SpringLayout.EAST, btnShowConnections, -30, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.NORTH, btnShowConnections, 0, SpringLayout.NORTH, txtDeparture);
 		sp.putConstraint(SpringLayout.SOUTH, btnShowConnections, 5, SpringLayout.NORTH, rbDeparture);
-		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, btnShowConnections);
+		sp.putConstraint(SpringLayout.NORTH, scroll, 10, SpringLayout.SOUTH, txtUur);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -30, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.EAST, scroll, -30, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.WEST, scroll, 30, SpringLayout.WEST, this);

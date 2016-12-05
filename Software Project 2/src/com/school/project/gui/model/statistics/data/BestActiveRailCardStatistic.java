@@ -12,7 +12,7 @@ import com.school.project.model.ActiveRailCard;
 public class BestActiveRailCardStatistic extends AbstractPieChartModel{
 
 	public BestActiveRailCardStatistic() {
-		super("Best Active Railcard");
+		super("Railcards in name of");
 	}
 
 	@Override
@@ -24,5 +24,5 @@ public class BestActiveRailCardStatistic extends AbstractPieChartModel{
 		}
 		return dataset;
 	}
-
+	
 }

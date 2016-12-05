@@ -25,6 +25,8 @@ import com.school.project.dao.TicketSaleDAO;
 import com.school.project.dao.UserDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.BackupView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.ActiveRailCard;
 import com.school.project.model.Address;
 import com.school.project.model.LostItem;
@@ -174,6 +176,13 @@ public class BackupController extends BaseController<BackupView>{
 	}
 	
 	@Override
-	public void update(Observable o, Object arg) {	
+	public void update(Observable observable, Object arg) {	
+		if (observable instanceof LanguageObservable) {
+			LanguageHandler handler = ((LanguageObservable) observable).getLanguageHandler();
+			view.getBtnSave().setText(handler.getString("save"));
+			view.getBtnSaveAll().setText(handler.getString("saveAll"));
+			view.getLblPrefix().setText(handler.getString("setPrefix"));
+			view.getLblContent().setText(handler.getString("backupContent"));
+		}
 	}
 }
