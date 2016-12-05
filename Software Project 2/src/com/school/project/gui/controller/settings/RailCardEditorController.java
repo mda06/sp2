@@ -55,6 +55,15 @@ public class RailCardEditorController implements Observer {
 					JOptionPane.showMessageDialog(pnl, strErrorFillIn);
 					return;
 				}
+				Boolean newRc = false;
+				if(rc == null){
+					newRc  = true;
+					rc = new RailCard(0,"","",0,0,0,false,false);
+				}
+				
+				pnl.getTxtDesc().setText(rc.getDescription());
+				pnl.getTxtName().setText(rc.getName());
+				pnl.getTxtPricePerMonth().setText(rc.getPricePerMonth());
 				
 			}
 		});
@@ -68,7 +77,6 @@ public class RailCardEditorController implements Observer {
 			Double.parseDouble(pnl.getTxtPricePerMonth().getText());
 			Double.parseDouble(pnl.getTxtPricePer3Month().getText());
 			Double.parseDouble(pnl.getTxtPricePerYear().getText());
-			
 		} catch(NumberFormatException e) {
 			e.printStackTrace();
 			return false;
