@@ -28,10 +28,6 @@ public class TicketEditorController implements Observer{
 		this.pnl = pnl;
 		this.list = list;
 		ticket = null;
-		
-		
-		
-		
 		for(int i = 0; i < 999; i++){
 			pnl.getJcValidityPer().addItem(i+1);
 		}
@@ -50,8 +46,8 @@ public class TicketEditorController implements Observer{
 				int response = JOptionPane.showConfirmDialog(pnl, strConfirmDelete);
 				if(response == JOptionPane.OK_OPTION && ticket != null){
 					TicketDAO.getInstance().delete(ticket);
+					list.backToPreviousView();
 				}
-				list.backToPreviousView();
 				//TODO: Cache updaten anders problemen!
 			}
 		});

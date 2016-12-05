@@ -9,7 +9,7 @@ public class RailCardSettingsView extends RailCardView{
 	
 	private JButton btnNewRailCard;
 	
-	private TicketEditorPanel pnlRailCardEditor;
+	private RailCardEditorPanel pnlRailCardEditor;
 	
 
 	public RailCardSettingsView() {
@@ -25,11 +25,11 @@ public class RailCardSettingsView extends RailCardView{
 		this.btnNewRailCard = btnNewRailCard;
 	}
 
-	public TicketEditorPanel getPnlRailCardEditor() {
+	public RailCardEditorPanel getPnlRailCardEditor() {
 		return pnlRailCardEditor;
 	}
 
-	public void setPnlRailCardEditor(TicketEditorPanel pnlRailCardEditor) {
+	public void setPnlRailCardEditor(RailCardEditorPanel pnlRailCardEditor) {
 		this.pnlRailCardEditor = pnlRailCardEditor;
 	}
 
