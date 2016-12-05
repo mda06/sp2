@@ -481,7 +481,7 @@
 	</string>
 	<string name="Backup">
 		<value lang="en">Backup</value>
-		<value lang="nl">backup</value>
+		<value lang="nl">Backup</value>
 		<value lang="fr">Sauvegarde</value>
 	</string>
 	<string name="hasFixedRoute">
@@ -518,6 +518,21 @@
 		<value lang="en">Delete</value>
 		<value lang="nl">Verwijderen</value>
 		<value lang="fr">Suprime</value>
+	</string>
+	<string name="saveAll">
+		<value lang="en">Save All</value>
+		<value lang="nl">Alles Opslaan</value>
+		<value lang="fr">Enregistrer tous</value>
+	</string>
+	<string name="setPrefix">
+		<value lang="en">Filename prefix:</value>
+		<value lang="nl">Prefix bestandsnaam:</value>
+		<value lang="fr">Préfixe du fichier:</value>
+	</string>
+	<string name="backupContent">
+		<value lang="en">Backup content:</value>
+		<value lang="nl">Inhoud backup:</value>
+		<value lang="fr">Contenu de la sauvegarde:</value>
 	</string>
 	
 	</resources>
