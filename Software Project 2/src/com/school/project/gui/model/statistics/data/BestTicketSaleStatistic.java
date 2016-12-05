@@ -12,7 +12,7 @@ import com.school.project.model.Ticket;
 public class BestTicketSaleStatistic extends AbstractPieChartModel {
 
 	public BestTicketSaleStatistic() {
-		super("Best ticket sale");
+		super("Best-selling tickets");
 	}
 
 	@Override
