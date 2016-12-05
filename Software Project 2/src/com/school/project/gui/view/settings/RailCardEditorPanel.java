@@ -1,5 +1,7 @@
 package com.school.project.gui.view.settings;
 
+import java.awt.GridBagConstraints;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -29,6 +31,22 @@ public class RailCardEditorPanel extends TicketEditorPanel {
 		pnlLeft.remove(this.getLblValidityPer());
 		pnlLeft.remove(this.getJcValidityPer());
 		pnlLeft.remove(this.getLblDays());
+		
+		GridBagConstraints c = new GridBagConstraints();
+		//c.gridwidth = c.REMAINDER;
+		c.gridx = 0;
+		c.gridy = 3;
+				
+		pnlLeft.add(lblPricePerMonth, c);
+		c.gridx = 1;
+		pnlLeft.add(txtPricePerMonth, c);
+		
+		c.gridx = 2;
+		pnlLeft.add(lblPricePer3Month, c);
+		
+		c.gridx = 3;
+		pnlLeft.add(txtPricePer3Month, c);
+		
 		
 	}
 	
