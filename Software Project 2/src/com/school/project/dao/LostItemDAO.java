@@ -103,6 +103,33 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 		return lst;
 	}
 	
+	public List<LostItem> getByType(String type){
+		List<LostItem> lst = new ArrayList<LostItem>();
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
+		ResultSet res = null;
+		
+		try{
+			stat = connection.prepareStatement("SELECT * FROM lostItems WHERE archived = 0 AND pickedUp = 0 AND type LIKE ?;");
+			stat.setString(1, "%" + type + "%");
+			res = stat.executeQuery();
+			
+			while(res.next()){
+				lst.add(getByResultSet(res));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stat != null) stat.close();
+				if(res != null) res.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return lst;
+	}
+	
 	public List<LostItem> getByDescription(String description){
 		List<LostItem> lst = new ArrayList<LostItem>();
 		Connection connection = DatabaseHandler.getInstance().getConnection();
@@ -112,6 +139,33 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 		try{
 			stat = connection.prepareStatement("SELECT * FROM lostItems WHERE archived = 0 AND pickedUp = 0 AND description LIKE ?;");
 			stat.setString(1, "%" + description + "%");
+			res = stat.executeQuery();
+			
+			while(res.next()){
+				lst.add(getByResultSet(res));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stat != null) stat.close();
+				if(res != null) res.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return lst;
+	}
+	
+	public List<LostItem> getByLocation(String location){
+		List<LostItem> lst = new ArrayList<LostItem>();
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
+		ResultSet res = null;
+		
+		try{
+			stat = connection.prepareStatement("SELECT * FROM lostItems WHERE archived = 0 AND pickedUp = 0 AND location LIKE ?;");
+			stat.setString(1, "%" + location + "%");
 			res = stat.executeQuery();
 			
 			while(res.next()){
