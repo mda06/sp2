@@ -17,6 +17,7 @@ public class SettingsView extends BaseView {
 	
 	private void initLayout() {
 		tabs = new JTabbedPane();
+		FontUtil.getInstance().bindReallySmallFont(tabs);
 		setLayout(new BorderLayout());
 		add(tabs);
 	}

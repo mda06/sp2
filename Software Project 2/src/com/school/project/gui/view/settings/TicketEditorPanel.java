@@ -117,7 +117,8 @@ public class TicketEditorPanel extends JPanel {
 		sp.putConstraint(SpringLayout.SOUTH, pnlLeft, 1, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlLeft, 1, SpringLayout.EAST, this);
 		
-		btnBack.setPreferredSize(new Dimension(200, 70));
+		btnBack
+		.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN, 18));
 
 		FontUtil.getInstance().bindBigFont(txtName);

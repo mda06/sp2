@@ -37,7 +37,7 @@ public class FontUtil {
 	}
 	
 	public void bindReallySmallFont(Component c) {
-		c.setFont(getSmallFont());
+		c.setFont(getReallySmallFont());
 		reallySmallComponentsBinds.add(c);
 	}
 
@@ -71,7 +71,7 @@ public class FontUtil {
 	}
 	
 	public Font getReallySmallFont() {
-		if (reallySmall == null) reallySmall = new Font("Arial", Font.PLAIN, 14);
+		if (reallySmall == null) reallySmall = new Font("Arial", Font.PLAIN, 16);
 		return reallySmall;
 	}
 }
