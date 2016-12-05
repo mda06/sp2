@@ -47,6 +47,8 @@ public class SelectUserPopup extends JFrame {
 		pnl.add(btnSearch);
 		pnl.add(scroll);
 		pnl.add(btnSelect);
+		
+		tblUsers.setRowHeight(30);
 
 		sp.putConstraint(SpringLayout.WEST, lblFirstName, 10, SpringLayout.WEST, pnl);
 		sp.putConstraint(SpringLayout.NORTH, lblFirstName, 20, SpringLayout.NORTH, pnl);
