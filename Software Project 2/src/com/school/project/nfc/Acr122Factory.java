@@ -1,26 +1,43 @@
 package com.school.project.nfc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.smartcardio.CardException;
 import javax.smartcardio.CardTerminal;
 import javax.smartcardio.TerminalFactory;
 
-public class Acr122Factory {
+import com.school.project.nfc.event.CardConnected;
+import com.school.project.nfc.runnable.CardConnectedRunnable;
+
+public class Acr122Factory implements CardConnected {
 	private static Acr122Factory instance;	
 	
 	private CardTerminal terminal;
+	private List<CardConnected> listeners;
+	private CardConnectedRunnable listenersRunnable;
 	private byte keyNumber;
 	private byte keyType;
 	
 	private Acr122Factory() {
 		keyNumber = KEY_LOCATION.ZERO.getValue(); 
 		keyType = KEY_TYPE.A.getValue(); 
+		listeners = new ArrayList<>();
 	}
 	
 	public static Acr122Factory getInstance() {
 		if(instance == null) instance = new Acr122Factory();
 		return instance;
+	}
+	
+	public void addCardListener(CardConnected cc) {
+		if(cc != null)
+			listeners.add(cc);
+	}
+	
+	public void removeCardListener(CardConnected cc) {
+		if(cc != null)
+			listeners.remove(cc);
 	}
 	
 	public void setKeyNumber(KEY_LOCATION loc) {
@@ -39,6 +56,10 @@ public class Acr122Factory {
 		return keyType;
 	}
 	
+	public void loadListeners() {
+		getAcr122();
+	}
+	
 	public CardTerminal getAcr122() {
 		if(terminal != null) return terminal;
 		
@@ -46,8 +67,14 @@ public class Acr122Factory {
 			TerminalFactory factory = TerminalFactory.getDefault();
 			List<CardTerminal> terminals = factory.terminals().list();
 			terminal = terminals.get(0);
-		} catch (CardException e) {
+			
+			if(listenersRunnable != null)
+				listenersRunnable.kill();
+			listenersRunnable = new CardConnectedRunnable(this, terminal);
+			new Thread(listenersRunnable).start();;
+		} catch (Exception e) {
 			e.printStackTrace();
+			listeners.clear();
 			terminal = null;
 		}
 		return terminal;
@@ -65,6 +92,10 @@ public class Acr122Factory {
 		}
 		return c;
 	}
-	
+
+	@Override
+	public void cardConnected(CardMifare1K c) {
+		listeners.stream().forEach((lst) -> lst.cardConnected(getMifare1K()));
+	}
 	
 }

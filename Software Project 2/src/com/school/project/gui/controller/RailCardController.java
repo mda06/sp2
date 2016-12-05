@@ -12,16 +12,19 @@ import com.school.project.gui.view.RailCardView;
 import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
 import com.school.project.model.User;
+import com.school.project.nfc.Acr122Factory;
 import com.school.project.util.FontUtil;
 
 public class RailCardController extends BaseController<RailCardView> implements PaymentBackListener {
 	
 	private ActiveRailCardController railcardController;
+	private boolean isRailCardControllerConnectedToNFC;
 	
 	public RailCardController(User connectedUser) {
 		super(new RailCardView());
 		
 		railcardController = new ActiveRailCardController(view.getPnlPay(), this, connectedUser);
+		isRailCardControllerConnectedToNFC = false;
 		initButtons();
 	}
 
@@ -43,6 +46,14 @@ public class RailCardController extends BaseController<RailCardView> implements 
 	private void showCard(String key) {
 		CardLayout card = (CardLayout)view.getLayout();
 		card.show(view, key);
+	}
+	
+	@Override
+	public void show() {
+		if(!isRailCardControllerConnectedToNFC) {
+			Acr122Factory.getInstance().addCardListener(railcardController);
+			isRailCardControllerConnectedToNFC = true;
+		}
 	}
 	
 	@Override

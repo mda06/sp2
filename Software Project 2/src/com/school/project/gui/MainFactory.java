@@ -27,6 +27,7 @@ import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
 import com.school.project.model.User.UserType;
+import com.school.project.nfc.Acr122Factory;
 import com.school.project.nmbs.dao.StationDAO;
 
 public class MainFactory implements ConnectionListener, DisconnectListener {
@@ -51,6 +52,7 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 			//e.printStackTrace();
 		}
 		
+		Acr122Factory.getInstance().loadListeners();
 		isCacheLoaded = false;
 		new Thread(() -> {
 			StationDAO.loadCache();
