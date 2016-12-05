@@ -17,7 +17,6 @@ import com.school.project.util.FontUtil;
 public class LostItemAddFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtType;
-	private JPanel pnlAddItem;
 	private JTextArea txtDescription;
 	private AutoComboBox txtLocation;
 	private JLabel lblType, lblDescription, lblLocation;
@@ -25,14 +24,15 @@ public class LostItemAddFrame extends JFrame {
 	
 	public LostItemAddFrame() {
 		initLayout();
+		
+	}
+	
+	private void initLayout() {
 		setSize(500,700);
 		setTitle("Add a lost item");
 		setLocationRelativeTo(null);
 		setAlwaysOnTop(true);
-	}
-	
-	private void initLayout() {
-
+		
 		lblType = new JLabel("Type: ", JLabel.TRAILING);
 		lblDescription = new JLabel("Description: ", JLabel.TRAILING);
 		lblLocation = new JLabel("Location: ", JLabel.TRAILING);
@@ -42,7 +42,7 @@ public class LostItemAddFrame extends JFrame {
 		btnSave = new JButton("Save");
 		btnCancel = new JButton("Cancel");
 		SpringLayout sp = new SpringLayout();
-		pnlAddItem = new JPanel(sp);
+		JPanel pnlAddItem = new JPanel(sp);
 		
 		pnlAddItem.add(txtType);
 		pnlAddItem.add(txtDescription);
@@ -53,9 +53,9 @@ public class LostItemAddFrame extends JFrame {
 		pnlAddItem.add(btnSave);
 		pnlAddItem.add(btnCancel);	
 		
-		sp.putConstraint(SpringLayout.NORTH, lblType, 15, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, lblType, 15, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.EAST, lblType, 50, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.NORTH, lblType, 15, SpringLayout.NORTH, pnlAddItem);
+		sp.putConstraint(SpringLayout.WEST, lblType, 15, SpringLayout.WEST, pnlAddItem);
+		sp.putConstraint(SpringLayout.EAST, lblType, 50, SpringLayout.WEST, pnlAddItem);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblDescription, 10, SpringLayout.SOUTH, lblType);
 		sp.putConstraint(SpringLayout.WEST, lblDescription, 0, SpringLayout.WEST, lblType);
@@ -67,7 +67,7 @@ public class LostItemAddFrame extends JFrame {
 		
 		sp.putConstraint(SpringLayout.NORTH, txtType, 0, SpringLayout.NORTH, lblType);
 		sp.putConstraint(SpringLayout.WEST, txtType, 15, SpringLayout.EAST, lblType);
-		sp.putConstraint(SpringLayout.EAST, txtType, 10, SpringLayout.EAST, this);
+		sp.putConstraint(SpringLayout.EAST, txtType, 10, SpringLayout.EAST, pnlAddItem);
 
 		sp.putConstraint(SpringLayout.NORTH, txtDescription, 10, SpringLayout.SOUTH, txtType);
 		sp.putConstraint(SpringLayout.WEST, txtDescription, 0, SpringLayout.WEST, txtType);
@@ -93,6 +93,8 @@ public class LostItemAddFrame extends JFrame {
 		FontUtil.getInstance().bindSmallFont(txtLocation);
 		FontUtil.getInstance().bindSmallFont(btnSave);
 		FontUtil.getInstance().bindSmallFont(btnCancel);
+		
+		add(pnlAddItem);
 	}
 	
 	public JTextField getTxtType() {
