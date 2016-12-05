@@ -77,13 +77,13 @@ public class TicketEditorPanel extends JPanel {
 		
 		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, btnBack, 0, SpringLayout.HORIZONTAL_CENTER, pnlLeft);
 		
-		sp.putConstraint(SpringLayout.NORTH, lblValidityPer, 100, SpringLayout.SOUTH, btnBack);
-		sp.putConstraint(SpringLayout.WEST, lblValidityPer, 25, SpringLayout.WEST, pnlLeft);
-		sp.putConstraint(SpringLayout.NORTH, jcValidityPer, 95, SpringLayout.SOUTH, btnBack);
-		sp.putConstraint(SpringLayout.WEST, jcValidityPer, 15, SpringLayout.EAST, lblValidityPer);
+		sp.putConstraint(SpringLayout.SOUTH, lblValidityPer, -30, SpringLayout.NORTH, txtName);
+		sp.putConstraint(SpringLayout.WEST, lblValidityPer, 0, SpringLayout.WEST, lblName);
+		sp.putConstraint(SpringLayout.NORTH, jcValidityPer, 0, SpringLayout.NORTH, lblValidityPer);
+		sp.putConstraint(SpringLayout.WEST, jcValidityPer, 0, SpringLayout.WEST, txtName);
 		
-		sp.putConstraint(SpringLayout.NORTH, cbHasFixedRoute, 95, SpringLayout.SOUTH, btnBack);
-		sp.putConstraint(SpringLayout.EAST, cbHasFixedRoute, -500, SpringLayout.EAST, pnlLeft);
+		sp.putConstraint(SpringLayout.SOUTH, cbHasFixedRoute, -30, SpringLayout.NORTH, txtName);
+		sp.putConstraint(SpringLayout.EAST, cbHasFixedRoute, 0, SpringLayout.EAST, txtName);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblName, 250, SpringLayout.NORTH, pnlLeft);
 		sp.putConstraint(SpringLayout.WEST, lblName, 25, SpringLayout.WEST, pnlLeft);
@@ -132,6 +132,7 @@ public class TicketEditorPanel extends JPanel {
 		FontUtil.getInstance().bindSmallFont(lblPrice);
 		FontUtil.getInstance().bindSmallFont(lblName);
 		FontUtil.getInstance().bindSmallFont(btnSave);
+		FontUtil.getInstance().bindSmallFont(jcValidityPer);
 	}
 
 	public JButton getBtnDelete() {
