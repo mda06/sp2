@@ -34,7 +34,8 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 	private LoginController login;
 	private FrameController frame;
 	private LanguageObservable languageObservable;
-	private boolean isCacheLoaded;
+	
+	private static boolean isCacheLoaded;
 
 	public MainFactory() {
 
@@ -81,12 +82,13 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 	}
 
 	public void showBaseFrame() {
+		JFrame loadFrame = null;
 		if(!isCacheLoaded) {
-			JFrame frame = new JFrame("Loading");
-			frame.getContentPane().add(new JLabel("Please wait until the cache is loaded..."));
-			frame.pack();
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
+			loadFrame = new JFrame("Loading");
+			loadFrame.getContentPane().add(new JLabel("Please wait until the cache is loaded..."));
+			loadFrame.pack();
+			loadFrame.setLocationRelativeTo(null);
+			loadFrame.setVisible(true);
 		}
 		while(!isCacheLoaded) {
 			try {
@@ -111,6 +113,9 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 			public void windowActivated(WindowEvent e) {}
 			public void windowDeactivated(WindowEvent e) {}
 		});
+
+		if(loadFrame != null)
+			loadFrame.dispose();
 	}
 
 	private void initBaseModels(FrameController base) {
@@ -120,7 +125,7 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 		addCard(base, new UserController(connectedUser));
 		addCard(base, new ActiveUserRailCardController());
 		addCard(base, new LostItemController());
-		if(connectedUser.getType() == UserType.ADMIN) {
+		if(connectedUser != null && connectedUser.getType() == UserType.ADMIN) {
 			addCard(base, new SettingsController(languageObservable));
 			addCard(base, new StatisticsController());
 		}

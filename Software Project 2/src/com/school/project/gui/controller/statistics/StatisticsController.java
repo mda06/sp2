@@ -9,7 +9,9 @@ import org.jfree.ui.RectangleInsets;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.model.statistics.AbstractChartModel;
 import com.school.project.gui.model.statistics.data.ActiveRailCardByUsersStatistic;
+import com.school.project.gui.model.statistics.data.AddressFromUserStatistic;
 import com.school.project.gui.model.statistics.data.BestActiveRailCardStatistic;
+import com.school.project.gui.model.statistics.data.BestSoldRailcardStatistic;
 import com.school.project.gui.model.statistics.data.BestTicketSaleStatistic;
 import com.school.project.gui.model.statistics.data.TicketSaleByUsersStatistic;
 import com.school.project.gui.view.statistics.StatisticsView;
@@ -27,10 +29,12 @@ public class StatisticsController extends BaseController<StatisticsView> {
 	private void updateDataset() {
 		new Thread(() -> {
 			view.getTabbedPane().removeAll();
-			view.getTabbedPane().add("Ticket Sales", createChartModel(new TicketSaleByUsersStatistic()));
-			view.getTabbedPane().add("Best Ticket Sales", createChartModel(new BestTicketSaleStatistic()));
-			view.getTabbedPane().add("Active Railcards", createChartModel(new ActiveRailCardByUsersStatistic()));
-			view.getTabbedPane().add("Best Active Railcards", createChartModel(new BestActiveRailCardStatistic()));
+			view.getTabbedPane().add("Tickets sold by user", createChartModel(new TicketSaleByUsersStatistic()));
+			view.getTabbedPane().add("Best-selling tickets", createChartModel(new BestTicketSaleStatistic()));
+			view.getTabbedPane().add("Active railcards sold by user", createChartModel(new ActiveRailCardByUsersStatistic()));
+			view.getTabbedPane().add("Best-selling active railcards", createChartModel(new BestSoldRailcardStatistic()));
+			view.getTabbedPane().add("Railcards in name of", createChartModel(new BestActiveRailCardStatistic()));
+			view.getTabbedPane().add("Origin Customer", createChartModel(new AddressFromUserStatistic()));
 			view.repaint();
 		}).start();
 	}

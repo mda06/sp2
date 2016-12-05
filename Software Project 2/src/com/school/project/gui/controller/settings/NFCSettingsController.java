@@ -69,7 +69,7 @@ public class NFCSettingsController extends BaseController<NFCSettingsView>{
 	private void checkCard() {
 		CardMifare1K card = Acr122Factory.getInstance().getMifare1K();
 		if(card != null)
-			view.getTxtCard().setText(card.toString());
+			view.getTxtCard().setText(card.getUIDString());
 		else
 			view.getTxtCard().setText("No card found.");
 	}
