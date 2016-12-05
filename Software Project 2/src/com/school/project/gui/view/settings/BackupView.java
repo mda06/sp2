@@ -25,7 +25,7 @@ public class BackupView extends BaseView{
 		setLayout(sp);
 		
 		String[] tableList = {"activeRailcards","addresses","lostItems","railcards","tickets","ticketSales","users"};
-		add(lblPrefix = new JLabel("File Name Prefix:"));
+		add(lblPrefix = new JLabel("Filename prefix:"));
 		add(txtPrefix = new JTextField(20));
 		add(lblContent = new JLabel("Backup content:"));
 		add(comboTables = new JComboBox<String>(tableList));
@@ -52,7 +52,7 @@ public class BackupView extends BaseView{
 		return btnSave;
 	}
 
-	public void setBtnBackup(JButton btnSave) {
+	public void setBtnSave(JButton btnSave) {
 		this.btnSave = btnSave;
 	}
 
@@ -87,4 +87,13 @@ public class BackupView extends BaseView{
 	public void setBtnSaveAll(JButton btnSaveAll) {
 		this.btnSaveAll = btnSaveAll;
 	}
+
+	public JLabel getLblContent() {
+		return lblContent;
+	}
+
+	public void setLblContent(JLabel lblContent) {
+		this.lblContent = lblContent;
+	}
+	
 }

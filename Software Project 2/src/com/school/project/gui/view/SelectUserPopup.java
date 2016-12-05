@@ -25,7 +25,7 @@ public class SelectUserPopup extends JFrame {
 	
 	private void initLayout() {
 		setTitle("Select a user");
-		setSize(350, 500);
+		setSize(450, 600);
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
 		
@@ -47,11 +47,12 @@ public class SelectUserPopup extends JFrame {
 		pnl.add(btnSearch);
 		pnl.add(scroll);
 		pnl.add(btnSelect);
+		
+		tblUsers.setRowHeight(30);
 
 		sp.putConstraint(SpringLayout.WEST, lblFirstName, 10, SpringLayout.WEST, pnl);
 		sp.putConstraint(SpringLayout.NORTH, lblFirstName, 20, SpringLayout.NORTH, pnl);
-		sp.putConstraint(SpringLayout.EAST, lblFirstName, 110, SpringLayout.WEST, pnl);
-		sp.putConstraint(SpringLayout.WEST, txtFirstName, 10, SpringLayout.EAST, lblFirstName);
+		sp.putConstraint(SpringLayout.WEST, txtFirstName, 15, SpringLayout.EAST, lblFirstName);
 		sp.putConstraint(SpringLayout.NORTH, txtFirstName, 0, SpringLayout.NORTH, lblFirstName);
 		sp.putConstraint(SpringLayout.EAST, txtFirstName, -20, SpringLayout.EAST, pnl);
 		sp.putConstraint(SpringLayout.EAST, lblLastName, 0, SpringLayout.EAST, lblFirstName);
@@ -61,13 +62,13 @@ public class SelectUserPopup extends JFrame {
 		sp.putConstraint(SpringLayout.NORTH, txtLastName, 0, SpringLayout.NORTH, lblLastName);
 		sp.putConstraint(SpringLayout.WEST, txtLastName, 0, SpringLayout.WEST, txtFirstName);
 		sp.putConstraint(SpringLayout.NORTH, btnSearch, 20, SpringLayout.SOUTH, txtLastName);
-		sp.putConstraint(SpringLayout.WEST, btnSearch, 0, SpringLayout.WEST, txtLastName);
-		sp.putConstraint(SpringLayout.EAST, btnSearch, 0, SpringLayout.HORIZONTAL_CENTER, txtLastName);
+		sp.putConstraint(SpringLayout.WEST, btnSearch, 0, SpringLayout.WEST, lblLastName);
+		sp.putConstraint(SpringLayout.EAST, btnSearch, 0, SpringLayout.EAST, txtLastName);
 		sp.putConstraint(SpringLayout.SOUTH, btnSelect, -20, SpringLayout.SOUTH, pnl);
 		sp.putConstraint(SpringLayout.EAST, btnSelect, 0, SpringLayout.EAST, btnSearch);
 		sp.putConstraint(SpringLayout.WEST, btnSelect, 0, SpringLayout.WEST, btnSearch);
-		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, lblFirstName);
-		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, txtFirstName);
+		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, btnSearch);
+		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnSearch);
 		sp.putConstraint(SpringLayout.NORTH, scroll, 20, SpringLayout.SOUTH, btnSearch);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -20, SpringLayout.NORTH, btnSelect);
 		

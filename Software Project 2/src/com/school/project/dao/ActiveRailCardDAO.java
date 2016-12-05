@@ -273,8 +273,8 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 			res = stat.executeQuery(sql);
 			while(res.next()){
 				User u = UserDAO.getInstance().get(res.getInt("soldByUser"));
-				Integer nb = res.getInt("total");
-				map.put(u, nb);
+				Integer i = res.getInt("total");
+				map.put(u, i);
 			}
 		}
 		catch(SQLException e){
@@ -284,6 +284,38 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 			try{
 				if(stat != null){stat.close();}
 				if(stat != null){res.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
+	public HashMap<RailCard, Integer> getBestSoldRailcardStatistic(){
+		HashMap<RailCard, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT COUNT(*) total, railcardId FROM activeRailcards GROUP BY railcardId";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()){
+				RailCard r = RailCardDAO.getInstance().get(res.getInt("railcardId"));
+				Integer i = res.getInt("total");
+				map.put(r, i);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null){res.close();}
 			}
 			catch(SQLException e){
 				e.printStackTrace();

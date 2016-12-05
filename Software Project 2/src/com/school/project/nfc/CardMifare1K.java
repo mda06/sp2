@@ -52,6 +52,17 @@ public class CardMifare1K {
 	public void print() {
 		System.out.println(getDump().toString());
 	}
+	
+	public String getUIDString() {
+		try {
+			ResponseAPDU r = getUID();
+			return HexUtils.bytesToHexString(r.getData());
+		} catch (CardException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	public ResponseAPDU getUID() throws CardException {
 		byte p1 = 0x00;

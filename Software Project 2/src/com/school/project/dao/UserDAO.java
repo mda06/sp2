@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import com.school.project.model.Address;
 import com.school.project.model.User;
 import com.school.project.model.User.Gender;
 import com.school.project.model.User.UserType;
@@ -238,6 +240,38 @@ public class UserDAO implements BaseDAO<User>{
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public HashMap<Address, Integer> getAddressUserStatistic(){
+		HashMap<Address, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT COUNT(*) total, addressId FROM users WHERE userType = \'customer\' GROUP BY addressId";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()){
+				Address a = AddressDAO.getInstance().get(res.getInt("addressId"));
+				Integer i = res.getInt("total");
+				map.put(a, i);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null){res.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return map;
 	}
 
 }
