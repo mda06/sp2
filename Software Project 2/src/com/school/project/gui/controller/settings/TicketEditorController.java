@@ -111,7 +111,6 @@ public class TicketEditorController implements Observer{
 		pnl.getTxtDesc().setText(ticket.getDescription());
 		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()));
 		pnl.getCbHasFixedRoute().setSelected(ticket.isHasFixedRoute());
-		System.out.println(ticket.getValidityPeriod());
 		pnl.getJcValidityPer().setSelectedIndex(ticket.getValidityPeriod()-1);
 		pnl.getBtnDelete().setVisible(true);
 	}

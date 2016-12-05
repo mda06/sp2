@@ -1,6 +1,7 @@
 package com.school.project.gui.view;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,6 +16,7 @@ public class LostItemView extends BaseView{
 	private JPanel pnlSearch;
 	private JButton btnSearch, btnAdd;
 	private JTable table;
+	private JCheckBox cbtnType, cbtnDescription, cbtnLocation;
 
 	public LostItemView() {
 		super("lostItemView");
@@ -23,14 +25,20 @@ public class LostItemView extends BaseView{
 	
 	private void initLayout() {
 		
-		
 		txtSearch = new JTextField("Search");		    
 		btnSearch = new JButton("Search");
+		cbtnType = new JCheckBox("by type");
+		cbtnDescription = new JCheckBox("by description");
+		cbtnLocation = new JCheckBox("by location");
 		SpringLayout sp = new SpringLayout();
 		pnlSearch = new JPanel(sp);
 		pnlSearch.add(txtSearch);
-		pnlSearch.add(btnSearch);	
-
+		pnlSearch.add(btnSearch);
+		
+		pnlSearch.add(cbtnType);
+		pnlSearch.add(cbtnDescription);
+		pnlSearch.add(cbtnLocation);
+		
 		sp.putConstraint(SpringLayout.WEST, txtSearch, 0, SpringLayout.WEST, pnlSearch);
 		sp.putConstraint(SpringLayout.NORTH, txtSearch, 0, SpringLayout.NORTH, pnlSearch);
 		sp.putConstraint(SpringLayout.SOUTH, txtSearch, 0, SpringLayout.SOUTH, pnlSearch);
@@ -38,9 +46,7 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearch);
 		sp.putConstraint(SpringLayout.WEST, btnSearch, -170, SpringLayout.EAST, pnlSearch);
 		sp.putConstraint(SpringLayout.EAST, txtSearch, -20, SpringLayout.WEST, btnSearch);
-		
-		
-	
+			
 		btnAdd = new JButton("Add a item");
 		table = new JTable();	
 		JScrollPane scroll = new JScrollPane(table);		
@@ -92,5 +98,30 @@ public class LostItemView extends BaseView{
 		return table;
 	}
 
+	public JCheckBox getCbtnType() {
+		return cbtnType;
+	}
+
+	public void setCbtnType(JCheckBox cbtnType) {
+		this.cbtnType = cbtnType;
+	}
+
+	public JCheckBox getCbtnDescription() {
+		return cbtnDescription;
+	}
+
+	public void setCbtnDescription(JCheckBox cbtnDescription) {
+		this.cbtnDescription = cbtnDescription;
+	}
+
+	public JCheckBox getCbtnLocation() {
+		return cbtnLocation;
+	}
+
+	public void setCbtnLocation(JCheckBox cbtnLocation) {
+		this.cbtnLocation = cbtnLocation;
+	}
+	
+	
 
 }
