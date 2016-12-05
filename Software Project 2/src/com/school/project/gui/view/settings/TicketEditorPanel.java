@@ -1,18 +1,17 @@
 package com.school.project.gui.view.settings;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 import com.school.project.util.FontUtil;
 
@@ -23,6 +22,8 @@ public class TicketEditorPanel extends JPanel {
 	private JButton btnBack, btnSave, btnDelete;
 	private JTextField txtName, txtPrice;
 	private JTextArea txtDesc;
+	
+	private JScrollPane scrollPane;
 	
 	protected JPanel pnlLeft;
 
@@ -38,101 +39,84 @@ public class TicketEditorPanel extends JPanel {
 	}
 
 	private void initLayout() {
-		setLayout(new BorderLayout());
-
-		pnlLeft = new JPanel(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		SpringLayout sp = new SpringLayout();
+		pnlLeft = new JPanel(sp);
+		setLayout(sp);
 		
-		JPanel pnlRight = new JPanel(new GridBagLayout());
-
 		lblName = new JLabel("Name");
-		c.fill = GridBagConstraints.BOTH;
-		c.ipady = 35;
-		c.ipadx = 15;
-		c.weightx = .5;
-		c.gridx = 0;
-		c.gridy = 1;
-		pnlLeft.add(lblName, c);
 		txtName = new JTextField(20);
-		c.gridx = 1;
-		c.weightx = 1;
-		pnlLeft.add(txtName, c);
 		lblDesc = new JLabel("Desc");
-		c.weightx = .5;
-		c.gridx = 0;
-		c.gridy = 2;
-		pnlLeft.add(lblDesc, c);
-		txtDesc = new JTextArea();
-		txtDesc.setColumns(60);
-		txtDesc.setPreferredSize(new Dimension(70,40));
+		txtDesc = new JTextArea(5, 20);
 		txtDesc.setLineWrap(true);
-		c.weightx = 1;
-		c.gridx = 1;
-		pnlLeft.add(txtDesc, c);
-
 		lblPrice = new JLabel("Price: ");
-		c.weightx = .5;
-		c.gridx = 0;
-		c.gridy = 4;
-		c.gridheight = 1;
-		c.gridwidth = 1;
-		pnlLeft.add(lblPrice, c);
 		txtPrice = new JTextField(20);
-		c.gridx = 1;
-		c.weightx = 1;
-		pnlLeft.add(txtPrice, c);
 		btnSave = new JButton("Save");
-		c.gridx = 1;
-		c.gridy = 5;
-		pnlLeft.add(btnSave, c);
-		
+		btnSave.setPreferredSize(new Dimension(0, 70));
 		btnDelete = new JButton("Delete ticket");
-		c.weightx = .0;
-		c.gridx = 0;
-		c.gridy = 1;
-		c.gridheight = 1;
-		c.gridwidth = 1;
-		pnlRight.add(btnDelete);
-		
-		
 		lblValidityPer = new JLabel("Validity period: ");
-		c.weightx = 1;
-		c.gridx = 0;
-		c.gridy = 0;
-		c.gridheight = 1;
-		c.gridwidth = 1;
-		
-		pnlLeft.add(lblValidityPer,c);
-		
-		JPanel pnlValidity = new JPanel(new GridBagLayout());
-		jcValidityPer = new JComboBox<>();
-		jcValidityPer.setPreferredSize(new Dimension(20,10));
-		c.weightx = 1;
-		c.gridx = 0;
-		c.gridy = 0;
-		c.gridheight = 1;
-		c.gridwidth = 1;
-		pnlValidity.add(jcValidityPer, c);
 		lblDays = new JLabel("Days");
-		c.gridx = 1;
-		c.ipadx = 0;
-		pnlValidity.add(lblDays,c);
 		cbHasFixedRoute = new JCheckBox("Has fixed route");
+		jcValidityPer = new JComboBox<>();
+		jcValidityPer.setPreferredSize(new Dimension(100,30));
+		btnBack = new JButton("Back");
+		scrollPane = new JScrollPane(txtDesc);
 		
-		c.gridx = 2;
-		pnlValidity.add(cbHasFixedRoute,c);
+		pnlLeft.add(lblName);
+		pnlLeft.add(txtName);
+		pnlLeft.add(lblDesc);
+		pnlLeft.add(scrollPane);
+		pnlLeft.add(lblPrice);
+		pnlLeft.add(txtPrice);
+		pnlLeft.add(btnSave);
+		pnlLeft.add(btnDelete);
+		pnlLeft.add(btnBack);
+		pnlLeft.add(lblValidityPer);
+		//pnlLeft.add(lblDays);
+		pnlLeft.add(cbHasFixedRoute);
+		pnlLeft.add(jcValidityPer);
 		
-		c.gridx = 1;
-		pnlLeft.add(pnlValidity, c);
+		sp.putConstraint(SpringLayout.HORIZONTAL_CENTER, btnBack, 0, SpringLayout.HORIZONTAL_CENTER, pnlLeft);
 		
+		sp.putConstraint(SpringLayout.NORTH, lblValidityPer, 100, SpringLayout.SOUTH, btnBack);
+		sp.putConstraint(SpringLayout.WEST, lblValidityPer, 25, SpringLayout.WEST, pnlLeft);
+		sp.putConstraint(SpringLayout.NORTH, jcValidityPer, 95, SpringLayout.SOUTH, btnBack);
+		sp.putConstraint(SpringLayout.WEST, jcValidityPer, 15, SpringLayout.EAST, lblValidityPer);
 		
+		sp.putConstraint(SpringLayout.NORTH, cbHasFixedRoute, 95, SpringLayout.SOUTH, btnBack);
+		sp.putConstraint(SpringLayout.EAST, cbHasFixedRoute, -500, SpringLayout.EAST, pnlLeft);
 		
+		sp.putConstraint(SpringLayout.NORTH, lblName, 250, SpringLayout.NORTH, pnlLeft);
+		sp.putConstraint(SpringLayout.WEST, lblName, 25, SpringLayout.WEST, pnlLeft);
+		sp.putConstraint(SpringLayout.WEST, txtName, 170, SpringLayout.WEST, lblName);
+		sp.putConstraint(SpringLayout.NORTH, txtName, 240, SpringLayout.NORTH, pnlLeft);
+		sp.putConstraint(SpringLayout.EAST, txtName, -200, SpringLayout.EAST, pnlLeft);
+		
+		sp.putConstraint(SpringLayout.NORTH, lblDesc, 30, SpringLayout.SOUTH, lblName);
+		sp.putConstraint(SpringLayout.WEST, lblDesc, 25, SpringLayout.WEST, pnlLeft);
+		sp.putConstraint(SpringLayout.WEST, scrollPane, 175, SpringLayout.WEST, lblDesc);
+		sp.putConstraint(SpringLayout.NORTH, scrollPane, 20, SpringLayout.SOUTH, txtName);
+		sp.putConstraint(SpringLayout.EAST, scrollPane, -200, SpringLayout.EAST, pnlLeft);
+		
+		sp.putConstraint(SpringLayout.NORTH, lblPrice, 30, SpringLayout.SOUTH, scrollPane);
+		sp.putConstraint(SpringLayout.WEST, lblPrice, 25, SpringLayout.WEST, pnlLeft);
+		sp.putConstraint(SpringLayout.WEST, txtPrice, 170, SpringLayout.WEST, lblPrice);
+		sp.putConstraint(SpringLayout.NORTH, txtPrice, 20, SpringLayout.SOUTH, scrollPane);
+		sp.putConstraint(SpringLayout.EAST, txtPrice, -200, SpringLayout.EAST, pnlLeft);
 
-		add(pnlLeft, BorderLayout.WEST);
-		add(pnlRight, BorderLayout.EAST);
-		JPanel pnlBack = new JPanel();
-		pnlBack.add(btnBack = new JButton("Back"));
-		add(pnlBack, BorderLayout.NORTH);
+		sp.putConstraint(SpringLayout.NORTH, btnSave, 30, SpringLayout.SOUTH, lblPrice);
+		sp.putConstraint(SpringLayout.WEST, btnSave, 170, SpringLayout.WEST, lblPrice);
+		sp.putConstraint(SpringLayout.EAST, btnSave, -200, SpringLayout.EAST, pnlLeft);
+		
+		sp.putConstraint(SpringLayout.NORTH, btnDelete, 50, SpringLayout.SOUTH, txtName);
+		sp.putConstraint(SpringLayout.WEST, btnDelete, 20, SpringLayout.EAST, scrollPane);
+		sp.putConstraint(SpringLayout.EAST, btnDelete, -20, SpringLayout.EAST, pnlLeft);
+
+		add(pnlLeft);		
+		sp.putConstraint(SpringLayout.NORTH, pnlLeft, 1, SpringLayout.NORTH, this);
+		sp.putConstraint(SpringLayout.EAST, pnlLeft, 1, SpringLayout.EAST, this);
+		sp.putConstraint(SpringLayout.SOUTH, pnlLeft, 1, SpringLayout.SOUTH, this);
+		sp.putConstraint(SpringLayout.WEST, pnlLeft, 1, SpringLayout.EAST, this);
+		
 		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN, 18));
 
@@ -252,6 +236,14 @@ public class TicketEditorPanel extends JPanel {
 
 	public void setCbHasFixedRoute(JCheckBox hasFixedRoute) {
 		this.cbHasFixedRoute = hasFixedRoute;
+	}
+
+	public JScrollPane getScrollpane() {
+		return scrollPane;
+	}
+
+	public void setScrollpane(JScrollPane scrollpane) {
+		this.scrollPane = scrollpane;
 	}
 
 }
