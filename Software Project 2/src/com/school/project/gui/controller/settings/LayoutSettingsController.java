@@ -37,6 +37,15 @@ public class LayoutSettingsController extends BaseController<LayoutSettingsView>
 				FontUtil.getInstance().setSmallFont(font);
 			}
 		});
+		view.getBtnFontReallySmall().addActionListener((e) -> {
+			JFontChooser fontChooser = new JFontChooser();
+			fontChooser.setSelectedFont(FontUtil.getInstance().getReallySmallFont());
+			int result = fontChooser.showDialog(view);
+			if (result == JFontChooser.OK_OPTION) {
+				Font font = fontChooser.getSelectedFont();
+				FontUtil.getInstance().setReallySmallFont(font);
+			}
+		});
 	}
 
 	@Override
@@ -47,6 +56,8 @@ public class LayoutSettingsController extends BaseController<LayoutSettingsView>
 			view.getLblFontSmall().setText(lh.getString("lblFontSmall"));
 			view.getBtnFontBig().setText(lh.getString("btnFontBig"));
 			view.getBtnFontSmall().setText(lh.getString("btnFontSmall"));
+			view.getBtnFontBig().setText(lh.getString("lblFontReallySmall"));
+			view.getBtnFontSmall().setText(lh.getString("btnFontReallySmall"));
 		}
 	}
 

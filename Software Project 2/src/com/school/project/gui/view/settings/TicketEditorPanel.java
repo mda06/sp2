@@ -125,9 +125,9 @@ public class TicketEditorPanel extends JPanel {
 		FontUtil.getInstance().bindBigFont(btnBack);
 		
 		FontUtil.getInstance().bindSmallFont(btnDelete);
-		//FontUtil.getInstance().bindSmallFont(lblDays);
-		//FontUtil.getInstance().bindSmallFont(lblValidityPer);
-		//FontUtil.getInstance().bindSmallFont(cbHasFixedRoute);
+		FontUtil.getInstance().bindSmallFont(lblDays);
+		FontUtil.getInstance().bindSmallFont(lblValidityPer);
+		FontUtil.getInstance().bindSmallFont(cbHasFixedRoute);
 		FontUtil.getInstance().bindSmallFont(lblDesc);
 		FontUtil.getInstance().bindSmallFont(lblPrice);
 		FontUtil.getInstance().bindSmallFont(lblName);
