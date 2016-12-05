@@ -7,21 +7,22 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import com.school.project.dao.ActiveRailCardDAO;
 import com.school.project.gui.model.statistics.AbstractPieChartModel;
-import com.school.project.model.User;
+import com.school.project.model.RailCard;
 
-public class ActiveRailCardByUsersStatistic extends AbstractPieChartModel {
+public class BestSoldRailcardStatistic extends AbstractPieChartModel {
 
-	public ActiveRailCardByUsersStatistic() {
-		super("Active railcard by users");
+	public BestSoldRailcardStatistic() {
+		super("Best-selling railcards");
 	}
 
 	@Override
 	protected DefaultPieDataset createDataset() {
 		DefaultPieDataset dataset = new DefaultPieDataset();
-		HashMap<User, Integer> map = ActiveRailCardDAO.getInstance().getActiveRailCardByUserStatistic();
-		for(Entry<User, Integer> e : map.entrySet()){
-			dataset.setValue(e.getKey().getLastName() + " " + e.getKey().getFirstName(), e.getValue());
+		HashMap<RailCard, Integer> map = ActiveRailCardDAO.getInstance().getBestSoldRailcardStatistic();
+		for(Entry<RailCard, Integer> e : map.entrySet()){
+			dataset.setValue(e.getKey().getName(), e.getValue());
 		}
 		return dataset;
 	}
+
 }
