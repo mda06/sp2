@@ -247,6 +247,12 @@ public class UserView extends BaseView {
 		FontUtil.getInstance().bindSmallFont(cBGenderW);
 		FontUtil.getInstance().bindSmallFont(txtDate);
 		FontUtil.getInstance().bindSmallFont(cbUserType);
+		FontUtil.getInstance().bindSmallFont(lbStreetline2);
+		FontUtil.getInstance().bindSmallFont(txtStreetline2);
+		FontUtil.getInstance().bindSmallFont(lbCountry);
+		FontUtil.getInstance().bindSmallFont(txtCountry);
+		
+		
 	}
 	
 	public JLabel getLbFirstName() {
