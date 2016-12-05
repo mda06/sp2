@@ -63,7 +63,7 @@ public class RailCardEditorController implements Observer {
 				
 				pnl.getTxtDesc().setText(rc.getDescription());
 				pnl.getTxtName().setText(rc.getName());
-				pnl.getTxtPricePerMonth().setText(rc.getPricePerMonth());
+				//pnl.getTxtPricePerMonth().setText(rc.getPricePerMonth());
 				
 			}
 		});
