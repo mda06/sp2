@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.BaseView;
+import com.school.project.util.FontUtil;
 
 public class BackupView extends BaseView{
 	private static final long serialVersionUID = 1L;
@@ -35,16 +36,26 @@ public class BackupView extends BaseView{
 			
 		sp.putConstraint(SpringLayout.WEST, lblPrefix, 15, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, lblPrefix, 15, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.NORTH, txtPrefix, 20, SpringLayout.NORTH, lblPrefix);
-		sp.putConstraint(SpringLayout.WEST, txtPrefix, 15, SpringLayout.SOUTH, lblPrefix);
-		sp.putConstraint(SpringLayout.NORTH, lblContent, 30, SpringLayout.NORTH, txtPrefix);
+		sp.putConstraint(SpringLayout.NORTH, txtPrefix, 0, SpringLayout.NORTH, lblPrefix);
+		sp.putConstraint(SpringLayout.WEST, txtPrefix, 15, SpringLayout.EAST, lblPrefix);
+		sp.putConstraint(SpringLayout.NORTH, lblContent, 50, SpringLayout.NORTH, txtPrefix);
 		sp.putConstraint(SpringLayout.WEST, lblContent, 15, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, comboTables, 20, SpringLayout.NORTH, lblContent);
-		sp.putConstraint(SpringLayout.WEST, comboTables, -35, SpringLayout.SOUTH, lblContent);
-		sp.putConstraint(SpringLayout.WEST, btnSave, 30, SpringLayout.EAST, comboTables);
-		sp.putConstraint(SpringLayout.NORTH, btnSave, 20, SpringLayout.NORTH, lblContent);
-		sp.putConstraint(SpringLayout.WEST, btnSaveAll, 30, SpringLayout.EAST, comboTables);
-		sp.putConstraint(SpringLayout.NORTH, btnSaveAll, 30, SpringLayout.NORTH, btnSave);
+		sp.putConstraint(SpringLayout.NORTH, comboTables, 0, SpringLayout.NORTH, lblContent);
+		sp.putConstraint(SpringLayout.WEST, comboTables, 0, SpringLayout.WEST, txtPrefix);
+		sp.putConstraint(SpringLayout.EAST, comboTables, 0, SpringLayout.EAST, txtPrefix);
+		sp.putConstraint(SpringLayout.NORTH, btnSave, 30, SpringLayout.SOUTH, comboTables);
+		sp.putConstraint(SpringLayout.WEST, btnSave, 0, SpringLayout.WEST, lblContent);
+		sp.putConstraint(SpringLayout.EAST, btnSave, 0, SpringLayout.EAST, lblContent);
+		sp.putConstraint(SpringLayout.NORTH, btnSaveAll, 0, SpringLayout.NORTH, btnSave);
+		sp.putConstraint(SpringLayout.WEST, btnSaveAll, 0, SpringLayout.WEST, comboTables);
+		sp.putConstraint(SpringLayout.EAST, btnSaveAll, 0, SpringLayout.EAST, comboTables);
+		
+		FontUtil.getInstance().bindSmallFont(lblPrefix);
+		FontUtil.getInstance().bindSmallFont(txtPrefix);
+		FontUtil.getInstance().bindSmallFont(lblContent);
+		FontUtil.getInstance().bindSmallFont(comboTables);
+		FontUtil.getInstance().bindBigFont(btnSave);
+		FontUtil.getInstance().bindBigFont(btnSaveAll);
 		
 	}
 
