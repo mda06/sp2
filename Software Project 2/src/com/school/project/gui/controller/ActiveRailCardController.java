@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.smartcardio.CardException;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
@@ -20,14 +21,20 @@ import com.school.project.language.LanguageObservable;
 import com.school.project.model.ActiveRailCard;
 import com.school.project.model.RailCard;
 import com.school.project.model.User;
+import com.school.project.nfc.CardMifare1K;
+import com.school.project.nfc.RailCardToNFCSettings;
+import com.school.project.nfc.event.CardConnected;
 import com.school.project.nmbs.model.StationCache;
+import com.school.project.util.HexUtils;
+import com.sun.corba.se.impl.ior.ByteBuffer;
 
-public class ActiveRailCardController implements SelectedUserListener, Observer{
+public class ActiveRailCardController implements SelectedUserListener, Observer, CardConnected{
 	private PaymentRailcardPanel pnl;
 	private PaymentBackListener list;
 	private RailCard railcard;
 	private User user, inNameOf;
 	private SelectUserController selectUserController;
+	private CardMifare1K nfcCard;
 	private String fillInTheBlanks;
 
 	public ActiveRailCardController(PaymentRailcardPanel pnl, PaymentBackListener list, User user) {
@@ -35,6 +42,7 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 		this.list = list;
 		this.user = user;
 		this.railcard = null;
+		nfcCard = null;
 		inNameOf = null;
 		selectUserController = new SelectUserController(this);
 		
@@ -70,6 +78,9 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 				} else {
 					ActiveRailCard activeRailCard = new ActiveRailCard(-1, validFrom, validTo, from, to, user, inNameOf, railcard, false);
 					ActiveRailCardDAO.getInstance().add(activeRailCard);
+					if(nfcCard != null)
+						setActiveRailCardOnNFC(activeRailCard);
+					nfcCard = null;
 					list.backToPreviousView();
 				}
 			}
@@ -91,6 +102,21 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 					pnl.getTxtValidTo().setText(new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime()));
 				}
 			});
+		}
+	}
+	
+	private void setActiveRailCardOnNFC(ActiveRailCard activeRailCard) {
+		if(activeRailCard == null || nfcCard == null) return;
+		System.out.println("Putting data to nfc..");
+		try {
+			ByteBuffer buf = new ByteBuffer(16);
+			buf.append(activeRailCard.getInNameOf().getId());
+			byte data[] = buf.toArray();
+			System.out.println(HexUtils.bytesToHexString(data));
+			nfcCard.authentificate(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD);
+			nfcCard.updateBinaryBlock(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD, data);
+		} catch (CardException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -162,6 +188,11 @@ public class ActiveRailCardController implements SelectedUserListener, Observer{
 			
 		}
 		
+	}
+
+	@Override
+	public void cardConnected(CardMifare1K c) {
+		nfcCard = c;
 	}
 
 }

@@ -160,7 +160,7 @@ public class PaymentRailcardPanel extends JPanel {
 		sp.putConstraint(SpringLayout.NORTH, txtSoldBy, 5, SpringLayout.SOUTH, btnSelectUser);
 		sp.putConstraint(SpringLayout.EAST, txtSoldBy, -15, SpringLayout.EAST, pnlLeft);
 		
-		sp.putConstraint(SpringLayout.NORTH, lblInNameOf, 15, SpringLayout.SOUTH, lblSoldBy);
+		sp.putConstraint(SpringLayout.NORTH, lblInNameOf, 5, SpringLayout.SOUTH, lblSoldBy);
 		sp.putConstraint(SpringLayout.WEST, lblInNameOf, 25, SpringLayout.EAST, scrollPane);
 		sp.putConstraint(SpringLayout.NORTH, txtInNameOf, 5, SpringLayout.SOUTH, txtSoldBy);
 		sp.putConstraint(SpringLayout.EAST, txtInNameOf, -15, SpringLayout.EAST, pnlLeft);
