@@ -152,7 +152,7 @@ public class PaymentRailcardPanel extends JPanel {
 		
 		sp.putConstraint(SpringLayout.EAST, btnSelectUser, -15, SpringLayout.EAST, pnlLeft);
 		sp.putConstraint(SpringLayout.NORTH, btnSelectUser, 60, SpringLayout.NORTH, pnlLeft);
-		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 50, SpringLayout.EAST, txtName);
+		sp.putConstraint(SpringLayout.WEST, btnSelectUser, 0, SpringLayout.WEST, lblSoldBy);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblSoldBy, 10, SpringLayout.SOUTH, btnSelectUser);
 		sp.putConstraint(SpringLayout.WEST, lblSoldBy, 25, SpringLayout.EAST, txtName);
@@ -177,23 +177,6 @@ public class PaymentRailcardPanel extends JPanel {
 		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 5, SpringLayout.SOUTH, lblValidFrom);
 		sp.putConstraint(SpringLayout.WEST, txtValidTo, 125, SpringLayout.WEST, lblValidFrom);
 		sp.putConstraint(SpringLayout.EAST, txtValidTo, -15, SpringLayout.EAST, pnlLeft);
-		
-
-		/*
-		
-
-
-		sp.putConstraint(SpringLayout.NORTH, txtValidFrom, 230, SpringLayout.NORTH, txtSoldBy);
-		sp.putConstraint(SpringLayout.EAST, txtValidFrom, 0, SpringLayout.EAST, txtSoldBy);
-		sp.putConstraint(SpringLayout.NORTH, lblValidFrom, 0, SpringLayout.NORTH, txtValidFrom);
-		sp.putConstraint(SpringLayout.EAST, lblValidFrom, -10, SpringLayout.WEST, txtValidFrom);
-		sp.putConstraint(SpringLayout.NORTH, txtValidTo, 50, SpringLayout.NORTH, txtValidFrom);
-		sp.putConstraint(SpringLayout.EAST, txtValidTo, 0, SpringLayout.EAST, txtValidFrom);
-		sp.putConstraint(SpringLayout.NORTH, lblValidTo, 0, SpringLayout.NORTH, txtValidTo);
-		sp.putConstraint(SpringLayout.EAST, lblValidTo, -10, SpringLayout.WEST, txtValidTo);
-
-		
-*/
 	
 		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN, 18));
