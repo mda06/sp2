@@ -72,7 +72,7 @@ public class Acr122Factory implements CardConnected {
 				listenersRunnable.kill();
 			listenersRunnable = new CardConnectedRunnable(this, terminal);
 			new Thread(listenersRunnable).start();;
-		} catch (CardException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			listeners.clear();
 			terminal = null;
