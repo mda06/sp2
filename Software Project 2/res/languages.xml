@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <!DOCTYPE resources [
 	<!ELEMENT resources (string*)>
 	<!ATTLIST string name ID #REQUIRED>
@@ -132,9 +132,9 @@
 		<value lang="en">Add</value>
 	</string>
 	<string name = "type">
-		<value lang="nl">Type</value>
-		<value lang="fr">Type</value>
-		<value lang="en">Type</value>
+		<value lang="nl">Type:</value>
+		<value lang="fr">Type:</value>
+		<value lang="en">Type:</value>
 	</string>
 	<string name = "description">
 		<value lang="nl">Beschrijving:</value>
@@ -142,9 +142,9 @@
 		<value lang="en">Description:</value>
 	</string>
 	<string name = "location">
-		<value lang="nl">Locatie</value>
-		<value lang="fr">Emplacement</value>
-		<value lang="en">Location</value>
+		<value lang="nl">Locatie:</value>
+		<value lang="fr">Emplacement:</value>
+		<value lang="en">Location:</value>
 	</string>
 	<string name = "options">
 		<value lang="nl">Opties</value>
