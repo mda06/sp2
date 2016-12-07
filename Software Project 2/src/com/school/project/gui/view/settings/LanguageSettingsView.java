@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
 import com.school.project.gui.view.BaseView;
@@ -17,30 +18,36 @@ public class LanguageSettingsView extends BaseView {
 	private JLabel lblLoading;
 	private JComboBox<String> comboLanguages;
 	private JButton btnLoad, btnSave;
-	private JList<String> lstTranslated;
+	private JTable tblTranslated;
 	private JScrollPane scroll;
-	
+
 	public LanguageSettingsView() {
 		super("LanguageSettings");
-		
+
 		initLayout();
 	}
-	
+
 	private void initLayout() {
 		SpringLayout sp = new SpringLayout();
 		setLayout(sp);
-		
-		String[] items = {"fr","az","be","bg","ca","cs","da","de","el","en","es","et","fi","fr","hr","hu","hy","it","lt","lv","mk","nl","no","pl","pt","ro","ru","sk","sl","sq","sr","sv","tr","uk"};
+
+		String[] columnNames = { "Key", "New Language" };
+		Object[][] data = { };
+
+		String[] items = { "fr", "az", "be", "bg", "ca", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr",
+				"hu", "hy", "it", "lt", "lv", "mk", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sl", "sq", "sr", "sv",
+				"tr", "uk" };
 		add(btnLoad = new JButton("Add this language"));
 		add(comboLanguages = new JComboBox<String>(items));
 		add(btnSave = new JButton("Save"));
 		btnSave.setVisible(false);
-		scroll = new JScrollPane(lstTranslated = new JList<>());
+		scroll = new JScrollPane(tblTranslated = new JTable(data, columnNames));
 		add(scroll);
 		scroll.setVisible(false);
-		add(lblLoading = new JLabel("Loading...", imgLoading = new ImageIcon(getClass().getResource("/ajax-loader.gif")), JLabel.CENTER));
+		add(lblLoading = new JLabel("Loading...",
+				imgLoading = new ImageIcon(getClass().getResource("/ajax-loader.gif")), JLabel.CENTER));
 		lblLoading.setVisible(false);
-		
+
 		sp.putConstraint(SpringLayout.WEST, comboLanguages, 15, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, comboLanguages, 15, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.NORTH, btnLoad, 0, SpringLayout.NORTH, comboLanguages);
@@ -79,8 +86,8 @@ public class LanguageSettingsView extends BaseView {
 		return scroll;
 	}
 
-	public JList<String> getLstTranslated() {
-		return lstTranslated;
+	public JTable getTblTranslated() {
+		return tblTranslated;
 	}
-	
+
 }
