@@ -12,10 +12,13 @@ public class FontUtil {
 	private Font small;
 	private List<Component> bigComponentsBinds;
 	private Font big;
+	private List<Component> reallySmallComponentsBinds;
+	private Font reallySmall;
 	
 	private FontUtil(){
 		smallComponentsBinds = new ArrayList<>();
 		bigComponentsBinds = new ArrayList<>();
+		reallySmallComponentsBinds = new ArrayList<>();
 	}
 	
 	public static FontUtil getInstance() {
@@ -32,6 +35,11 @@ public class FontUtil {
 		c.setFont(getBigFont());
 		bigComponentsBinds.add(c);
 	}
+	
+	public void bindReallySmallFont(Component c) {
+		c.setFont(getReallySmallFont());
+		reallySmallComponentsBinds.add(c);
+	}
 
 	public void setSmallFont(Font f) {
 		if(f == null) return;
@@ -45,6 +53,12 @@ public class FontUtil {
 		bigComponentsBinds.forEach((c) -> c.setFont(big));
 	}
 	
+	public void setReallySmallFont(Font f) {
+		if(f == null) return;
+		reallySmall = f;
+		reallySmallComponentsBinds.forEach((c) -> c.setFont(reallySmall));
+	}
+	
 	public Font getSmallFont() {
 		if (small == null) small = new Font("Arial", Font.PLAIN, 24);
 		return small;
@@ -54,5 +68,10 @@ public class FontUtil {
 	public Font getBigFont() {
 		if (big == null) big = new Font("Arial", Font.PLAIN, 30);
 		return big;
+	}
+	
+	public Font getReallySmallFont() {
+		if (reallySmall == null) reallySmall = new Font("Arial", Font.PLAIN, 16);
+		return reallySmall;
 	}
 }

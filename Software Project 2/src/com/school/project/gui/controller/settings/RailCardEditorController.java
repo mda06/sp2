@@ -8,14 +8,12 @@ import java.util.Observer;
 import javax.swing.JOptionPane;
 
 import com.school.project.dao.RailCardDAO;
-import com.school.project.dao.TicketDAO;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.settings.RailCardEditorPanel;
-import com.school.project.gui.view.settings.TicketEditorPanel;
 import com.school.project.language.LanguageHandler;
 import com.school.project.language.LanguageObservable;
 import com.school.project.model.RailCard;
-import com.school.project.model.Ticket;
+import com.school.project.model.RailCardCache;
 
 public class RailCardEditorController implements Observer {
 	private RailCardEditorPanel pnl;
@@ -61,10 +59,32 @@ public class RailCardEditorController implements Observer {
 					rc = new RailCard(0,"","",0,0,0,false,false);
 				}
 				
-				pnl.getTxtDesc().setText(rc.getDescription());
-				pnl.getTxtName().setText(rc.getName());
-				//pnl.getTxtPricePerMonth().setText(rc.getPricePerMonth());
+				rc.setName(pnl.getTxtName().getText());
+				rc.setDescription(pnl.getTxtDesc().getText());
+				rc.setPricePerMonth(Double.parseDouble(pnl.getTxtPricePerMonth().getText()));
+				rc.setPricePer3Month(Double.parseDouble(pnl.getTxtPricePer3Month().getText()));
+				rc.setPricePerYear(Double.parseDouble(pnl.getTxtPricePerYear().getText()));
+				rc.setHasFixedRoute(pnl.getCbHasFixedRoute().isSelected());
 				
+				if(newRc){
+					RailCardDAO.getInstance().add(rc);
+					JOptionPane.showMessageDialog(pnl, strSaveSuccess);
+				}
+				else{
+					RailCardDAO.getInstance().update(rc);
+					JOptionPane.showMessageDialog(pnl, strUpdateSuccess);
+				}
+				RailCardCache.getInstance().addRailCard(rc);
+				
+				rc = null;
+				pnl.getTxtDesc().setText("");
+				pnl.getTxtName().setText("");
+				pnl.getTxtPricePerMonth().setText("");
+				pnl.getTxtPricePer3Month().setText("");
+				pnl.getTxtPricePerYear().setText("");
+				
+				pnl.getCbHasFixedRoute().setSelected(false);
+				list.backToPreviousView();
 			}
 		});
 	}
@@ -84,7 +104,32 @@ public class RailCardEditorController implements Observer {
 		return true;
 		
 	}
-
+	
+	public void showRailCard(RailCard rc) {
+		if (rc == null)
+			return;
+		this.rc = rc;
+		pnl.getTxtName().setText(rc.getName());
+		pnl.getTxtDesc().setText(rc.getDescription());
+		pnl.getTxtPricePerMonth().setText(String.valueOf(rc.getPricePerMonth()));
+		pnl.getTxtPricePer3Month().setText(String.valueOf(rc.getPricePer3Month()));
+		pnl.getTxtPricePerYear().setText(String.valueOf(rc.getPricePerYear()));
+		pnl.getCbHasFixedRoute().setSelected(rc.isHasFixedRoute());
+		pnl.getBtnDelete().setVisible(true);
+	}
+	
+	public void newTicket(){
+		rc = null;
+		pnl.getTxtDesc().setText("");
+		pnl.getTxtName().setText("");
+		pnl.getTxtPricePerMonth().setText("");
+		pnl.getTxtPricePer3Month().setText("");
+		pnl.getTxtPricePerYear().setText("");
+		pnl.getCbHasFixedRoute().setSelected(false);
+		
+		pnl.getBtnDelete().setVisible(false);
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
