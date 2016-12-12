@@ -82,7 +82,6 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 			for(int i = 0; i < model.getRowCount(); i++){
 				if(newWords.get(model.getValueAt(i, 0)) != model.getValueAt(i, 1)){
 					newWords.put((String)model.getValueAt(i, 0), (String) model.getValueAt(i, 1));
-					System.out.println("Er werd iets aangepast");
 				}
 			}
 			view.getScrollLst().setVisible(false);
