@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.smartcardio.CardException;
+import javax.smartcardio.ResponseAPDU;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
@@ -25,10 +26,8 @@ import com.school.project.nfc.CardMifare1K;
 import com.school.project.nfc.RailCardToNFCSettings;
 import com.school.project.nfc.event.CardConnected;
 import com.school.project.nmbs.model.StationCache;
-import com.school.project.util.HexUtils;
-import com.sun.corba.se.impl.ior.ByteBuffer;
 
-public class ActiveRailCardController implements SelectedUserListener, Observer, CardConnected{
+public class ActiveRailCardController implements SelectedUserListener, Observer, CardConnected {
 	private PaymentRailcardPanel pnl;
 	private PaymentBackListener list;
 	private RailCard railcard;
@@ -45,7 +44,7 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 		nfcCard = null;
 		inNameOf = null;
 		selectUserController = new SelectUserController(this);
-		
+
 		pnl.getTxtFromStation().setItems(StationCache.getInstance().getStationsNames());
 		pnl.getTxtToStation().setItems(StationCache.getInstance().getStationsNames());
 
@@ -71,15 +70,14 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 				Date validFrom = new Date(new java.util.Date().getTime());
 				Date validTo = new Date(getValidityPeriod().getTime().getTime());
 
-				if(inNameOf == null) {
+				if (inNameOf == null) {
 					JOptionPane.showMessageDialog(pnl, fillInTheBlanks);
 				} else if (railcard.isHasFixedRoute() && (from.isEmpty() || to.isEmpty())) {
 					JOptionPane.showMessageDialog(pnl, fillInTheBlanks);
 				} else {
 					ActiveRailCard activeRailCard = new ActiveRailCard(-1, validFrom, validTo, from, to, user, inNameOf, railcard, false);
 					ActiveRailCardDAO.getInstance().add(activeRailCard);
-					if(nfcCard != null)
-						setActiveRailCardOnNFC(activeRailCard);
+					if (nfcCard != null) setActiveRailCardOnNFC(activeRailCard);
 					nfcCard = null;
 					list.backToPreviousView();
 				}
@@ -104,20 +102,28 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 			});
 		}
 	}
-	
+
 	private void setActiveRailCardOnNFC(ActiveRailCard activeRailCard) {
-		if(activeRailCard == null || nfcCard == null) return;
+		if (activeRailCard == null || nfcCard == null) return;
 		System.out.println("Putting data to nfc..");
 		try {
-			ByteBuffer buf = new ByteBuffer(16);
-			buf.append(activeRailCard.getInNameOf().getId());
-			byte data[] = buf.toArray();
-			System.out.println(HexUtils.bytesToHexString(data));
-			nfcCard.authentificate(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD);
-			nfcCard.updateBinaryBlock(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD, data);
+			byte data[] = new byte[16];
+			byte id[] = intToByteArray(activeRailCard.getInNameOf().getId());
+			for (int i = 0; i < 4; i++)
+				data[i] = id[i];
+			for(int i = 0; i < 12; i++)
+				data[4+i] = 0;
+			System.out.println(nfcCard.authentificate(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD).getSW());
+			ResponseAPDU res = nfcCard.updateBinaryBlock(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD, data);
+			System.out.println(CardMifare1K.isSucces(res));
+			if (CardMifare1K.isSucces(res)) JOptionPane.showMessageDialog(null, "Success saved to NFC !");
 		} catch (CardException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static final byte[] intToByteArray(int value) {
+		return new byte[] { (byte) (value >>> 24), (byte) (value >>> 16), (byte) (value >>> 8), (byte) value };
 	}
 
 	public Calendar getValidityPeriod() {
@@ -130,7 +136,7 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 		} else {
 			cal.add(Calendar.DATE, 12);
 		}
-		
+
 		return cal;
 	}
 
@@ -168,26 +174,26 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 	@Override
 	public void update(Observable o, Object arg) {
 		selectUserController.update(o, arg);
-		if(o instanceof LanguageObservable){
+		if (o instanceof LanguageObservable) {
 			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
 			fillInTheBlanks = lh.getString("fillInTheBlanks");
-			
+
 			pnl.getBtnPay().setText(lh.getString("Pay"));
 			pnl.getBtnSelectUser().setText(lh.getString("user"));
 			pnl.getLblDesc().setText(lh.getString("description"));
 			pnl.getLblFromStation().setText(lh.getString("from"));
 			pnl.getLblToStation().setText(lh.getString("to"));
-			pnl.getLblPricePer3Month().setText(lh.getString("pricePer") + " 3 " +lh.getString("months"));
-			pnl.getLblPricePerMonth().setText(lh.getString("pricePer") + " "+ lh.getString("month"));
+			pnl.getLblPricePer3Month().setText(lh.getString("pricePer") + " 3 " + lh.getString("months"));
+			pnl.getLblPricePerMonth().setText(lh.getString("pricePer") + " " + lh.getString("month"));
 			pnl.getLblPricePerYear().setText(lh.getString("pricePer") + " " + lh.getString("year"));
 			pnl.getLblSoldBy().setText(lh.getString("soldBy"));
 			pnl.getLblValidFrom().setText(lh.getString("validFrom"));
 			pnl.getLblValidTo().setText(lh.getString("validTo"));
 			pnl.getLblInNameOf().setText(lh.getString("inNameOf"));
 			pnl.getBtnBack().setText(lh.getString("back"));
-			
+
 		}
-		
+
 	}
 
 	@Override
