@@ -10,6 +10,7 @@ import com.school.project.util.HexUtils;
 
 public class CardMifare1K {
 	public static final int SECTOR_COUNT = 16;
+	public static final int SUCCESS = 144;
 	public static final int PER_SECTOR_BLOCK_COUNT = 4;
 
 	private byte keyNumber = KEY_LOCATION.ZERO.getValue();
@@ -62,6 +63,11 @@ public class CardMifare1K {
 		}
 		
 		return null;
+	}
+	
+	public static boolean isSucces(ResponseAPDU adpu) {
+		if(adpu == null) return false;
+		return adpu.getSW1() == SUCCESS;
 	}
 
 	public ResponseAPDU getUID() throws CardException {
