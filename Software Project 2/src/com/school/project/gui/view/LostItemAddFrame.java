@@ -28,7 +28,7 @@ public class LostItemAddFrame extends JFrame {
 	}
 	
 	private void initLayout() {
-		setSize(500,700);
+		setSize(500,480);
 		setTitle("Add a lost item");
 		setLocationRelativeTo(null);
 		setAlwaysOnTop(true);
@@ -55,19 +55,18 @@ public class LostItemAddFrame extends JFrame {
 		
 		sp.putConstraint(SpringLayout.NORTH, lblType, 15, SpringLayout.NORTH, pnlAddItem);
 		sp.putConstraint(SpringLayout.WEST, lblType, 15, SpringLayout.WEST, pnlAddItem);
-		sp.putConstraint(SpringLayout.EAST, lblType, 50, SpringLayout.WEST, pnlAddItem);
+		sp.putConstraint(SpringLayout.EAST, lblType, 0, SpringLayout.EAST, lblDescription);
 		
-		sp.putConstraint(SpringLayout.NORTH, lblDescription, 10, SpringLayout.SOUTH, lblType);
+		sp.putConstraint(SpringLayout.NORTH, lblDescription, 10, SpringLayout.NORTH, txtDescription);
 		sp.putConstraint(SpringLayout.WEST, lblDescription, 0, SpringLayout.WEST, lblType);
-		sp.putConstraint(SpringLayout.EAST, lblDescription, 0, SpringLayout.EAST, lblType);
 		
-		sp.putConstraint(SpringLayout.NORTH, lblLocation, 10, SpringLayout.SOUTH, lblDescription);
+		sp.putConstraint(SpringLayout.NORTH, lblLocation, 0, SpringLayout.NORTH, txtLocation);
 		sp.putConstraint(SpringLayout.WEST, lblLocation, 0, SpringLayout.WEST, lblType);
-		sp.putConstraint(SpringLayout.EAST, lblLocation, 0, SpringLayout.EAST, lblType);
+		sp.putConstraint(SpringLayout.EAST, lblLocation, 0, SpringLayout.EAST, lblDescription);
 		
 		sp.putConstraint(SpringLayout.NORTH, txtType, 0, SpringLayout.NORTH, lblType);
 		sp.putConstraint(SpringLayout.WEST, txtType, 15, SpringLayout.EAST, lblType);
-		sp.putConstraint(SpringLayout.EAST, txtType, 10, SpringLayout.EAST, pnlAddItem);
+		sp.putConstraint(SpringLayout.EAST, txtType, -10, SpringLayout.EAST, pnlAddItem);
 
 		sp.putConstraint(SpringLayout.NORTH, txtDescription, 10, SpringLayout.SOUTH, txtType);
 		sp.putConstraint(SpringLayout.WEST, txtDescription, 0, SpringLayout.WEST, txtType);

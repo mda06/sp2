@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class RailCardView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +20,8 @@ public class RailCardView extends BaseView {
 
 	private void initLayout() {
 		setLayout(new CardLayout());
-		add(pnlBtns = new JPanel(new GridLayout(0, 4, 5, 5)), KEY_BTNS);
+		add(pnlBtns = new JPanel(new GridLayout(0, 4, 5, 5)));
+		add(new JScrollPane(pnlBtns), KEY_BTNS);
 		add(pnlPay = new PaymentRailcardPanel(), KEY_PAY);
 	}
 
