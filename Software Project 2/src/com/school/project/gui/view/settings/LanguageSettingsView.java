@@ -4,7 +4,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SpringLayout;
@@ -32,8 +31,7 @@ public class LanguageSettingsView extends BaseView {
 		SpringLayout sp = new SpringLayout();
 		setLayout(sp);
 
-		String[] columnNames = { "Key", "New Language" };
-		Object[][] data = { };
+		
 
 		String[] items = { "fr", "az", "be", "bg", "ca", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "hr",
 				"hu", "hy", "it", "lt", "lv", "mk", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sl", "sq", "sr", "sv",
@@ -42,7 +40,9 @@ public class LanguageSettingsView extends BaseView {
 		add(comboLanguages = new JComboBox<String>(items));
 		add(btnSave = new JButton("Save"));
 		btnSave.setVisible(false);
-		scroll = new JScrollPane(tblTranslated = new JTable(data, columnNames));
+		//scroll = new JScrollPane(tblTranslated = new JTable(data, columnNames));
+		scroll = new JScrollPane(tblTranslated = new JTable());
+		tblTranslated.setFillsViewportHeight(true);
 		add(scroll);
 		scroll.setVisible(false);
 		add(lblLoading = new JLabel("Loading...",
