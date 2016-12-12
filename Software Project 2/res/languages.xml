@@ -159,7 +159,7 @@
 	<string name = "RailCard">
 		<value lang="nl">Abonnementen</value>
 		<value lang="fr">Abonnements</value>
-		<value lang="en">Rail cards</value>
+		<value lang="en">Railcards</value>
 	</string>
 	<string name = "TicketView">
 		<value lang="nl">Tickets</value>
@@ -338,7 +338,7 @@
 	</string>
 	
 	<string name="ActiveRailCard">
-		<value lang="en">Active rail cards</value>
+		<value lang="en">Active railcards</value>
 		<value lang="nl">Actieve abonnementen</value>
 		<value lang="fr">Abonnements actif</value>
 	</string>
