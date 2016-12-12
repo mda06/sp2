@@ -28,7 +28,7 @@ public class LostItemAddFrame extends JFrame {
 	}
 	
 	private void initLayout() {
-		setSize(500,700);
+		setSize(500,480);
 		setTitle("Add a lost item");
 		setLocationRelativeTo(null);
 		setAlwaysOnTop(true);
