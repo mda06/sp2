@@ -12,7 +12,7 @@ import com.school.project.util.FontUtil;
 
 public class LostItemView extends BaseView{
 	private static final long serialVersionUID = 1L;
-	private JTextField txtSearch;
+	private JTextField txtSearchType, txtSearchDesc, txtSearchLoc;
 	private JPanel pnlSearch;
 	private JButton btnSearch, btnAdd;
 	private JTable table;
@@ -25,29 +25,38 @@ public class LostItemView extends BaseView{
 	
 	private void initLayout() {
 		
-		txtSearch = new JTextField("Search");		    
+		txtSearchType = new JTextField("Type");
+		txtSearchDesc = new JTextField("Description");
+		txtSearchLoc = new JTextField("Location");
 		btnSearch = new JButton("Search");
 		cbtnType = new JCheckBox("by type");
 		cbtnDescription = new JCheckBox("by description");
 		cbtnLocation = new JCheckBox("by location");
 		SpringLayout sp = new SpringLayout();
 		pnlSearch = new JPanel(sp);
-		pnlSearch.add(txtSearch);
+		pnlSearch.add(txtSearchType);
+		pnlSearch.add(txtSearchDesc);
+		pnlSearch.add(txtSearchLoc);
 		pnlSearch.add(btnSearch);
 		
-		pnlSearch.add(cbtnType);
-		pnlSearch.add(cbtnDescription);
-		pnlSearch.add(cbtnLocation);
-		
-		sp.putConstraint(SpringLayout.WEST, txtSearch, 0, SpringLayout.WEST, pnlSearch);
-		sp.putConstraint(SpringLayout.NORTH, txtSearch, 0, SpringLayout.NORTH, pnlSearch);
-		sp.putConstraint(SpringLayout.SOUTH, txtSearch, 0, SpringLayout.SOUTH, pnlSearch);
-		sp.putConstraint(SpringLayout.NORTH, btnSearch, 0, SpringLayout.NORTH, txtSearch);
-		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearch);
+		sp.putConstraint(SpringLayout.WEST, txtSearchType, 0, SpringLayout.WEST, pnlSearch);
+		sp.putConstraint(SpringLayout.NORTH, txtSearchType, 0, SpringLayout.NORTH, pnlSearch);
+		sp.putConstraint(SpringLayout.SOUTH, txtSearchType, 0, SpringLayout.SOUTH, pnlSearch);
+		sp.putConstraint(SpringLayout.NORTH, btnSearch, 0, SpringLayout.NORTH, txtSearchType);
+		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearchType);
 		sp.putConstraint(SpringLayout.WEST, btnSearch, -170, SpringLayout.EAST, pnlSearch);
-		sp.putConstraint(SpringLayout.EAST, txtSearch, -20, SpringLayout.WEST, btnSearch);
+		sp.putConstraint(SpringLayout.EAST, txtSearchType, -20, SpringLayout.WEST, btnSearch);
+		
+		sp.putConstraint(SpringLayout.NORTH, txtSearchDesc, 10, SpringLayout.SOUTH, txtSearchType);
+		sp.putConstraint(SpringLayout.WEST, txtSearchDesc, 0, SpringLayout.WEST, txtSearchType);
+		sp.putConstraint(SpringLayout.EAST, txtSearchDesc, 10, SpringLayout.EAST, txtSearchType);
+		
+		sp.putConstraint(SpringLayout.NORTH, txtSearchLoc, 10, SpringLayout.SOUTH, txtSearchDesc);
+		sp.putConstraint(SpringLayout.WEST, txtSearchLoc, 0, SpringLayout.WEST, txtSearchDesc);
+		sp.putConstraint(SpringLayout.EAST, txtSearchLoc, 10, SpringLayout.EAST, txtSearchDesc);
 			
-		btnAdd = new JButton("Add a item");
+		
+		btnAdd = new JButton("Add an item");
 		table = new JTable();	
 		JScrollPane scroll = new JScrollPane(table);		
 
@@ -57,6 +66,8 @@ public class LostItemView extends BaseView{
 		add(pnlSearch);
 		add(btnAdd);
 		add(scroll);	
+		
+		
 		sp.putConstraint(SpringLayout.WEST, pnlSearch, 15, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, pnlSearch, 5, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.EAST, pnlSearch, -200, SpringLayout.EAST, this);
@@ -70,7 +81,7 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnAdd);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -15, SpringLayout.SOUTH, this);
 		
-		FontUtil.getInstance().bindSmallFont(txtSearch);
+		FontUtil.getInstance().bindSmallFont(txtSearchType);
 		FontUtil.getInstance().bindSmallFont(btnSearch);
 		FontUtil.getInstance().bindSmallFont(btnAdd);
 		FontUtil.getInstance().bindSmallFont(table);
@@ -86,8 +97,16 @@ public class LostItemView extends BaseView{
 		return pnlSearch;
 	}
 	
-	public JTextField getTxtSearch() {
-		return txtSearch;
+	public JTextField getTxtSearchType() {
+		return txtSearchType;
+	}
+
+	public JTextField getTxtSearchDesc() {
+		return txtSearchDesc;
+	}
+
+	public JTextField getTxtSearchLoc() {
+		return txtSearchLoc;
 	}
 
 	public JButton getBtnSearch() {

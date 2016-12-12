@@ -71,7 +71,7 @@ public class TicketEditorPanel extends JPanel {
 		pnlLeft.add(btnDelete);
 		pnlLeft.add(btnBack);
 		pnlLeft.add(lblValidityPer);
-		//pnlLeft.add(lblDays);
+		pnlLeft.add(lblDays);
 		pnlLeft.add(cbHasFixedRoute);
 		pnlLeft.add(jcValidityPer);
 		
