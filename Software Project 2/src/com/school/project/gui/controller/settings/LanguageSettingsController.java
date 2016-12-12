@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.LanguageSettingsView;
@@ -55,10 +56,12 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 					
 					view.getScrollLst().setVisible(true);
 					HashMap<String, String> from = languageHandler.getWords().get(languageHandler.getCurrentLanguage());
-					String[] lst = new String[newWords.size()];
-					for(int i = 0; i < newWords.size(); i++)
-						lst[i] = from.values().toArray()[i] + " -> " + newWords.values().toArray()[i];
-					view.getLstTranslated().setListData(lst);
+					DefaultTableModel model = new DefaultTableModel();
+					for(int i = 0; i < newWords.size(); i++) {
+						String[] rowData = {(String)from.values().toArray()[i], (String)newWords.values().toArray()[i]};
+						model.addRow(rowData);
+					}
+					view.getTblTranslated().setModel(model);
 					view.getBtnSave().setVisible(true);
 				}).start();
 			} else {
@@ -71,7 +74,7 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 				return;
 			}
 			view.getScrollLst().setVisible(false);
-			view.getLstTranslated().setListData(new String[0]);
+			view.getTblTranslated();
 			view.getBtnSave().setVisible(false);
 			languageHandler.addNewLanguage(newLanguage, newWords);
 			languageHandler.setLanguage(newLanguage);

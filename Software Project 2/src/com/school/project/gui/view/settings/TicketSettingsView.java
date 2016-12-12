@@ -3,6 +3,7 @@ package com.school.project.gui.view.settings;
 import javax.swing.JButton;
 
 import com.school.project.gui.view.TicketView;
+import com.school.project.util.FontUtil;
 
 public class TicketSettingsView extends TicketView {
 
@@ -13,9 +14,10 @@ public class TicketSettingsView extends TicketView {
 	public final String KEY_EDIT = "editor";
 	
 	public TicketSettingsView(){
-		this.getPnlBtns().add(btnNewticket = new JButton("new ticket"));
+		this.getPnlBtns().add(btnNewticket = new JButton("New ticket"));
 		//remove(this.getPnlPayment());
 		add(pnlTicketEditor = new TicketEditorPanel(),KEY_EDIT);
+		FontUtil.getInstance().bindSmallFont(btnNewticket);
 	}
 
 	public TicketEditorPanel getPnlTicketEditor() {

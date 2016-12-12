@@ -33,19 +33,16 @@ public class RailCardSettingsController extends BaseController<RailCardSettingsV
 			FontUtil.getInstance().bindSmallFont(btn);
 			btn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					//RailCard rc = RailCardCache.getInstance().getRailCard(Integer.parseInt(e.getActionCommand()));
+					RailCard rc = RailCardCache.getInstance().getRailCard(Integer.parseInt(e.getActionCommand()));
 					showCard(view.KEY_EDIT);
-					
-					
+					rcEdit.showRailCard(rc);
 				}
 			});
 		}
-		
-		
 		view.getBtnNewRailCard().addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//showCard(view.KEY_EDIT);
-				//tEdit.newTicket();
+				showCard(view.KEY_EDIT);
+				rcEdit.newTicket();
 			}
 		});
 	}

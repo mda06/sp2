@@ -3,6 +3,7 @@ package com.school.project.gui.view.settings;
 import javax.swing.JButton;
 
 import com.school.project.gui.view.RailCardView;
+import com.school.project.util.FontUtil;
 
 public class RailCardSettingsView extends RailCardView{
 	private static final long serialVersionUID = 1L;
@@ -15,6 +16,7 @@ public class RailCardSettingsView extends RailCardView{
 	public RailCardSettingsView() {
 		this.getPnlBtns().add(btnNewRailCard = new JButton("New Railcard"));
 		add(pnlRailCardEditor = new RailCardEditorPanel(), KEY_EDIT);
+		FontUtil.getInstance().bindSmallFont(btnNewRailCard);
 	}
 	
 	public JButton getBtnNewRailCard() {

@@ -11,6 +11,7 @@ import javax.swing.SpringLayout;
 import com.school.project.gui.view.BaseView;
 import com.school.project.nfc.KEY_LOCATION;
 import com.school.project.nfc.KEY_TYPE;
+import com.school.project.util.FontUtil;
 
 public class NFCSettingsView extends BaseView {
 	private static final long serialVersionUID = 1L;
@@ -43,15 +44,15 @@ public class NFCSettingsView extends BaseView {
 		add(btnDump = new JButton("Create dump"));
 		add(scroll);
 		
-		sp.putConstraint(SpringLayout.WEST, lblType, 20, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, lblType, 0, SpringLayout.WEST, lblLoc);
 		sp.putConstraint(SpringLayout.NORTH, lblType, 20, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, lblType, 150, SpringLayout.WEST, this);
+		//sp.putConstraint(SpringLayout.EAST, lblType, 150, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, cbType, 0, SpringLayout.NORTH, lblType);
 		sp.putConstraint(SpringLayout.WEST, cbType, 20, SpringLayout.EAST, lblType);
 		sp.putConstraint(SpringLayout.EAST, cbType, 100, SpringLayout.WEST, cbType);
 		
-		sp.putConstraint(SpringLayout.WEST, lblLoc, 0, SpringLayout.WEST, lblType);
-		sp.putConstraint(SpringLayout.EAST, lblLoc, 0, SpringLayout.EAST, lblType);
+		sp.putConstraint(SpringLayout.WEST, lblLoc, 20, SpringLayout.WEST, this);
+		//sp.putConstraint(SpringLayout.EAST, lblLoc, 20, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.NORTH, lblLoc, 10, SpringLayout.SOUTH, lblType);
 		sp.putConstraint(SpringLayout.NORTH, cbLoc, 0, SpringLayout.NORTH, lblLoc);
 		sp.putConstraint(SpringLayout.EAST, cbLoc, 0, SpringLayout.EAST, cbType);
@@ -77,6 +78,18 @@ public class NFCSettingsView extends BaseView {
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnDump);
 		sp.putConstraint(SpringLayout.WEST, scroll, 30, SpringLayout.HORIZONTAL_CENTER, this);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -20, SpringLayout.SOUTH, this);
+		
+		FontUtil.getInstance().bindSmallFont(lblLoc);
+		FontUtil.getInstance().bindSmallFont(lblType);
+		FontUtil.getInstance().bindSmallFont(cbLoc);
+		FontUtil.getInstance().bindSmallFont(cbType);
+		FontUtil.getInstance().bindSmallFont(txtReader);
+		FontUtil.getInstance().bindSmallFont(txtCard);
+		FontUtil.getInstance().bindSmallFont(btnReader);
+		FontUtil.getInstance().bindSmallFont(btnCard);
+		FontUtil.getInstance().bindSmallFont(btnDump);
+		FontUtil.getInstance().bindSmallFont(listDump);
+		
 	}
 
 	public JLabel getLblLoc() {

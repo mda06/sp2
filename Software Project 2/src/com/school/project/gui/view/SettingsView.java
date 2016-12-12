@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JTabbedPane;
 
+import com.school.project.util.FontUtil;
+
 public class SettingsView extends BaseView {
 	private static final long serialVersionUID = 1L;
 	private JTabbedPane tabs;
@@ -15,6 +17,7 @@ public class SettingsView extends BaseView {
 	
 	private void initLayout() {
 		tabs = new JTabbedPane();
+		FontUtil.getInstance().bindReallySmallFont(tabs);
 		setLayout(new BorderLayout());
 		add(tabs);
 	}
