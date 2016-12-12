@@ -67,7 +67,7 @@ public class CardMifare1K {
 	
 	public static boolean isSucces(ResponseAPDU adpu) {
 		if(adpu == null) return false;
-		return adpu.getSW() == SUCCESS;
+		return adpu.getSW1() == SUCCESS;
 	}
 
 	public ResponseAPDU getUID() throws CardException {

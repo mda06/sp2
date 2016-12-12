@@ -8,10 +8,8 @@ import java.util.Calendar;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.smartcardio.CardException;
 import javax.smartcardio.ResponseAPDU;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 
 import com.school.project.dao.ActiveRailCardDAO;
 import com.school.project.gui.controller.listener.PaymentBackListener;
@@ -83,29 +81,21 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 				}
 			}
 		});
+		
+		ActionListener actRad = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Calendar cal = getValidityPeriod();
+				pnl.getTxtValidTo().setText(new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime()));
+			}
+		};
 
-		for (int i = 0; i < pnl.getTimePeriod().getButtonCount(); i++) {
-			JRadioButton btn = (JRadioButton) pnl.getTimePeriod().getElements().nextElement();
-			btn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Calendar cal = Calendar.getInstance();
-					cal.setTime(new java.util.Date());
-					if (btn == pnl.getRdPricePer3Month()) {
-						cal.add(Calendar.DATE, 3);
-					} else if (btn == pnl.getRdPricePerMonth()) {
-						cal.add(Calendar.DATE, 1);
-					} else {
-						cal.add(Calendar.DATE, 12);
-					}
-					pnl.getTxtValidTo().setText(new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime()));
-				}
-			});
-		}
+		pnl.getRdPricePer3Month().addActionListener(actRad);
+		pnl.getRdPricePerMonth().addActionListener(actRad);
+		pnl.getRdPricePerYear().addActionListener(actRad);
 	}
 
 	private void setActiveRailCardOnNFC(ActiveRailCard activeRailCard) {
 		if (activeRailCard == null || nfcCard == null) return;
-		System.out.println("Putting data to nfc..");
 		try {
 			byte data[] = new byte[16];
 			byte id[] = intToByteArray(activeRailCard.getInNameOf().getId());
@@ -113,11 +103,10 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 				data[i] = id[i];
 			for(int i = 0; i < 12; i++)
 				data[4+i] = 0;
-			System.out.println(nfcCard.authentificate(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD).getSW());
+			nfcCard.authentificate(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD).getSW();
 			ResponseAPDU res = nfcCard.updateBinaryBlock(RailCardToNFCSettings.BLOCK_NUMBER_RAILCARD, data);
-			System.out.println(CardMifare1K.isSucces(res));
 			if (CardMifare1K.isSucces(res)) JOptionPane.showMessageDialog(null, "Success saved to NFC !");
-		} catch (CardException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -130,11 +119,11 @@ public class ActiveRailCardController implements SelectedUserListener, Observer,
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new java.util.Date());
 		if (pnl.getRdPricePer3Month().isSelected()) {
-			cal.add(Calendar.DATE, 3);
+			cal.add(Calendar.MONTH, 3);
 		} else if (pnl.getRdPricePerMonth().isSelected()) {
-			cal.add(Calendar.DATE, 1);
+			cal.add(Calendar.MONTH, 1);
 		} else {
-			cal.add(Calendar.DATE, 12);
+			cal.add(Calendar.MONTH, 12);
 		}
 
 		return cal;
