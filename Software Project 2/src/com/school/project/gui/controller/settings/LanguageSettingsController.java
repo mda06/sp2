@@ -18,6 +18,7 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 	private String newLanguage;
 	private HashMap<String, String> newWords;
 	private LanguageHandler languageHandler;
+	private DefaultTableModel model;
 
 	public LanguageSettingsController(LanguageHandler lh) {
 		super(new LanguageSettingsView());
@@ -26,6 +27,11 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 		newWords = null;
 		strErrorSelectALanguage = "Error please select a language";
 		strErrorLoadLanguage = "Error loading language";
+		model = new DefaultTableModel();
+		model.addColumn("Key");
+		model.addColumn("Translation");
+		view.getTblTranslated().setModel(model);
+		
 		initEvent();
 	}
 
@@ -56,9 +62,9 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 					
 					view.getScrollLst().setVisible(true);
 					HashMap<String, String> from = languageHandler.getWords().get(languageHandler.getCurrentLanguage());
-					DefaultTableModel model = new DefaultTableModel();
-					for(int i = 0; i < newWords.size(); i++) {
-						String[] rowData = {(String)from.values().toArray()[i], (String)newWords.values().toArray()[i]};
+					
+					for(String key : newWords.keySet()){
+						String[] rowData = {from.get(key), newWords.get(key)};
 						model.addRow(rowData);
 					}
 					view.getTblTranslated().setModel(model);
@@ -72,6 +78,12 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 		view.getBtnSave().addActionListener((ev) -> {
 			if(newLanguage == null || newWords == null) {
 				return;
+			}
+			for(int i = 0; i < model.getRowCount(); i++){
+				if(newWords.get(model.getValueAt(i, 0)) != model.getValueAt(i, 1)){
+					newWords.put((String)model.getValueAt(i, 0), (String) model.getValueAt(i, 1));
+					System.out.println("Er werd iets aangepast");
+				}
 			}
 			view.getScrollLst().setVisible(false);
 			view.getTblTranslated();
