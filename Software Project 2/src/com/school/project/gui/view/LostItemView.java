@@ -1,5 +1,7 @@
 package com.school.project.gui.view;
 
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -13,7 +15,6 @@ import com.school.project.util.FontUtil;
 public class LostItemView extends BaseView{
 	private static final long serialVersionUID = 1L;
 	private JTextField txtSearchType, txtSearchDesc, txtSearchLoc;
-	private JPanel pnlSearch;
 	private JButton btnSearch, btnAdd;
 	private JTable table;
 	private JCheckBox cbtnType, cbtnDescription, cbtnLocation;
@@ -29,59 +30,52 @@ public class LostItemView extends BaseView{
 		txtSearchDesc = new JTextField("Description");
 		txtSearchLoc = new JTextField("Location");
 		btnSearch = new JButton("Search");
-		cbtnType = new JCheckBox("by type");
-		cbtnDescription = new JCheckBox("by description");
-		cbtnLocation = new JCheckBox("by location");
-		SpringLayout sp = new SpringLayout();
-		pnlSearch = new JPanel(sp);
-		pnlSearch.add(txtSearchType);
-		pnlSearch.add(txtSearchDesc);
-		pnlSearch.add(txtSearchLoc);
-		pnlSearch.add(btnSearch);
+		btnAdd = new JButton("Add an item");
+		table = new JTable();	
+		JScrollPane scroll = new JScrollPane(table);
 		
-		sp.putConstraint(SpringLayout.WEST, txtSearchType, 0, SpringLayout.WEST, pnlSearch);
-		sp.putConstraint(SpringLayout.NORTH, txtSearchType, 0, SpringLayout.NORTH, pnlSearch);
-		sp.putConstraint(SpringLayout.SOUTH, txtSearchType, 0, SpringLayout.SOUTH, pnlSearch);
+		SpringLayout sp = new SpringLayout();
+		setLayout(sp);
+		
+		add(txtSearchType);
+		add(txtSearchDesc);
+		add(txtSearchLoc);
+		add(btnSearch);
+		add(btnAdd);
+		add(scroll);
+		
+		btnSearch.setMinimumSize(new Dimension(300,100));
+		btnAdd.setMinimumSize(new Dimension(300,100));
+		
+		sp.putConstraint(SpringLayout.WEST, txtSearchType, 10, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.EAST, txtSearchType, -630, SpringLayout.EAST, this);
+		sp.putConstraint(SpringLayout.NORTH, txtSearchType, 10, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.NORTH, btnSearch, 0, SpringLayout.NORTH, txtSearchType);
-		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearchType);
-		sp.putConstraint(SpringLayout.WEST, btnSearch, -170, SpringLayout.EAST, pnlSearch);
-		sp.putConstraint(SpringLayout.EAST, txtSearchType, -20, SpringLayout.WEST, btnSearch);
+		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearchLoc);
+		sp.putConstraint(SpringLayout.WEST, btnSearch, 10, SpringLayout.EAST, txtSearchType);
+		sp.putConstraint(SpringLayout.EAST, btnSearch, 300, SpringLayout.WEST, btnSearch);
 		
 		sp.putConstraint(SpringLayout.NORTH, txtSearchDesc, 10, SpringLayout.SOUTH, txtSearchType);
 		sp.putConstraint(SpringLayout.WEST, txtSearchDesc, 0, SpringLayout.WEST, txtSearchType);
-		sp.putConstraint(SpringLayout.EAST, txtSearchDesc, 10, SpringLayout.EAST, txtSearchType);
+		sp.putConstraint(SpringLayout.EAST, txtSearchDesc, 0, SpringLayout.EAST, txtSearchType);
 		
 		sp.putConstraint(SpringLayout.NORTH, txtSearchLoc, 10, SpringLayout.SOUTH, txtSearchDesc);
 		sp.putConstraint(SpringLayout.WEST, txtSearchLoc, 0, SpringLayout.WEST, txtSearchDesc);
-		sp.putConstraint(SpringLayout.EAST, txtSearchLoc, 10, SpringLayout.EAST, txtSearchDesc);
-			
+		sp.putConstraint(SpringLayout.EAST, txtSearchLoc, 0, SpringLayout.EAST, txtSearchDesc);
 		
-		btnAdd = new JButton("Add an item");
-		table = new JTable();	
-		JScrollPane scroll = new JScrollPane(table);		
-
-		sp = new SpringLayout();
-
-		setLayout(sp);
-		add(pnlSearch);
-		add(btnAdd);
-		add(scroll);	
+		sp.putConstraint(SpringLayout.WEST, btnAdd, 10, SpringLayout.EAST, btnSearch);
+		sp.putConstraint(SpringLayout.NORTH, btnAdd, 0, SpringLayout.NORTH, txtSearchType);
+		sp.putConstraint(SpringLayout.SOUTH, btnAdd, 0, SpringLayout.SOUTH, txtSearchLoc);
+		sp.putConstraint(SpringLayout.EAST, btnAdd, -10, SpringLayout.EAST, this);
 		
-		
-		sp.putConstraint(SpringLayout.WEST, pnlSearch, 15, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.NORTH, pnlSearch, 5, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, pnlSearch, -200, SpringLayout.EAST, this);
-		sp.putConstraint(SpringLayout.SOUTH, pnlSearch, 60, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.WEST, btnAdd, 15, SpringLayout.EAST, pnlSearch);
-		sp.putConstraint(SpringLayout.NORTH, btnAdd, 5, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.SOUTH, btnAdd, 60, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, btnAdd, -15, SpringLayout.EAST, this);
-		sp.putConstraint(SpringLayout.NORTH, scroll, 30, SpringLayout.SOUTH, pnlSearch);
-		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, pnlSearch);
+		sp.putConstraint(SpringLayout.NORTH, scroll, 20, SpringLayout.SOUTH, txtSearchLoc);
+		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, txtSearchType);
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnAdd);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -15, SpringLayout.SOUTH, this);
 		
 		FontUtil.getInstance().bindSmallFont(txtSearchType);
+		FontUtil.getInstance().bindSmallFont(txtSearchDesc);
+		FontUtil.getInstance().bindSmallFont(txtSearchLoc);
 		FontUtil.getInstance().bindSmallFont(btnSearch);
 		FontUtil.getInstance().bindSmallFont(btnAdd);
 		FontUtil.getInstance().bindSmallFont(table);
@@ -91,10 +85,6 @@ public class LostItemView extends BaseView{
 	
 	public JButton getBtnAdd() {
 		return btnAdd;
-	}
-
-	public JPanel getPnlSearch() {
-		return pnlSearch;
 	}
 	
 	public JTextField getTxtSearchType() {
