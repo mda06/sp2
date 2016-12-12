@@ -3,8 +3,6 @@ package com.school.project.gui.view;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -17,7 +15,6 @@ public class LostItemView extends BaseView{
 	private JTextField txtSearchType, txtSearchDesc, txtSearchLoc;
 	private JButton btnSearch, btnAdd;
 	private JTable table;
-	private JCheckBox cbtnType, cbtnDescription, cbtnLocation;
 
 	public LostItemView() {
 		super("lostItemView");
@@ -106,31 +103,4 @@ public class LostItemView extends BaseView{
 	public JTable getTable() {
 		return table;
 	}
-
-	public JCheckBox getCbtnType() {
-		return cbtnType;
-	}
-
-	public void setCbtnType(JCheckBox cbtnType) {
-		this.cbtnType = cbtnType;
-	}
-
-	public JCheckBox getCbtnDescription() {
-		return cbtnDescription;
-	}
-
-	public void setCbtnDescription(JCheckBox cbtnDescription) {
-		this.cbtnDescription = cbtnDescription;
-	}
-
-	public JCheckBox getCbtnLocation() {
-		return cbtnLocation;
-	}
-
-	public void setCbtnLocation(JCheckBox cbtnLocation) {
-		this.cbtnLocation = cbtnLocation;
-	}
-	
-	
-
 }

@@ -129,6 +129,7 @@ public class LostItemController extends BaseController<LostItemView> {
 	}
 
 	private void initSearchBoxEvents() {
+		
 		view.getTxtSearchType().addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				view.getTxtSearchType().setText("");
@@ -140,31 +141,77 @@ public class LostItemController extends BaseController<LostItemView> {
 				}
 			}
 		});
+		view.getTxtSearchDesc().addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				view.getTxtSearchDesc().setText("");
+				
+			}
+
+			public void focusLost(FocusEvent e) {				
+			}
+		});
+		view.getTxtSearchLoc().addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				view.getTxtSearchLoc().setText("");
+				
+			}
+
+			public void focusLost(FocusEvent e) {				
+			}
+		});
 		
-		ActionListener action = new ActionListener(){
+		ActionListener searchAction = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {				
 				for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
 					tableModel.removeRow(i);
 				}
 				if (!view.getTxtSearchType().getText().isEmpty()) {
-						for (LostItem item : LostItemDAO.getInstance().getByType(view.getTxtSearchType().getText())) {
-							tableModel.addLostItem(item);
-						}
-						for (LostItem item : LostItemDAO.getInstance().getByDescription(view.getTxtSearchType().getText())) {
-							tableModel.addLostItem(item);
-						}
-						for (LostItem item : LostItemDAO.getInstance().getByLocation(view.getTxtSearchType().getText())) {
-							tableModel.addLostItem(item);
-						}
-					
+					for (LostItem item : LostItemDAO.getInstance().getByType(view.getTxtSearchType().getText())) {
+						tableModel.addLostItem(item);
+					}
 					view.getTxtSearchType().setText("");
-					
-				} else {
+				}
+				else if(!view.getTxtSearchDesc().getText().isEmpty()){
+					for (LostItem item : LostItemDAO.getInstance().getByDescription(view.getTxtSearchDesc().getText())) {
+						tableModel.addLostItem(item);
+					}
+					view.getTxtSearchDesc().setText("");
+				}
+				else if(!view.getTxtSearchLoc().getText().isEmpty()){
+					for (LostItem item : LostItemDAO.getInstance().getByLocation(view.getTxtSearchLoc().getText())) {
+						tableModel.addLostItem(item);
+					}
+					view.getTxtSearchLoc().setText("");
+				}					
+				else {
 					initLostItemsToTable();
 				}
 			}
 		};
-		view.getBtnSearch().addActionListener(action);
-		view.getTxtSearchType().addActionListener(action);
+		
+//		KeyListener searchEnter = new KeyListener(){
+//			public void keyTyped(KeyEvent e) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//			public void keyPressed(KeyEvent e) {
+//				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+//					view.getBtnSearch().addActionListener(searchAction);
+//				}
+//				
+//			}
+//			public void keyReleased(KeyEvent e) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//			
+//		};
+//		
+//		view.getBtnSearch().addKeyListener(searchEnter);
+		
+		view.getBtnSearch().addActionListener(searchAction);
+		view.getTxtSearchType().addActionListener(searchAction);
+		view.getTxtSearchDesc().addActionListener(searchAction);
+		view.getTxtSearchLoc().addActionListener(searchAction);
 	}
 }
