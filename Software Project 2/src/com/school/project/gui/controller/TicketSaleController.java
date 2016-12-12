@@ -13,9 +13,11 @@ import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.PaymentPanel;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketSale;
+import com.school.project.model.TicketSaleOfflineCache;
 import com.school.project.model.User;
 import com.school.project.nmbs.model.Station;
 import com.school.project.nmbs.model.StationCache;
+import com.school.project.util.NetUtil;
 
 public class TicketSaleController {
 	private PaymentPanel pnl;
@@ -57,8 +59,13 @@ public class TicketSaleController {
 					JOptionPane.showMessageDialog(pnl, "Please enter from and to stations");
 				} else {
 					TicketSale sale = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user);
-
-					TicketSaleDAO.getInstance().add(sale);
+					if(NetUtil.hasInternet()) {
+						TicketSaleDAO.getInstance().add(sale);
+						TicketSaleOfflineCache.getInstance().saveCache();
+					} else {
+						JOptionPane.showMessageDialog(pnl, "No internet available, ticket is cached offline");
+						TicketSaleOfflineCache.getInstance().add(sale);
+					}
 					list.backToPreviousView();
 				}
 			}
