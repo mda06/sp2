@@ -31,7 +31,7 @@ public class LostItemController extends BaseController<LostItemView> {
 		view.getTable().setModel(tableModel);
 		view.getTable().setAutoCreateRowSorter(true);
 
-		view.getTxtSearch().setFocusable(true);
+		view.getTxtSearchType().setFocusable(true);
 		new Thread(() -> initLostItemsToTable()).start();;
 		initSearchBoxEvents();
 		initAddLostItem();
@@ -124,40 +124,47 @@ public class LostItemController extends BaseController<LostItemView> {
 			strErrorAdd = handler.getString("errorAddLostItem");
 			strRemove = handler.getString("removeLostItem");
 			
-			view.getTxtSearch().setToolTipText(handler.getString("tooltipLostItem"));
+			view.getTxtSearchType().setToolTipText(handler.getString("tooltipLostItem"));
 		}
 	}
 
 	private void initSearchBoxEvents() {
-		view.getTxtSearch().addFocusListener(new FocusListener() {
+		view.getTxtSearchType().addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				view.getTxtSearch().setText("");
+				view.getTxtSearchType().setText("");
 			}
 
 			public void focusLost(FocusEvent e) {
-				if (view.getTxtSearch().getText().isEmpty()) {
+				if (view.getTxtSearchType().getText().isEmpty()) {
 					//view.getTxtSearch().setText("Search");
 				}
 			}
 		});
 		
 		ActionListener action = new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
 					tableModel.removeRow(i);
 				}
-
-				if (!view.getTxtSearch().getText().isEmpty()) {
-					for (LostItem item : LostItemDAO.getInstance().getByDescription(view.getTxtSearch().getText())) {
-						tableModel.addLostItem(item);
-					}
-					view.getTxtSearch().setText("");
+				if (!view.getTxtSearchType().getText().isEmpty()) {
+						for (LostItem item : LostItemDAO.getInstance().getByType(view.getTxtSearchType().getText())) {
+							tableModel.addLostItem(item);
+						}
+						for (LostItem item : LostItemDAO.getInstance().getByDescription(view.getTxtSearchType().getText())) {
+							tableModel.addLostItem(item);
+						}
+						for (LostItem item : LostItemDAO.getInstance().getByLocation(view.getTxtSearchType().getText())) {
+							tableModel.addLostItem(item);
+						}
+					
+					view.getTxtSearchType().setText("");
+					
 				} else {
 					initLostItemsToTable();
 				}
 			}
 		};
 		view.getBtnSearch().addActionListener(action);
-		view.getTxtSearch().addActionListener(action);
+		view.getTxtSearchType().addActionListener(action);
 	}
 }
