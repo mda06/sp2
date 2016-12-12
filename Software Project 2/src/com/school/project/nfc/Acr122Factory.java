@@ -20,7 +20,7 @@ public class Acr122Factory implements CardConnected {
 	private byte keyType;
 	
 	private Acr122Factory() {
-		keyNumber = KEY_LOCATION.ZERO.getValue(); 
+		keyNumber = KEY_LOCATION.ONE.getValue(); 
 		keyType = KEY_TYPE.A.getValue(); 
 		listeners = new ArrayList<>();
 	}
