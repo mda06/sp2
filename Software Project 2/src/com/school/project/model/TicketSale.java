@@ -11,9 +11,11 @@ public class TicketSale {
 	private boolean archived;
 	private Ticket ticket;
 	private User user;
+	private double price;
 
-	public TicketSale(int id, Date validFrom, Date validTo, Date soldOn, String from, String to, boolean archived, Ticket ticket, User user) {
+	public TicketSale(int id, Date validFrom, Date validTo, Date soldOn, String from, String to, boolean archived, Ticket ticket, User user, double price) {
 		this.id = id;
+		this.price = price;
 		this.validFrom = validFrom;
 		this.validTo = validTo;
 		this.soldOn = soldOn;
@@ -22,6 +24,10 @@ public class TicketSale {
 		this.archived = archived;
 		this.ticket = ticket;
 		this.user = user;
+	}
+	
+	public double getPrice() {
+		return price;
 	}
 	
 	public int getId() {
@@ -74,6 +80,10 @@ public class TicketSale {
 
 	public boolean isArchived() {
 		return archived;
+	}
+	
+	public void setPrice(double d) {
+		price = d;
 	}
 
 	public void setArchived(boolean archived) {
@@ -165,23 +175,4 @@ public class TicketSale {
 	public String toString(){
 		return String.format("Id: %s\nvalidFrom: %s\nvalidTo: %s\nSold on: %s\nFrom: %s\nTo: %s\nArchived: %s\nTicket: %s\nUser %s\n", id, validFrom, validTo, soldOn, from, to, archived, ticket.toString(), user.toString());
 	}
-	
-	//Er is een fout met deze equals methode
-	/*public boolean equals(Object obj){
-		if(this == obj){
-			return true;
-		}
-		if(obj == null){
-			return false;
-		}
-		if(getClass() != obj.getClass()){
-			return false;
-		}
-		TicketSale other = (TicketSale)obj;
-		if(this.id != other.id || this.validFrom != other.validFrom || this.validTo != other.validTo || this.soldOn != other.soldOn
-			|| this.from != other.from || this.to != other.to || this.archived != other.archived || !ticket.equals(other.ticket) || !user.equals(other.user)){
-			return false;
-		}
-		return true;
-	}*/
 }

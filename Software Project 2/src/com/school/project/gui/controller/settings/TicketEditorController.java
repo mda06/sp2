@@ -46,9 +46,9 @@ public class TicketEditorController implements Observer{
 				int response = JOptionPane.showConfirmDialog(pnl, strConfirmDelete);
 				if(response == JOptionPane.OK_OPTION && ticket != null){
 					TicketDAO.getInstance().delete(ticket);
+					TicketCache.getInstance().remove(ticket.getId());
 					list.backToPreviousView();
 				}
-				//TODO: Cache updaten anders problemen!
 			}
 		});
 

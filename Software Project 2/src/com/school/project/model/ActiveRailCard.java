@@ -158,20 +158,4 @@ public class ActiveRailCard {
 	public String toString(){
 		return String.format("Id: %s\nvalidFrom: %s\nvalidTo: %s\nFrom: %s\nTo: %s\nUser: %s\n", id, validFrom, validTo, from, to, user.toString(), railCard.toString());
 	}
-	
-	//Test case op deze equals geeft me een error
-	/*public boolean equals(Object obj){
-		if(this == obj){
-			return true;
-		}
-		if(obj == null){
-			return false;
-		}
-		if(getClass() != obj.getClass()){
-			return false;
-		}
-		ActiveRailCard other = (ActiveRailCard)obj;
-		if(this.id != other.id || this.validFrom != other.validFrom || this.validTo != other.validTo
-				|| this.from != other.from || this.to != other.to || !user.equals(other.user) || !railCard.equals(other.railCard));
-		return true;*/
 }

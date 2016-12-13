@@ -77,6 +77,9 @@ public class DummyData {
 		
 	}
 	
+	/**
+	 * @deprecated The price isn't calculated !
+	 * */
 	public void insertDummyTicketSale(String secureCheck) {
 		if(!secureCheck.equals("BE_SURE_WITH_WHAT_YOU_DO")) return;
 		
@@ -108,8 +111,9 @@ public class DummyData {
 			cal.setTime(validTo);
 			cal.add(Calendar.DATE, ticket.getValidityPeriod());
 			validTo.setTime(cal.getTime().getTime());
+			double price = 0;
 			
-			TicketSale ts = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user);
+			TicketSale ts = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user, price);
 			TicketSaleDAO.getInstance().add(ts);
 		}
 	}
