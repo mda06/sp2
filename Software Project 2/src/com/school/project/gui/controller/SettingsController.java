@@ -7,6 +7,7 @@ import com.school.project.gui.controller.settings.LanguageSettingsController;
 import com.school.project.gui.controller.settings.LayoutSettingsController;
 import com.school.project.gui.controller.settings.NFCSettingsController;
 import com.school.project.gui.controller.settings.RailCardSettingsController;
+import com.school.project.gui.controller.settings.TicketPriceEditorController;
 import com.school.project.gui.controller.settings.TicketSettingsController;
 import com.school.project.gui.view.SettingsView;
 import com.school.project.language.LanguageHandler;
@@ -28,6 +29,7 @@ public class SettingsController extends BaseController<SettingsView> {
 		addSetting(new LanguageSettingsController(observable.getLanguageHandler()));
 		addSetting(new BackupController());
 		addSetting(new NFCSettingsController());
+		addSetting(new TicketPriceEditorController());
 	}
 
 	private void addSetting(BaseController<?> bc) {
