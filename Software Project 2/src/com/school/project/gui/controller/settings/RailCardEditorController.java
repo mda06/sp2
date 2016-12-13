@@ -66,13 +66,13 @@ public class RailCardEditorController implements Observer {
 				rc.setPricePerYear(Double.parseDouble(pnl.getTxtPricePerYear().getText()));
 				rc.setHasFixedRoute(pnl.getCbHasFixedRoute().isSelected());
 				
-				if(newRc){
-					RailCardDAO.getInstance().add(rc);
-					JOptionPane.showMessageDialog(pnl, strSaveSuccess);
-				}
-				else{
+				if(!newRc){
 					RailCardDAO.getInstance().update(rc);
 					JOptionPane.showMessageDialog(pnl, strUpdateSuccess);
+				}
+				else{
+					RailCardDAO.getInstance().add(rc);
+					JOptionPane.showMessageDialog(pnl, strSaveSuccess);
 				}
 				RailCardCache.getInstance().addRailCard(rc);
 				
@@ -129,14 +129,25 @@ public class RailCardEditorController implements Observer {
 		
 		pnl.getBtnDelete().setVisible(false);
 	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
-		LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
-		strErrorFillIn = lh.getString("errorAddLostItem");
-		strSaveSuccess = lh.getString("saveSucces");
-		strUpdateSuccess = lh.getString("updateSucces");
-		strConfirmDelete = lh.getString("confirmDelete");
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			pnl.getLblName().setText(lh.getString("name"));
+			pnl.getBtnBack().setText(lh.getString("back"));
+			pnl.getBtnSave().setText(lh.getString("save"));
+			pnl.getBtnDelete().setText(lh.getString("delete"));
+			pnl.getLblDesc().setText(lh.getString("description"));
+			pnl.getCbHasFixedRoute().setText(lh.getString("hasFixedRoute"));
+			pnl.getLblPricePerMonth().setText(lh.getString("pricePerMonth"));
+			pnl.getLblPricePer3Month().setText(lh.getString("pricePer3Month"));
+			pnl.getLblPricePerYear().setText(lh.getString("pricePerYear"));
+			strErrorFillIn = lh.getString("errorAddLostItem");
+			strSaveSuccess = lh.getString("saveSucces");
+			strUpdateSuccess = lh.getString("updateSucces");
+			strConfirmDelete = lh.getString("confirmDelete");
+		}
+		
 
 	}
 

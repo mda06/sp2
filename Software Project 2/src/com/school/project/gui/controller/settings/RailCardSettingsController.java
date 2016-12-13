@@ -55,7 +55,7 @@ public class RailCardSettingsController extends BaseController<RailCardSettingsV
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//tEdit.update(o, arg);
+		rcEdit.update(o, arg);
 	}
 	
 	@Override

@@ -500,14 +500,14 @@
 		<value lang="fr">Jours</value>
 	</string>
 	<string name="saveSucces">
-		<value lang="en">Ticket saved!</value>
-		<value lang="nl">Ticket opgeslaan!</value>
-		<value lang="fr">Ticket enregistré!</value>
+		<value lang="en">Save is done!</value>
+		<value lang="nl">Opslaan gelukt!</value>
+		<value lang="fr">sauvgarde réussie</value>
 	</string>
 	<string name="updateSucces">
-		<value lang="en">Ticket updated!</value>
-		<value lang="nl">Ticket geupdate!</value>
-		<value lang="fr">Ticket mis à jour!</value>
+		<value lang="en">Updated!</value>
+		<value lang="nl">Geupdate!</value>
+		<value lang="fr">Mis à jour!</value>
 	</string>
 	<string name="confirmDelete">
 		<value lang="en">Are you sure?</value>

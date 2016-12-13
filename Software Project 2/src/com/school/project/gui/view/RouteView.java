@@ -55,7 +55,6 @@ public class RouteView extends BaseView {
 		dateModel.setValue(cal.getTime());
 		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, new Properties());
 		datePicker = new JDatePickerImpl(datePanel, new DateRouteFormatter());
-
 		lbDeparture = new JLabel("Departure:");
 		lbArrival = new JLabel("Arrival:");
 		lbUur = new JLabel("Uur:");
