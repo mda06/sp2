@@ -13,9 +13,9 @@ class FirstViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getFromJSON()
-             
+    
     }
-    func getFromJSON()
+        func getFromJSON()
     {
         let url = NSURL(string: "https://irail.be/stations/NMBS")
         let request = NSMutableURLRequest(url:url! as URL)
@@ -23,7 +23,7 @@ class FirstViewController: UIViewController{
         let task = URLSession.shared.dataTask(with: request as URLRequest) {data,response,error in
             guard error == nil && data != nil else
             {
-                print("Error:",error)
+                print("Error:",error as Any)
                 return
             }
             
@@ -34,18 +34,20 @@ class FirstViewController: UIViewController{
                 if data?.count != 0
                 {
                     let responseString = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSDictionary //because JSON data started with dictionary. not array.
-                    let time = responseString["current_time"] //number or strings
-                    print(String(describing: time)) //convert to string if it number
+                    //let time = responseString["current_time"] //number or strings
+                   // print(String(describing: time)) //convert to string if it number
                     
                     let graph=responseString["@graph"] as? [AnyObject] //posts started with array
                     
                     for post in graph!
                     {
-                        let txtId = "http://irail.be/stations/NMBS/007015400"
-                        let id = post["@id"] as! String
-                        if(txtId == id){
-                            print(post["name"] as! String)
-                        }
+                            let name = post["name"] as! String
+                        print(name)
+//                        let txtId = "http://irail.be/stations/NMBS/007015400"
+//                        let id = post["@id"] as! String
+//                        if(txtId == id){
+//                            print(post["name"] as! String)
+//                        }
                         
                     }
                     

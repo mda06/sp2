@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC8A17E11E033D6900933F1C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8A17E01E033D6900933F1C /* TableViewController.swift */; };
 		DCF237201E01E8F8005C9D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2371F1E01E8F8005C9D42 /* AppDelegate.swift */; };
 		DCF237221E01E8F8005C9D42 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237211E01E8F8005C9D42 /* FirstViewController.swift */; };
-		DCF237241E01E8F8005C9D42 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237231E01E8F8005C9D42 /* SecondViewController.swift */; };
 		DCF237271E01E8F8005C9D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF237251E01E8F8005C9D42 /* Main.storyboard */; };
 		DCF237291E01E8F8005C9D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF237281E01E8F8005C9D42 /* Assets.xcassets */; };
 		DCF2372C1E01E8F8005C9D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF2372A1E01E8F8005C9D42 /* LaunchScreen.storyboard */; };
 		DCF237371E01E8F8005C9D42 /* RailyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237361E01E8F8005C9D42 /* RailyTests.swift */; };
 		DCF237421E01E8F8005C9D42 /* RailyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237411E01E8F8005C9D42 /* RailyUITests.swift */; };
-		DCF237501E01EF7B005C9D42 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2374F1E01EF7B005C9D42 /* ProfileViewController.swift */; };
-		DCF237521E021498005C9D42 /* apiConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237511E021498005C9D42 /* apiConnection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC8A17E01E033D6900933F1C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
 		DCF2371C1E01E8F8005C9D42 /* Raily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF2371F1E01E8F8005C9D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF237211E01E8F8005C9D42 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		DCF237231E01E8F8005C9D42 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		DCF237261E01E8F8005C9D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCF237281E01E8F8005C9D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCF2372B1E01E8F8005C9D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,8 +49,6 @@
 		DCF2373D1E01E8F8005C9D42 /* RailyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RailyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF237411E01E8F8005C9D42 /* RailyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RailyUITests.swift; sourceTree = "<group>"; };
 		DCF237431E01E8F8005C9D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCF2374F1E01EF7B005C9D42 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		DCF237511E021498005C9D42 /* apiConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = apiConnection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +99,9 @@
 		DCF2371E1E01E8F8005C9D42 /* Raily */ = {
 			isa = PBXGroup;
 			children = (
+				DC8A17E01E033D6900933F1C /* TableViewController.swift */,
 				DCF2371F1E01E8F8005C9D42 /* AppDelegate.swift */,
 				DCF237211E01E8F8005C9D42 /* FirstViewController.swift */,
-				DCF2374F1E01EF7B005C9D42 /* ProfileViewController.swift */,
-				DCF237511E021498005C9D42 /* apiConnection.swift */,
-				DCF237231E01E8F8005C9D42 /* SecondViewController.swift */,
 				DCF237251E01E8F8005C9D42 /* Main.storyboard */,
 				DCF237281E01E8F8005C9D42 /* Assets.xcassets */,
 				DCF2372A1E01E8F8005C9D42 /* LaunchScreen.storyboard */,
@@ -268,10 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCF237241E01E8F8005C9D42 /* SecondViewController.swift in Sources */,
 				DCF237201E01E8F8005C9D42 /* AppDelegate.swift in Sources */,
-				DCF237521E021498005C9D42 /* apiConnection.swift in Sources */,
-				DCF237501E01EF7B005C9D42 /* ProfileViewController.swift in Sources */,
+				DC8A17E11E033D6900933F1C /* TableViewController.swift in Sources */,
 				DCF237221E01E8F8005C9D42 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +509,7 @@
 				DCF237481E01E8F8005C9D42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCF237491E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "RailyTests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +518,7 @@
 				DCF2374B1E01E8F8005C9D42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCF2374C1E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "RailyUITests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +527,7 @@
 				DCF2374E1E01E8F8005C9D42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
