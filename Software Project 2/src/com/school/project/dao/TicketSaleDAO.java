@@ -255,12 +255,46 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		ResultSet res = null;
 		
 		try{
-			String sql = "SELECT count(*) AS total, soldByUser FROM `ticketSales` GROUP BY soldByUser";
+			String sql = "SELECT count(*) AS total, soldByUser FROM ticketSales GROUP BY soldByUser";
 			stat = connection.createStatement();
 			res = stat.executeQuery(sql);
 			while(res.next()) {
 				User u = UserDAO.getInstance().get(res.getInt("soldByUser"));
 				Integer i = res.getInt("total");
+				map.put(u, i);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null) res.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		
+		return map;
+	}
+	
+	public HashMap<User, Double> getTotalTicketsSoldByUser(){
+		HashMap<User, Double> map = new HashMap();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT SUM(price) AS Total, soldByUser FROM ticketSales GROUP BY soldByUser";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			
+			while(res.next()){
+				User u = UserDAO.getInstance().get(res.getInt("soldbyUser"));
+				Double i = res.getDouble("Total");
 				map.put(u, i);
 			}
 		}
