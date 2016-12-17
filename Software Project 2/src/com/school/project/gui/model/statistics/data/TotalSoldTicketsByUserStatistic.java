@@ -21,7 +21,7 @@ public class TotalSoldTicketsByUserStatistic extends AbstractPieChartModel {
 		DefaultPieDataset dataset = new DefaultPieDataset();
 		HashMap<User, Double> map = TicketSaleDAO.getInstance().getTotalTicketsSoldByUser();
 		for(Entry<User,Double> e : map.entrySet()){
-			dataset.setValue(String.format("%s %s: %.2f", e.getKey().getFirstName(), e.getKey().getLastName(), e.getValue()), e.getValue());
+			dataset.setValue(String.format("%s %s: %.2f$", e.getKey().getFirstName(), e.getKey().getLastName(), e.getValue()), e.getValue());
 		}
 		return dataset;
 	}
