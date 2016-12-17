@@ -49,6 +49,8 @@ public class SettingsController extends BaseController<SettingsView> {
 				else if (i == 2) str = "LayoutSettings";
 				else if (i == 3) str = "LanguageSettings";
 				else if (i == 4) str = "Backup";
+				else if (i == 5) str = "NFCSettings";
+				else if (i == 6) str = "TicketPrice";
 				view.getTabbedPane().setTitleAt(i, lh.getString(str));
 			}
 		}

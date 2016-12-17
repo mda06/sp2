@@ -98,6 +98,37 @@ public class TicketPriceEditorPanel extends BaseView {
 		setLayout(new BorderLayout());
 		add(pnlToolbox, BorderLayout.WEST);
 		add(pnlCenter);
+		
+		FontUtil.getInstance().bindSmallFont(btnTkVal);
+		FontUtil.getInstance().bindSmallFont(btnTkPrice);
+		FontUtil.getInstance().bindSmallFont(btnTkFixRoute);
+		FontUtil.getInstance().bindSmallFont(btnStDst);
+		FontUtil.getInstance().bindSmallFont(btnStDur);
+		FontUtil.getInstance().bindSmallFont(btnStStops);
+		FontUtil.getInstance().bindSmallFont(btnMin);
+		FontUtil.getInstance().bindSmallFont(btnDiv);
+		FontUtil.getInstance().bindSmallFont(btnOpenParentheses);
+		FontUtil.getInstance().bindSmallFont(btnCloseParentheses);
+		FontUtil.getInstance().bindSmallFont(btnAddConst);
+		FontUtil.getInstance().bindSmallFont(btnRemove);
+		FontUtil.getInstance().bindSmallFont(lblDst);
+		FontUtil.getInstance().bindSmallFont(lblDur);
+		FontUtil.getInstance().bindSmallFont(lblStops);
+		FontUtil.getInstance().bindSmallFont(lblPrice);
+		FontUtil.getInstance().bindSmallFont(lblFixed);
+		FontUtil.getInstance().bindSmallFont(txtConst);
+		FontUtil.getInstance().bindSmallFont(txtStDst);
+		FontUtil.getInstance().bindSmallFont(txtStStops);
+		FontUtil.getInstance().bindSmallFont(txtTkVal);
+		FontUtil.getInstance().bindSmallFont(txtTkFixRoute);
+		FontUtil.getInstance().bindSmallFont(btnSave);
+		FontUtil.getInstance().bindSmallFont(txtFormula);
+		FontUtil.getInstance().bindSmallFont(lblVal);
+		FontUtil.getInstance().bindSmallFont(txtTkVal);
+		FontUtil.getInstance().bindSmallFont(txtTkPrice);
+		FontUtil.getInstance().bindSmallFont(btnTest);
+		FontUtil.getInstance().bindSmallFont(txtStDur);
+		
 	}
 	
 	public JLabel getLblDst() {

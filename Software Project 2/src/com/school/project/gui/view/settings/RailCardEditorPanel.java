@@ -33,7 +33,7 @@ public class RailCardEditorPanel extends JPanel{
 		setLayout(sp);
 		
 		lblPricePerMonth = new JLabel("price per month");
-		lblPricePer3Month = new JLabel("price per 3 motnhs");
+		lblPricePer3Month = new JLabel("price per 3 months");
 		lblPricePerYear = new JLabel("Price per year");
 		txtPricePerMonth = new JTextField(5);
 		txtPricePer3Month = new JTextField(5);
@@ -86,7 +86,7 @@ public class RailCardEditorPanel extends JPanel{
 		
 		sp.putConstraint(SpringLayout.NORTH, lblPricePerMonth, 30, SpringLayout.SOUTH, scrollPane);
 		sp.putConstraint(SpringLayout.WEST, lblPricePerMonth, 25, SpringLayout.WEST, pnlLeft);
-		sp.putConstraint(SpringLayout.NORTH, txtPricePerMonth, 25, SpringLayout.SOUTH, scrollPane);
+		sp.putConstraint(SpringLayout.NORTH, txtPricePerMonth, 30, SpringLayout.SOUTH, scrollPane);
 		sp.putConstraint(SpringLayout.WEST, txtPricePerMonth, 220, SpringLayout.WEST, lblPricePerMonth);
 		
 		sp.putConstraint(SpringLayout.NORTH, lblPricePer3Month, 30, SpringLayout.SOUTH, lblPricePerMonth);
@@ -103,7 +103,7 @@ public class RailCardEditorPanel extends JPanel{
 		sp.putConstraint(SpringLayout.WEST, btnDelete, 20, SpringLayout.EAST, scrollPane);
 		sp.putConstraint(SpringLayout.EAST, btnDelete, -20, SpringLayout.EAST, pnlLeft);
 		
-		sp.putConstraint(SpringLayout.NORTH, btnSave, 30, SpringLayout.SOUTH, lblPricePerYear);
+		sp.putConstraint(SpringLayout.NORTH, btnSave, 30, SpringLayout.SOUTH, txtPricePerYear);
 		sp.putConstraint(SpringLayout.WEST, btnSave, 170, SpringLayout.WEST, lblPricePerYear);
 		sp.putConstraint(SpringLayout.EAST, btnSave, -200, SpringLayout.EAST, pnlLeft);
 
@@ -113,8 +113,7 @@ public class RailCardEditorPanel extends JPanel{
 		sp.putConstraint(SpringLayout.SOUTH, pnlLeft, 1, SpringLayout.SOUTH, this);
 		sp.putConstraint(SpringLayout.WEST, pnlLeft, 1, SpringLayout.EAST, this);
 		
-		btnBack
-		.setPreferredSize(new Dimension(200, 70));
+		btnBack.setPreferredSize(new Dimension(200, 70));
 		txtDesc.setFont(new Font("Arial", Font.PLAIN, 18));
 
 		FontUtil.getInstance().bindBigFont(txtName);

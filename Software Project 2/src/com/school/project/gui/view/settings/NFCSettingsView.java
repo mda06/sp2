@@ -46,37 +46,37 @@ public class NFCSettingsView extends BaseView {
 		
 		sp.putConstraint(SpringLayout.WEST, lblType, 0, SpringLayout.WEST, lblLoc);
 		sp.putConstraint(SpringLayout.NORTH, lblType, 20, SpringLayout.NORTH, this);
-		//sp.putConstraint(SpringLayout.EAST, lblType, 150, SpringLayout.WEST, this);
 		sp.putConstraint(SpringLayout.NORTH, cbType, 0, SpringLayout.NORTH, lblType);
-		sp.putConstraint(SpringLayout.WEST, cbType, 20, SpringLayout.EAST, lblType);
-		sp.putConstraint(SpringLayout.EAST, cbType, 100, SpringLayout.WEST, cbType);
+		sp.putConstraint(SpringLayout.WEST, cbType, 0, SpringLayout.WEST, cbLoc);
+		sp.putConstraint(SpringLayout.EAST, cbType, 0, SpringLayout.EAST, cbLoc);
 		
 		sp.putConstraint(SpringLayout.WEST, lblLoc, 20, SpringLayout.WEST, this);
-		//sp.putConstraint(SpringLayout.EAST, lblLoc, 20, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.NORTH, lblLoc, 10, SpringLayout.SOUTH, lblType);
 		sp.putConstraint(SpringLayout.NORTH, cbLoc, 0, SpringLayout.NORTH, lblLoc);
-		sp.putConstraint(SpringLayout.EAST, cbLoc, 0, SpringLayout.EAST, cbType);
-		sp.putConstraint(SpringLayout.WEST, cbLoc, 0, SpringLayout.WEST, cbType);
+		sp.putConstraint(SpringLayout.WEST, cbLoc, 20, SpringLayout.EAST, lblLoc);
+		sp.putConstraint(SpringLayout.EAST, cbLoc, 100, SpringLayout.WEST, cbType);
 
-		sp.putConstraint(SpringLayout.EAST, btnReader, 0, SpringLayout.EAST, lblType);
-		sp.putConstraint(SpringLayout.WEST, btnReader, 0, SpringLayout.WEST, lblType);
+		sp.putConstraint(SpringLayout.EAST, btnReader, 0, SpringLayout.EAST, cbLoc);
+		sp.putConstraint(SpringLayout.WEST, btnReader, 0, SpringLayout.WEST, lblLoc);
 		sp.putConstraint(SpringLayout.NORTH, btnReader, 20, SpringLayout.SOUTH, lblLoc);
-		sp.putConstraint(SpringLayout.NORTH, txtReader, 0, SpringLayout.NORTH, btnReader);
-		sp.putConstraint(SpringLayout.WEST, txtReader, 0, SpringLayout.WEST, cbType);
+		sp.putConstraint(SpringLayout.NORTH, txtReader, 10, SpringLayout.SOUTH, btnReader);
+		sp.putConstraint(SpringLayout.WEST, txtReader, 0, SpringLayout.WEST, btnReader);
+		sp.putConstraint(SpringLayout.EAST, txtReader, 0, SpringLayout.EAST, btnReader);
 
-		sp.putConstraint(SpringLayout.EAST, btnCard, 0, SpringLayout.EAST, lblType);
-		sp.putConstraint(SpringLayout.WEST, btnCard, 0, SpringLayout.WEST, lblType);
-		sp.putConstraint(SpringLayout.NORTH, btnCard, 20, SpringLayout.SOUTH, btnReader);
-		sp.putConstraint(SpringLayout.NORTH, txtCard, 0, SpringLayout.NORTH, btnCard);
-		sp.putConstraint(SpringLayout.WEST, txtCard, 0, SpringLayout.WEST, cbType);
+		sp.putConstraint(SpringLayout.EAST, btnCard, 0, SpringLayout.EAST, btnReader);
+		sp.putConstraint(SpringLayout.WEST, btnCard, 0, SpringLayout.WEST, btnReader);
+		sp.putConstraint(SpringLayout.NORTH, btnCard, 20, SpringLayout.SOUTH, txtReader);
+		sp.putConstraint(SpringLayout.NORTH, txtCard, 10, SpringLayout.SOUTH, btnCard);
+		sp.putConstraint(SpringLayout.WEST, txtCard, 0, SpringLayout.WEST, btnReader);
+		sp.putConstraint(SpringLayout.EAST, txtCard, 0, SpringLayout.EAST, btnReader);
 		
-		sp.putConstraint(SpringLayout.NORTH, btnDump, 0, SpringLayout.NORTH, lblType);
-		sp.putConstraint(SpringLayout.EAST, btnDump, -20, SpringLayout.EAST, this);
-		sp.putConstraint(SpringLayout.WEST, btnDump, -150, SpringLayout.EAST, btnDump);
+		sp.putConstraint(SpringLayout.NORTH, btnDump, 20, SpringLayout.SOUTH, txtCard);
+		sp.putConstraint(SpringLayout.EAST, btnDump, 0, SpringLayout.EAST, btnReader);
+		sp.putConstraint(SpringLayout.WEST, btnDump, 0, SpringLayout.WEST, btnReader);
 
-		sp.putConstraint(SpringLayout.NORTH, scroll, 50, SpringLayout.NORTH, this);
-		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnDump);
-		sp.putConstraint(SpringLayout.WEST, scroll, 30, SpringLayout.HORIZONTAL_CENTER, this);
+		sp.putConstraint(SpringLayout.NORTH, scroll, 0, SpringLayout.NORTH, lblType);
+		sp.putConstraint(SpringLayout.WEST, scroll, 20 , SpringLayout.EAST, cbLoc);
+		sp.putConstraint(SpringLayout.EAST, scroll, -20, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -20, SpringLayout.SOUTH, this);
 		
 		FontUtil.getInstance().bindSmallFont(lblLoc);

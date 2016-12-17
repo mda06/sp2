@@ -65,7 +65,7 @@ public class UserView extends BaseView {
 		txtDate = new JFormattedTextField(createFormatter("##/##/####"));
 		txtDate.setText(dateFormat.format(date));
 		txtDate.setColumns(4);
-		txtZipcode = new JFormattedTextField(createFormatter("#"));
+		txtZipcode = new JFormattedTextField(createFormatter("####"));
 		txtZipcode.setColumns(4);
 		txtCity = new JTextField(10);
 		btnComplete = new JButton("Complete");
