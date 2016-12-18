@@ -1,0 +1,535 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC8A17E11E033D6900933F1C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8A17E01E033D6900933F1C /* TableViewController.swift */; };
+		DCF237201E01E8F8005C9D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2371F1E01E8F8005C9D42 /* AppDelegate.swift */; };
+		DCF237221E01E8F8005C9D42 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237211E01E8F8005C9D42 /* FirstViewController.swift */; };
+		DCF237271E01E8F8005C9D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF237251E01E8F8005C9D42 /* Main.storyboard */; };
+		DCF237291E01E8F8005C9D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCF237281E01E8F8005C9D42 /* Assets.xcassets */; };
+		DCF2372C1E01E8F8005C9D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF2372A1E01E8F8005C9D42 /* LaunchScreen.storyboard */; };
+		DCF237371E01E8F8005C9D42 /* RailyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237361E01E8F8005C9D42 /* RailyTests.swift */; };
+		DCF237421E01E8F8005C9D42 /* RailyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF237411E01E8F8005C9D42 /* RailyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DCF237331E01E8F8005C9D42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCF237141E01E8F8005C9D42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCF2371B1E01E8F8005C9D42;
+			remoteInfo = Raily;
+		};
+		DCF2373E1E01E8F8005C9D42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCF237141E01E8F8005C9D42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCF2371B1E01E8F8005C9D42;
+			remoteInfo = Raily;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC8A17E01E033D6900933F1C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
+		DCF2371C1E01E8F8005C9D42 /* Raily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raily.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF2371F1E01E8F8005C9D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DCF237211E01E8F8005C9D42 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		DCF237261E01E8F8005C9D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DCF237281E01E8F8005C9D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DCF2372B1E01E8F8005C9D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DCF2372D1E01E8F8005C9D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCF237321E01E8F8005C9D42 /* RailyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RailyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF237361E01E8F8005C9D42 /* RailyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RailyTests.swift; sourceTree = "<group>"; };
+		DCF237381E01E8F8005C9D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCF2373D1E01E8F8005C9D42 /* RailyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RailyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF237411E01E8F8005C9D42 /* RailyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RailyUITests.swift; sourceTree = "<group>"; };
+		DCF237431E01E8F8005C9D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCF237191E01E8F8005C9D42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF2372F1E01E8F8005C9D42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF2373A1E01E8F8005C9D42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DCF237131E01E8F8005C9D42 = {
+			isa = PBXGroup;
+			children = (
+				DCF2371E1E01E8F8005C9D42 /* Raily */,
+				DCF237351E01E8F8005C9D42 /* RailyTests */,
+				DCF237401E01E8F8005C9D42 /* RailyUITests */,
+				DCF2371D1E01E8F8005C9D42 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DCF2371D1E01E8F8005C9D42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCF2371C1E01E8F8005C9D42 /* Raily.app */,
+				DCF237321E01E8F8005C9D42 /* RailyTests.xctest */,
+				DCF2373D1E01E8F8005C9D42 /* RailyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCF2371E1E01E8F8005C9D42 /* Raily */ = {
+			isa = PBXGroup;
+			children = (
+				DC8A17E01E033D6900933F1C /* TableViewController.swift */,
+				DCF2371F1E01E8F8005C9D42 /* AppDelegate.swift */,
+				DCF237211E01E8F8005C9D42 /* FirstViewController.swift */,
+				DCF237251E01E8F8005C9D42 /* Main.storyboard */,
+				DCF237281E01E8F8005C9D42 /* Assets.xcassets */,
+				DCF2372A1E01E8F8005C9D42 /* LaunchScreen.storyboard */,
+				DCF2372D1E01E8F8005C9D42 /* Info.plist */,
+			);
+			path = Raily;
+			sourceTree = "<group>";
+		};
+		DCF237351E01E8F8005C9D42 /* RailyTests */ = {
+			isa = PBXGroup;
+			children = (
+				DCF237361E01E8F8005C9D42 /* RailyTests.swift */,
+				DCF237381E01E8F8005C9D42 /* Info.plist */,
+			);
+			path = RailyTests;
+			sourceTree = "<group>";
+		};
+		DCF237401E01E8F8005C9D42 /* RailyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DCF237411E01E8F8005C9D42 /* RailyUITests.swift */,
+				DCF237431E01E8F8005C9D42 /* Info.plist */,
+			);
+			path = RailyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCF2371B1E01E8F8005C9D42 /* Raily */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCF237461E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "Raily" */;
+			buildPhases = (
+				DCF237181E01E8F8005C9D42 /* Sources */,
+				DCF237191E01E8F8005C9D42 /* Frameworks */,
+				DCF2371A1E01E8F8005C9D42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Raily;
+			productName = Raily;
+			productReference = DCF2371C1E01E8F8005C9D42 /* Raily.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DCF237311E01E8F8005C9D42 /* RailyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCF237491E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "RailyTests" */;
+			buildPhases = (
+				DCF2372E1E01E8F8005C9D42 /* Sources */,
+				DCF2372F1E01E8F8005C9D42 /* Frameworks */,
+				DCF237301E01E8F8005C9D42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCF237341E01E8F8005C9D42 /* PBXTargetDependency */,
+			);
+			name = RailyTests;
+			productName = RailyTests;
+			productReference = DCF237321E01E8F8005C9D42 /* RailyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DCF2373C1E01E8F8005C9D42 /* RailyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCF2374C1E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "RailyUITests" */;
+			buildPhases = (
+				DCF237391E01E8F8005C9D42 /* Sources */,
+				DCF2373A1E01E8F8005C9D42 /* Frameworks */,
+				DCF2373B1E01E8F8005C9D42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCF2373F1E01E8F8005C9D42 /* PBXTargetDependency */,
+			);
+			name = RailyUITests;
+			productName = RailyUITests;
+			productReference = DCF2373D1E01E8F8005C9D42 /* RailyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCF237141E01E8F8005C9D42 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = com.pieter;
+				TargetAttributes = {
+					DCF2371B1E01E8F8005C9D42 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+					DCF237311E01E8F8005C9D42 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DCF2371B1E01E8F8005C9D42;
+					};
+					DCF2373C1E01E8F8005C9D42 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DCF2371B1E01E8F8005C9D42;
+					};
+				};
+			};
+			buildConfigurationList = DCF237171E01E8F8005C9D42 /* Build configuration list for PBXProject "Raily" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DCF237131E01E8F8005C9D42;
+			productRefGroup = DCF2371D1E01E8F8005C9D42 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCF2371B1E01E8F8005C9D42 /* Raily */,
+				DCF237311E01E8F8005C9D42 /* RailyTests */,
+				DCF2373C1E01E8F8005C9D42 /* RailyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DCF2371A1E01E8F8005C9D42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF2372C1E01E8F8005C9D42 /* LaunchScreen.storyboard in Resources */,
+				DCF237291E01E8F8005C9D42 /* Assets.xcassets in Resources */,
+				DCF237271E01E8F8005C9D42 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF237301E01E8F8005C9D42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF2373B1E01E8F8005C9D42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCF237181E01E8F8005C9D42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF237201E01E8F8005C9D42 /* AppDelegate.swift in Sources */,
+				DC8A17E11E033D6900933F1C /* TableViewController.swift in Sources */,
+				DCF237221E01E8F8005C9D42 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF2372E1E01E8F8005C9D42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF237371E01E8F8005C9D42 /* RailyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCF237391E01E8F8005C9D42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF237421E01E8F8005C9D42 /* RailyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DCF237341E01E8F8005C9D42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCF2371B1E01E8F8005C9D42 /* Raily */;
+			targetProxy = DCF237331E01E8F8005C9D42 /* PBXContainerItemProxy */;
+		};
+		DCF2373F1E01E8F8005C9D42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCF2371B1E01E8F8005C9D42 /* Raily */;
+			targetProxy = DCF2373E1E01E8F8005C9D42 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DCF237251E01E8F8005C9D42 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCF237261E01E8F8005C9D42 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DCF2372A1E01E8F8005C9D42 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCF2372B1E01E8F8005C9D42 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DCF237441E01E8F8005C9D42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DCF237451E01E8F8005C9D42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCF237471E01E8F8005C9D42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Raily/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = EHB.Raily;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DCF237481E01E8F8005C9D42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Raily/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = EHB.Raily;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		DCF2374A1E01E8F8005C9D42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RailyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = EHB.RailyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Raily.app/Raily";
+			};
+			name = Debug;
+		};
+		DCF2374B1E01E8F8005C9D42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RailyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = EHB.RailyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Raily.app/Raily";
+			};
+			name = Release;
+		};
+		DCF2374D1E01E8F8005C9D42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = RailyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = EHB.RailyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Raily;
+			};
+			name = Debug;
+		};
+		DCF2374E1E01E8F8005C9D42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = RailyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = EHB.RailyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Raily;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCF237171E01E8F8005C9D42 /* Build configuration list for PBXProject "Raily" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCF237441E01E8F8005C9D42 /* Debug */,
+				DCF237451E01E8F8005C9D42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCF237461E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "Raily" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCF237471E01E8F8005C9D42 /* Debug */,
+				DCF237481E01E8F8005C9D42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCF237491E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "RailyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCF2374A1E01E8F8005C9D42 /* Debug */,
+				DCF2374B1E01E8F8005C9D42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCF2374C1E01E8F8005C9D42 /* Build configuration list for PBXNativeTarget "RailyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCF2374D1E01E8F8005C9D42 /* Debug */,
+				DCF2374E1E01E8F8005C9D42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCF237141E01E8F8005C9D42 /* Project object */;
+}
