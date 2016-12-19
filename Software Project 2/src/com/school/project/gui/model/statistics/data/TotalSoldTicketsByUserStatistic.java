@@ -25,5 +25,4 @@ public class TotalSoldTicketsByUserStatistic extends AbstractPieChartModel {
 		}
 		return dataset;
 	}
-
 }
