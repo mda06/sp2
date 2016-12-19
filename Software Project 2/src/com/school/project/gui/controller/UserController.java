@@ -40,6 +40,13 @@ public class UserController extends BaseController<UserView> implements Selected
 		super(new UserView());
 		availableTypes = new ArrayList<>();
 		selectedUser = null;
+		
+		/* Editting rights for the connected usertype:
+		 * Employee can edit customers only!
+		 * Customers should not have acces to editting users in this view, currently they can edit other customers
+		 * 		(The connected user being a customer is actually not a use case)
+		 * Admins can edit and PROMOTE any users
+		 */
 
 		if (connectedUser != null) {
 			connectedUserType = connectedUser.getType();
@@ -261,21 +268,6 @@ public class UserController extends BaseController<UserView> implements Selected
 	@Override
 	public void userIsSelected(User user) {
 		selectedUser = user;
-		view.getTxtFirstName().setText(user.getFirstName());
-		view.getTxtLastName().setText(user.getLastName());
-		view.getTxtStreetNumber().setText(user.getAddress().getStreetline1());
-		view.getTxtStreetline2().setText(user.getAddress().getStreetline2());
-		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
-		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
-		view.getTxtCity().setText(user.getAddress().getCity());
-		view.getTxtCountry().setText(user.getAddress().getCountry());
-		user.getGender();
-		if (user.getGender() == Gender.MALE) {
-			view.getcBGenderM().setSelected(true);
-		} else {
-			view.getcBGenderW().setSelected(true);
-		}
-		view.getTxtUsername().setText(user.getCredentials().getUsername());
 
 		int index = 0;
 		switch (user.getType()) {
@@ -294,22 +286,34 @@ public class UserController extends BaseController<UserView> implements Selected
 			view.getCbUserType().setEnabled(false);
 			if (user.getType() == UserType.ADMIN || user.getType() == UserType.EMPLOYEE) {
 				JOptionPane.showMessageDialog(view, strErrorCannotEdit);
-				clearFields();
+				return;
 			}
-		}
-
-		else if (connectedUserType == UserType.EMPLOYEE) {
-			if (user.getType() == UserType.ADMIN) { // EMP cannot edit ADMIN Acc
+		} else if (connectedUserType == UserType.EMPLOYEE) {
+			if (user.getType() == UserType.ADMIN || user.getType() == UserType.EMPLOYEE) { // EMP cannot edit ADMIN Acc
 				JOptionPane.showMessageDialog(view, strErrorCannotEdit);
-				clearFields();
+				return;
 			} else {
-				view.getCbUserType().setSelectedIndex(index);
+				view.getCbUserType().setSelectedIndex(index); //This will always be 0
 			}
-		}
-
-		else if (connectedUserType == UserType.ADMIN) {
+		} else if (connectedUserType == UserType.ADMIN) {
 			view.getCbUserType().setSelectedIndex(index);
 		}
+
+		view.getTxtFirstName().setText(user.getFirstName());
+		view.getTxtLastName().setText(user.getLastName());
+		view.getTxtStreetNumber().setText(user.getAddress().getStreetline1());
+		view.getTxtStreetline2().setText(user.getAddress().getStreetline2());
+		view.getTxtDate().setText(new SimpleDateFormat("dd/MM/yyyy").format(user.getDateOfBirth()));
+		view.getTxtZipcode().setText(user.getAddress().getPostalCode());
+		view.getTxtCity().setText(user.getAddress().getCity());
+		view.getTxtCountry().setText(user.getAddress().getCountry());
+		user.getGender();
+		if (user.getGender() == Gender.MALE) {
+			view.getcBGenderM().setSelected(true);
+		} else {
+			view.getcBGenderW().setSelected(true);
+		}
+		view.getTxtUsername().setText(user.getCredentials().getUsername());
 
 	}
 

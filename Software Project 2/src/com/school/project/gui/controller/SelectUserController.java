@@ -41,8 +41,8 @@ public class SelectUserController implements Observer{
 	private void selectEvent(){
 			if(list != null) {
 				User user = tableModel.getUserAt(popup.getTblUsers().getSelectedRow());
-				list.userIsSelected(user);
 				popup.dispose();
+				list.userIsSelected(user);
 			}
 	}
 	
