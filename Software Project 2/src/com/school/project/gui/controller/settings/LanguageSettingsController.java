@@ -5,7 +5,10 @@ import java.util.Map.Entry;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.LanguageSettingsView;
@@ -28,10 +31,11 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 		strErrorSelectALanguage = "Error please select a language";
 		strErrorLoadLanguage = "Error loading language";
 		model = new DefaultTableModel();
+
 		model.addColumn("Key");
 		model.addColumn("Translation");
 		view.getTblTranslated().setModel(model);
-		
+
 		initEvent();
 	}
 
@@ -42,13 +46,13 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 				view.getBtnLoad().setEnabled(false);
 				view.getComboLanguages().setEnabled(false);
 				view.getLblLoading().setVisible(true);
-				
+
 				new Thread(() -> {
 					newWords = new HashMap<>();
 					try {
 						HashMap<String, String> en = languageHandler.getWords().get("en");
 						for (Entry<String, String> entry : en.entrySet()) {
-							String translated = NetUtil.translateWord(entry.getValue(),  "en-" + newLanguage);
+							String translated = NetUtil.translateWord(entry.getValue(), "en-" + newLanguage);
 							newWords.put(entry.getKey(), translated);
 						}
 					} catch (Exception e1) {
@@ -59,30 +63,39 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 						view.getComboLanguages().setEnabled(true);
 						view.getLblLoading().setVisible(false);
 					}
-					
+
 					view.getScrollLst().setVisible(true);
 					HashMap<String, String> from = languageHandler.getWords().get(languageHandler.getCurrentLanguage());
-					
-					for(String key : newWords.keySet()){
-						String[] rowData = {from.get(key), newWords.get(key)};
+
+					for (String key : newWords.keySet()) {
+						String[] rowData = { from.get(key), newWords.get(key) };
 						model.addRow(rowData);
 					}
-					view.getTblTranslated().setModel(model);
+					
+					model.addTableModelListener(new TableModelListener() {
+
+						@Override
+						public void tableChanged(TableModelEvent e) {
+							int row = e.getFirstRow();
+							int column = 1; //only check for edited translation
+							TableModel model = (TableModel) e.getSource();
+							Object data = model.getValueAt(row, column);
+							
+							newWords.put((String)model.getValueAt(row, 0),(String) data);
+							
+							
+						}
+					});
 					view.getBtnSave().setVisible(true);
 				}).start();
 			} else {
 				JOptionPane.showMessageDialog(view, strErrorSelectALanguage);
 			}
 		});
-		
+
 		view.getBtnSave().addActionListener((ev) -> {
-			if(newLanguage == null || newWords == null) {
+			if (newLanguage == null || newWords == null) {
 				return;
-			}
-			for(int i = 0; i < model.getRowCount(); i++){
-				if(newWords.get(model.getValueAt(i, 0)) != model.getValueAt(i, 1)){
-					newWords.put((String)model.getValueAt(i, 0), (String) model.getValueAt(i, 1));
-				}
 			}
 			view.getScrollLst().setVisible(false);
 			view.getTblTranslated();
