@@ -1,5 +1,7 @@
 package com.school.project.gui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import com.school.project.gui.controller.settings.BackupController;
@@ -15,10 +17,12 @@ import com.school.project.language.LanguageObservable;
 
 public class SettingsController extends BaseController<SettingsView> {
 	private LanguageObservable observable;
+	private List<BaseController<?>> controllers;
 
 	public SettingsController(LanguageObservable obs) {
 		super(new SettingsView());
 		observable = obs;
+		controllers = new ArrayList<BaseController<?>>();
 		initSettings();
 	}
 
@@ -33,6 +37,7 @@ public class SettingsController extends BaseController<SettingsView> {
 	}
 
 	private void addSetting(BaseController<?> bc) {
+		controllers.add(bc);
 		view.getTabbedPane().add(bc.getBaseView().CARD_KEY, bc.getBaseView());
 		observable.addObserver(bc);
 	}
@@ -54,5 +59,15 @@ public class SettingsController extends BaseController<SettingsView> {
 				view.getTabbedPane().setTitleAt(i, lh.getString(str));
 			}
 		}
+	}
+	
+	@Override
+	public void show() {
+		controllers.forEach((c) -> c.show());
+	}
+	
+	@Override
+	public void hide() {
+		controllers.forEach((c) -> c.hide());
 	}
 }

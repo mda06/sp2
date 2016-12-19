@@ -74,7 +74,6 @@ public class TicketPriceEditorPanel extends BaseView {
 		pnlFormula.setBorder(BorderFactory.createTitledBorder("Formula"));
 		pnlFormula.setLayout(new BorderLayout());
 		pnlFormula.add(txtFormula = new JTextArea(5, 20));
-		txtFormula.setEditable(false);
 		txtFormula.setFont(FontUtil.getInstance().getBigFont());
 		
 		pnlBtns.add(btnTest = new JButton("Test formula"));

@@ -5,17 +5,40 @@ import java.util.Map;
 
 // http://stackoverflow.com/questions/3422673/evaluating-a-math-expression-given-in-string-form
 public class Formula {
+	public static final String VAR_DST = "dst";
+	public static final String VAR_DUR = "dur";
+	public static final String VAR_NBSTOPS = "nbstops";
+	public static final String VAR_VAL = "val";
+	public static final String VAR_PRICE = "price";
+	public static final String VAR_FIXROUTE = "fixroute";
+	
 	private Map<String, Double> variables;
-	private String str;
+	private String finalFormula, str;
 	private int pos = -1, ch;
 	
 	public Formula() {
 		this.str = "";
 		this.variables = new HashMap<>();
 	}
+	
+	public void setFormula(String finalFormula) {
+		this.finalFormula = finalFormula;
+	}
+	
+	public String getFormula() {
+		return finalFormula;
+	}
+	
+	public boolean containsVar(String var) {
+		return finalFormula.contains(var);
+	}
 
 	public void addVar(String key, Double val) {
 		variables.put(key, val);
+	}
+	
+	public void clearVars() {
+		variables.clear();
 	}
 	
 	public void removeVar(String key) {
@@ -35,8 +58,13 @@ public class Formula {
 		}
 		return false;
 	}
+	
+	public double parse() {
+		return parse(finalFormula);
+	}
 
 	public double parse(String str) {
+		finalFormula = new String(str);
 		this.str = str;
 		pos = -1;
 		nextChar();

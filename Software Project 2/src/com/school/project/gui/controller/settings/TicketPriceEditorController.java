@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.TicketPriceEditorPanel;
 import com.school.project.model.price.Formula;
+import com.school.project.util.PriceUtil;
 
 public class TicketPriceEditorController extends BaseController<TicketPriceEditorPanel> {
 	private Formula formula;
@@ -39,38 +40,48 @@ public class TicketPriceEditorController extends BaseController<TicketPriceEdito
 		view.getTxtTkPrice().addKeyListener(onlyNumbers);
 		view.getTxtTkFixRoute().addKeyListener(onlyNumbers);
 		
+		view.getTxtFormula().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				strFormula = view.getTxtFormula().getText();
+				enableBtnsArithmetics(true);
+				enableBtnsNumbers(true);
+				view.getBtnSave().setEnabled(false);
+			}
+		});
+		
 		view.getBtnTkVal().addActionListener((l) -> {
-			strFormula += "val ";
+			strFormula += Formula.VAR_VAL + " ";
 			showFormula();
 			enableBtnsArithmetics(true);
 			enableBtnsNumbers(false);
 		});
 		view.getBtnTkPrice().addActionListener((l) -> {
-			strFormula += "price ";
+			strFormula += Formula.VAR_PRICE + " ";
 			showFormula();
 			enableBtnsArithmetics(true);
 			enableBtnsNumbers(false);
 		});
 		view.getBtnTkFixRoute().addActionListener((l) -> {
-			strFormula += "fixroute ";
+			strFormula += Formula.VAR_FIXROUTE + " ";
 			showFormula();
 			enableBtnsArithmetics(true);
 			enableBtnsNumbers(false);
 		});
 		view.getBtnStDst().addActionListener((l) -> {
-			strFormula += "dst ";
+			strFormula += Formula.VAR_DST + " ";
 			showFormula();
 			enableBtnsArithmetics(true);
 			enableBtnsNumbers(false);
 		});
 		view.getBtnStDur().addActionListener((l) -> {
-			strFormula += "dur ";
+			strFormula += Formula.VAR_DUR + " ";
 			showFormula();
 			enableBtnsArithmetics(true);
 			enableBtnsNumbers(false);
 		});
 		view.getBtnStStops().addActionListener((l) -> {
-			strFormula += "nbstops ";
+			strFormula += Formula.VAR_NBSTOPS + " ";
 			showFormula();
 			enableBtnsArithmetics(true);
 			enableBtnsNumbers(false);
@@ -115,23 +126,27 @@ public class TicketPriceEditorController extends BaseController<TicketPriceEdito
 		});
 
 		view.getBtnTest().addActionListener((l) -> {
-			formula.addVar("dst", Double.parseDouble(view.getTxtStDst().getText()));
-			formula.addVar("dur", Double.parseDouble(view.getTxtStDur().getText()));
-			formula.addVar("nbstops", Double.parseDouble(view.getTxtStStops().getText()));
-			formula.addVar("val", Double.parseDouble(view.getTxtTkVal().getText()));
-			formula.addVar("price", Double.parseDouble(view.getTxtTkPrice().getText()));
-			formula.addVar("fixroute", Double.parseDouble(view.getTxtTkFixRoute().getText()));
-
+			
+			formula.addVar(Formula.VAR_DST, Double.parseDouble(view.getTxtStDst().getText()));
+			formula.addVar(Formula.VAR_DUR, Double.parseDouble(view.getTxtStDur().getText()));
+			formula.addVar(Formula.VAR_NBSTOPS, Double.parseDouble(view.getTxtStStops().getText()));
+			formula.addVar(Formula.VAR_VAL, Double.parseDouble(view.getTxtTkVal().getText()));
+			formula.addVar(Formula.VAR_PRICE, Double.parseDouble(view.getTxtTkPrice().getText()));
+			formula.addVar(Formula.VAR_FIXROUTE, Double.parseDouble(view.getTxtTkFixRoute().getText()));
+			
 			String msg = "";
 			try {
 				double out = formula.parse(strFormula);
 				msg = "The price is: " + out;
+				view.getBtnSave().setEnabled(true);
 			} catch (RuntimeException e) {
 				msg = "Error in the formula !";
 			}
-
+			
 			JOptionPane.showMessageDialog(view, msg);
-			view.getBtnSave().setEnabled(true);
+		});
+		view.getBtnSave().addActionListener((l) -> {
+			PriceUtil.getInstance().setFormula(strFormula);
 		});
 	}
 
@@ -159,6 +174,13 @@ public class TicketPriceEditorController extends BaseController<TicketPriceEdito
 
 	@Override
 	public void update(Observable o, Object arg) {
+	}
+	
+	@Override
+	public void show() {
+		strFormula = PriceUtil.getInstance().getStrFormula();
+		showFormula();
+		super.show();
 	}
 
 	public static void main(String[] args) {
