@@ -7,6 +7,7 @@ import java.util.Observable;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.school.project.dao.FormulaDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.TicketPriceEditorPanel;
 import com.school.project.model.price.Formula;
@@ -138,6 +139,7 @@ public class TicketPriceEditorController extends BaseController<TicketPriceEdito
 			try {
 				double out = formula.parse(strFormula);
 				msg = "The price is: " + out;
+				FormulaDAO.getInstance().setNewFormula(strFormula);
 				view.getBtnSave().setEnabled(true);
 			} catch (RuntimeException e) {
 				msg = "Error in the formula !";

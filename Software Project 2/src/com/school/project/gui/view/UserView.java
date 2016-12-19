@@ -210,7 +210,7 @@ public class UserView extends BaseView {
 		setLayout(sp);	
 		pnlAccount.setPreferredSize(new Dimension(300,800));
 		pnlCredentials.setPreferredSize(new Dimension(300,280));
-		pnlOptions.setPreferredSize(new Dimension(300,200));
+		pnlOptions.setPreferredSize(new Dimension(400,200));
 		add(pnlAccount);
 		add(pnlCredentials);
 		add(pnlOptions);

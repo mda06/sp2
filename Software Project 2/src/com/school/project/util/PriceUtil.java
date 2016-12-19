@@ -2,6 +2,7 @@ package com.school.project.util;
 
 import java.util.List;
 
+import com.school.project.dao.FormulaDAO;
 import com.school.project.model.Ticket;
 import com.school.project.model.price.Formula;
 import com.school.project.nmbs.dao.ConnectionDAO;
@@ -14,7 +15,7 @@ public class PriceUtil {
 
 	private PriceUtil() {
 		formula = new Formula();
-		formula.setFormula(Formula.VAR_PRICE + " + " + Formula.VAR_DST + " * " + Formula.VAR_FIXROUTE + " - " + Formula.VAR_PRICE + " * " + Formula.VAR_FIXROUTE);
+		formula.setFormula(FormulaDAO.getInstance().getlastFormula());
 	}
 
 	public static PriceUtil getInstance() {
