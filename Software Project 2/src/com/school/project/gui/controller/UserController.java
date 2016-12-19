@@ -29,8 +29,8 @@ import com.school.project.util.HashUtil;
 public class UserController extends BaseController<UserView> implements SelectedUserListener {
 
 	private Boolean useCred = false;
-	private String strErrorFillInTheBlanks, strErrorMatchingPassword, stdConfirmUserSaved, stdConfirmUserUpdated;
-	@SuppressWarnings("unused")
+	private String strErrorFillInTheBlanks, strErrorMatchingPassword, stdConfirmUserSaved, stdConfirmUserUpdated,
+			strErrorCannotEdit;
 	private UserType connectedUserType;
 	private ArrayList<String> availableTypes;
 	private SelectUserController selectUserController;
@@ -76,7 +76,7 @@ public class UserController extends BaseController<UserView> implements Selected
 		view.getBtnComplete().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean accInfoOk = checkAccountInfo();
-				if(selectedUser == null) {
+				if (selectedUser == null) {
 					if (accInfoOk && !useCred) {
 						User newUser = getUserFromView();
 						AddressDAO.getInstance().add(newUser.getAddress());
@@ -90,7 +90,7 @@ public class UserController extends BaseController<UserView> implements Selected
 						UserCredentialsDAO.getInstance().add(newUser.getCredentials());
 						clearFields();
 						JOptionPane.showMessageDialog(view, stdConfirmUserSaved);
-					} 
+					}
 				} else {
 					if (accInfoOk && !useCred) {
 						User newUser = getUserFromView();
@@ -102,9 +102,9 @@ public class UserController extends BaseController<UserView> implements Selected
 						User newUser = getUserFromView();
 						AddressDAO.getInstance().update(newUser.getAddress());
 						UserDAO.getInstance().update(newUser);
-						if(newUser.getCredentials().getId() > 0)
+						if (newUser.getCredentials().getId() > 0)
 							UserCredentialsDAO.getInstance().update(newUser.getCredentials());
-						else 
+						else
 							UserCredentialsDAO.getInstance().add(newUser.getCredentials());
 						clearFields();
 						JOptionPane.showMessageDialog(view, stdConfirmUserUpdated);
@@ -113,7 +113,7 @@ public class UserController extends BaseController<UserView> implements Selected
 			}
 		});
 	}
-	
+
 	private void clearFields() {
 		selectedUser = null;
 		view.getPfPassword().setText("");
@@ -176,10 +176,11 @@ public class UserController extends BaseController<UserView> implements Selected
 			java.util.Date utilDate = formatter.parse(userInput);
 
 			java.sql.Date date = new java.sql.Date(utilDate.getTime());
-			
+
 			User user = null;
-			if(selectedUser == null) {
-				user = new User(0, gender, userType, view.getTxtFirstName().getText(), view.getTxtLastName().getText(),date, false);
+			if (selectedUser == null) {
+				user = new User(0, gender, userType, view.getTxtFirstName().getText(), view.getTxtLastName().getText(),
+						date, false);
 				user.setAddress(address);
 			} else {
 				user = selectedUser;
@@ -195,10 +196,11 @@ public class UserController extends BaseController<UserView> implements Selected
 				adr.setStreetline1(address.getStreetline1());
 				adr.setStreetline2(address.getStreetline2());
 			}
-			
-			UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(), HashUtil.getSHA512SecurePassword(new String(view.getPfPassword().getPassword())), false);
+
+			UserCredential userCred = new UserCredential(0, view.getTxtUsername().getText(),
+					HashUtil.getSHA512SecurePassword(new String(view.getPfPassword().getPassword())), false);
 			if (useCred) {
-				if(selectedUser == null || !selectedUser.hasCredentials())
+				if (selectedUser == null || !selectedUser.hasCredentials())
 					user.setCredentials(userCred);
 				else {
 					UserCredential uc = user.getCredentials();
@@ -239,6 +241,7 @@ public class UserController extends BaseController<UserView> implements Selected
 			strErrorMatchingPassword = lh.getString("matchingPasswords");
 			stdConfirmUserSaved = lh.getString("confirmUserSaved");
 			stdConfirmUserUpdated = lh.getString("confirmUserUpdated");
+			strErrorCannotEdit = lh.getString("cannotEditUser");
 
 			// Filling the userType combobox:
 			view.getCbUserType().removeAllItems();
@@ -267,15 +270,13 @@ public class UserController extends BaseController<UserView> implements Selected
 		view.getTxtCity().setText(user.getAddress().getCity());
 		view.getTxtCountry().setText(user.getAddress().getCountry());
 		user.getGender();
-		if(user.getGender() == Gender.MALE){
+		if (user.getGender() == Gender.MALE) {
 			view.getcBGenderM().setSelected(true);
-		} else{
+		} else {
 			view.getcBGenderW().setSelected(true);
 		}
 		view.getTxtUsername().setText(user.getCredentials().getUsername());
-		
-		
-		connectedUserType = user.getType();
+
 		int index = 0;
 		switch (user.getType()) {
 		case CUSTOMER:
@@ -289,16 +290,27 @@ public class UserController extends BaseController<UserView> implements Selected
 			break;
 		}
 
-		if(user.getType() == UserType.ADMIN && connectedUserType == UserType.ADMIN){
-			view.getCbUserType().setSelectedIndex(index);
-			view.getCbUserType().setEnabled(true);
-		}
-		else {
+		if (connectedUserType == UserType.CUSTOMER) {
 			view.getCbUserType().setEnabled(false);
+			if (user.getType() == UserType.ADMIN || user.getType() == UserType.EMPLOYEE) {
+				JOptionPane.showMessageDialog(view, strErrorCannotEdit);
+				clearFields();
+			}
 		}
-		
-		
-		
+
+		else if (connectedUserType == UserType.EMPLOYEE) {
+			if (user.getType() == UserType.ADMIN) { // EMP cannot edit ADMIN Acc
+				JOptionPane.showMessageDialog(view, strErrorCannotEdit);
+				clearFields();
+			} else {
+				view.getCbUserType().setSelectedIndex(index);
+			}
 		}
+
+		else if (connectedUserType == UserType.ADMIN) {
+			view.getCbUserType().setSelectedIndex(index);
+		}
+
+	}
 
 }
