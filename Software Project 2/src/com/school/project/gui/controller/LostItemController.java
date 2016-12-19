@@ -6,6 +6,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
@@ -137,7 +138,7 @@ public class LostItemController extends BaseController<LostItemView> {
 
 			public void focusLost(FocusEvent e) {
 				if (view.getTxtSearchType().getText().isEmpty()) {
-					//view.getTxtSearch().setText("Search");
+					//view.getTxtSearchType().setText("Type");
 				}
 			}
 		});
@@ -147,7 +148,8 @@ public class LostItemController extends BaseController<LostItemView> {
 				
 			}
 
-			public void focusLost(FocusEvent e) {				
+			public void focusLost(FocusEvent e) {	
+				//view.getTxtSearchDesc().setText("Description");
 			}
 		});
 		view.getTxtSearchLoc().addFocusListener(new FocusListener() {
@@ -156,7 +158,8 @@ public class LostItemController extends BaseController<LostItemView> {
 				
 			}
 
-			public void focusLost(FocusEvent e) {				
+			public void focusLost(FocusEvent e) {	
+				//view.getTxtSearchLoc().setText("Location");
 			}
 		});
 		
@@ -165,53 +168,19 @@ public class LostItemController extends BaseController<LostItemView> {
 				for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
 					tableModel.removeRow(i);
 				}
-				if (!view.getTxtSearchType().getText().isEmpty()) {
-					for (LostItem item : LostItemDAO.getInstance().getByType(view.getTxtSearchType().getText())) {
-						tableModel.addLostItem(item);
-					}
-					view.getTxtSearchType().setText("");
-				}
-				else if(!view.getTxtSearchDesc().getText().isEmpty()){
-					for (LostItem item : LostItemDAO.getInstance().getByDescription(view.getTxtSearchDesc().getText())) {
-						tableModel.addLostItem(item);
-					}
-					view.getTxtSearchDesc().setText("");
-				}
-				else if(!view.getTxtSearchLoc().getText().isEmpty()){
-					for (LostItem item : LostItemDAO.getInstance().getByLocation(view.getTxtSearchLoc().getText())) {
-						tableModel.addLostItem(item);
-					}
-					view.getTxtSearchLoc().setText("");
-				}					
-				else {
-					initLostItemsToTable();
-				}
+
+				String loc = view.getTxtSearchLoc().getText();
+				String desc = view.getTxtSearchDesc().getText();
+				String type = view.getTxtSearchType().getText();
+				List<LostItem> items = LostItemDAO.getInstance().getBySearch(type, desc, loc);
+				for(LostItem it : items)
+					tableModel.addLostItem(it);
 			}
 		};
-		
-//		KeyListener searchEnter = new KeyListener(){
-//			public void keyTyped(KeyEvent e) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			public void keyPressed(KeyEvent e) {
-//				if(e.getKeyCode() == KeyEvent.VK_ENTER){
-//					view.getBtnSearch().addActionListener(searchAction);
-//				}
-//				
-//			}
-//			public void keyReleased(KeyEvent e) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			
-//		};
-//		
-//		view.getBtnSearch().addKeyListener(searchEnter);
 		
 		view.getBtnSearch().addActionListener(searchAction);
 		view.getTxtSearchType().addActionListener(searchAction);
 		view.getTxtSearchDesc().addActionListener(searchAction);
 		view.getTxtSearchLoc().addActionListener(searchAction);
-	}
+	}		
 }
