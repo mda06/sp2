@@ -272,6 +272,8 @@ public class UserController extends BaseController<UserView> implements Selected
 		} else{
 			view.getcBGenderW().setSelected(true);
 		}
+		view.getTxtUsername().setText(user.getCredentials().getUsername());
+		
 		
 		connectedUserType = user.getType();
 		int index = 0;
@@ -287,7 +289,14 @@ public class UserController extends BaseController<UserView> implements Selected
 			break;
 		}
 
-		view.getCbUserType().setSelectedIndex(index);
+		if(user.getType() == UserType.ADMIN && connectedUserType == UserType.ADMIN){
+			view.getCbUserType().setSelectedIndex(index);
+			view.getCbUserType().setEnabled(true);
+		}
+		else {
+			view.getCbUserType().setEnabled(false);
+		}
+		
 		
 		
 		}
