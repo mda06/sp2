@@ -281,7 +281,7 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 	}
 	
 	public HashMap<User, Double> getTotalTicketsSoldByUser(){
-		HashMap<User, Double> map = new HashMap();
+		HashMap<User, Double> map = new HashMap<>();
 		
 		Connection connection = DatabaseHandler.getInstance().getConnection();
 		Statement stat = null;
