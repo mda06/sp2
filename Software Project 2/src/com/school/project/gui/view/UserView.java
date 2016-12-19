@@ -18,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.text.MaskFormatter;
 
 import com.school.project.util.FontUtil;
 
@@ -26,14 +27,14 @@ public class UserView extends BaseView {
 	private JLabel lbFirstName, lbLastName, lbUsername, lbPassword, lbPasswordControl, lbStreetNumber, lbZipcode,
 			lbCity, lblDate, lblGender, lblSoortuser, lbCountry, lbStreetline2;
 	private JPasswordField pfPassword, pfPasswordControl;
-	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtZipcode, txtCity, txtCountry, txtStreetline2;
+	private JTextField txtFirstName, txtLastName, txtUsername, txtStreetNumber, txtCity, txtCountry, txtStreetline2;
 	private JButton btnComplete, btnBack, btnSelectUser;
 	private JPanel pnlAccount, pnlCredentials, pnlOptions;
 	private Component txtPassword;
 	private JCheckBox cBUseCredentials;
 	private JRadioButton cBGenderM, cBGenderW;
 	private ButtonGroup groupGender;
-	private JFormattedTextField txtDate;
+	private JFormattedTextField txtDate, txtZipcode;
 	private JComboBox<String> cbUserType;
 	private String[] userType = {"Admin", "Employee", "Customer"};
 
@@ -61,10 +62,11 @@ public class UserView extends BaseView {
 		txtLastName = new JTextField(10);
 		txtUsername = new JTextField(10);
 		txtStreetNumber = new JTextField(10);
-		txtDate = new JFormattedTextField(dateFormat);
-		txtDate.setColumns(8);
+		txtDate = new JFormattedTextField(createFormatter("##/##/####"));
 		txtDate.setText(dateFormat.format(date));
-		txtZipcode = new JTextField(5);
+		txtDate.setColumns(4);
+		txtZipcode = new JFormattedTextField(createFormatter("####"));
+		txtZipcode.setColumns(4);
 		txtCity = new JTextField(10);
 		btnComplete = new JButton("Complete");
 		btnBack = new JButton("Back");
@@ -394,7 +396,7 @@ public class UserView extends BaseView {
 		return txtZipcode;
 	}
 
-	public void setTxtZipcode(JTextField txtZipcode) {
+	public void setTxtZipcode(JFormattedTextField txtZipcode) {
 		this.txtZipcode = txtZipcode;
 	}
 
@@ -548,6 +550,16 @@ public class UserView extends BaseView {
 
 	public void setTxtStreetline2(JTextField txtStreetline2) {
 		this.txtStreetline2 = txtStreetline2;
+	}
+	
+	protected MaskFormatter createFormatter(String s){
+		MaskFormatter formatter = null;
+		try{
+			formatter = new MaskFormatter(s);
+		}catch (java.text.ParseException exc) {
+			System.exit(-1);
+		}
+		return formatter;
 	}
 
 }

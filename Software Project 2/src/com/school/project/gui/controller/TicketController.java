@@ -1,12 +1,14 @@
 package com.school.project.gui.controller;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
 import javax.swing.JButton;
 
+import com.school.project.gui.controller.listener.CacheUpdateListener;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.TicketView;
 import com.school.project.language.LanguageHandler;
@@ -16,7 +18,7 @@ import com.school.project.model.TicketCache;
 import com.school.project.model.User;
 import com.school.project.util.FontUtil;
 
-public class TicketController extends BaseController<TicketView> implements PaymentBackListener {
+public class TicketController extends BaseController<TicketView> implements PaymentBackListener, CacheUpdateListener<Ticket> {
 
 	private TicketSaleController ticketSale;
 	
@@ -28,20 +30,26 @@ public class TicketController extends BaseController<TicketView> implements Paym
 	}
 	
 	private void initButtons() {
+		TicketCache.getInstance().addListener(this);
 		for(Ticket t : TicketCache.getInstance().getCache()) {
-			JButton btn = new JButton(t.getName());
-			view.getPnlBtns().add(btn);
-
-			FontUtil.getInstance().bindSmallFont(btn);
-			btn.setActionCommand(String.valueOf(t.getId()));
-			btn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Ticket t = TicketCache.getInstance().getTicket(Integer.parseInt(e.getActionCommand()));
-					showCard(view.KEY_PAY);
-					ticketSale.showTicket(t);
-				}
-			});
+			addTicketToView(t);
 		}
+	}
+	
+	private void addTicketToView(Ticket t) {
+		if(t == null) return;
+		JButton btn = new JButton(t.getName());
+		view.getPnlBtns().add(btn);
+
+		FontUtil.getInstance().bindSmallFont(btn);
+		btn.setActionCommand(String.valueOf(t.getId()));
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ticket t = TicketCache.getInstance().getTicket(Integer.parseInt(e.getActionCommand()));
+				showCard(view.KEY_PAY);
+				ticketSale.showTicket(t);
+			}
+		});
 	}
 
 	private void showCard(String key) {
@@ -63,12 +71,34 @@ public class TicketController extends BaseController<TicketView> implements Paym
 			view.getPnlPayment().getLblValidFrom().setText(lh.getString("validFrom"));
 			view.getPnlPayment().getLblValidTo().setText(lh.getString("validTo"));
 			view.getPnlPayment().getBtnPay().setText(lh.getString("Pay"));
-			
 		}
 	}
 
 	@Override
 	public void backToPreviousView() {
 		showCard(view.KEY_BTNS);
+	}
+
+	@Override
+	public void added(Ticket t) {
+		addTicketToView(t);
+	}
+
+	@Override
+	public void removed(Ticket t) {
+		Component toRemove = null;
+		for(Component c : view.getPnlBtns().getComponents()) {
+			if(c instanceof JButton) {
+				int id = Integer.parseInt(((JButton) c).getActionCommand());
+				if(id == t.getId()) {
+					toRemove = c;
+					break;
+				}
+			}
+		}
+		if(toRemove != null) {
+			view.getPnlBtns().remove(toRemove);
+			view.getPnlBtns().invalidate();
+		}
 	}
 }

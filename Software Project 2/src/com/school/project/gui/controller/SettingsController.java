@@ -1,5 +1,7 @@
 package com.school.project.gui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import com.school.project.gui.controller.settings.BackupController;
@@ -7,6 +9,7 @@ import com.school.project.gui.controller.settings.LanguageSettingsController;
 import com.school.project.gui.controller.settings.LayoutSettingsController;
 import com.school.project.gui.controller.settings.NFCSettingsController;
 import com.school.project.gui.controller.settings.RailCardSettingsController;
+import com.school.project.gui.controller.settings.TicketPriceEditorController;
 import com.school.project.gui.controller.settings.TicketSettingsController;
 import com.school.project.gui.view.SettingsView;
 import com.school.project.language.LanguageHandler;
@@ -14,10 +17,12 @@ import com.school.project.language.LanguageObservable;
 
 public class SettingsController extends BaseController<SettingsView> {
 	private LanguageObservable observable;
+	private List<BaseController<?>> controllers;
 
 	public SettingsController(LanguageObservable obs) {
 		super(new SettingsView());
 		observable = obs;
+		controllers = new ArrayList<BaseController<?>>();
 		initSettings();
 	}
 
@@ -28,9 +33,11 @@ public class SettingsController extends BaseController<SettingsView> {
 		addSetting(new LanguageSettingsController(observable.getLanguageHandler()));
 		addSetting(new BackupController());
 		addSetting(new NFCSettingsController());
+		addSetting(new TicketPriceEditorController());
 	}
 
 	private void addSetting(BaseController<?> bc) {
+		controllers.add(bc);
 		view.getTabbedPane().add(bc.getBaseView().CARD_KEY, bc.getBaseView());
 		observable.addObserver(bc);
 	}
@@ -47,8 +54,20 @@ public class SettingsController extends BaseController<SettingsView> {
 				else if (i == 2) str = "LayoutSettings";
 				else if (i == 3) str = "LanguageSettings";
 				else if (i == 4) str = "Backup";
+				else if (i == 5) str = "NFCSettings";
+				else if (i == 6) str = "TicketPrice";
 				view.getTabbedPane().setTitleAt(i, lh.getString(str));
 			}
 		}
+	}
+	
+	@Override
+	public void show() {
+		controllers.forEach((c) -> c.show());
+	}
+	
+	@Override
+	public void hide() {
+		controllers.forEach((c) -> c.hide());
 	}
 }

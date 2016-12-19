@@ -14,6 +14,7 @@ import com.school.project.gui.model.statistics.data.BestActiveRailCardStatistic;
 import com.school.project.gui.model.statistics.data.BestSoldRailcardStatistic;
 import com.school.project.gui.model.statistics.data.BestTicketSaleStatistic;
 import com.school.project.gui.model.statistics.data.TicketSaleByUsersStatistic;
+import com.school.project.gui.model.statistics.data.TotalSoldTicketsByUserStatistic;
 import com.school.project.gui.view.statistics.StatisticsView;
 
 public class StatisticsController extends BaseController<StatisticsView> {
@@ -35,6 +36,7 @@ public class StatisticsController extends BaseController<StatisticsView> {
 			view.getTabbedPane().add("Best-selling active railcards", createChartModel(new BestSoldRailcardStatistic()));
 			view.getTabbedPane().add("Railcards in name of", createChartModel(new BestActiveRailCardStatistic()));
 			view.getTabbedPane().add("Origin Customer", createChartModel(new AddressFromUserStatistic()));
+			view.getTabbedPane().add("Ticket revenue by user", createChartModel(new TotalSoldTicketsByUserStatistic()));
 			view.repaint();
 		}).start();
 	}

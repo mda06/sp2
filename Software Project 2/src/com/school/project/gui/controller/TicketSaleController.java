@@ -18,6 +18,7 @@ import com.school.project.model.User;
 import com.school.project.nmbs.model.Station;
 import com.school.project.nmbs.model.StationCache;
 import com.school.project.util.NetUtil;
+import com.school.project.util.PriceUtil;
 
 public class TicketSaleController {
 	private PaymentPanel pnl;
@@ -54,12 +55,20 @@ public class TicketSaleController {
 				cal.setTime(new java.util.Date());
 				cal.add(Calendar.DATE, ticket.getValidityPeriod());
 				Date validTo = new Date(cal.getTime().getTime());
+				double price = 0;
+				try {
+					price = getPrice();
+				} catch (RuntimeException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error in the formula");
+					return;
+				}
 
 				if (ticket.isHasFixedRoute() && (from.isEmpty() || to.isEmpty())) {
 					JOptionPane.showMessageDialog(pnl, "Please enter from and to stations");
 				} else {
-					TicketSale sale = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user);
-					if(NetUtil.hasInternet()) {
+					TicketSale sale = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user, price);
+					if (NetUtil.hasInternet()) {
 						TicketSaleDAO.getInstance().add(sale);
 						TicketSaleOfflineCache.getInstance().saveCache();
 					} else {
@@ -74,22 +83,7 @@ public class TicketSaleController {
 		ActionListener actionPrice = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String from = pnl.getTxtFromStation().getText();
-				String to = pnl.getTxtToStation().getText();
-
-				if (!from.isEmpty() && !to.isEmpty()) {
-					Station s1 = StationCache.getInstance().getStationWithName(from);
-					Station s2 = StationCache.getInstance().getStationWithName(to);
-
-					if (s1 != null && s2 != null) {
-						double dist = distanceBetweenStations(s1, s2);
-						pnl.getTxtPrice().setText(String.format("%1.2f  €", ticket.getPrice() * dist));
-					}
-				} else {
-					String addToPrice = "€ / KM";
-					if (!ticket.isHasFixedRoute()) addToPrice = " €";
-					pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()) + addToPrice);
-				}
+				showPrice();
 			}
 		};
 
@@ -97,13 +91,25 @@ public class TicketSaleController {
 		pnl.getTxtToStation().addActionListener(actionPrice);
 	}
 
-	// http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-	private static double distanceBetweenStations(Station s1, Station s2) {
-		double p = Math.PI / 180;
-		double lat1 = s1.getLatitude(), lon1 = s1.getLongitude();
-		double lat2 = s2.getLatitude(), lon2 = s2.getLongitude();
-		double a = 0.5 - Math.cos((lat2 - lat1) * p) / 2 + Math.cos(lat1 * p) * Math.cos(lat2 * p) * (1 - Math.cos((lon2 - lon1) * p)) / 2;
-		return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+	private void showPrice() {
+		double price = 0;
+		try {
+			price = getPrice();
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			pnl.getTxtPrice().setText("Error in the formula");
+			return;
+		}
+
+		pnl.getTxtPrice().setText(String.valueOf(price + " €"));
+	}
+
+	private double getPrice() {
+		String from = pnl.getTxtFromStation().getText();
+		String to = pnl.getTxtToStation().getText();
+		Station s1 = StationCache.getInstance().getStationWithName(from);
+		Station s2 = StationCache.getInstance().getStationWithName(to);
+		return PriceUtil.getInstance().getPrice(s1, s2, ticket);
 	}
 
 	public void showTicket(Ticket t) {
@@ -111,10 +117,9 @@ public class TicketSaleController {
 		ticket = t;
 		pnl.getTxtName().setText(ticket.getName());
 		pnl.getTxtDesc().setText(ticket.getDescription());
-		String addToPrice = "€ / KM";
-		if (!ticket.isHasFixedRoute()) 
-			addToPrice = " €";
-		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()) + addToPrice);
+
+		showPrice();
+
 		pnl.getTxtValidFrom().setText(new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date()));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new java.util.Date());

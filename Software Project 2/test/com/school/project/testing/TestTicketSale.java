@@ -15,11 +15,11 @@ public class TestTicketSale {
 	int check = 1; //1 = true, 0 = false;
 	
 	public static TicketSale getFirstTicketSale(){
-		return new TicketSale(1, new Date(1477260000000L), new Date(1571868000000L), new Date(1477260000000L), "DILBEEK", "BRUXELLES-CENTRAL", false, TestTicket.getFirstTicket(), TestUser.getFirstUser());
+		return new TicketSale(1, new Date(1477260000000L), new Date(1571868000000L), new Date(1477260000000L), "DILBEEK", "BRUXELLES-CENTRAL", false, TestTicket.getFirstTicket(), TestUser.getFirstUser(), 0);
 	}
 	
 	public static TicketSale getSecondTicketSale(){
-		return new TicketSale(1, new Date(1473890400000L), new Date(1568498400000L), new Date(1473890400000L), "BRUXELLES-SCHUMAN", "ALOST", false, TestTicket.getSecondTicket(), TestUser.getSecondUser());
+		return new TicketSale(1, new Date(1473890400000L), new Date(1568498400000L), new Date(1473890400000L), "BRUXELLES-SCHUMAN", "ALOST", false, TestTicket.getSecondTicket(), TestUser.getSecondUser(), 0);
 	}
 	
 	@Test
