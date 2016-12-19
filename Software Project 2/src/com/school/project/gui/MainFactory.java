@@ -87,6 +87,7 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 		JFrame loadFrame = null;
 		if(!isCacheLoaded) {
 			loadFrame = new JFrame("Loading");
+			loadFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			loadFrame.getContentPane().add(new JLabel("Please wait until the cache is loaded..."));
 			loadFrame.pack();
 			loadFrame.setLocationRelativeTo(null);

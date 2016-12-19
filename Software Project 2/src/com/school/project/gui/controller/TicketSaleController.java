@@ -55,13 +55,20 @@ public class TicketSaleController {
 				cal.setTime(new java.util.Date());
 				cal.add(Calendar.DATE, ticket.getValidityPeriod());
 				Date validTo = new Date(cal.getTime().getTime());
-				double price = getPrice();
-			
+				double price = 0;
+				try {
+					price = getPrice();
+				} catch (RuntimeException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error in the formula");
+					return;
+				}
+
 				if (ticket.isHasFixedRoute() && (from.isEmpty() || to.isEmpty())) {
 					JOptionPane.showMessageDialog(pnl, "Please enter from and to stations");
 				} else {
 					TicketSale sale = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user, price);
-					if(NetUtil.hasInternet()) {
+					if (NetUtil.hasInternet()) {
 						TicketSaleDAO.getInstance().add(sale);
 						TicketSaleOfflineCache.getInstance().saveCache();
 					} else {
@@ -76,34 +83,33 @@ public class TicketSaleController {
 		ActionListener actionPrice = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				double price = getPrice();
-				if(ticket.isHasFixedRoute()) {
-					pnl.getTxtPrice().setText(String.format("%1.2f  €", price));
-				} else {
-					String addToPrice = "€ / KM";
-					if (!ticket.isHasFixedRoute()) addToPrice = " €";
-					pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()) + addToPrice);
-				}
+				showPrice();
 			}
 		};
 
 		pnl.getTxtFromStation().addActionListener(actionPrice);
 		pnl.getTxtToStation().addActionListener(actionPrice);
 	}
-	
+
+	private void showPrice() {
+		double price = 0;
+		try {
+			price = getPrice();
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			pnl.getTxtPrice().setText("Error in the formula");
+			return;
+		}
+
+		pnl.getTxtPrice().setText(String.valueOf(price + " €"));
+	}
+
 	private double getPrice() {
 		String from = pnl.getTxtFromStation().getText();
 		String to = pnl.getTxtToStation().getText();
-		double price = 0;
-		if (!from.isEmpty() && !to.isEmpty()) {
-			Station s1 = StationCache.getInstance().getStationWithName(from);
-			Station s2 = StationCache.getInstance().getStationWithName(to);
-
-			if (s1 != null && s2 != null) {
-				price = PriceUtil.getPrice(s1, s2, ticket);
-			}
-		}
-		return price;
+		Station s1 = StationCache.getInstance().getStationWithName(from);
+		Station s2 = StationCache.getInstance().getStationWithName(to);
+		return PriceUtil.getInstance().getPrice(s1, s2, ticket);
 	}
 
 	public void showTicket(Ticket t) {
@@ -111,10 +117,9 @@ public class TicketSaleController {
 		ticket = t;
 		pnl.getTxtName().setText(ticket.getName());
 		pnl.getTxtDesc().setText(ticket.getDescription());
-		String addToPrice = "€ / KM";
-		if (!ticket.isHasFixedRoute()) 
-			addToPrice = " €";
-		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()) + addToPrice);
+
+		showPrice();
+
 		pnl.getTxtValidFrom().setText(new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date()));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new java.util.Date());
