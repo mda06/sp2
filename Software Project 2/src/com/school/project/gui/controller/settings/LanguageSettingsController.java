@@ -5,10 +5,7 @@ import java.util.Map.Entry;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.LanguageSettingsView;

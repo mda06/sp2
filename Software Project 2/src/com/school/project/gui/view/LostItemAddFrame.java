@@ -1,7 +1,5 @@
 package com.school.project.gui.view;
 
-import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
