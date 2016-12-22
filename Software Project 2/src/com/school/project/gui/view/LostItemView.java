@@ -1,6 +1,10 @@
 package com.school.project.gui.view;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FocusTraversalPolicy;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -15,6 +19,7 @@ public class LostItemView extends BaseView{
 	private JTextField txtSearchType, txtSearchDesc, txtSearchLoc;
 	private JButton btnSearch, btnAdd;
 	private JTable table;
+	static TabThroughComponents travPol;
 
 	public LostItemView() {
 		super("lostItemView");
@@ -40,6 +45,17 @@ public class LostItemView extends BaseView{
 		add(btnSearch);
 		add(btnAdd);
 		add(scroll);
+		
+		Vector<Component> tabOrder = new Vector<Component>(6);
+		tabOrder.add(txtSearchType);
+		tabOrder.add(txtSearchDesc);
+		tabOrder.add(txtSearchLoc);
+		tabOrder.add(btnSearch);
+		tabOrder.add(btnAdd);
+		tabOrder.add(table);
+		travPol = new TabThroughComponents(tabOrder);
+		setFocusTraversalPolicy(travPol);
+		setFocusTraversalPolicyProvider(true);		
 		
 		btnSearch.setMinimumSize(new Dimension(300,100));
 		btnAdd.setMinimumSize(new Dimension(300,100));
@@ -78,6 +94,44 @@ public class LostItemView extends BaseView{
 		FontUtil.getInstance().bindSmallFont(table);
 		table.setRowHeight(30);
 		FontUtil.getInstance().bindSmallFont(table.getTableHeader());
+	}
+	
+	public static class TabThroughComponents extends FocusTraversalPolicy{ //template code from http://docs.oracle.com/javase/tutorial/uiswing/misc/focus.html#customFocusTraversal
+		Vector<Component> tabOrder;
+		
+		public TabThroughComponents(Vector<Component> tabOrder) {
+			this.tabOrder = new Vector<Component>(tabOrder.size());
+			this.tabOrder.addAll(tabOrder);
+		}
+		@Override
+		public Component getLastComponent(Container aContainer) {
+			return tabOrder.lastElement();
+		}
+		
+		@Override
+		public Component getFirstComponent(Container aContainer) {
+			return tabOrder.firstElement();
+		}
+		
+		@Override
+		public Component getDefaultComponent(Container aContainer) {
+			return tabOrder.get(0);
+		}
+		
+		@Override
+		public Component getComponentBefore(Container aContainer, Component aComponent) {
+			int idx = tabOrder.indexOf(aComponent) - 1;
+            if (idx < 0) {
+                idx = tabOrder.size() - 1;
+            }
+            return tabOrder.get(idx);
+		}
+		
+		@Override
+		public Component getComponentAfter(Container aContainer, Component aComponent) {
+			int idx = (tabOrder.indexOf(aComponent) + 1) % tabOrder.size();
+            return tabOrder.get(idx);
+		}
 	}
 	
 	public JButton getBtnAdd() {
