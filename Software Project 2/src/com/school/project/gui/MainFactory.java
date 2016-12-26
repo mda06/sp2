@@ -37,6 +37,13 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 	private LanguageObservable languageObservable;
 	
 	private static boolean isCacheLoaded;
+	
+	private static synchronized void setCacheLoaded(boolean b) {
+		isCacheLoaded = b;
+	}
+	private static synchronized boolean isCacheLoaded() {
+		return isCacheLoaded;
+	}
 
 	public MainFactory() {
 
@@ -53,13 +60,18 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 		}
 		
 		Acr122Factory.getInstance().loadListeners();
+		//We use 2 separated threads because they come from different servers
+		//If NMBS is down our MYSQL DB will work
+		//If the TicketCache is loaded after the baseframe is isn't bad
+		//There's a listener to the cache that will update the GUI
 		isCacheLoaded = false;
 		new Thread(() -> {
 			StationDAO.loadCache();
-			TicketCache.getInstance().loadCache();
 			RailCardCache.getInstance().loadCache();
-			isCacheLoaded = true;
+			System.out.println("Cache is now loaded");
+			setCacheLoaded(true);
 		}).start();
+		new Thread(() -> TicketCache.getInstance().loadCache()).start();
 		
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
@@ -82,10 +94,10 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 			public void windowDeactivated(WindowEvent e) {}
 		});
 	}
-
+	
 	public void showBaseFrame() {
 		JFrame loadFrame = null;
-		if(!isCacheLoaded) {
+		if(!isCacheLoaded()) {
 			loadFrame = new JFrame("Loading");
 			loadFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			loadFrame.getContentPane().add(new JLabel("Please wait until the cache is loaded..."));
@@ -93,7 +105,7 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 			loadFrame.setLocationRelativeTo(null);
 			loadFrame.setVisible(true);
 		}
-		while(!isCacheLoaded) {
+		while(!isCacheLoaded()) {
 			try {
 				Thread.sleep(150);
 			} catch (InterruptedException e1) {
