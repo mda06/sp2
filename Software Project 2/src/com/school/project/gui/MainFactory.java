@@ -67,11 +67,13 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 		isCacheLoaded = false;
 		new Thread(() -> {
 			StationDAO.loadCache();
-			RailCardCache.getInstance().loadCache();
 			System.out.println("Cache is now loaded");
 			setCacheLoaded(true);
 		}).start();
-		new Thread(() -> TicketCache.getInstance().loadCache()).start();
+		new Thread(() -> {
+			TicketCache.getInstance().loadCache();
+			RailCardCache.getInstance().loadCache();
+		}).start();
 		
 		connectedUser = null;
 		languageObservable = new LanguageObservable();
