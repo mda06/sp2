@@ -7,6 +7,7 @@ import java.awt.FocusTraversalPolicy;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -16,6 +17,7 @@ import com.school.project.util.FontUtil;
 
 public class LostItemView extends BaseView{
 	private static final long serialVersionUID = 1L;
+	private JLabel lblSearchType, lblSearchDesc, lblSearchLoc;
 	private JTextField txtSearchType, txtSearchDesc, txtSearchLoc;
 	private JButton btnSearch, btnAdd;
 	private JTable table;
@@ -27,11 +29,13 @@ public class LostItemView extends BaseView{
 	}
 	
 	private void initLayout() {
-		
-		txtSearchType = new JTextField("Type");
-		txtSearchDesc = new JTextField("Description");
-		txtSearchLoc = new JTextField("Location");
-		btnSearch = new JButton("Search");
+		lblSearchType = new JLabel("Type:");
+		lblSearchDesc = new JLabel("Description:");
+		lblSearchLoc = new JLabel("Location:");
+		txtSearchType = new JTextField();
+		txtSearchDesc = new JTextField();
+		txtSearchLoc = new JTextField();
+		btnSearch = new JButton();
 		btnAdd = new JButton("Add an item");
 		table = new JTable();	
 		JScrollPane scroll = new JScrollPane(table);
@@ -42,6 +46,9 @@ public class LostItemView extends BaseView{
 		add(txtSearchType);
 		add(txtSearchDesc);
 		add(txtSearchLoc);
+		add(lblSearchType);
+		add(lblSearchDesc);
+		add(lblSearchLoc);
 		add(btnSearch);
 		add(btnAdd);
 		add(scroll);
@@ -60,21 +67,31 @@ public class LostItemView extends BaseView{
 		btnSearch.setMinimumSize(new Dimension(300,100));
 		btnAdd.setMinimumSize(new Dimension(300,100));
 		
-		sp.putConstraint(SpringLayout.WEST, txtSearchType, 10, SpringLayout.WEST, this);
-		sp.putConstraint(SpringLayout.EAST, txtSearchType, -630, SpringLayout.EAST, this);
+
+		sp.putConstraint(SpringLayout.WEST, lblSearchType, 10, SpringLayout.WEST, this);
+		sp.putConstraint(SpringLayout.WEST, txtSearchType, 80, SpringLayout.EAST, lblSearchType);
+		sp.putConstraint(SpringLayout.EAST, txtSearchType, -600, SpringLayout.EAST, this);
 		sp.putConstraint(SpringLayout.NORTH, txtSearchType, 10, SpringLayout.NORTH, this);
 		sp.putConstraint(SpringLayout.NORTH, btnSearch, 0, SpringLayout.NORTH, txtSearchType);
 		sp.putConstraint(SpringLayout.SOUTH, btnSearch, 0, SpringLayout.SOUTH, txtSearchLoc);
 		sp.putConstraint(SpringLayout.WEST, btnSearch, 10, SpringLayout.EAST, txtSearchType);
 		sp.putConstraint(SpringLayout.EAST, btnSearch, 300, SpringLayout.WEST, btnSearch);
-		
+		sp.putConstraint(SpringLayout.NORTH, lblSearchType, 0, SpringLayout.NORTH, txtSearchType);
+		sp.putConstraint(SpringLayout.SOUTH, lblSearchType, 0, SpringLayout.SOUTH, txtSearchType);
+
+		sp.putConstraint(SpringLayout.WEST, lblSearchDesc, 0, SpringLayout.WEST, lblSearchType);
 		sp.putConstraint(SpringLayout.NORTH, txtSearchDesc, 10, SpringLayout.SOUTH, txtSearchType);
 		sp.putConstraint(SpringLayout.WEST, txtSearchDesc, 0, SpringLayout.WEST, txtSearchType);
 		sp.putConstraint(SpringLayout.EAST, txtSearchDesc, 0, SpringLayout.EAST, txtSearchType);
-		
+		sp.putConstraint(SpringLayout.NORTH, lblSearchDesc, 0, SpringLayout.NORTH, txtSearchDesc);
+		sp.putConstraint(SpringLayout.SOUTH, lblSearchDesc, 0, SpringLayout.SOUTH, txtSearchDesc);
+
+		sp.putConstraint(SpringLayout.WEST, lblSearchLoc, 0, SpringLayout.WEST, lblSearchType);
 		sp.putConstraint(SpringLayout.NORTH, txtSearchLoc, 10, SpringLayout.SOUTH, txtSearchDesc);
 		sp.putConstraint(SpringLayout.WEST, txtSearchLoc, 0, SpringLayout.WEST, txtSearchDesc);
 		sp.putConstraint(SpringLayout.EAST, txtSearchLoc, 0, SpringLayout.EAST, txtSearchDesc);
+		sp.putConstraint(SpringLayout.NORTH, lblSearchLoc, 0, SpringLayout.NORTH, txtSearchLoc);
+		sp.putConstraint(SpringLayout.SOUTH, lblSearchLoc, 0, SpringLayout.SOUTH, txtSearchLoc);
 		
 		sp.putConstraint(SpringLayout.WEST, btnAdd, 10, SpringLayout.EAST, btnSearch);
 		sp.putConstraint(SpringLayout.NORTH, btnAdd, 0, SpringLayout.NORTH, txtSearchType);
@@ -82,10 +99,13 @@ public class LostItemView extends BaseView{
 		sp.putConstraint(SpringLayout.EAST, btnAdd, -10, SpringLayout.EAST, this);
 		
 		sp.putConstraint(SpringLayout.NORTH, scroll, 20, SpringLayout.SOUTH, txtSearchLoc);
-		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, txtSearchType);
+		sp.putConstraint(SpringLayout.WEST, scroll, 0, SpringLayout.WEST, lblSearchType);
 		sp.putConstraint(SpringLayout.EAST, scroll, 0, SpringLayout.EAST, btnAdd);
 		sp.putConstraint(SpringLayout.SOUTH, scroll, -15, SpringLayout.SOUTH, this);
-		
+
+		FontUtil.getInstance().bindSmallFont(lblSearchType);
+		FontUtil.getInstance().bindSmallFont(lblSearchDesc);
+		FontUtil.getInstance().bindSmallFont(lblSearchLoc);
 		FontUtil.getInstance().bindSmallFont(txtSearchType);
 		FontUtil.getInstance().bindSmallFont(txtSearchDesc);
 		FontUtil.getInstance().bindSmallFont(txtSearchLoc);
@@ -156,5 +176,17 @@ public class LostItemView extends BaseView{
 
 	public JTable getTable() {
 		return table;
+	}
+
+	public JLabel getLblSearchType() {
+		return lblSearchType;
+	}
+
+	public JLabel getLblSearchDesc() {
+		return lblSearchDesc;
+	}
+
+	public JLabel getLblSearchLoc() {
+		return lblSearchLoc;
 	}
 }

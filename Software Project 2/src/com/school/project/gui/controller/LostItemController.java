@@ -2,8 +2,6 @@ package com.school.project.gui.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -126,43 +124,13 @@ public class LostItemController extends BaseController<LostItemView> {
 			strRemove = handler.getString("removeLostItem");
 			
 			view.getTxtSearchType().setToolTipText(handler.getString("tooltipLostItem"));
+			view.getLblSearchDesc().setText(handler.getString("description"));
+			view.getLblSearchLoc().setText(handler.getString("location"));
+			view.getLblSearchType().setText(handler.getString("type"));
 		}
 	}
 
 	private void initSearchBoxEvents() {
-		
-		view.getTxtSearchType().addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				view.getTxtSearchType().setText("");
-			}
-
-			public void focusLost(FocusEvent e) {
-				if (view.getTxtSearchType().getText().isEmpty()) {
-					//view.getTxtSearchType().setText("Type");
-				}
-			}
-		});
-		view.getTxtSearchDesc().addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				view.getTxtSearchDesc().setText("");
-				
-			}
-
-			public void focusLost(FocusEvent e) {	
-				//view.getTxtSearchDesc().setText("Description");
-			}
-		});
-		view.getTxtSearchLoc().addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				view.getTxtSearchLoc().setText("");
-				
-			}
-
-			public void focusLost(FocusEvent e) {	
-				//view.getTxtSearchLoc().setText("Location");
-			}
-		});
-		
 		ActionListener searchAction = new ActionListener(){
 			public void actionPerformed(ActionEvent e) {				
 				for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
