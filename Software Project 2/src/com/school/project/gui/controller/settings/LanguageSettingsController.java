@@ -71,17 +71,6 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 						model.addRow(rowData);
 					}
 					
-//					model.addTableModelListener(new TableModelListener() {
-//
-//						@Override
-//						public void tableChanged(TableModelEvent e) {
-//							int row = e.getFirstRow();
-//							int column = 1; //only check for edited translation
-//							TableModel model = (TableModel) e.getSource();
-//							Object data = model.getValueAt(row, column);
-//							newWords.put((String)model.getValueAt(row, 0),(String) data);						
-//						}
-//					});
 					view.getBtnSave().setVisible(true);
 				}).start();
 			} else {
@@ -90,20 +79,18 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 		});
 
 		view.getBtnSave().addActionListener((ev) -> {
-			if (newLanguage == null || newWords == null) {
+			if (newLanguage == null) {
 				return;
 			}
 			
 			if(view.getTblTranslated().isEditing())
 				view.getTblTranslated().getCellEditor().stopCellEditing();
 			
-			for(int i = 0; i < view.getTblTranslated().getModel().getRowCount(); i++){
-				String key = (String) view.getTblTranslated().getModel().getValueAt(i, 0);
-				String value = (String) view.getTblTranslated().getModel().getValueAt(i, 0);
+			for(int i = 0; i < model.getRowCount(); i++){
+				String value = (String) view.getTblTranslated().getModel().getValueAt(i, 1);
 				
-				newWords.put(key, value);
+				newWords.put(newWords.keySet().toArray()[i].toString(), value);
 			}
-			
 			
 			view.getScrollLst().setVisible(false);
 			view.getTblTranslated();
