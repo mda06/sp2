@@ -66,7 +66,7 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 		//There's a listener to the cache that will update the GUI
 		isCacheLoaded = false;
 		new Thread(() -> {
-			StationDAO.loadCache();
+			StationDAO.loadCache(true);
 			System.out.println("Cache is now loaded");
 			setCacheLoaded(true);
 		}).start();
