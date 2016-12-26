@@ -243,6 +243,8 @@ public class UserController extends BaseController<UserView> implements Selected
 			view.getLbStreetline2().setText(lh.getString("streetLine2"));
 			view.getLbCountry().setText(lh.getString("country"));
 			view.getLblSoortuser().setText(lh.getString("userType"));
+			view.getcBGenderM().setText(lh.getString("genderInitialM"));
+			view.getcBGenderW().setText(lh.getString("genderInitialF"));
 
 			strErrorFillInTheBlanks = lh.getString("fillInTheBlanks");
 			strErrorMatchingPassword = lh.getString("matchingPasswords");

@@ -35,15 +35,25 @@
 		<value lang="fr">Petite Police</value>
 		<value lang="nl">Kleine Lettertype</value>
 	</string>
+	<string name = "lblFontReallySmall">
+		<value lang="en">Really Small Font</value>
+		<value lang="fr">Très Petite Police</value>
+		<value lang="nl">Zeer Klein Lettertype</value>
+	</string>
 	<string name = "btnFontBig">
 		<value lang="en">Change Big Font</value>
 		<value lang="fr">Changer Grande Police</value>
-		<value lang="nl">Verander Groote Lettertype</value>
+		<value lang="nl">Verander Groot Lettertype</value>
 	</string>
     <string name = "btnFontSmall">
 		<value lang="en">Change Small Font</value>
 		<value lang="fr">Changer Petite Police</value>
-		<value lang="nl">Verander Kleine Lettertype</value>
+		<value lang="nl">Verander Klein Lettertype</value>
+	</string>
+	<string name = "btnFontReallySmall">
+		<value lang="en">Change Really Small Font</value>
+		<value lang="fr">Changer Très Petite Police</value>
+		<value lang="nl">Verander Zeer Klein Lettertype</value>
 	</string>
     <string name = "Settings">
 		<value lang="en">Settings</value>
@@ -70,7 +80,7 @@
 		<value lang="fr">Utilisateur modifié</value>
 		<value lang="nl">Gebruiker gewijzigd</value>
 	</string>
-	<string name = "removeLostItem">
+	<string name = "remove">
 		<value lang="en">Remove</value>
 		<value lang="fr">Supprimer</value>
 		<value lang="nl">Verwijder</value>
@@ -163,7 +173,7 @@
 	</string>
 	<string name = "TicketView">
 		<value lang="nl">Tickets</value>
-		<value lang="fr">Ticket</value>
+		<value lang="fr">Tickets</value>
 		<value lang="en">Tickets</value>
 	</string>
 	<string name = "Route">
@@ -452,12 +462,22 @@
 	<string name="country">
 		<value lang="en">Country</value>
 		<value lang="nl">Land</value>
-		<value lang="fr">pays</value>
+		<value lang="fr">Pays</value>
 	</string>
 	<string name="gender">
 		<value lang="en">Gender</value>
 		<value lang="nl">Geslacht</value>
-		<value lang="fr">le sexe</value>
+		<value lang="fr">Le sexe</value>
+	</string>
+	<string name="genderInitialM">
+		<value lang="en">M</value>
+		<value lang="nl">M</value>
+		<value lang="fr">M</value>
+	</string>
+	<string name="genderInitialF">
+		<value lang="en">F</value>
+		<value lang="nl">V</value>
+		<value lang="fr">F</value>
 	</string>
 	<string name="TicketSettings">
 		<value lang="en">Ticket settings</value>
@@ -472,7 +492,7 @@
 	<string name="LayoutSettings">
 		<value lang="en">Layout settings</value>
 		<value lang="nl">Lay-out instellingen</value>
-		<value lang="fr">disposition paramètres</value>
+		<value lang="fr">Disposition paramètres</value>
 	</string>
 	<!-- <string name="LanguageSettings">
 		<value lang="en">Language settings</value>
@@ -491,7 +511,7 @@
 	</string>
 	<string name="TicketPrice">
 		<value lang="en">Ticket price</value>
-		<value lang="nl">Tiket prijs</value>
+		<value lang="nl">Ticket prijs</value>
 		<value lang="fr">Prix de ticket</value>
 	</string>
 	<string name="hasFixedRoute">
@@ -549,6 +569,67 @@
 		<value lang="nl">U kunt deze gebruiker niet aanpassen.</value>
 		<value lang="fr">Vous ne pouvez pas modifier cet utilisateur.</value>
 	</string>
+	<string name="newTicket">
+		<value lang="en">New ticket</value>
+		<value lang="nl">Nieuw ticket</value>
+		<value lang="fr">Nouveau ticket</value>
+	</string>
+	<string name="newRailcard">
+		<value lang="en">New railcard</value>
+		<value lang="nl">Nieuw abonnement</value>
+		<value lang="fr">Nouveau abonnement</value>
+	</string>
+	<string name="addLanguage">
+		<value lang="en">Add language</value>
+		<value lang="nl">Voeg taal toe</value>
+		<value lang="fr">Ajoute langue</value>
+	</string>
+	<string name="btnPrice">
+		<value lang="en">Price</value>
+		<value lang="nl">Prijs</value>
+		<value lang="fr">Prix</value>
+	</string>
+	<string name="fixedRoute">
+		<value lang="en">Fixed route</value>
+		<value lang="nl">Vaste route</value>
+		<value lang="fr">Itinéraire fixe</value>
+	</string>
+	<string name="distance">
+		<value lang="en">Distance</value>
+		<value lang="nl">Afstand</value>
+		<value lang="fr">Distance</value>
+	</string>
+	<string name="test">
+		<value lang="en">Test</value>
+		<value lang="nl">Test</value>
+		<value lang="fr">Tester</value>
+	</string>
+	<string name="ticket">
+		<value lang="en">Ticket</value>
+		<value lang="nl">Ticket</value>
+		<value lang="fr">Ticket</value>
+	</string>
+	<string name="station">
+		<value lang="en">Station</value>
+		<value lang="nl">Station</value>
+		<value lang="fr">Gare</value>
+	</string>
+	<string name="arithmetics">
+		<value lang="en">Arithmetics</value>
+		<value lang="nl">Rekenen</value>
+		<value lang="fr">Arithmétique</value>
+	</string>
+	<string name="testData">
+		<value lang="en">Test Data</value>
+		<value lang="nl">Test Data</value>
+		<value lang="fr">Matériau à Tester</value>
+	</string>
+	<string name="formula">
+		<value lang="en">Formula</value>
+		<value lang="nl">Formule</value>
+		<value lang="fr">Formule</value>
+	</string>
+
 	<!-- <string name="price per month">
 		<value lang="en">Price per month:</value>
 		<value lang="nl">Prijs per maand:</value>

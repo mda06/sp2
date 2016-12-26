@@ -12,6 +12,8 @@ import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.listener.CacheUpdateListener;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.settings.TicketSettingsView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketCache;
 import com.school.project.util.FontUtil;
@@ -64,6 +66,10 @@ public class TicketSettingsController extends BaseController<TicketSettingsView>
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			view.getBtnNewticket().setText(lh.getString("newTicket"));
+		}
 		tEdit.update(o, arg);
 	}
 	

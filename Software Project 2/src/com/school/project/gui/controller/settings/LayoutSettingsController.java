@@ -54,11 +54,11 @@ public class LayoutSettingsController extends BaseController<LayoutSettingsView>
 			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
 			view.getLblFontBig().setText(lh.getString("lblFontBig"));
 			view.getLblFontSmall().setText(lh.getString("lblFontSmall"));
-			//view.getLblFontReallySmall().setText(lh.getString("lblFontReallySmall"));
+			view.getLblFontReallySmall().setText(lh.getString("lblFontReallySmall"));
 			
 			view.getBtnFontBig().setText(lh.getString("btnFontBig"));
 			view.getBtnFontSmall().setText(lh.getString("btnFontSmall"));
-			//view.getBtnFontReallySmall().setText(lh.getString("btnFontReallySmall"));
+			view.getBtnFontReallySmall().setText(lh.getString("btnFontReallySmall"));
 		}
 	}
 

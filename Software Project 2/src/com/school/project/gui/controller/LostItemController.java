@@ -121,7 +121,7 @@ public class LostItemController extends BaseController<LostItemView> {
 			addFrame.getLblLocation().setText(handler.getString("location"));
 
 			strErrorAdd = handler.getString("errorAddLostItem");
-			strRemove = handler.getString("removeLostItem");
+			strRemove = handler.getString("remove") + " ";
 			
 			view.getTxtSearchType().setToolTipText(handler.getString("tooltipLostItem"));
 			view.getLblSearchDesc().setText(handler.getString("description"));

@@ -24,6 +24,7 @@ public class TicketPriceEditorPanel extends BaseView {
 	private JTextField txtTkVal, txtTkPrice, txtTkFixRoute;
 	private JButton btnTest, btnSave;
 	private JTextArea txtFormula;
+	private String strTicket, strStation, strMath, strFormula, strTestData;
 	
 	public TicketPriceEditorPanel() {
 		super("TicketPriceEditorPanel");
@@ -249,4 +250,45 @@ public class TicketPriceEditorPanel extends BaseView {
 	public JTextArea getTxtFormula() {
 		return txtFormula;
 	}
+
+	public String getStrTicket() {
+		return strTicket;
+	}
+
+	public void setStrTicket(String strTicket) {
+		this.strTicket = strTicket;
+	}
+
+	public String getStrStation() {
+		return strStation;
+	}
+
+	public void setStrStation(String strStation) {
+		this.strStation = strStation;
+	}
+
+	public String getStrMath() {
+		return strMath;
+	}
+
+	public void setStrMath(String strMath) {
+		this.strMath = strMath;
+	}
+
+	public String getStrFormula() {
+		return strFormula;
+	}
+
+	public void setStrFormula(String strFormula) {
+		this.strFormula = strFormula;
+	}
+
+	public String getStrTestData() {
+		return strTestData;
+	}
+
+	public void setStrTestData(String strTestData) {
+		this.strTestData = strTestData;
+	}
+	
 }

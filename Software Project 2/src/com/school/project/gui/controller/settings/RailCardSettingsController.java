@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.settings.RailCardSettingsView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.RailCard;
 import com.school.project.model.RailCardCache;
 import com.school.project.util.FontUtil;
@@ -55,6 +57,10 @@ public class RailCardSettingsController extends BaseController<RailCardSettingsV
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable) o).getLanguageHandler();
+			view.getBtnNewRailCard().setText(lh.getString("newRailcard"));
+		}
 		rcEdit.update(o, arg);
 	}
 	

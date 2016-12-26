@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.LanguageSettingsView;
 import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.util.NetUtil;
 
 public class LanguageSettingsController extends BaseController<LanguageSettingsView> {
@@ -104,6 +105,11 @@ public class LanguageSettingsController extends BaseController<LanguageSettingsV
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
+			view.getBtnLoad().setText(lh.getString("addLanguage"));
+			view.getBtnSave().setText(lh.getString("save"));
+		}
 	}
 
 }

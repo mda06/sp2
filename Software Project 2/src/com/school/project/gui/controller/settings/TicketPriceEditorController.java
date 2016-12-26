@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import com.school.project.dao.FormulaDAO;
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.TicketPriceEditorPanel;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.price.Formula;
 import com.school.project.util.PriceUtil;
 
@@ -176,6 +178,36 @@ public class TicketPriceEditorController extends BaseController<TicketPriceEdito
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
+			view.getBtnTkVal().setText(lh.getString("validityPeriod"));
+			view.getBtnTkPrice().setText(lh.getString("btnPrice"));
+			view.getBtnTkFixRoute().setText(lh.getString("fixedRoute"));
+			
+			view.getBtnStDst().setText(lh.getString("distance"));
+			view.getBtnStDur().setText(lh.getString("duration"));
+			view.getBtnStStops().setText(lh.getString("numberOfVias"));
+			
+			view.getBtnAddConst().setText(lh.getString("add"));
+			
+			view.getLblDst().setText(lh.getString("distance") + ":");
+			view.getLblDur().setText(lh.getString("duration") + ":");
+			view.getLblStops().setText(lh.getString("numberOfVias") + ":");
+			view.getLblVal().setText(lh.getString("validityPeriod") + ":");
+			view.getLblPrice().setText(lh.getString("price"));
+			view.getLblFixed().setText(lh.getString("fixedRoute") + ":");
+			
+			view.getBtnRemove().setText(lh.getString("remove"));
+			view.getBtnTest().setText(lh.getString("test"));
+			view.getBtnSave().setText(lh.getString("save"));
+			
+			/*view.setStrTicket(lh.getString("ticket"));
+			view.setStrFormula(lh.getString("formula"));
+			view.setStrStation(lh.getString("station"));
+			view.setStrMath(lh.getString("arithmetics"));
+			view.setStrTestData(lh.getString("testData"));*/
+
+		}
 	}
 	
 	@Override
