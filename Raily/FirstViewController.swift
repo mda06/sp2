@@ -18,7 +18,7 @@ class FirstViewController: UIViewController{
     }
         func getFromJSON()
     {
-        let url = NSURL(string: "https://irail.be/stations/NMBS")
+        let url = NSURL(string: "https://api.irail.be/connections/?to=Aalst&from=Ninove&format=json")
         let request = NSMutableURLRequest(url:url! as URL)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {data,response,error in
@@ -38,20 +38,25 @@ class FirstViewController: UIViewController{
                     //let time = responseString["current_time"] //number or strings
                    // print(String(describing: time)) //convert to string if it number
                     
-                    let graph=responseString["@graph"] as? [AnyObject] //posts started with array
+                    let connection=responseString["connection"] as? [AnyObject] //posts started with array
+                   
                     
-                    for post in graph!
+                    for post in connection!
                     {
-                            let name = post["name"] as! String
-                        print(name)
-//                        let txtId = "http://irail.be/stations/NMBS/007015400"
-//                        let id = post["@id"] as! String
-//                        if(txtId == id){
-//                            print(post["name"] as! String)
-//                        }
+                        let departure = post["departure"] as! NSDictionary
+                        let depStationName = departure["station"] as! String
                         
+                        let arrival = post["arrival"] as! NSDictionary
+                        let arrStationName = arrival["station"] as! String
+                       
+                        var duration = post["duration"] as! String
+                        let durationSec = Int(duration)!/60
+                        
+                        print("From: " + depStationName)
+                        print("To: " + arrStationName)
+                        print("Duration: " + String(durationSec))
+                        print(" ")
                     }
-                    
                     
                     
                 }

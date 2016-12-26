@@ -50,7 +50,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2oY-pL-a9e" kind="push" identifier="chosenRoutes" id="fFJ-Z0-WDN"/>
+                                    <segue destination="7Dc-Av-5fM" kind="show" id="YkK-Hz-T7R"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -67,7 +67,6 @@
         <!--Chosen route-->
         <scene sceneID="tag-7F-jsT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7b4-Sn-MSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="2oY-pL-a9e" customClass="TableViewController" customModule="Raily" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" alpha="0.94999999999999996" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="10" rowHeight="27" sectionHeaderHeight="28" sectionFooterHeight="28" id="IrY-7M-69z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -78,7 +77,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="27"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gSO-tL-3e4" id="L6f-u7-AvC">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="26.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -91,8 +90,27 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Chosen route" id="sm2-i8-smo"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7b4-Sn-MSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404.375" y="-295.77464788732397"/>
+            <point key="canvasLocation" x="2344" y="-374"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mAA-nw-COj">
+            <objects>
+                <viewController id="7Dc-Av-5fM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mpr-n6-vTR"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZAQ-hp-ACo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5KQ-qX-hUG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GCw-GY-4qS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1506" y="-295"/>
         </scene>
         <!--First-->
         <scene sceneID="E9A-PK-zMy">
