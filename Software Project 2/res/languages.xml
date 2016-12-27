@@ -634,6 +634,47 @@
 		<value lang="nl">Formule</value>
 		<value lang="fr">Formule</value>
 	</string>
+	<string name="keyType">
+		<value lang="en">Key type:</value>
+		<value lang="nl">Type sleutel:</value>
+		<value lang="fr">Type de clef:</value>
+	</string>
+	<string name="keyLoc">
+		<value lang="en">Key location:</value>
+		<value lang="nl">Plaats sleutel:</value>
+		<value lang="fr">Place de clef:</value>
+	</string>
+	<string name="checkReader">
+		<value lang="en">Check reader</value>
+		<value lang="nl">Verifieer lezer</value>
+		<value lang="fr">Vérifier le lecteur</value>
+	</string>
+	<string name="noReaderFound">
+		<value lang="en">No reader found</value>
+		<value lang="nl">Geen lezer gevonden</value>
+		<value lang="fr">Pas de lecteur trouvé</value>
+	</string>
+	<string name="checkCard">
+		<value lang="en">Check card</value>
+		<value lang="nl">Verifieer kaart</value>
+		<value lang="fr">Vérifier la carte</value>
+	</string>
+	<string name="noCardFound">
+		<value lang="en">No card found</value>
+		<value lang="nl">Geen kaart gevonden</value>
+		<value lang="fr">Aucune carte trouvée</value>
+	</string>
+	<string name="createDump">
+		<value lang="en">Create dump</value>
+		<value lang="nl">Dump maken</value>
+		<value lang="fr">Voir le contenu</value>
+	</string>
+	<string name="noDataFound">
+		<value lang="en">No data found</value>
+		<value lang="nl">Geen data gevonden</value>
+		<value lang="fr">Pas de données trouvées</value>
+	</string>
+	
 
 	<!-- <string name="price per month">
 		<value lang="en">Price per month:</value>

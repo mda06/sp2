@@ -7,6 +7,8 @@ import javax.smartcardio.CardTerminal;
 
 import com.school.project.gui.controller.BaseController;
 import com.school.project.gui.view.settings.NFCSettingsView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.nfc.Acr122Factory;
 import com.school.project.nfc.CardMifare1K;
 import com.school.project.nfc.KEY_LOCATION;
@@ -14,6 +16,8 @@ import com.school.project.nfc.KEY_TYPE;
 
 public class NFCSettingsController extends BaseController<NFCSettingsView>{
 
+	private String noCardFound = "No card found", noReaderFound = "No reader found", noDataFound = "No data found";
+	
 	public NFCSettingsController() {
 		super(new NFCSettingsView());
 		
@@ -22,9 +26,9 @@ public class NFCSettingsController extends BaseController<NFCSettingsView>{
 	}
 	
 	private void initLayoutPreferences() {
-		view.getTxtCard().setText("No card found.");
+		view.getTxtCard().setText(noCardFound);
 		view.getTxtCard().setEditable(false);
-		view.getTxtReader().setText("No reader found.");
+		view.getTxtReader().setText(noReaderFound);
 		view.getTxtReader().setEditable(false);
 		view.getCbLoc().addItem(KEY_LOCATION.ONE);
 		view.getCbLoc().addItem(KEY_LOCATION.ZERO);
@@ -61,7 +65,7 @@ public class NFCSettingsController extends BaseController<NFCSettingsView>{
 				view.getTxtCard().setText(card.toString());
 			} else {
 				resetDump();
-				view.getTxtCard().setText("No card found.");
+				view.getTxtCard().setText(noCardFound);
 			}
 		});
 	}
@@ -71,7 +75,7 @@ public class NFCSettingsController extends BaseController<NFCSettingsView>{
 		if(card != null)
 			view.getTxtCard().setText(card.getUIDString());
 		else
-			view.getTxtCard().setText("No card found.");
+			view.getTxtCard().setText(noCardFound);
 	}
 	
 	private void checkReader() {
@@ -79,15 +83,26 @@ public class NFCSettingsController extends BaseController<NFCSettingsView>{
 		if(terminal != null)
 			view.getTxtReader().setText(terminal.toString());
 		else
-			view.getTxtReader().setText("No reader found.");
+			view.getTxtReader().setText(noReaderFound);
 	}
 	
 	private void resetDump() {
-		view.getListDump().setListData(new String[]{"No data found"});
+		view.getListDump().setListData(new String[]{noDataFound});
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
+			view.getLblType().setText(lh.getString("keyType"));
+			view.getLblLoc().setText(lh.getString("keyLoc"));
+			view.getBtnReader().setText(lh.getString("checkReader"));
+			view.getBtnCard().setText(lh.getString("checkCard"));
+			view.getBtnDump().setText(lh.getString("createDump"));
+
+			view.getTxtReader().setText(lh.getString("noReaderFound"));
+			view.getTxtCard().setText(lh.getString("noCardFound"));
+			view.getListDump().setListData(new String[]{lh.getString("noDataFound")});
+		}
 	}
 }
