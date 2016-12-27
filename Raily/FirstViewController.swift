@@ -13,12 +13,20 @@ class FirstViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    @IBOutlet weak var whereFrom: UITextField!
+    @IBOutlet weak var whereTo: UITextField!
+    @IBAction func searchButton(_ sender: Any) {
         self.getFromJSON()
-    
+
     }
         func getFromJSON()
     {
-        let url = NSURL(string: "https://api.irail.be/connections/?to=Aalst&from=Ninove&format=json")
+        let whereFrom = self.whereFrom.text
+        let whereTo = self.whereTo.text
+        let url = NSURL(string: "https://api.irail.be/connections/?to=" + whereTo! + "&from=" + whereFrom! + "&format=json")
+       
         let request = NSMutableURLRequest(url:url! as URL)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {data,response,error in
