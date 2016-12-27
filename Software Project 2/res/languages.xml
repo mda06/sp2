@@ -599,6 +599,11 @@
 		<value lang="nl">Afstand</value>
 		<value lang="fr">Distance</value>
 	</string>
+	<string name="toolbox">
+		<value lang="en">Tools</value>
+		<value lang="nl">Tools</value>
+		<value lang="fr">Outils</value>
+	</string>
 	<string name="test">
 		<value lang="en">Test</value>
 		<value lang="nl">Test</value>

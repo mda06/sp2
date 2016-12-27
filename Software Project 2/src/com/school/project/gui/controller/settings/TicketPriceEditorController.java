@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
 
 import com.school.project.dao.FormulaDAO;
 import com.school.project.gui.controller.BaseController;
@@ -201,12 +202,12 @@ public class TicketPriceEditorController extends BaseController<TicketPriceEdito
 			view.getBtnTest().setText(lh.getString("test"));
 			view.getBtnSave().setText(lh.getString("save"));
 			
-			/*view.setStrTicket(lh.getString("ticket"));
-			view.setStrFormula(lh.getString("formula"));
-			view.setStrStation(lh.getString("station"));
-			view.setStrMath(lh.getString("arithmetics"));
-			view.setStrTestData(lh.getString("testData"));*/
-
+			((TitledBorder)view.getPnlToolbox().getBorder()).setTitle(lh.getString("toolbox"));
+			((TitledBorder)view.getPnlTk().getBorder()).setTitle(lh.getString("ticket"));
+			((TitledBorder)view.getPnlSt().getBorder()).setTitle(lh.getString("station"));
+			((TitledBorder)view.getPnlAri().getBorder()).setTitle(lh.getString("arithmetics"));
+			((TitledBorder)view.getPnlTest().getBorder()).setTitle(lh.getString("testData"));
+			((TitledBorder)view.getPnlFormula().getBorder()).setTitle(lh.getString("formula"));
 		}
 	}
 	

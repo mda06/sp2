@@ -24,7 +24,7 @@ public class TicketPriceEditorPanel extends BaseView {
 	private JTextField txtTkVal, txtTkPrice, txtTkFixRoute;
 	private JButton btnTest, btnSave;
 	private JTextArea txtFormula;
-	private String strTicket, strStation, strMath, strFormula, strTestData;
+	private JPanel pnlTk, pnlSt, pnlAri, pnlTest, pnlFormula, pnlBtns, pnlToolbox;
 	
 	public TicketPriceEditorPanel() {
 		super("TicketPriceEditorPanel");
@@ -32,7 +32,9 @@ public class TicketPriceEditorPanel extends BaseView {
 	}
 	
 	private void initLayout() {
-		JPanel pnlTk = new JPanel(), pnlSt = new JPanel(), pnlAri = new JPanel();
+		pnlTk = new JPanel();
+		pnlSt = new JPanel();
+		pnlAri = new JPanel();
 		pnlTk.setBorder(BorderFactory.createTitledBorder("Ticket"));
 		pnlTk.setLayout(new GridLayout(3, 1));
 		pnlTk.add(btnTkVal = new JButton("Validity Period"));
@@ -56,7 +58,9 @@ public class TicketPriceEditorPanel extends BaseView {
 		pnlAri.add(txtConst = new JTextField("0"));
 		pnlAri.add(btnAddConst = new JButton("Add"));
 		
-		JPanel pnlTest = new JPanel(), pnlFormula = new JPanel(), pnlBtns = new JPanel();
+		pnlTest = new JPanel();
+		pnlFormula = new JPanel();
+		pnlBtns = new JPanel();
 		pnlTest.setBorder(BorderFactory.createTitledBorder("Test Data"));
 		pnlTest.setLayout(new GridLayout(3, 4));
 		pnlTest.add(lblDst = new JLabel("Distance: ", JLabel.TRAILING));
@@ -81,7 +85,7 @@ public class TicketPriceEditorPanel extends BaseView {
 		pnlBtns.add(btnSave = new JButton("Save formula"));
 		btnSave.setEnabled(false);
 		
-		JPanel pnlToolbox = new JPanel();
+		pnlToolbox = new JPanel();
 		pnlToolbox.setBorder(BorderFactory.createTitledBorder("Toolbox"));
 		pnlToolbox.setLayout(new BoxLayout(pnlToolbox, BoxLayout.Y_AXIS));
 		pnlToolbox.add(pnlTk);
@@ -251,44 +255,31 @@ public class TicketPriceEditorPanel extends BaseView {
 		return txtFormula;
 	}
 
-	public String getStrTicket() {
-		return strTicket;
+	public JPanel getPnlTk() {
+		return pnlTk;
 	}
 
-	public void setStrTicket(String strTicket) {
-		this.strTicket = strTicket;
+	public JPanel getPnlSt() {
+		return pnlSt;
 	}
 
-	public String getStrStation() {
-		return strStation;
+	public JPanel getPnlAri() {
+		return pnlAri;
 	}
 
-	public void setStrStation(String strStation) {
-		this.strStation = strStation;
+	public JPanel getPnlTest() {
+		return pnlTest;
 	}
 
-	public String getStrMath() {
-		return strMath;
+	public JPanel getPnlFormula() {
+		return pnlFormula;
 	}
 
-	public void setStrMath(String strMath) {
-		this.strMath = strMath;
+	public JPanel getPnlBtns() {
+		return pnlBtns;
 	}
 
-	public String getStrFormula() {
-		return strFormula;
-	}
-
-	public void setStrFormula(String strFormula) {
-		this.strFormula = strFormula;
-	}
-
-	public String getStrTestData() {
-		return strTestData;
-	}
-
-	public void setStrTestData(String strTestData) {
-		this.strTestData = strTestData;
-	}
-	
+	public JPanel getPnlToolbox() {
+		return pnlToolbox;
+	}	
 }
