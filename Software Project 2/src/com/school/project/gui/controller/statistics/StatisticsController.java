@@ -16,27 +16,47 @@ import com.school.project.gui.model.statistics.data.BestTicketSaleStatistic;
 import com.school.project.gui.model.statistics.data.TicketSaleByUsersStatistic;
 import com.school.project.gui.model.statistics.data.TotalSoldTicketsByUserStatistic;
 import com.school.project.gui.view.statistics.StatisticsView;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 
 public class StatisticsController extends BaseController<StatisticsView> {
 
+	private String strTicketsSold = "Tickets sold";
+	private String strBestSellingTk = "Best-selling tickets";
+	private String strACRSold = "Active railcards sold by user";
+	private String strBestSellingACR = "Best-selling active railcards";
+	private String strRailcardInNameOf = "Railcards in name of";
+	private String strOriginCust = "Origin customers";
+	private String strTicketRevenue = "Ticket revenue by user";
+	
 	public StatisticsController() {
 		super(new StatisticsView());
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o).getLanguageHandler();
+			strTicketsSold = lh.getString("ticketsSold");
+			strBestSellingTk = lh.getString("bestSellingTickets");
+			strACRSold = lh.getString("acrSold");
+			strBestSellingACR = lh.getString("bestSellingACR");
+			strRailcardInNameOf = lh.getString("railcardInNameOf");
+			strOriginCust = lh.getString("originCustomers");
+			strTicketRevenue = lh.getString("ticketRevenue");
+		}
 	}
 	
 	private void updateDataset() {
 		new Thread(() -> {
 			view.getTabbedPane().removeAll();
-			view.getTabbedPane().add("Tickets sold by user", createChartModel(new TicketSaleByUsersStatistic()));
-			view.getTabbedPane().add("Best-selling tickets", createChartModel(new BestTicketSaleStatistic()));
-			view.getTabbedPane().add("Active railcards sold by user", createChartModel(new ActiveRailCardByUsersStatistic()));
-			view.getTabbedPane().add("Best-selling active railcards", createChartModel(new BestSoldRailcardStatistic()));
-			view.getTabbedPane().add("Railcards in name of", createChartModel(new BestActiveRailCardStatistic()));
-			view.getTabbedPane().add("Origin Customer", createChartModel(new AddressFromUserStatistic()));
-			view.getTabbedPane().add("Ticket revenue by user", createChartModel(new TotalSoldTicketsByUserStatistic()));
+			view.getTabbedPane().add(strTicketsSold, createChartModel(new TicketSaleByUsersStatistic()));
+			view.getTabbedPane().add(strBestSellingTk, createChartModel(new BestTicketSaleStatistic()));
+			view.getTabbedPane().add(strACRSold, createChartModel(new ActiveRailCardByUsersStatistic()));
+			view.getTabbedPane().add(strBestSellingACR, createChartModel(new BestSoldRailcardStatistic()));
+			view.getTabbedPane().add(strRailcardInNameOf, createChartModel(new BestActiveRailCardStatistic()));
+			view.getTabbedPane().add(strOriginCust, createChartModel(new AddressFromUserStatistic()));
+			view.getTabbedPane().add(strTicketRevenue, createChartModel(new TotalSoldTicketsByUserStatistic()));
 			view.repaint();
 		}).start();
 	}

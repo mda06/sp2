@@ -93,7 +93,7 @@ public class NFCSettingsController extends BaseController<NFCSettingsView>{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof LanguageObservable){
-			LanguageHandler lh = ((LanguageObservable)o). getLanguageHandler();
+			LanguageHandler lh = ((LanguageObservable)o).getLanguageHandler();
 			view.getLblType().setText(lh.getString("keyType"));
 			view.getLblLoc().setText(lh.getString("keyLoc"));
 			view.getBtnReader().setText(lh.getString("checkReader"));

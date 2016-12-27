@@ -674,6 +674,41 @@
 		<value lang="nl">Geen data gevonden</value>
 		<value lang="fr">Pas de données trouvées</value>
 	</string>
+	<string name="ticketsSold">
+		<value lang="en">Tickets sold by user</value>
+		<value lang="nl">Tickets verkocht per gebruiker</value>
+		<value lang="fr">Tickets vendus par utilisateur</value>
+	</string>
+	<string name="bestSellingTickets">
+		<value lang="en">Best-selling tickets</value>
+		<value lang="nl">Bestverkochte tickets</value>
+		<value lang="fr">Tickets les mieux vendus</value>
+	</string>
+	<string name="acrSold">
+		<value lang="en">Active railcards sold by user</value>
+		<value lang="nl">Abonnementen verkocht per gebruiker</value>
+		<value lang="fr">Abonnements vendus par utilisateur</value>
+	</string>
+	<string name="bestSellingACR">
+		<value lang="en">Best-selling active railcards</value>
+		<value lang="nl">Bestverkochte abonnementen</value>
+		<value lang="fr">Abonnements les mieux vendus</value>
+	</string>
+	<string name="railcardInNameOf">
+		<value lang="en">Railcards in name of</value>
+		<value lang="nl">Abonnementen in naam van</value>
+		<value lang="fr">Abonnements au nom de</value>
+	</string>
+	<string name="originCustomers">
+		<value lang="en">Origin customers</value>
+		<value lang="nl">Afkomst klanten</value>
+		<value lang="fr">Origine des clients</value>
+	</string>
+	<string name="ticketRevenue">
+		<value lang="en">Ticket revenue by user</value>
+		<value lang="nl">Omzet tickets per gebruiker</value>
+		<value lang="fr">Vente de tickets par utilisateur</value>
+	</string>
 	
 
 	<!-- <string name="price per month">
