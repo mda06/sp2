@@ -202,6 +202,24 @@ public class TicketDAO implements BaseDAO<Ticket> {
 		}
 	}
 
-	
-
+	public void deleteDummies(){
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
+		
+		try{
+			stat = connection.prepareStatement("UPDATE tickets SET archived = 1 WHERE name LIKE '%test_%';");
+			stat.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
 }

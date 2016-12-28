@@ -204,4 +204,22 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 			}
 		}
 	}
+	
+	public void deleteDummies(){
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
+		
+		try{
+			stat = connection.prepareStatement("UPDATE lostItems SET archived = 1 WHERE type LIKE '%test_%';");
+			stat.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stat != null)stat.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Date;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -51,11 +52,17 @@ public class TestUserDAO {
 	public void testUpdateUser(){
 		List<User> users = UserDAO.getInstance().getAll();
 		User lastUser = users.get(users.size() - 1);
-		User uDummyUser = new User(lastUser.getId(), Gender.FEMALE, UserType.CUSTOMER, "test_Susan", "Cannon", new Date(863395200), false);
+		User uDummyUser = new User(lastUser.getId(), Gender.MALE, UserType.EMPLOYEE, "test_Pete", "Richardson", new Date(863395200), false);
 		Address dummyAddress = new Address(1, null, null, null, null, null, false);
 		uDummyUser.setAddress(dummyAddress);
 		UserDAO.getInstance().update(uDummyUser);
 		System.out.println("Updated User with ID: " + lastUser.getId());
+		tearDown();
+	}
+	
+	@AfterClass
+	public static void tearDown(){
+		UserDAO.getInstance().deleteDummies();
 	}
 
 }

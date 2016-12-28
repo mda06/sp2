@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -46,5 +47,11 @@ public class TestRailCardDAO {
 		RailCard uDummyRailCard = new RailCard(lastRailCard.getId(), "test_Railcard_u", "this railcard was generated and updated by a unit test", 7, 0, 7, true, false);
 		RailCardDAO.getInstance().update(uDummyRailCard);
 		System.out.println("Updated RailCard with ID: " + lastRailCard.getId());
+		tearDown();
+	}
+	
+	@AfterClass
+	public static void tearDown(){
+		RailCardDAO.getInstance().deleteDummies();
 	}
 }

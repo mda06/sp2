@@ -242,6 +242,24 @@ public class UserDAO implements BaseDAO<User>{
 		}
 	}
 	
+	public void deleteDummies(){
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
+		
+		try{
+			stat = connection.prepareStatement("UPDATE users SET archived = 1 WHERE firstName LIKE '%test_%';");
+			stat.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stat != null)stat.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public HashMap<Address, Integer> getAddressUserStatistic(){
 		HashMap<Address, Integer> map = new HashMap<>();
 		

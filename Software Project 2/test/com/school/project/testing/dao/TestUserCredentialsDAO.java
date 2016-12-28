@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -53,5 +54,11 @@ public class TestUserCredentialsDAO {
 		uDummyCredential.setUserId(dummyUser.getId());
 		UserCredentialsDAO.getInstance().update(uDummyCredential);
 		System.out.println("Updated UserCredential with ID: " + lastCredential.getId());
+		tearDown();
+	}
+	
+	@AfterClass
+	public static void tearDown(){
+		UserCredentialsDAO.getInstance().deleteDummies();
 	}
 }

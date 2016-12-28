@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -46,5 +47,11 @@ public class TestLostItemDAO {
 		LostItem uDummyLostItem = new LostItem(lastLostItem.getId(), "test_Earphones", "blue earphones of the brand Sennheiser", "Brussel-Centraal", true, false);
 		LostItemDAO.getInstance().update(uDummyLostItem);
 		System.out.println("Updated LostItem with ID: " + lastLostItem.getId());
+		tearDown();
+	}
+	
+	@AfterClass
+	public static void tearDown(){
+		LostItemDAO.getInstance().deleteDummies();
 	}
 }

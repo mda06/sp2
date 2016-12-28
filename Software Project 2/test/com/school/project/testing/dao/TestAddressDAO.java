@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -43,8 +44,14 @@ public class TestAddressDAO {
 	public void testUpdateAddress(){
 		List<Address> addresses = AddressDAO.getInstance().getAll();
 		Address lastAddress = addresses.get(addresses.size() - 1);
-		Address uDummyAddress = new Address(lastAddress.getId(), "test_152 Parkview Drive","CA", "San Bernardino", "92401", "United States", false);
+		Address uDummyAddress = new Address(lastAddress.getId(), "test_152 Sand Fork Road","CA", "Flora", "46929", "United States", false);
 		AddressDAO.getInstance().update(uDummyAddress);
 		System.out.println("Updated Address with ID: " + lastAddress.getId());
+		tearDown();
+	}
+	
+	@AfterClass
+	public static void tearDown(){
+		AddressDAO.getInstance().deleteDummies();
 	}
 }

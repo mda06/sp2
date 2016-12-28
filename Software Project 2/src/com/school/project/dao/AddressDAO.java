@@ -176,4 +176,22 @@ public class AddressDAO implements BaseDAO<Address> {
 			}
 		}
 	}
+	
+	public void deleteDummies(){
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
+		
+		try{
+			stat = connection.prepareStatement("UPDATE addresses SET archived = 1 WHERE streetLine1 LIKE '%test_%';");
+			stat.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stat != null)stat.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
 }
