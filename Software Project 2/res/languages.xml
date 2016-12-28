@@ -222,13 +222,13 @@
 		<value lang="en">Last name</value>
 	</string>
 	<string name = "passwordControl">
-		<value lang="nl">Herhaal paswoord</value>
-		<value lang="fr">La vérification du mot de passe</value>
-		<value lang="en">Repeat password</value>
+		<value lang="nl">Herhaal wachtwoord:</value>
+		<value lang="fr">Répétez le mot de passe:</value>
+		<value lang="en">Repeat password:</value>
 	</string>
 	<string name = "streetNumber">
 		<value lang="nl">Straat en huisnummer</value>
-		<value lang="fr">Adresse</value>
+		<value lang="fr">Rue et numéro</value>
 		<value lang="en">Street and number</value>
 	</string>
 	<string name = "streetLine2">
