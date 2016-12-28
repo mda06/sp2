@@ -2,29 +2,35 @@ package com.school.project.gui.controller.settings;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JOptionPane;
 
 import com.school.project.dao.TicketDAO;
 import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.settings.TicketEditorPanel;
+import com.school.project.language.LanguageHandler;
+import com.school.project.language.LanguageObservable;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketCache;
 
-public class TicketEditorController {
+public class TicketEditorController implements Observer{
 	private TicketEditorPanel pnl;
 	private PaymentBackListener list;
 	private Ticket ticket;
-	private String strErrorFillIn, strSaveSuccess, strUpdateSuccess;
+	private String strErrorFillIn, strSaveSuccess, strUpdateSuccess, strConfirmDelete;
 
+	public TicketEditorController(){
+		super();
+	}
 	public TicketEditorController(TicketEditorPanel pnl, PaymentBackListener list) {
 		this.pnl = pnl;
 		this.list = list;
 		ticket = null;
-		strErrorFillIn = "Error, please fill in all the fiels";
-		strSaveSuccess = "Ticket saved";
-		strUpdateSuccess = "Ticket updated";
-
+		for(int i = 0; i < 999; i++){
+			pnl.getJcValidityPer().addItem(i+1);
+		}
 		initEvents();
 	}
 
@@ -32,6 +38,17 @@ public class TicketEditorController {
 		pnl.getBtnBack().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				list.backToPreviousView();
+			}
+		});
+		
+		pnl.getBtnDelete().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int response = JOptionPane.showConfirmDialog(pnl, strConfirmDelete);
+				if(response == JOptionPane.OK_OPTION && ticket != null){
+					TicketDAO.getInstance().delete(ticket);
+					TicketCache.getInstance().remove(ticket.getId());
+					list.backToPreviousView();
+				}
 			}
 		});
 
@@ -51,6 +68,7 @@ public class TicketEditorController {
 				ticket.setPrice(Double.parseDouble(pnl.getTxtPrice().getText()));
 				ticket.setName(pnl.getTxtName().getText());
 				ticket.setDescription(pnl.getTxtDesc().getText());
+				ticket.setValidityPeriod(pnl.getJcValidityPer().getSelectedIndex()+1);
 				ticket.setHasFixedRoute(pnl.getCbHasFixedRoute().isSelected());
 
 				if(!newTicket) {
@@ -93,6 +111,8 @@ public class TicketEditorController {
 		pnl.getTxtDesc().setText(ticket.getDescription());
 		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()));
 		pnl.getCbHasFixedRoute().setSelected(ticket.isHasFixedRoute());
+		pnl.getJcValidityPer().setSelectedIndex(ticket.getValidityPeriod()-1);
+		pnl.getBtnDelete().setVisible(true);
 	}
 
 	public void newTicket() {
@@ -101,6 +121,30 @@ public class TicketEditorController {
 		pnl.getTxtDesc().setText("");
 		pnl.getTxtPrice().setText("");
 		pnl.getCbHasFixedRoute().setSelected(false);
+		
+		pnl.getBtnDelete().setVisible(false);
 	}
+
+	public void update(Observable o, Object arg) {
+		if(o instanceof LanguageObservable){
+			LanguageHandler lh = ((LanguageObservable)o).getLanguageHandler();
+			pnl.getLblName().setText(lh.getString("name"));
+			pnl.getBtnBack().setText(lh.getString("back"));
+			pnl.getBtnSave().setText(lh.getString("save"));
+			pnl.getBtnDelete().setText(lh.getString("delete"));
+			pnl.getLblDesc().setText(lh.getString("description"));
+			pnl.getLblPrice().setText(lh.getString("price"));
+			pnl.getCbHasFixedRoute().setText(lh.getString("hasFixedRoute"));
+			pnl.getLblValidityPer().setText(lh.getString("validityPeriod"));
+			pnl.getLblDays().setText(lh.getString("days"));
+			strErrorFillIn = lh.getString("errorAddLostItem");
+			strSaveSuccess = lh.getString("saveSucces");
+			strUpdateSuccess = lh.getString("updateSucces");
+			strConfirmDelete = lh.getString("confirmDelete");
+			
+		}
+	}
+	
+	
 
 }

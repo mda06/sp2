@@ -20,6 +20,9 @@ public class SelectUserRunnable implements Runnable {
 		String last = view.getTxtLastName().getText();
 		
 		SelectUserTableModel model = (SelectUserTableModel)view.getTblUsers().getModel();
+		for(int i = model.getRowCount() - 1; i >= 0; i--){
+			model.removeRow(i);
+		}
 		for(User u : UserDAO.getInstance().getUsersLike(first, last)) {
 			model.addUser(u);
 		}

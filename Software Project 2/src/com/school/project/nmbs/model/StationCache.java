@@ -38,7 +38,15 @@ public class StationCache {
 		}
 		return null;
 	}
-	
+
+	public Station getStationWithName(String name) {
+		for(Station st : stations) {
+			if(st.getName().equals(name))
+				return st;
+		}
+		return null;
+	}
+
 	public String getFormattedIDByStationName(String stationName){
 		for(Station st : stations) {
 			if(st.getName().equals(stationName))

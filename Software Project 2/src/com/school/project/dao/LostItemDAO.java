@@ -103,15 +103,17 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 		return lst;
 	}
 	
-	public List<LostItem> getByDescription(String description){
+	public List<LostItem> getBySearch(String type, String description, String loc){
 		List<LostItem> lst = new ArrayList<LostItem>();
 		Connection connection = DatabaseHandler.getInstance().getConnection();
 		PreparedStatement stat = null;
 		ResultSet res = null;
 		
 		try{
-			stat = connection.prepareStatement("SELECT * FROM lostItems WHERE archived = 0 AND pickedUp = 0 AND description LIKE ?;");
+			stat = connection.prepareStatement("SELECT * FROM lostItems WHERE archived = 0 AND pickedUp = 0 AND description LIKE ? AND type LIKE ? AND location LIKE ?;");
 			stat.setString(1, "%" + description + "%");
+			stat.setString(2, "%" + type + "%");
+			stat.setString(3, "%" + loc+ "%");
 			res = stat.executeQuery();
 			
 			while(res.next()){
@@ -129,7 +131,7 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 		}
 		return lst;
 	}
-
+	
 	@Override
 	public LostItem get(int id) {
 		LostItem item = null;
@@ -191,6 +193,24 @@ public class LostItemDAO implements BaseDAO<LostItem>{
 		try{
 			stat = connection.prepareStatement("UPDATE lostItems SET archived = 1 WHERE id = ?");
 			stat.setInt(1, obj.getId());
+			stat.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stat != null)stat.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void deleteDummies(){
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		PreparedStatement stat = null;
+		
+		try{
+			stat = connection.prepareStatement("UPDATE lostItems SET archived = 1 WHERE type LIKE '%test_%';");
 			stat.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();

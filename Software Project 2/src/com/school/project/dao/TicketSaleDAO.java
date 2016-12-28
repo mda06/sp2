@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.school.project.model.Ticket;
-import com.school.project.model.TicketCache;
 import com.school.project.model.TicketSale;
 import com.school.project.model.User;
 
@@ -41,9 +40,10 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		String from = res.getString("departureStation");
 		String to = res.getString("arrivalStation");
 		boolean archived = res.getBoolean("archived");
-		Ticket ticket = TicketCache.getInstance().getTicket(res.getInt("ticketId"));
+		Ticket ticket = TicketDAO.getInstance().get(res.getInt("ticketId"));
 		User user = UserDAO.getInstance().get(res.getInt("soldByUser"));
-		return new TicketSale(id, validFrom, validTo, soldOn, from, to, archived, ticket, user);
+		double price = res.getDouble("price");
+		return new TicketSale(id, validFrom, validTo, soldOn, from, to, archived, ticket, user, price);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		try {
 			String[] returnId = { "BATCHID" };
 			stat = connection.prepareStatement(
-					"INSERT INTO ticketSales (id, ticketId, soldByUser, validFrom, validTo, soldOn, departureStation, arrivalStation, archived) VALUES (null,?,?,?,?,?,?,?,?);",
+					"INSERT INTO ticketSales (id, ticketId, soldByUser, validFrom, validTo, soldOn, departureStation, arrivalStation, price, archived) VALUES (null,?,?,?,?,?,?,?,?,?);",
 					returnId);
 			stat.setInt(1, obj.getTicket().getId());
 			stat.setInt(2, obj.getUser().getId());
@@ -67,7 +67,8 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 			stat.setDate(5, obj.getSoldOn());
 			stat.setString(6, obj.getFrom());
 			stat.setString(7, obj.getTo());
-			stat.setBoolean(8, obj.isArchived());
+			stat.setDouble(8,  obj.getPrice());
+			stat.setBoolean(9, obj.isArchived());
 			stat.executeUpdate();
 
 			ResultSet genKeys = null;
@@ -164,7 +165,7 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 
 		try {
 			stat = connection.prepareStatement(
-					"UPDATE ticketSales SET ticketId = ?, soldByUser = ?, validFrom = ?, validTo = ?, soldOn = ?, departureStation = ?, arrivalStation = ?, archived = ? WHERE id = ?;");
+					"UPDATE ticketSales SET ticketId = ?, soldByUser = ?, validFrom = ?, validTo = ?, soldOn = ?, departureStation = ?, arrivalStation = ?, price = ?, archived = ? WHERE id = ?;");
 			stat.setInt(1, obj.getTicket().getId());
 			stat.setInt(2, obj.getUser().getId());
 			stat.setDate(3, obj.getValidFrom());
@@ -172,8 +173,9 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 			stat.setDate(5, obj.getSoldOn());
 			stat.setString(6, obj.getFrom());
 			stat.setString(7, obj.getTo());
-			stat.setBoolean(8, obj.isArchived());
-			stat.setInt(9, obj.getId());
+			stat.setDouble(8,  obj.getPrice());
+			stat.setBoolean(9, obj.isArchived());
+			stat.setInt(10, obj.getId());
 			stat.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -253,13 +255,47 @@ public class TicketSaleDAO implements BaseDAO<TicketSale> {
 		ResultSet res = null;
 		
 		try{
-			String sql = "SELECT count(*) AS total, soldByUser FROM `ticketSales` GROUP BY soldByUser";
+			String sql = "SELECT count(*) AS total, soldByUser FROM ticketSales GROUP BY soldByUser";
 			stat = connection.createStatement();
 			res = stat.executeQuery(sql);
 			while(res.next()) {
 				User u = UserDAO.getInstance().get(res.getInt("soldByUser"));
-				Integer nb = res.getInt("total");
-				map.put(u, nb);
+				Integer i = res.getInt("total");
+				map.put(u, i);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null) res.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		
+		return map;
+	}
+	
+	public HashMap<User, Double> getTotalTicketsSoldByUser(){
+		HashMap<User, Double> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT SUM(price) AS Total, soldByUser FROM ticketSales GROUP BY soldByUser";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			
+			while(res.next()){
+				User u = UserDAO.getInstance().get(res.getInt("soldbyUser"));
+				Double i = res.getDouble("Total");
+				map.put(u, i);
 			}
 		}
 		catch(SQLException e){

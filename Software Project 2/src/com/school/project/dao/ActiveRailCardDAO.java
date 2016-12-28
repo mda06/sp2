@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -229,4 +229,99 @@ public class ActiveRailCardDAO implements BaseDAO<ActiveRailCard> {
 		}
 		return lst;
 	}
+	public HashMap<ActiveRailCard, Integer> getBestActiveRailCardStatistic(){
+		HashMap<ActiveRailCard, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT count(*) AS total, railcardId FROM activeRailcards GROUP BY railcardId";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()){
+				ActiveRailCard a = ActiveRailCardDAO.getInstance().get(res.getInt("railcardId"));
+				Integer nb = res.getInt("total");
+				map.put(a, nb);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null){ res.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	public HashMap<User, Integer> getActiveRailCardByUserStatistic(){
+		HashMap<User, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT count(*) AS total, soldByUser FROM activeRailcards GROUP BY soldByUser";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()){
+				User u = UserDAO.getInstance().get(res.getInt("soldByUser"));
+				Integer i = res.getInt("total");
+				map.put(u, i);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(stat != null){res.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
+	public HashMap<RailCard, Integer> getBestSoldRailcardStatistic(){
+		HashMap<RailCard, Integer> map = new HashMap<>();
+		
+		Connection connection = DatabaseHandler.getInstance().getConnection();
+		Statement stat = null;
+		ResultSet res = null;
+		
+		try{
+			String sql = "SELECT COUNT(*) total, railcardId FROM activeRailcards GROUP BY railcardId";
+			stat = connection.createStatement();
+			res = stat.executeQuery(sql);
+			while(res.next()){
+				RailCard r = RailCardDAO.getInstance().get(res.getInt("railcardId"));
+				Integer i = res.getInt("total");
+				map.put(r, i);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(stat != null){stat.close();}
+				if(res != null){res.close();}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
 }

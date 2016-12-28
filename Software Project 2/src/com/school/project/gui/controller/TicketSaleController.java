@@ -1,7 +1,5 @@
 package com.school.project.gui.controller;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -15,15 +13,19 @@ import com.school.project.gui.controller.listener.PaymentBackListener;
 import com.school.project.gui.view.PaymentPanel;
 import com.school.project.model.Ticket;
 import com.school.project.model.TicketSale;
+import com.school.project.model.TicketSaleOfflineCache;
 import com.school.project.model.User;
+import com.school.project.nmbs.model.Station;
 import com.school.project.nmbs.model.StationCache;
+import com.school.project.util.NetUtil;
+import com.school.project.util.PriceUtil;
 
-public class TicketSaleController{
+public class TicketSaleController {
 	private PaymentPanel pnl;
 	private PaymentBackListener list;
 	private Ticket ticket;
 	private User user;
-	
+
 	public TicketSaleController(PaymentPanel pnl, PaymentBackListener lst, User user) {
 		this.pnl = pnl;
 		this.list = lst;
@@ -32,17 +34,17 @@ public class TicketSaleController{
 
 		pnl.getTxtFromStation().setItems(StationCache.getInstance().getStationsNames());
 		pnl.getTxtToStation().setItems(StationCache.getInstance().getStationsNames());
-		
+
 		initEvents();
 	}
-	
+
 	private void initEvents() {
 		pnl.getBtnBack().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				list.backToPreviousView();
 			}
 		});
-		
+
 		pnl.getBtnPay().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String from = pnl.getTxtFromStation().getText();
@@ -53,24 +55,71 @@ public class TicketSaleController{
 				cal.setTime(new java.util.Date());
 				cal.add(Calendar.DATE, ticket.getValidityPeriod());
 				Date validTo = new Date(cal.getTime().getTime());
-				
-				if(ticket.isHasFixedRoute() && (from.isEmpty() || to.isEmpty())) {
+				double price = 0;
+				try {
+					price = getPrice();
+				} catch (RuntimeException ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error in the formula");
+					return;
+				}
+
+				if (ticket.isHasFixedRoute() && (from.isEmpty() || to.isEmpty())) {
 					JOptionPane.showMessageDialog(pnl, "Please enter from and to stations");
 				} else {
-					TicketSale sale = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user);
-					TicketSaleDAO.getInstance().add(sale);
+					TicketSale sale = new TicketSale(-1, validFrom, validTo, soldOn, from, to, false, ticket, user, price);
+					if (NetUtil.hasInternet()) {
+						TicketSaleDAO.getInstance().add(sale);
+						TicketSaleOfflineCache.getInstance().saveCache();
+					} else {
+						JOptionPane.showMessageDialog(pnl, "No internet available, ticket is cached offline");
+						TicketSaleOfflineCache.getInstance().add(sale);
+					}
 					list.backToPreviousView();
 				}
 			}
 		});
+
+		ActionListener actionPrice = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showPrice();
+			}
+		};
+
+		pnl.getTxtFromStation().addActionListener(actionPrice);
+		pnl.getTxtToStation().addActionListener(actionPrice);
 	}
-	
+
+	private void showPrice() {
+		double price = 0;
+		try {
+			price = getPrice();
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			pnl.getTxtPrice().setText("Error in the formula");
+			return;
+		}
+
+		pnl.getTxtPrice().setText(String.valueOf(price + " €"));
+	}
+
+	private double getPrice() {
+		String from = pnl.getTxtFromStation().getText();
+		String to = pnl.getTxtToStation().getText();
+		Station s1 = StationCache.getInstance().getStationWithName(from);
+		Station s2 = StationCache.getInstance().getStationWithName(to);
+		return PriceUtil.getInstance().getPrice(s1, s2, ticket);
+	}
+
 	public void showTicket(Ticket t) {
-		if(t == null) return;
+		if (t == null) return;
 		ticket = t;
 		pnl.getTxtName().setText(ticket.getName());
 		pnl.getTxtDesc().setText(ticket.getDescription());
-		pnl.getTxtPrice().setText(String.valueOf(ticket.getPrice()));
+
+		showPrice();
+
 		pnl.getTxtValidFrom().setText(new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date()));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new java.util.Date());
@@ -79,7 +128,7 @@ public class TicketSaleController{
 		pnl.getTxtSoldBy().setText(user.getFirstName() + " " + user.getLastName());
 		pnl.getTxtToStation().setText("");
 		pnl.getTxtFromStation().setText("");
-		if(ticket.isHasFixedRoute()) {
+		if (ticket.isHasFixedRoute()) {
 			pnl.getTxtToStation().setEnabled(true);
 			pnl.getTxtFromStation().setEnabled(true);
 		} else {

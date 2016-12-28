@@ -27,6 +27,7 @@ import com.school.project.model.RailCardCache;
 import com.school.project.model.TicketCache;
 import com.school.project.model.User;
 import com.school.project.model.User.UserType;
+import com.school.project.nfc.Acr122Factory;
 import com.school.project.nmbs.dao.StationDAO;
 
 public class MainFactory implements ConnectionListener, DisconnectListener {
@@ -34,7 +35,15 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 	private LoginController login;
 	private FrameController frame;
 	private LanguageObservable languageObservable;
-	private boolean isCacheLoaded;
+	
+	private static boolean isCacheLoaded;
+	
+	private static synchronized void setCacheLoaded(boolean b) {
+		isCacheLoaded = b;
+	}
+	private static synchronized boolean isCacheLoaded() {
+		return isCacheLoaded;
+	}
 
 	public MainFactory() {
 
@@ -50,12 +59,20 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 			//e.printStackTrace();
 		}
 		
+		Acr122Factory.getInstance().loadListeners();
+		//We use 2 separated threads because they come from different servers
+		//If NMBS is down our MYSQL DB will work
+		//If the TicketCache is loaded after the baseframe is isn't bad
+		//There's a listener to the cache that will update the GUI
 		isCacheLoaded = false;
 		new Thread(() -> {
-			StationDAO.loadCache();
+			StationDAO.loadCache(true);
+			System.out.println("Cache is now loaded");
+			setCacheLoaded(true);
+		}).start();
+		new Thread(() -> {
 			TicketCache.getInstance().loadCache();
 			RailCardCache.getInstance().loadCache();
-			isCacheLoaded = true;
 		}).start();
 		
 		connectedUser = null;
@@ -79,16 +96,18 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 			public void windowDeactivated(WindowEvent e) {}
 		});
 	}
-
+	
 	public void showBaseFrame() {
-		if(!isCacheLoaded) {
-			JFrame frame = new JFrame("Loading");
-			frame.getContentPane().add(new JLabel("Please wait until the cache is loaded..."));
-			frame.pack();
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
+		JFrame loadFrame = null;
+		if(!isCacheLoaded()) {
+			loadFrame = new JFrame("Loading");
+			loadFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			loadFrame.getContentPane().add(new JLabel("Please wait until the cache is loaded..."));
+			loadFrame.pack();
+			loadFrame.setLocationRelativeTo(null);
+			loadFrame.setVisible(true);
 		}
-		while(!isCacheLoaded) {
+		while(!isCacheLoaded()) {
 			try {
 				Thread.sleep(150);
 			} catch (InterruptedException e1) {
@@ -111,6 +130,9 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 			public void windowActivated(WindowEvent e) {}
 			public void windowDeactivated(WindowEvent e) {}
 		});
+
+		if(loadFrame != null)
+			loadFrame.dispose();
 	}
 
 	private void initBaseModels(FrameController base) {
@@ -120,7 +142,7 @@ public class MainFactory implements ConnectionListener, DisconnectListener {
 		addCard(base, new UserController(connectedUser));
 		addCard(base, new ActiveUserRailCardController());
 		addCard(base, new LostItemController());
-		if(connectedUser.getType() == UserType.ADMIN) {
+		if(connectedUser != null && connectedUser.getType() == UserType.ADMIN) {
 			addCard(base, new SettingsController(languageObservable));
 			addCard(base, new StatisticsController());
 		}

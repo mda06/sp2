@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -25,6 +27,21 @@ public class NetUtil {
 		}
 	}
 
+	public static boolean hasInternet() {
+		String site = "google.com";
+	    Socket sock = new Socket();
+	    InetSocketAddress addr = new InetSocketAddress(site,80);
+	    try {
+	        sock.connect(addr,3000);
+	        return true;
+	    } catch (IOException e) {
+	        return false;
+	    } finally {
+	        try {sock.close();}
+	        catch (IOException e) {}
+	    }
+	}
+	
 	/**
 	 * @depreciated Doesn't work with Station, but well with the rest
 	 */
@@ -65,7 +82,7 @@ public class NetUtil {
 		@SuppressWarnings("unused")
 		int responseCode = con.getResponseCode();
 
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
 		String inputLine;
 		StringBuffer response = new StringBuffer();
 
