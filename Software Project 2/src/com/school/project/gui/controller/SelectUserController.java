@@ -97,6 +97,7 @@ public class SelectUserController implements Observer{
 	public void update(Observable o, Object arg) {
 		if(o instanceof LanguageObservable) {
 			LanguageHandler lh = ((LanguageObservable)o).getLanguageHandler();
+			popup.setTitle(lh.getString("selectUser"));
 			popup.getLblFirstName().setText(lh.getString("firstName"));
 			popup.getLblLastName().setText(lh.getString("lastName"));
 			popup.getBtnSearch().setText(lh.getString("search"));
