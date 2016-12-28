@@ -28,8 +28,7 @@ public class LoginController implements Observer, CardConnected {
 	}
 	
 	private void setBaseCredentials() {
-		view.getTxtUsername().setText("Illya");
-		view.getTxtPassword().setText("illy");
+		//Nobody
 	}
 
 	private void initEvents() {
